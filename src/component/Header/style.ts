@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 export const StyledHeaderWrapper = styled.header`
   padding: 16px 60px;
@@ -97,4 +97,8 @@ export const StyledHeaderNavLink = styled(NavLink)`
     }
   }
    
+`;
+
+export const StyledAppTitleLink = styled(Link)`
+  text-decoration: none;
 `;

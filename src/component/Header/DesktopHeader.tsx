@@ -4,6 +4,7 @@ import ChangeTheme from '../Header/ChangeTheme';
 import MainNavigation from '../Header/MainNavigation';
 
 import { navData, authNavData } from './data';
+import { StyledAppTitleLink } from './style';
 
 const DesktopHeader = ({
   colorTheme,
@@ -14,7 +15,9 @@ const DesktopHeader = ({
 }) => {
   return (
     <React.Fragment>
-      <AppTitle />
+      <StyledAppTitleLink to="/">
+        <AppTitle />
+      </StyledAppTitleLink>
       <MainNavigation className="main-navigation" data={navData} />
       <MainNavigation className="auth-navigation" data={authNavData}>
         <ChangeTheme

@@ -5,9 +5,10 @@ import { ThemeProvider } from 'styled-components';
 import theme from './theme';
 
 import Header from './src/component/Header';
-import Today from './pages/today';
+import Today from './pages/AllTodays';
 import { StyledMainWrapper } from './style';
-import Sprint from './pages/sprint/inde';
+import Sprint from './pages/Sprint';
+import Home from './pages/Home';
 
 function App() {
   const [themeColor, setThemeColor] = useState('main');
@@ -25,6 +26,7 @@ function App() {
       <Header colorTheme={themeColor} handleColorTheme={handleColorTheme} />
       <StyledMainWrapper>
         <Switch>
+          <Route path="/" component={Home} exact />
           <Route path="/all-today" component={Today} exact />
           <Route path="/sprint" component={Sprint} exact />
         </Switch>
