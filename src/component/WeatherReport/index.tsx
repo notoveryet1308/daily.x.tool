@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import WatchTime from '../WatchTime';
-import { getWeatherInfo } from '../WeatherReport/api';
+import { getPlacename, getWeatherInfo } from '../WeatherReport/api';
 import { getLocationCoords } from '../WeatherReport/hooks';
 import ShowWeather from './ShowWeather';
 import { StyledWeatherReport } from '../WeatherReport/style';
@@ -22,6 +22,8 @@ const WeatherReport = () => {
       getWeatherInfo({ lat: latitude, long: longitude }).then((data) => {
         setWeatherData(data);
       });
+
+      // getPlacename({ lat: latitude, long: longitude }).then((data) => {});
     }
   }, [showWeatherDeatil, latitude, longitude]);
 
