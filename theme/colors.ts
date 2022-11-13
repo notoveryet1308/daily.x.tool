@@ -16,6 +16,16 @@ export const whiteThemeColors = {
   primaryTextColor: '#160D2E',
   secondaryTextColor: '#382778',
   tertiaryTextColor: '#8C7CD0',
+
+  // gradient color
+  weatherBg:
+    'linear-gradient(90.81deg, rgba(159, 138, 238, 0.6) 29.64%, rgba(89, 60, 198, 0.6) 50.7%)',
+
+  // colors with transparency
+
+  tempBgColor: 'rgba(215, 209, 238, .8)',
+
+  ruleBreakerColor: '#2690EB',
 };
 
 export const darkThemeColors = {
@@ -36,4 +46,14 @@ export const darkThemeColors = {
   primaryTextColor: '#F1EFF8',
   secondaryTextColor: '#D8D0EE',
   tertiaryTextColor: '#BCB1E3',
+
+  // gradient color
+  weatherBg:
+    'linear-gradient(90.81deg, rgba(28, 19, 60, 0.5) 29.64%, rgba(8, 5, 16, 0.5) 50.7%)',
+
+  // colors with transparency
+
+  tempBgColor: 'rgba(28, 19, 60, .8)',
+
+  ruleBreakerColor: '#2690EB',
 };

@@ -8,6 +8,4 @@ export const StyledMainWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.tertiaryBgColor};
   display: flex;
   justify-content: center;
-
- 
 `;

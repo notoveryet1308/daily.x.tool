@@ -1,14 +1,15 @@
 import React from 'react';
+import WeatherReport from '../../src/component/WeatherReport';
 import { StyledHomePageWrapper } from '../Home/style';
 
 const Home = () => {
   return (
     <StyledHomePageWrapper>
-      {/* <div className="weather-info"></div> */}
+      <WeatherReport />
       <div className="main-content-wrapper">
         <div className="main-content">
-          <div className="today-todo">Today todo</div>
-          <div className="recent-activities">Recent activities</div>
+          <div className="today-todo"></div>
+          <div className="recent-activities"></div>
         </div>
       </div>
     </StyledHomePageWrapper>

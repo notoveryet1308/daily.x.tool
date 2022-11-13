@@ -9,12 +9,6 @@ export const StyledHomePageWrapper = styled.main`
   justify-content: center;
 
 
-  .weather-info{
-    width: 100%;
-    height: 150px;
-  }
-
-
   .main-content-wrapper{
     width: 100%;
     display: flex;
