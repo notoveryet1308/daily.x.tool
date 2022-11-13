@@ -4,7 +4,7 @@ import { StyledHomePageWrapper } from '../Home/style';
 const Home = () => {
   return (
     <StyledHomePageWrapper>
-      <div className="weather-info"></div>
+      {/* <div className="weather-info"></div> */}
       <div className="main-content-wrapper">
         <div className="main-content">
           <div className="today-todo">Today todo</div>

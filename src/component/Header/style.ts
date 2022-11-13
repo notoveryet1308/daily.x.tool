@@ -84,7 +84,7 @@ export const StyledHeaderNavLink = styled(NavLink)`
     position: absolute;
     width: 0;
     height: 3px;
-    background-color: ${({ theme }) => theme.colors.primaryColor100};
+    background-color: ${({ theme }) => theme.colors.primaryColor};
     left: 0;
     top: 100%;  
     

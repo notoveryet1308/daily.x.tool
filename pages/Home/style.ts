@@ -6,6 +6,7 @@ export const StyledHomePageWrapper = styled.main`
   height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 
 
   .weather-info{
@@ -19,19 +20,21 @@ export const StyledHomePageWrapper = styled.main`
     display: flex;
     justify-content: center;
     padding: 0 60px;
-
+  
     @media (max-width:${({ theme }) => theme.breakpoints.LARGE_TABLET}px){
-      margin: 0 32px;
+      padding: 0 32px;
     }
   
     @media (max-width:${({ theme }) => theme.breakpoints.MOBILE}px){
-      margin: 0 16px;
+      padding: 0 16px;
     }
+    
   }
 
   .main-content{
+    width: 100%;
     max-width: ${({ theme }) => theme.breakpoints.DESKTOP}px; 
-    display: flex;
+    display: flex;   
     
     .today-todo{
       flex: 1;
