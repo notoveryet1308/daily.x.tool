@@ -17,9 +17,10 @@ export const StyledHeaderWrapper = styled.header`
     width: 100%;
   }
   
-  @media (max-width:${({ theme }) => theme.breakpoints.TABLET}px){
+  @media (max-width:${({ theme }) => theme.breakpoints.LARGE_TABLET}px){
     padding: 16px 32px;
   }
+
 
   @media (max-width:${({ theme }) => theme.breakpoints.MOBILE}px){
     padding: 16px 16px;
