@@ -19,7 +19,7 @@ export const whiteThemeColors = {
 
   // gradient color
   weatherBg:
-    'linear-gradient(90.81deg, rgba(159, 138, 238, 0.6) 29.64%, rgba(89, 60, 198, 0.6) 50.7%)',
+    'linear-gradient(90.81deg, rgba(159, 138, 238, 0.38) 29.64%, rgba(0, 80, 91, 0.38) 50.7%)',
 
   // colors with transparency
 
@@ -49,7 +49,7 @@ export const darkThemeColors = {
 
   // gradient color
   weatherBg:
-    'linear-gradient(90.81deg, rgba(28, 19, 60, 0.5) 29.64%, rgba(8, 5, 16, 0.5) 50.7%)',
+    'linear-gradient(90.81deg, rgba(28, 19, 60, 0.38) 29.64%, rgba(0, 80, 91, 0.38) 50.7%)',
 
   // colors with transparency
 
