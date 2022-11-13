@@ -27,4 +27,18 @@ export const StyledWatchTime = styled.div`
       color: ${({ theme }) => theme.colors.secondaryTextColor};
     }
   }
+
+  @media (max-width:${({ theme }) => theme.breakpoints.LARGE_MOBILE}px){
+
+    .time-data{
+      .time-value{
+        font-size: 20px;
+      }
+      .time-info{
+        font-size: 12px;
+      }
+    }
+    
+  }
+
 `;

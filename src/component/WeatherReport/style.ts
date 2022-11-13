@@ -72,6 +72,32 @@ export const StyledWeatherReport = styled.div`
     justify-content: ${({ showWeatherDeatil }) =>
       showWeatherDeatil ? 'space-between' : 'center'};
     align-items: center;
+
+    .weather-sky{
+      display: flex;
+      flex-direction: column;
+      align-item: center;
+      position: relative;
+      height: 118px;
+
+      .weather-sky-img{
+        margin-top: -8px;
+      }
+
+      .weather-sky-description{
+        position: absolute;
+        bottom: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        background-color: ${({ theme }) => theme.colors.tempBgColor};
+        color: ${({ theme }) => theme.colors.primaryTextColor};
+        text-transform: capitalize;
+        padding: 4px 0;
+        width: 100px;
+        border-radius: 4px;
+      }
+    }
     
   }
 `;
@@ -89,15 +115,15 @@ export const StyledTempLocation = styled.div`
 
   .temp-data{
     background-color: ${({ theme }) => theme.colors.tempBgColor};
-    border-radius: 50%;
-    width: 90px;
-    height: 85px;
+    border-radius: 30px;
+    width: 60px;
+    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
 
     .temp-value{
-      font-size: 30px;
+      font-size: 20px;
       font-weight: bold;
     }
 
@@ -107,7 +133,7 @@ export const StyledTempLocation = styled.div`
 
   .location-data{
     background-color: ${({ theme }) => theme.colors.tempBgColor};
-    border-radius: 10px;
+    border-radius: 4px;
     padding:4px 8px;
     display: flex;
     align-items: center;
@@ -120,6 +146,8 @@ export const StyledTempLocation = styled.div`
   }
 
   @media (max-width:${({ theme }) => theme.breakpoints.TABLET}px){
+
+    display: none;
     .temp-data{
       width: 60px;
       height: 55px;
