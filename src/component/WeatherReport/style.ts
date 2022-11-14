@@ -93,8 +93,8 @@ export const StyledWeatherReport = styled.div`
         background-color: ${({ theme }) => theme.colors.tempBgColor};
         color: ${({ theme }) => theme.colors.primaryTextColor};
         text-transform: capitalize;
-        padding: 4px 0;
-        width: 100px;
+        padding: 4px 8px;
+        white-space: nowrap;
         border-radius: 4px;
       }
     }
