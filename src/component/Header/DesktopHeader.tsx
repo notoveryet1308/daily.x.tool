@@ -15,11 +15,11 @@ const DesktopHeader = ({
 }) => {
   return (
     <React.Fragment>
-      <StyledAppTitleLink to="/">
+      <StyledAppTitleLink to='/'>
         <AppTitle />
       </StyledAppTitleLink>
-      <MainNavigation className="main-navigation" data={navData} />
-      <MainNavigation className="auth-navigation" data={authNavData}>
+      <MainNavigation className='main-navigation' data={navData} />
+      <MainNavigation className='auth-navigation' data={authNavData}>
         <ChangeTheme
           colorTheme={colorTheme}
           handleColorTheme={handleColorTheme}

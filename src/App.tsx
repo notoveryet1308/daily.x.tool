@@ -26,9 +26,9 @@ function App() {
       <Header colorTheme={themeColor} handleColorTheme={handleColorTheme} />
       <StyledMainWrapper>
         <Switch>
-          <Route path="/" component={Home} exact />
-          <Route path="/all-today" component={Today} exact />
-          <Route path="/sprint" component={Sprint} exact />
+          <Route path='/' component={Home} exact />
+          <Route path='/all-today' component={Today} exact />
+          <Route path='/sprint' component={Sprint} exact />
         </Switch>
       </StyledMainWrapper>
     </ThemeProvider>

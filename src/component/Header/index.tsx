@@ -1,6 +1,7 @@
 import React from 'react';
-import { useScrenWidth } from '../../hooks';
+
 import { breakpoints } from '../../theme/breakpoint';
+import { useScreenWidth } from '../../hooks';
 import DesktopHeader from '../Header/DesktopHeader';
 import MobileHeader from '../Header/MobileHeader';
 
@@ -13,11 +14,11 @@ const Header = ({
   colorTheme: string;
   handleColorTheme: () => void;
 }) => {
-  const [screenWidth] = useScrenWidth();
+  const [screenWidth] = useScreenWidth();
 
   return (
     <StyledHeaderWrapper>
-      <div className="header-content">
+      <div className='header-content'>
         {breakpoints.TABLET < screenWidth ? (
           <DesktopHeader
             colorTheme={colorTheme}

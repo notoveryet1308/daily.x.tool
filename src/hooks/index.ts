@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export const useScrenWidth = (): [number] => {
+export const useScreenWidth = (): [number] => {
   const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
 
   window.addEventListener('resize', () => {
@@ -8,4 +8,20 @@ export const useScrenWidth = (): [number] => {
   });
 
   return [screenWidth];
+};
+
+export const useCheckRequiredValue = (values: (string | number)[]) => {
+  const [allowAction, setAllowAction] = useState<boolean>(true);
+
+  useEffect(() => {
+    values.forEach((val) => {
+      if (!val) {
+        setAllowAction(false);
+      } else {
+        setAllowAction(true);
+      }
+    });
+  }, [...values]);
+
+  return [allowAction];
 };

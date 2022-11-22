@@ -4,28 +4,26 @@ import { NavLink, Link } from 'react-router-dom';
 export const StyledHeaderWrapper = styled.header`
   padding: 16px 60px;
   width: 100%;
-  background-color:${({ theme }) => theme.colors.primaryBgColor};
+  background-color: ${({ theme }) => theme.colors.secondaryBgColor};
   display: flex;
   align-items: center;
   justify-content: center;
 
-  .header-content{
+  .header-content {
     display: flex;
     align-items: center;
-    justify-content: space-between; 
+    justify-content: space-between;
     max-width: 1280px;
     width: 100%;
   }
-  
-  @media (max-width:${({ theme }) => theme.breakpoints.LARGE_TABLET}px){
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_TABLET}px) {
     padding: 16px 32px;
   }
 
-
-  @media (max-width:${({ theme }) => theme.breakpoints.MOBILE}px){
+  @media (max-width: ${({ theme }) => theme.breakpoints.MOBILE}px) {
     padding: 16px 16px;
   }
-  
 `;
 
 export const StyledMainNavigation = styled.nav`
@@ -34,7 +32,7 @@ export const StyledMainNavigation = styled.nav`
   align-items: center;
 `;
 
-export const StyledChnageTheme = styled.span`
+export const StyledChangeTheme = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,7 +42,7 @@ export const StyledChnageTheme = styled.span`
   border: 1px solid ${({ theme }) => theme.colors.primaryTextColor};
   border-radius: 50%;
 
-  .ph-icon{
+  .ph-icon {
     color: ${({ theme }) => theme.colors.primaryTextColor};
   }
 `;
@@ -55,7 +53,7 @@ export const StyledMobileHeader = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  .mobile-header-top{
+  .mobile-header-top {
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -63,7 +61,7 @@ export const StyledMobileHeader = styled.div`
     margin-bottom: 4px;
   }
 
-  .mobile-header-bottom{
+  .mobile-header-bottom {
     display: flex;
     width: 100%;
     justify-content: center;
@@ -75,29 +73,31 @@ export const StyledHeaderNavLink = styled(NavLink)`
   position: relative;
   text-decoration: none;
   color: ${({ theme }) => theme.colors.primaryTextColor};
-  font-size: 12px;
+  font-size: ${({ theme }) => theme.fontSize.medium};
   text-transform: uppercase;
   transition: all 300ms ease;
 
-  &::after{
-    content:'';
+  &::after {
+    content: '';
     position: absolute;
     width: 0;
     height: 3px;
     background-color: ${({ theme }) => theme.colors.primaryColor};
     left: 0;
-    top: 100%;  
-    
+    top: 100%;
   }
 
-  &.selected, &:hover{ 
-
-    ::after{
+  &.selected,
+  &:hover {
+    ::after {
       width: 100%;
       transition: all 300ms ease;
     }
   }
-   
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.TABLET}px) {
+    font-size: ${({ theme }) => theme.fontSize.small};
+  }
 `;
 
 export const StyledAppTitleLink = styled(Link)`

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { SunDim, Moon } from 'phosphor-react';
-import { StyledChnageTheme } from './style';
+import { StyledChangeTheme } from './style';
 
 const ChangeTheme = ({
   className,
@@ -13,13 +13,13 @@ const ChangeTheme = ({
   handleColorTheme: () => void;
 }) => {
   return (
-    <StyledChnageTheme className={className} onClick={handleColorTheme}>
+    <StyledChangeTheme className={className} onClick={handleColorTheme}>
       {colorTheme === 'main' ? (
-        <Moon className="ph-icon icon-dark" />
+        <Moon className='ph-icon icon-dark' />
       ) : (
-        <SunDim className="ph-icon icon-light" />
+        <SunDim className='ph-icon icon-light' />
       )}
-    </StyledChnageTheme>
+    </StyledChangeTheme>
   );
 };
 

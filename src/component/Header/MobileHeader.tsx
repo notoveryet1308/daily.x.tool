@@ -16,8 +16,8 @@ const MobileHeader = ({
 }) => {
   return (
     <StyledMobileHeader>
-      <div className="mobile-header-top">
-        <StyledAppTitleLink to="/">
+      <div className='mobile-header-top'>
+        <StyledAppTitleLink to='/'>
           <AppTitle />
         </StyledAppTitleLink>
         <MainNavigation data={authNavData}>
@@ -27,7 +27,7 @@ const MobileHeader = ({
           />
         </MainNavigation>
       </div>
-      <div className="mobile-header-bottom">
+      <div className='mobile-header-bottom'>
         <MainNavigation data={navData} />
       </div>
     </StyledMobileHeader>

@@ -1,0 +1,56 @@
+import React, { useState, useCallback } from 'react';
+import { StyledTextArea, StyledUserInputWrapper } from './style';
+import { TextareaProps } from './types';
+
+const Textarea = ({
+  value,
+  autoSize,
+  placeholder = 'Input here',
+  maxLength,
+  showCount,
+  rows,
+  readOnly,
+  minHeight,
+  allowClear,
+  label = 'duration',
+  onChange,
+  name,
+  optional,
+}: TextareaProps) => {
+  const [userInput, setUserInput] = useState(value);
+
+  const inputChangeHandler = useCallback(
+    (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
+      e.preventDefault();
+      setUserInput(e.target.value);
+      onChange({ [name]: e.target.value });
+    },
+    [userInput]
+  );
+
+  return (
+    <StyledUserInputWrapper>
+      {label && (
+        <p className='user-input-label' title={label}>
+          {label}
+          {optional && <span className='optional-field'>(Optional)</span>}
+        </p>
+      )}
+      <StyledTextArea
+        value={userInput}
+        onChange={inputChangeHandler}
+        placeholder={placeholder}
+        autoSize={autoSize}
+        maxLength={maxLength}
+        rows={rows}
+        readOnly={readOnly}
+        showCount={showCount}
+        minheight={minHeight}
+        allowClear={allowClear}
+        name={name}
+      />
+    </StyledUserInputWrapper>
+  );
+};
+
+export default Textarea;

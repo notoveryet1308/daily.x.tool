@@ -16,6 +16,19 @@ export const whiteThemeColors = {
   primaryTextColor: '#160D2E',
   secondaryTextColor: '#382778',
   tertiaryTextColor: '#8C7CD0',
+  disabledTextColor: '#382777',
+
+  // gradient color
+  weatherBg:
+    'linear-gradient(90.81deg, rgba(159, 138, 238, 0.38) 29.64%, rgba(0, 80, 91, 0.6) 50.7%)',
+
+  // colors with transparency
+
+  tempBgColor: 'rgba(215, 209, 238, .8)',
+  todoItemOverlay: 'rgba(241, 238, 250, .8)',
+  underlineColor: 'rgba(202, 192, 236, .4)',
+
+  ruleBreakerColor: '#2690EB',
 };
 
 export const darkThemeColors = {
@@ -36,4 +49,16 @@ export const darkThemeColors = {
   primaryTextColor: '#F1EFF8',
   secondaryTextColor: '#D8D0EE',
   tertiaryTextColor: '#BCB1E3',
+  disabledTextColor: '#382777',
+
+  // gradient color
+  weatherBg:
+    'linear-gradient(90.81deg, rgba(28, 19, 60, 0.38) 29.64%, rgba(0, 80, 91, 0.6) 50.7%)',
+
+  // colors with transparency
+
+  tempBgColor: 'rgba(28, 19, 60, .8)',
+  todoItemOverlay: 'rgba(14, 10, 30, .8)',
+  underlineColor: 'rgba(202, 192, 236, .4)',
+  ruleBreakerColor: '#2690EB',
 };
