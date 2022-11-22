@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 
 import theme from './theme';
 
-import Header from './src/component/Header';
+import Header from './component/Header';
 import Today from './pages/AllTodays';
 import { StyledMainWrapper } from './style';
 import Sprint from './pages/Sprint';

@@ -1,6 +1,6 @@
 import React from 'react';
-import { useScrenWidth } from '../../../hooks';
-import { breakpoints } from '../../../theme/breakpoint';
+import { useScrenWidth } from '../../hooks';
+import { breakpoints } from '../../theme/breakpoint';
 import DesktopHeader from '../Header/DesktopHeader';
 import MobileHeader from '../Header/MobileHeader';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import AppTitle from '../../UI/AppTitle';
+import AppTitle from '../UI/AppTitle';
 import ChangeTheme from '../Header/ChangeTheme';
 import MainNavigation from '../Header/MainNavigation';
 
