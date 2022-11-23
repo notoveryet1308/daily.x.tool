@@ -1,3 +1,10 @@
+import {
+  SATURATION,
+  LIGHTNESS_L1,
+  LIGHTNESS_L2,
+  LIGHTNESS_L3,
+} from './constants';
+
 export const whiteThemeColors = {
   //primary color
   primaryColor: '#7C63CF',
@@ -29,6 +36,12 @@ export const whiteThemeColors = {
   underlineColor: 'rgba(202, 192, 236, .4)',
 
   ruleBreakerColor: '#2690EB',
+
+  // hue
+  [SATURATION]: 45,
+  [LIGHTNESS_L1]: 88,
+  [LIGHTNESS_L2]: 80,
+  [LIGHTNESS_L3]: 60,
 };
 
 export const darkThemeColors = {
@@ -61,4 +74,10 @@ export const darkThemeColors = {
   todoItemOverlay: 'rgba(14, 10, 30, .8)',
   underlineColor: 'rgba(202, 192, 236, .4)',
   ruleBreakerColor: '#2690EB',
+
+  // hue
+  [SATURATION]: 45,
+  [LIGHTNESS_L1]: 20,
+  [LIGHTNESS_L2]: 30,
+  [LIGHTNESS_L3]: 50,
 };

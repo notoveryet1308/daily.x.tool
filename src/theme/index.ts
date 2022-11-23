@@ -1,5 +1,6 @@
 import { whiteThemeColors as main, darkThemeColors as dark } from './colors';
 import { breakpoints } from './breakpoint';
+import mixins from './mixins';
 
 const theme = {
   colors: {
@@ -23,6 +24,7 @@ const theme = {
     medium: '16px',
     large: '32px',
   },
+  mixins,
 };
 
 export default theme;
