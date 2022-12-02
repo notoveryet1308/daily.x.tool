@@ -134,6 +134,7 @@ export const StyledTempLocation = styled.div`
     .temp-value {
       font-size: ${({ theme }) => theme.fontSize.large};
       font-weight: bold;
+      color: ${({ theme }) => theme.colors.primaryTextColor};
     }
   }
 
@@ -149,6 +150,7 @@ export const StyledTempLocation = styled.div`
       font-size: ${({ theme }) => theme.fontSize.small};
       margin-left: 8px;
       font-weight: normal;
+      color: ${({ theme }) => theme.colors.primaryTextColor};
     }
   }
 

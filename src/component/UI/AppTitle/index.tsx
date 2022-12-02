@@ -1,9 +1,13 @@
 import React from 'react';
 
-import { StyledAppTitle } from './style';
+import { StyledAppTitle, StyledAppTitleLink } from './style';
 
 const AppTitle = () => {
-  return <StyledAppTitle>Dailyx.tool</StyledAppTitle>;
+  return (
+    <StyledAppTitle>
+      <StyledAppTitleLink to='/'>Dailyx.tool</StyledAppTitleLink>
+    </StyledAppTitle>
+  );
 };
 
 export default AppTitle;

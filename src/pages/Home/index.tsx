@@ -10,10 +10,13 @@ import NoDataState from '../../component/UI/NoDataState';
 
 import no_data_img from '../../assets/no_data.svg';
 import no_activity_img from '../../assets/no_activity.svg';
+import { useTodoCollectionContext } from '../../Context/TodoCollectionContext';
 
 const { Title } = Typography;
 
 const Home = () => {
+  const { todoCollectionData } = useTodoCollectionContext();
+
   return (
     <StyledHomePageWrapper>
       <WeatherReport />
@@ -21,27 +24,33 @@ const Home = () => {
         <div className='main-content'>
           <div className='content-left-wrapper'>
             <Title className='today-todo-title'>My Today</Title>
-            <Scrollbars autoHeightMax='100%' autoHide>
-              <div className='today-todo'>
-                <div className='today-todo-item-list'>
+            {/* <Scrollbars autoHeightMax='100%'> */}
+            <div className='today-todo'>
+              <div className='today-todo-item-list'>
+                {todoCollectionData.length > 0 ? (
+                  todoCollectionData.map(
+                    ({ id, description, isCompleted, createdOn, duration }) => (
+                      <TodoItem
+                        key={id}
+                        description={description}
+                        isCompleted={isCompleted}
+                        createdOn={createdOn}
+                        duration={duration}
+                      />
+                    )
+                  )
+                ) : (
                   <NoDataState
                     message="Add today's items to be done 🚀"
                     img={no_data_img}
                   />
-                  {/* {todoData.map(({ id, description, isCompleted }) => (
-                    <TodoItem
-                      description={description}
-                      key={id}
-                      isCompleted={isCompleted}
-                    />
-                  ))}
-                  */}
-                </div>
-                <div className='today-todo-create'>
-                  <CreateTodo className='todo-create-fields' />
-                </div>
+                )}
               </div>
-            </Scrollbars>
+              <div className='today-todo-create'>
+                <CreateTodo className='todo-create-fields' />
+              </div>
+            </div>
+            {/* </Scrollbars> */}
           </div>
           <div className='recent-activities'>
             <Title className='recent-activity-title'>Recent Activities</Title>

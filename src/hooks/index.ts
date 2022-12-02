@@ -11,7 +11,7 @@ export const useScreenWidth = (): [number] => {
 };
 
 export const useCheckRequiredValue = (values: (string | number)[]) => {
-  const [allowAction, setAllowAction] = useState<boolean>(true);
+  const [allowAction, setAllowAction] = useState<boolean>(false);
 
   useEffect(() => {
     values.forEach((val) => {

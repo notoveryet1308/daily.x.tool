@@ -1,47 +1,33 @@
-import React, { useCallback, useState } from 'react';
 import { Typography } from 'antd';
+import { nanoid } from 'nanoid';
 
 import { StyledCreateTodo } from './style';
-import { Input, TextArea } from '../UI/Input';
+import { Input } from '../UI/Input';
 import { PrimaryButton } from '../UI/Buton';
 import { _debounce } from '../../utils';
-import { useCheckRequiredValue } from '../../hooks';
+
+import RichTextInput from '../UI/RichTextEditor';
+
+import { useTodoCollectionContext } from '../../Context/TodoCollectionContext';
+import { useCreateTodoDataHandler } from './hooks';
 
 const { Title } = Typography;
 
 const CreateTodo = ({ className }: { className?: string }) => {
-  const [todoData, setTodoData] = useState<{
-    duration: string;
-    description: string;
-  }>({ duration: '', description: '' });
-
-  const [showCommand, setShowCommand] = useState<boolean>(false);
-  const [allowAction] = useCheckRequiredValue([todoData.description]);
-
-  const todoDataHandler = useCallback(
-    _debounce({
-      func: (data: { duration?: string; description?: string }) => {
-        const duration = data['duration'] || '';
-        const description = data['description'] || '';
-        setTodoData({ duration, description });
-      },
-      delay: 500,
-    }),
-    [todoData]
-  );
-
-  const showCommandHandler = ({ command }: { command: string }) => {
-    if (command === '/') {
-      setShowCommand(true);
-    } else {
-      setShowCommand(false);
-    }
-  };
+  const { addToTodoCollection, todoCollectionData } =
+    useTodoCollectionContext();
+  const {
+    todoData,
+    dispatch,
+    todoDataHandler,
+    showCommandHandler,
+    allowAction,
+  } = useCreateTodoDataHandler();
 
   return (
     <StyledCreateTodo className={className}>
       <Title className='create-todo-title'>Create item</Title>
-      <Input
+      {/* <Input
         name='command'
         placeholder='Type "/" for commands'
         value=''
@@ -49,25 +35,45 @@ const CreateTodo = ({ className }: { className?: string }) => {
         type='text'
         bordered={false}
         disabled
-      />
+        className='create-todo-command'
+      /> */}
       <Input
-        name='duration'
-        placeholder='Enter task duration (number)'
-        value={todoData.duration}
-        onChange={todoDataHandler}
-        type='number'
-        label='duration'
         optional
-      />
-      <TextArea
-        name='description'
-        placeholder='Enter task description'
-        value={todoData.description}
+        type='number'
+        name='duration'
+        label='duration'
         onChange={todoDataHandler}
-        label='description'
-        minHeight={100}
+        className='create-todo-duration'
+        value={`${todoData.duration || ''}`}
+        placeholder='Enter task duration (number)'
       />
-      <PrimaryButton label='Add' disabled={!allowAction} type='submit' />
+
+      <RichTextInput
+        name='description'
+        onChange={todoDataHandler}
+        placeholder='Enter description'
+        clearEditor={allowAction && !todoData.description}
+      />
+      <PrimaryButton
+        label='Add'
+        type='submit'
+        disabled={!allowAction}
+        className='create-todo-button'
+        onClick={() => {
+          allowAction &&
+            addToTodoCollection([
+              ...todoCollectionData,
+              {
+                id: nanoid(),
+                description: todoData.description,
+                duration: todoData.duration,
+                isCompleted: false,
+                createdOn: Date.now(),
+              },
+            ]);
+          dispatch({ type: 'reset', payload: '' });
+        }}
+      />
     </StyledCreateTodo>
   );
 };
