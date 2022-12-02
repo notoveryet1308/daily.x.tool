@@ -28,6 +28,5 @@ export const getPlacename = async ({
   );
 
   const data = await response.json();
-  console.log({ data });
   return data;
 };

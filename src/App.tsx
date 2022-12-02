@@ -6,25 +6,27 @@ import theme from './theme';
 
 import Header from './component/Header';
 import Today from './pages/AllTodays';
-import { StyledMainWrapper } from './style';
+import { GlobalStyle, StyledMainWrapper } from './style';
 import Sprint from './pages/Sprint';
 import Home from './pages/Home';
 import Notes from './pages/Notes';
+import { useAppDataContext } from './Context/AppDataContext';
 
 function App() {
-  const [themeColor, setThemeColor] = useState('main');
+  const { themeMode, dispatch } = useAppDataContext();
 
   const handleColorTheme = () => {
-    if (themeColor === 'main') {
-      setThemeColor('dark');
+    if (themeMode === 'main') {
+      dispatch({ type: 'change-themeMode', payload: 'dark' });
     } else {
-      setThemeColor('main');
+      dispatch({ type: 'change-themeMode', payload: 'main' });
     }
   };
 
   return (
-    <ThemeProvider theme={{ ...theme, colors: theme.colors[themeColor] }}>
-      <Header colorTheme={themeColor} handleColorTheme={handleColorTheme} />
+    <ThemeProvider theme={{ ...theme, colors: theme.colors[themeMode] }}>
+      <GlobalStyle />
+      <Header colorTheme={themeMode} handleColorTheme={handleColorTheme} />
       <StyledMainWrapper>
         <Switch>
           <Route path='/' component={Home} exact />

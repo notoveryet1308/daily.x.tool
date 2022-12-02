@@ -53,7 +53,8 @@ export const StyledHomePageWrapper = styled.main`
       flex-wrap: wrap;
       margin-right: 10px;
       position: relative;
-      height: 100%;
+      max-height: calc(100vh - 320px);
+      overflow-y: auto;
 
       .today-todo-item-list {
         display: flex;

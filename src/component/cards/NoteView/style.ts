@@ -1,13 +1,33 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
-export const StyledNoteView = styled.div<{ colorHex: string }>`
+const borderAnimation = () => keyframes`
+  from{
+    border-color: rgba(38, 83, 217, .8);
+  }
+  to{
+    border-color: rgba(172, 38, 217, .8);
+    
+  }
+`;
+
+export const StyledNoteView = styled.div<{
+  colorHex: string;
+  showAnimation: boolean;
+}>`
   position: relative;
   display: flex;
   flex-direction: column;
   border-radius: 4px;
   padding: 16px;
-  gap: 8px;
-  /* max-width: 300px; */
+  gap: 16px;
+  justify-content: space-between;
+  border: 2px solid transparent;
+
+  .top-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
 
   background-color: ${({ theme, colorHex }) =>
     theme.mixins.convertHexToHsl({
@@ -17,11 +37,11 @@ export const StyledNoteView = styled.div<{ colorHex: string }>`
     })};
 
   .note-view-title {
-    font-size: ${({ theme }) => theme.fontSize.medium};
     line-height: 18px;
-    color: ${({ theme }) => theme.colors.primaryTextColor};
     font-weight: bold;
-    margin-top: 8px;
+    text-transform: capitalize;
+    font-size: ${({ theme }) => theme.fontSize.large};
+    color: ${({ theme }) => theme.colors.primaryTextColor};
   }
 
   .note-view-description {
@@ -59,4 +79,13 @@ export const StyledNoteView = styled.div<{ colorHex: string }>`
         lightness: theme.colors.lightnessL3,
       })};
   }
+
+  .note-created-on {
+    font-size: 12px;
+    color: ${({ theme }) => theme.colors.tertiaryTextColor};
+  }
+
+  animation-name: ${({ showAnimation }) => showAnimation && borderAnimation()};
+  animation-duration: 5s;
+  overflow: hidden;
 `;

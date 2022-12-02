@@ -24,10 +24,17 @@ export const whiteThemeColors = {
   secondaryTextColor: '#382778',
   tertiaryTextColor: '#8C7CD0',
   disabledTextColor: '#382777',
+  primaryTextColorReversed: '#F1EFF8',
+
+  //alert color
+  successColor: '#07A671',
+  warningColor: '#E48181',
 
   // gradient color
   weatherBg:
     'linear-gradient(90.81deg, rgba(159, 138, 238, 0.38) 29.64%, rgba(0, 80, 91, 0.6) 50.7%)',
+  createBtnBg:
+    'linear-gradient(215.75deg, rgba(38, 83, 217, 1) 18.6%, rgba(172, 38, 217, 1) 79.07%)',
 
   // colors with transparency
 
@@ -36,6 +43,10 @@ export const whiteThemeColors = {
   underlineColor: 'rgba(202, 192, 236, .4)',
 
   ruleBreakerColor: '#2690EB',
+  modalMaskOverlay: 'rgba(228, 224, 243, 0.8)',
+
+  scrollbarColor: '#9383D4',
+  scrollbarBgColor: 'rgba(61,61,61, .1)',
 
   // hue
   [SATURATION]: 45,
@@ -54,19 +65,26 @@ export const darkThemeColors = {
   black: '#000',
 
   //bgColor
-  primaryBgColor: '#0E0A1E',
-  secondaryBgColor: '#150E2D',
-  tertiaryBgColor: '#1C133C',
+  primaryBgColor: '#0E0A16',
+  secondaryBgColor: '#23194D',
+  tertiaryBgColor: '#271C59',
 
   //text color
   primaryTextColor: '#F1EFF8',
   secondaryTextColor: '#D8D0EE',
   tertiaryTextColor: '#BCB1E3',
   disabledTextColor: '#382777',
+  primaryTextColorReversed: '#F1EFF8',
+
+  // alert color
+  successColor: '#06895D',
+  warningColor: '#DA5353',
 
   // gradient color
   weatherBg:
     'linear-gradient(90.81deg, rgba(28, 19, 60, 0.38) 29.64%, rgba(0, 80, 91, 0.6) 50.7%)',
+  createBtnBg:
+    'linear-gradient(215.75deg, rgba(38, 83, 217, 1) 18.6%, rgba(172, 38, 217, 1) 79.07%)',
 
   // colors with transparency
 
@@ -74,7 +92,10 @@ export const darkThemeColors = {
   todoItemOverlay: 'rgba(14, 10, 30, .8)',
   underlineColor: 'rgba(202, 192, 236, .4)',
   ruleBreakerColor: '#2690EB',
+  modalMaskOverlay: 'rgba(14, 10, 22, 0.8)',
 
+  scrollbarColor: '#483C78',
+  scrollbarBgColor: 'rgba(217, 217, 217, .1)',
   // hue
   [SATURATION]: 45,
   [LIGHTNESS_L1]: 20,

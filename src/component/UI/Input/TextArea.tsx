@@ -5,17 +5,19 @@ import { TextareaProps } from './types';
 const Textarea = ({
   value,
   autoSize,
-  placeholder = 'Input here',
+  placeholder,
   maxLength,
   showCount,
   rows,
   readOnly,
   minHeight,
   allowClear,
-  label = 'duration',
+  label,
   onChange,
   name,
   optional,
+  className,
+  wrapperClassName,
 }: TextareaProps) => {
   const [userInput, setUserInput] = useState(value);
 
@@ -29,7 +31,7 @@ const Textarea = ({
   );
 
   return (
-    <StyledUserInputWrapper>
+    <StyledUserInputWrapper className={wrapperClassName}>
       {label && (
         <p className='user-input-label' title={label}>
           {label}
@@ -48,6 +50,7 @@ const Textarea = ({
         minheight={minHeight}
         allowClear={allowClear}
         name={name}
+        className={className}
       />
     </StyledUserInputWrapper>
   );

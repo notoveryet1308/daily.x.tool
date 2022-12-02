@@ -2,7 +2,23 @@ import { whiteThemeColors as main, darkThemeColors as dark } from './colors';
 import { breakpoints } from './breakpoint';
 import mixins from './mixins';
 
-const theme = {
+const theme: {
+  colors: {
+    [key: string]: { [key: string]: string | number };
+  };
+  breakpoints: {
+    [key: string]: number;
+  };
+  fontSize: {
+    [key: string]: string;
+  };
+  space: {
+    [key: string]: string;
+  };
+  mixins: {
+    [key: string]: Function;
+  };
+} = {
   colors: {
     main,
     dark,

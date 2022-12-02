@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export const StyledHeaderWrapper = styled.header`
   padding: 16px 60px;
@@ -89,6 +89,7 @@ export const StyledHeaderNavLink = styled(NavLink)`
 
   &.selected,
   &:hover {
+    color: ${({ theme }) => theme.colors.primaryTextColor};
     ::after {
       width: 100%;
       transition: all 300ms ease;
@@ -98,8 +99,4 @@ export const StyledHeaderNavLink = styled(NavLink)`
   @media (max-width: ${({ theme }) => theme.breakpoints.TABLET}px) {
     font-size: ${({ theme }) => theme.fontSize.small};
   }
-`;
-
-export const StyledAppTitleLink = styled(Link)`
-  text-decoration: none;
 `;

@@ -5,7 +5,7 @@ import ChangeTheme from '../Header/ChangeTheme';
 import MainNavigation from '../Header/MainNavigation';
 import { navData, authNavData } from './data';
 
-import { StyledMobileHeader, StyledAppTitleLink } from './style';
+import { StyledMobileHeader } from './style';
 
 const MobileHeader = ({
   colorTheme,
@@ -17,9 +17,7 @@ const MobileHeader = ({
   return (
     <StyledMobileHeader>
       <div className='mobile-header-top'>
-        <StyledAppTitleLink to='/'>
-          <AppTitle />
-        </StyledAppTitleLink>
+        <AppTitle />
         <MainNavigation data={authNavData}>
           <ChangeTheme
             colorTheme={colorTheme}
