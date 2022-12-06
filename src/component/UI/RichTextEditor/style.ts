@@ -6,6 +6,7 @@ export const StyledRichTextWrapper = styled.div`
   padding: 16px;
   width: 100%;
   border: 1px solid transparent;
+  color: ${({ theme }) => theme.colors.secondaryTextColor};
 
   .rich-text-editor {
     min-height: 100px !important;
@@ -29,7 +30,7 @@ export const StyledRichTextWrapper = styled.div`
   ul,
   ol,
   p {
-    color: ${({ theme }) => theme.colors.primaryTextColor};
+    color: ${({ theme }) => theme.colors.secondaryTextColor};
   }
 
   code {
@@ -41,13 +42,13 @@ export const StyledRichTextWrapper = styled.div`
 export const StyledOlTag = styled.ol`
   margin: 12px 0 12px 20px;
   padding-left: 16px;
-  color: ${({ theme }) => theme.colors.primaryTextColor};
+  color: ${({ theme }) => theme.colors.secondaryTextColor};
 `;
 
 export const StyledUlTag = styled.ul`
   margin: 12px 0 12px 20px;
   padding-left: 16px;
-  color: ${({ theme }) => theme.colors.primaryTextColor};
+  color: ${({ theme }) => theme.colors.secondaryTextColor};
 `;
 
 export const StyledQuotes = styled.blockquote`

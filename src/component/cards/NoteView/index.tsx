@@ -1,11 +1,11 @@
-import { PencilLine } from 'phosphor-react';
+import { PencilLine, Trash } from 'phosphor-react';
 
 import Tags from './../../Tags';
 import { StyledNoteView } from './style';
 import { RichTextReadOnly } from '../../UI/RichTextEditor';
 import { getDateFormat } from '../../TodoItem/utils';
 
-const milliseconds = 60000;
+const milliseconds = 165481;
 
 const NoteView = ({
   id,
@@ -15,6 +15,7 @@ const NoteView = ({
   tags,
   isPinned = true,
   createdOn,
+  className,
 }: {
   id: string;
   colorHex: string;
@@ -23,13 +24,14 @@ const NoteView = ({
   tags?: string[];
   isPinned?: boolean;
   createdOn: number;
+  className?: string;
 }) => {
-  const isAddedJustNow = (Date.now() - createdOn) / milliseconds <= 1;
+  const isAddedJustNow = Date.now() - createdOn < milliseconds;
 
   return (
     <StyledNoteView
       colorHex={colorHex}
-      className='note-view-card'
+      className={`note-view-card ${className}`}
       showAnimation={isAddedJustNow}
     >
       <div className='top-wrapper'>
@@ -43,7 +45,10 @@ const NoteView = ({
       </div>
       <span className='note-created-on'>{getDateFormat(createdOn)}</span>
 
-      <PencilLine className='edit-icon' />
+      <div className='action-btn-wrapper'>
+        <PencilLine className='edit-icon ph-icon' />
+        <Trash className='trash-icon ph-icon' />
+      </div>
       {isPinned ? <div className='note-view-pinned'></div> : null}
     </StyledNoteView>
   );

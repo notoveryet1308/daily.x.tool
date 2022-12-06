@@ -36,8 +36,8 @@ const CreateNoteDetails = () => {
         name='noteDescription'
         onChange={noteDataHandler}
         placeholder='Note description'
-        maxHeight={400}
-      />
+        maxHeight={300}
+        autoFocus={false}      />
       <CreatableSelect
         isMulti
         options={dummyOptions}
