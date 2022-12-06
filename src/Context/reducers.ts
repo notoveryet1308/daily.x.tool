@@ -3,6 +3,8 @@ import { currentNoteInitialValue } from './initialValues';
 import {
   InitialValueType,
   DispatchActionType,
+  NoteDataType,
+  currentNoteDataType,
 } from './types';
 
 const isAllRequiredFieldsAvailable = ({
@@ -30,12 +32,13 @@ export const noteReducer = (
   action: DispatchActionType
 ): InitialValueType => {
   const { type, payload } = action;
+  //   console.log({ type, payload });
   if (type === 'set-current-note-title' && typeof payload === 'string') {
     const { currentNote } = state;
     const { data } = currentNote;
     const isAvailable = isAllRequiredFieldsAvailable({
       type: 'or',
-      values: [!!data.title, !!data.description],
+      values: [!!payload, !!data.description],
     });
     return {
       ...state,
@@ -59,8 +62,10 @@ export const noteReducer = (
     const { data } = currentNote;
     const isAvailable = isAllRequiredFieldsAvailable({
       type: 'or',
-      values: [!!data.title, !!data.description],
+      values: [!!data.title, !!payload],
     });
+    console.log({ isAvailable, data });
+
     return {
       ...state,
       currentNote: {

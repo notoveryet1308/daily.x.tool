@@ -1,12 +1,16 @@
 import { useState } from 'react';
+
 import { Plus } from 'phosphor-react';
+
 import { StyledNotesPageWrapper } from './style';
-import NoteListDisplay from './NoteListDisplay';
+
 import { CreateButton } from '../../component/UI/Buton';
 import MovableWrapper from '../../component/MovableWrapper';
 import Modal from '../../component/UI/Modal';
 import CreateNoteDetails from '../../component/CreateNoteDetail';
 import { useNoteContext } from '../../Context/NoteDataProvider';
+import MasonryGridLayout from '../../component/UI/MasonaryGridLayout';
+import NoteView from '../../component/cards/NoteView';
 
 export const Notes = () => {
   const { noteCollection, noteDispatch, currentNote } = useNoteContext();
@@ -26,7 +30,6 @@ export const Notes = () => {
       toggleModal();
     }
   };
-  console.log({ noteCollection });
 
   return (
     <StyledNotesPageWrapper>
@@ -34,7 +37,13 @@ export const Notes = () => {
         <div className='main-content'>
           <div className='note-filter'></div>
           <div className='note-list-wrapper'>
-            <NoteListDisplay data={noteCollection} />
+            <MasonryGridLayout minWidth={400}>
+              {noteCollection.map((d) => (
+                <div className='masonry-brick' key={d.id}>
+                  <NoteView {...d} className='masonry-content' />
+                </div>
+              ))}
+            </MasonryGridLayout>
           </div>
           <MovableWrapper>
             <div className='create-note-btn-wrapper'>

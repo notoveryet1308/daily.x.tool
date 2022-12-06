@@ -1,7 +1,15 @@
 import styled from 'styled-components';
 
 export const StyledCreateNoteDetail = styled.div`
-  /* width: calc(100% - 10px); */
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+
+  .main-input-form-title {
+    border: none;
+    background-color: ${({ theme }) => theme.colors.secondaryBgColor};
+  }
+
   .main-input-tag-select {
     margin: 16px 0;
   }

@@ -38,8 +38,6 @@ export const StyledNoteView = styled.div<{
 
   .note-view-title {
     line-height: 18px;
-    font-weight: bold;
-    text-transform: capitalize;
     font-size: ${({ theme }) => theme.fontSize.large};
     color: ${({ theme }) => theme.colors.primaryTextColor};
   }
@@ -52,17 +50,21 @@ export const StyledNoteView = styled.div<{
 
   .note-view-tags {
     display: flex;
-    gap: 8px;
+    gap: 12px;
     margin-top: 8px;
   }
 
-  .edit-icon {
+  .action-btn-wrapper {
     position: absolute;
+    display: flex;
+    gap: 8px;
     bottom: 16px;
     right: 16px;
-    font-size: 20px;
-    cursor: pointer;
-    color: ${({ theme }) => theme.colors.primaryColor};
+    .ph-icon {
+      font-size: 20px;
+      cursor: pointer;
+      color: ${({ theme }) => theme.colors.primaryColor};
+    }
   }
 
   .note-view-pinned {

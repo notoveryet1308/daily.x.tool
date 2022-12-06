@@ -20,12 +20,11 @@ export const StyledModal = styled.div<{ height?: number; width?: number }>`
     top: 50%;
     left: 50%;
     overflow: hidden;
-    min-height: 320px;
     position: absolute;
     border-radius: 8px;
     transform: translate(-50%, -50%);
-    height: ${({ height }) => !!height && `${height}px`};
     width: ${({ width }) => (width ? `${width}px` : '500px')};
+    border: 1px solid ${({ theme }) => theme.colors.secondaryBgColor};
   }
 
   .modal-content {
@@ -42,7 +41,7 @@ export const StyledModal = styled.div<{ height?: number; width?: number }>`
       justify-content: flex-start;
       align-items: center;
       padding: 16px 24px;
-      border-bottom: 1px solid ${({ theme }) => theme.colors.primaryColor};
+      border-bottom: 1px solid ${({ theme }) => theme.colors.secondaryBgColor};
 
       .modal-x-icon {
         cursor: pointer;
@@ -53,6 +52,9 @@ export const StyledModal = styled.div<{ height?: number; width?: number }>`
     .modal-body {
       padding: 24px;
       overflow-y: auto;
+      height: ${({ height }) => !!height && `${height}px`};
+      min-height: 400px;
+      max-height: calc(100vh - 200px);
     }
 
     .modal-footer {
