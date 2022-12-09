@@ -61,6 +61,7 @@ export const Notes = () => {
             onOk={onOkHandler}
             title='Create note'
             width={600}
+            align='top'
           >
             <CreateNoteDetails />
           </Modal>

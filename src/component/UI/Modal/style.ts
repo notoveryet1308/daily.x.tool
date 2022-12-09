@@ -1,6 +1,21 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const StyledModal = styled.div<{ height?: number; width?: number }>`
+const alignProp = {
+  top: css`
+    top: 24px;
+  `,
+
+  center: css`
+    top: 50%;
+    transform: translateY(-50%);
+  `,
+};
+
+export const StyledModal = styled.div<{
+  height?: number;
+  width?: number;
+  align: 'top' | 'center';
+}>`
   position: absolute;
   overflow: hidden;
   top: 0;
@@ -17,23 +32,30 @@ export const StyledModal = styled.div<{ height?: number; width?: number }>`
     background-color: ${({ theme }) => theme.colors.modalMaskOverlay};
   }
   .modal-content-wrapper {
-    top: 50%;
-    left: 50%;
-    overflow: hidden;
-    position: absolute;
-    border-radius: 8px;
-    transform: translate(-50%, -50%);
-    width: ${({ width }) => (width ? `${width}px` : '500px')};
-    border: 1px solid ${({ theme }) => theme.colors.secondaryBgColor};
-  }
-
-  .modal-content {
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     display: flex;
+    margin: 0 auto;
+    overflow: hidden;
+    position: absolute;
     border-radius: 8px;
+    justify-content: center;
+  }
+
+  .modal-content {
+    display: flex;
+    margin: 0 auto;
+    border-radius: 8px;
+    position: absolute;
     flex-direction: column;
+    width: ${({ width }) => (width ? `${width}px` : '500px')};
     background-color: ${({ theme }) => theme.colors.primaryBgColor};
+    border: 1px solid ${({ theme }) => theme.colors.secondaryBgColor};
+
+    ${({ align }) => alignProp[align]};
+
     .modal-header {
       width: 100%;
       position: relative;
@@ -58,6 +80,28 @@ export const StyledModal = styled.div<{ height?: number; width?: number }>`
     }
 
     .modal-footer {
+    }
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
+    .modal-content-wrapper {
+      top: 0;
+      left: 0;
+      transform: unset;
+      width: 100%;
+      height: 100%;
+
+      .modal-content {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        top: 0;
+
+        .modal-body {
+          flex: 1;
+          max-height: unset;
+        }
+      }
     }
   }
 `;

@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { useNoteContext } from '../../Context/NoteDataProvider';
+import { tagType } from '../../Context/types';
 
 export const useNoteDataHandler = () => {
   const { noteDispatch } = useNoteContext();
@@ -12,7 +13,7 @@ export const useNoteDataHandler = () => {
     }: {
       noteTitle?: string;
       noteDescription?: string;
-      noteTags?: string[];
+      noteTags?: tagType[];
     }) => {
       if (noteTitle) {
         noteDispatch({ type: 'set-current-note-title', payload: noteTitle });

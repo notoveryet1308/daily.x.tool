@@ -27,10 +27,16 @@ export interface TodoCollectionContextType extends TodoCollectionType {
   >;
 }
 
+export interface tagType {
+  label: string;
+  value: string;
+  id: string;
+}
+
 export interface NoteDataType {
   id: string;
   title: string;
-  tags: string[];
+  tags: tagType[];
   colorHex: string;
   createdOn: number;
   isPinned?: boolean;
@@ -56,7 +62,7 @@ export type DispatchActionType = {
     | 'set-current-note-auto-value'
     | 'add-to-note-collection'
     | 'reset-current-note';
-  payload: string | number | boolean | string[] | NoteDataType[];
+  payload: string | number | boolean | tagType[] | NoteDataType[];
 };
 
 export interface NoteContextDataType extends InitialValueType {

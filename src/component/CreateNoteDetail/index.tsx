@@ -1,20 +1,19 @@
-import { useState, useCallback } from 'react';
 import { useNoteContext } from '../../Context/NoteDataProvider';
 
 import { Input } from '../UI/Input';
 import RichTextInput from '../UI/RichTextEditor';
 
-import CreatableSelect from '../UI/Select';
+import Select from '../UI/Select';
 import { useNoteDataHandler } from './hooks';
 
 import { StyledCreateNoteDetail } from './style';
 
 const dummyOptions = [
-  { label: 'one', value: 'One' },
-  { label: 'two', value: 'Two' },
-  { label: 'three', value: 'Three' },
-  { label: 'four', value: 'four' },
-  { label: 'five', value: 'five' },
+  { label: 'one', value: 'One', id: '223' },
+  { label: 'two', value: 'Two', id: '224' },
+  { label: 'three', value: 'Three', id: '225' },
+  { label: 'four', value: 'four', id: '226' },
+  { label: 'five', value: 'five', id: '227' },
 ];
 
 const CreateNoteDetails = () => {
@@ -38,10 +37,13 @@ const CreateNoteDetails = () => {
         placeholder='Note description'
         maxHeight={300}
         autoFocus={false}      />
-      <CreatableSelect
-        isMulti
+      <Select
+        name='noteTags'
+        isCreatable
         options={dummyOptions}
-        className='main-input-tag-select'
+        values={currentNote.data.tags}
+        searchPlaceholder='Search tags'
+        onChange={noteDataHandler}
       />
     </StyledCreateNoteDetail>
   );
