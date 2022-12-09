@@ -4,7 +4,7 @@ import Tags from './../../Tags';
 import { StyledNoteView } from './style';
 import { RichTextReadOnly } from '../../UI/RichTextEditor';
 import { getDateFormat } from '../../TodoItem/utils';
-
+import {tagType} from '../../../Context/types'
 const milliseconds = 165481;
 
 const NoteView = ({
@@ -21,7 +21,7 @@ const NoteView = ({
   colorHex: string;
   title: string;
   description?: string;
-  tags?: string[];
+  tags?: tagType[];
   isPinned?: boolean;
   createdOn: number;
   className?: string;
@@ -39,12 +39,11 @@ const NoteView = ({
         {description && <RichTextReadOnly value={JSON.parse(description)} />}
         <div className='note-view-tags'>
           {tags?.map((d, index) => (
-            <Tags value={d} colorHex={colorHex} key={`${id}${index}`} />
+            <Tags value={d.label} id={d.id} colorHex={colorHex} key={`${id}${index}`} />
           ))}
         </div>
       </div>
       <span className='note-created-on'>{getDateFormat(createdOn)}</span>
-
       <div className='action-btn-wrapper'>
         <PencilLine className='edit-icon ph-icon' />
         <Trash className='trash-icon ph-icon' />

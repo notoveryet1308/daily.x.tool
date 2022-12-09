@@ -20,22 +20,24 @@ interface ModalPropsCustom {
   style?: React.CSSProperties;
   onOk: Function;
   okBtnLabel?: string;
+  align: 'top' | 'center';
 }
 
 const ModalShell = ({
-  children,
-  title,
   open,
-  height,
+  onOk,
+  title,
   width,
-  onClose,
+  style,
+  height,
   header,
   footer,
+  onClose,
+  children,
   className,
-  showCloseIcon = true,
-  style,
-  onOk,
   okBtnLabel,
+  align = 'center',
+  showCloseIcon = true,
 }: ModalPropsCustom) => {
   return (
     <>
@@ -45,6 +47,7 @@ const ModalShell = ({
           height={height}
           width={width}
           className={`${className} base-modal`}
+          align={align}
         >
           <div className='modal-mask-overlay'></div>
           <div role='dailog' className='modal-content-wrapper' style={style}>
