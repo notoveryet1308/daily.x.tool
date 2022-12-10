@@ -10,10 +10,14 @@ export const useNoteDataHandler = () => {
       noteTitle,
       noteDescription,
       noteTags,
+      noteColor,
+      isPinned,
     }: {
       noteTitle?: string;
       noteDescription?: string;
       noteTags?: tagType[];
+      noteColor?: string;
+      isPinned?: boolean;
     }) => {
       if (noteTitle) {
         noteDispatch({ type: 'set-current-note-title', payload: noteTitle });
@@ -27,9 +31,17 @@ export const useNoteDataHandler = () => {
       if (noteTags) {
         noteDispatch({ type: 'set-current-note-tags', payload: noteTags });
       }
+
+      if (noteColor) {
+        noteDispatch({
+          type: 'set-current-note-color-hex',
+          payload: noteColor,
+        });
+      }
     },
     []
   );
 
   return { noteDataHandler };
 };
+

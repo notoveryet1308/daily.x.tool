@@ -45,6 +45,7 @@ const SelectInput = ({
         onChange={onChangeHandler}
         onFocus={onFocusHandler}
         onClick={(e) => stopPropagation && e.stopPropagation()}
+        autoFocus
       />
       {showDropdownIndication && (
         <CaretDown className='caret-down-icon ph-icon' />

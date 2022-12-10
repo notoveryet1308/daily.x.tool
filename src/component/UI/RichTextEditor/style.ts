@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledRichTextWrapper = styled.div`
+export const StyledRichTextWrapper = styled.div<{ minHeight?: number }>`
   border-radius: 4px;
   background-color: ${({ theme }) => theme.colors.secondaryBgColor};
   padding: 16px;
@@ -9,7 +9,7 @@ export const StyledRichTextWrapper = styled.div`
   color: ${({ theme }) => theme.colors.secondaryTextColor};
 
   .rich-text-editor {
-    min-height: 100px !important;
+    min-height: ${({ minHeight }) => `${minHeight}px` || '100px'} !important;
   }
 
   &.rich-text-view-mode {
@@ -17,6 +17,11 @@ export const StyledRichTextWrapper = styled.div`
     padding: 0;
     blockquote {
       background: ${({ theme }) => theme.colors.secondaryBgColor};
+    }
+
+    &.show-border-left{
+      padding-left: 8px;
+      border-left: 1px solid ${({ theme }) => theme.colors.primaryTextColor};
     }
   }
 

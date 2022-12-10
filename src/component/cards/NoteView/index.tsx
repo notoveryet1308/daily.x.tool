@@ -4,7 +4,9 @@ import Tags from './../../Tags';
 import { StyledNoteView } from './style';
 import { RichTextReadOnly } from '../../UI/RichTextEditor';
 import { getDateFormat } from '../../TodoItem/utils';
+import { useNoteContext } from '../../../Context/NoteDataProvider';
 import {tagType} from '../../../Context/types'
+
 const milliseconds = 165481;
 
 const NoteView = ({
@@ -28,18 +30,32 @@ const NoteView = ({
 }) => {
   const isAddedJustNow = Date.now() - createdOn < milliseconds;
 
+  const { noteDispatch } = useNoteContext();
+
   return (
     <StyledNoteView
       colorHex={colorHex}
       className={`note-view-card ${className}`}
       showAnimation={isAddedJustNow}
+      onDoubleClick={() =>
+        noteDispatch({
+          type: 'update-isPinned-status',
+          payload: { id, isPinned: !isPinned },
+        })
+      }
     >
       <div className='top-wrapper'>
         <h2 className='note-view-title'>{title}</h2>
-        {description && <RichTextReadOnly value={JSON.parse(description)} />}
+        {description && <RichTextReadOnly value={JSON.parse(description)} className="show-border-left"/>}
         <div className='note-view-tags'>
           {tags?.map((d, index) => (
-            <Tags value={d.label} id={d.id} colorHex={colorHex} key={`${id}${index}`} />
+            <Tags
+              id={d.id}
+              value={d.value}
+              label={d.label}
+              colorHex={colorHex}
+              key={`${id}${index}`}
+            />
           ))}
         </div>
       </div>

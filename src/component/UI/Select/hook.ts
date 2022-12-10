@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { optionType } from './types';
+import { filterFromArrays } from './utils';
 
 export const useSearchSelect = ({
   isSearchable,
@@ -49,7 +50,9 @@ export const useSearchSelect = ({
 
       setAllOptions(filteredSearch);
     } else {
-      setAllOptions(options);
+      setAllOptions(
+        filterFromArrays({ allValues: options, valuesToExclude: selectedValue })
+      );
     }
   }, [searchInput]);
 

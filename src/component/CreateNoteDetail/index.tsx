@@ -1,5 +1,7 @@
 import { useNoteContext } from '../../Context/NoteDataProvider';
-
+import { useScreenWidth } from '../../hooks';
+import ColorPicker from '../UI/ColorPicker';
+import { breakpoints } from '../../theme/breakpoint';
 import { Input } from '../UI/Input';
 import RichTextInput from '../UI/RichTextEditor';
 
@@ -9,14 +11,14 @@ import { useNoteDataHandler } from './hooks';
 import { StyledCreateNoteDetail } from './style';
 
 const dummyOptions = [
-  { label: 'one', value: 'One', id: '223' },
-  { label: 'two', value: 'Two', id: '224' },
-  { label: 'three', value: 'Three', id: '225' },
-  { label: 'four', value: 'four', id: '226' },
-  { label: 'five', value: 'five', id: '227' },
+  { label: 'Javascript', value: 'javascript', id: 'Javascript-xx21' },
+  { label: 'Css', value: 'css', id: 'css-dce3' },
+  { label: 'HTML', value: 'html', id: 'html-908bg' },
+  { label: 'React', value: 'react', id: 'react-vco0p' },
 ];
 
 const CreateNoteDetails = () => {
+  const [screenWidth] = useScreenWidth();
   const { currentNote } = useNoteContext();
 
   const { noteDataHandler } = useNoteDataHandler();
@@ -24,27 +26,30 @@ const CreateNoteDetails = () => {
   return (
     <StyledCreateNoteDetail>
       <Input
-        name='noteTitle'
-        value={currentNote.data.title}
-        onChange={noteDataHandler}
         type='text'
+        name='noteTitle'
         placeholder='Title'
+        onChange={noteDataHandler}
+        value={currentNote.data.title}
         className='main-input-form-title'
       />
       <RichTextInput
+        maxHeight={400}
+        minHeight={screenWidth <= breakpoints.LARGE_MOBILE ? 300 : 200}
+        autoFocus={false}
         name='noteDescription'
         onChange={noteDataHandler}
         placeholder='Note description'
-        maxHeight={300}
-        autoFocus={false}      />
+      />
       <Select
-        name='noteTags'
         isCreatable
+        name='noteTags'
         options={dummyOptions}
+        onChange={noteDataHandler}
         values={currentNote.data.tags}
         searchPlaceholder='Search tags'
-        onChange={noteDataHandler}
       />
+      <ColorPicker name='noteColor' onChange={noteDataHandler} />
     </StyledCreateNoteDetail>
   );
 };

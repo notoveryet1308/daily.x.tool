@@ -13,7 +13,7 @@ const Select = ({
   values,
   onChange,
   btnLabel,
-  isClearable,
+  isClearable = true,
   isCreatable,
   isSearchable = false,
   searchPlaceholder,
@@ -83,7 +83,7 @@ const Select = ({
           )}
           <RenderOptions
             isClickable
-            showMenuMessage={!isCreatable}
+            showMenuMessage
             data={allOptions}
             onClick={onSelect}
             className='render-options'

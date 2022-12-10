@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyledModalFooter } from './style';
-import { PrimaryButton, SecondaryButton } from '../Buton';
+import { PrimaryButton, SecondaryButton } from '../Button';
 
 const ModalFooter = ({
   onCancel,

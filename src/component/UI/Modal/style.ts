@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 const alignProp = {
   top: css`
-    top: 24px;
+    top: 48px;
   `,
 
   center: css`
@@ -53,7 +53,7 @@ export const StyledModal = styled.div<{
     width: ${({ width }) => (width ? `${width}px` : '500px')};
     background-color: ${({ theme }) => theme.colors.primaryBgColor};
     border: 1px solid ${({ theme }) => theme.colors.secondaryBgColor};
-
+    overflow: hidden;
     ${({ align }) => alignProp[align]};
 
     .modal-header {
@@ -76,9 +76,8 @@ export const StyledModal = styled.div<{
       overflow-y: auto;
       height: ${({ height }) => !!height && `${height}px`};
       min-height: 400px;
-      max-height: calc(100vh - 200px);
+      max-height: calc(100vh - 300px);
     }
-
     .modal-footer {
     }
   }

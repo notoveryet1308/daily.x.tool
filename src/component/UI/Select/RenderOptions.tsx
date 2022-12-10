@@ -49,7 +49,7 @@ const RenderOptions = ({
       {showDropdownIndicationIcon && (
         <CaretDown className='caret-down-icon ph-icon' />
       )}
-      {data.length <= 0 && showMenuMessage && (
+      {data.length <= 0 && showMenuMessage && !searchInput && (
         <span className='empty-menu-option-message'>
           No more option here...
         </span>
@@ -62,7 +62,7 @@ const RenderOptions = ({
             id={nanoid()}
             onClick={onCreate}
             label={searchInput}
-            value={searchInput}
+            value={searchInput.split(' ').join('').toLowerCase()}
           />
         </div>
       )}

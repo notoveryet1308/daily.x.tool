@@ -3,7 +3,6 @@ import { Typography } from 'antd';
 import TodoItem from '../../component/TodoItem';
 import WeatherReport from '../../component/WeatherReport';
 import { StyledHomePageWrapper } from '../Home/style';
-import { todoData } from './todayItem.data';
 import Scrollbars from 'react-custom-scrollbars-2';
 import CreateTodo from '../../component/TodoItem/CreateTodo';
 import NoDataState from '../../component/UI/NoDataState';
@@ -24,7 +23,6 @@ const Home = () => {
         <div className='main-content'>
           <div className='content-left-wrapper'>
             <Title className='today-todo-title'>My Today</Title>
-            {/* <Scrollbars autoHeightMax='100%'> */}
             <div className='today-todo'>
               <div className='today-todo-item-list'>
                 {todoCollectionData.length > 0 ? (
@@ -50,7 +48,6 @@ const Home = () => {
                 <CreateTodo className='todo-create-fields' />
               </div>
             </div>
-            {/* </Scrollbars> */}
           </div>
           <div className='recent-activities'>
             <Title className='recent-activity-title'>Recent Activities</Title>

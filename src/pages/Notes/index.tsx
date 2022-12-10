@@ -1,16 +1,18 @@
 import { useState } from 'react';
 
 import { Plus } from 'phosphor-react';
+import no_data_img from '../../assets/no_data.svg';
 
 import { StyledNotesPageWrapper } from './style';
 
-import { CreateButton } from '../../component/UI/Buton';
+import { CreateButton } from '../../component/UI/Button';
 import MovableWrapper from '../../component/MovableWrapper';
 import Modal from '../../component/UI/Modal';
 import CreateNoteDetails from '../../component/CreateNoteDetail';
 import { useNoteContext } from '../../Context/NoteDataProvider';
 import MasonryGridLayout from '../../component/UI/MasonaryGridLayout';
 import NoteView from '../../component/cards/NoteView';
+import NoDataState from '../../component/UI/NoDataState';
 
 export const Notes = () => {
   const { noteCollection, noteDispatch, currentNote } = useNoteContext();
@@ -37,13 +39,21 @@ export const Notes = () => {
         <div className='main-content'>
           <div className='note-filter'></div>
           <div className='note-list-wrapper'>
-            <MasonryGridLayout minWidth={400}>
-              {noteCollection.map((d) => (
-                <div className='masonry-brick' key={d.id}>
-                  <NoteView {...d} className='masonry-content' />
-                </div>
-              ))}
-            </MasonryGridLayout>
+            {noteCollection.length > 0 ? (
+              <MasonryGridLayout minWidth={400}>
+                {noteCollection.map((d) => (
+                  <div className='masonry-brick' key={d.id}>
+                    <NoteView {...d} className='masonry-content' />
+                  </div>
+                ))}
+              </MasonryGridLayout>
+            ) : (
+              <NoDataState
+                img={no_data_img}
+                message='No notes available.'
+                className='notes-empty-state'
+              />
+            )}
           </div>
           <MovableWrapper>
             <div className='create-note-btn-wrapper'>

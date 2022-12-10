@@ -1,10 +1,11 @@
 export type appDataType = {
   themeMode: 'main' | 'dark';
   isUserAuthenticated: boolean;
+  staticColors: string[];
 };
 
 export type appDataAction = {
-  type: 'change-themeMode' | 'user-auth';
+  type: 'change-themeMode' | 'user-auth' | 'set-more-static-colors';
   payload: string | boolean;
 };
 
@@ -39,7 +40,7 @@ export interface NoteDataType {
   tags: tagType[];
   colorHex: string;
   createdOn: number;
-  isPinned?: boolean;
+  isPinned: boolean;
   description: string;
 }
 
@@ -61,8 +62,15 @@ export type DispatchActionType = {
     | 'set-current-note-color-hex'
     | 'set-current-note-auto-value'
     | 'add-to-note-collection'
+    | 'update-isPinned-status'
     | 'reset-current-note';
-  payload: string | number | boolean | tagType[] | NoteDataType[];
+  payload:
+    | string
+    | number
+    | boolean
+    | tagType[]
+    | NoteDataType[]
+    | { id: string; isPinned: boolean };
 };
 
 export interface NoteContextDataType extends InitialValueType {
