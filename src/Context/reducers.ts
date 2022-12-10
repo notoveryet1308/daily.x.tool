@@ -1,11 +1,6 @@
 import { nanoid } from 'nanoid';
 import { currentNoteInitialValue } from './initialValues';
-import {
-  InitialValueType,
-  DispatchActionType,
-  NoteDataType,
-  currentNoteDataType,
-} from './types';
+import { InitialValueType, DispatchActionType, NoteDataType } from './types';
 
 const isAllRequiredFieldsAvailable = ({
   type,
@@ -27,19 +22,32 @@ const isAllRequiredFieldsAvailable = ({
   return isAvailable;
 };
 
+const sortNotesByPinnedStatus = (data: NoteDataType[]) => {
+  let noteAllData: NoteDataType[] = [];
+
+  data.forEach((d) => {
+    if (d.isPinned) {
+      noteAllData.unshift(d);
+    } else {
+      noteAllData.push(d);
+    }
+  });
+
+  return noteAllData;
+};
+
 export const noteReducer = (
   state: InitialValueType,
   action: DispatchActionType
 ): InitialValueType => {
   const { type, payload } = action;
-  //   console.log({ type, payload });
+  const { currentNote } = state;
+  const { data } = currentNote;
+  const isAvailable = isAllRequiredFieldsAvailable({
+    type: 'or',
+    values: [!!payload, !!data.description],
+  });
   if (type === 'set-current-note-title' && typeof payload === 'string') {
-    const { currentNote } = state;
-    const { data } = currentNote;
-    const isAvailable = isAllRequiredFieldsAvailable({
-      type: 'or',
-      values: [!!payload, !!data.description],
-    });
     return {
       ...state,
       currentNote: {
@@ -48,8 +56,6 @@ export const noteReducer = (
           ...data,
           id: nanoid(),
           createdOn: Date.now(),
-          isPinned: false,
-          colorHex: '#D2D9EE',
           title: payload,
         },
         isAllRequiredDataAvailable: isAvailable,
@@ -58,14 +64,6 @@ export const noteReducer = (
   }
 
   if (type === 'set-current-note-description' && typeof payload === 'string') {
-    const { currentNote } = state;
-    const { data } = currentNote;
-    const isAvailable = isAllRequiredFieldsAvailable({
-      type: 'or',
-      values: [!!data.title, !!payload],
-    });
-    console.log({ isAvailable, data });
-
     return {
       ...state,
       currentNote: {
@@ -74,8 +72,6 @@ export const noteReducer = (
           ...data,
           id: nanoid(),
           createdOn: Date.now(),
-          isPinned: false,
-          colorHex: '#D2D9EE',
           description: payload,
         },
         isAllRequiredDataAvailable: isAvailable,
@@ -84,12 +80,6 @@ export const noteReducer = (
   }
 
   if (type === 'set-current-note-tags' && Array.isArray(payload)) {
-    const { currentNote } = state;
-    const { data } = currentNote;
-    const isAvailable = isAllRequiredFieldsAvailable({
-      type: 'or',
-      values: [!!data.title, !!data.description],
-    });
     return {
       ...state,
       currentNote: {
@@ -101,12 +91,6 @@ export const noteReducer = (
   }
 
   if (type === 'set-current-note-color-hex' && typeof payload === 'string') {
-    const { currentNote } = state;
-    const { data } = currentNote;
-    const isAvailable = isAllRequiredFieldsAvailable({
-      type: 'or',
-      values: [!!data.title, !!data.description],
-    });
     return {
       ...state,
       currentNote: {
@@ -120,14 +104,32 @@ export const noteReducer = (
   if (type === 'reset-current-note') {
     return { ...state, currentNote: { ...currentNoteInitialValue } };
   }
+  if (
+    type === 'update-isPinned-status' &&
+    !Array.isArray(payload) &&
+    typeof payload === 'object'
+  ) {
+    const { id, isPinned } = payload;
+    const findIndex = state.noteCollection.findIndex((d) => d.id === id);
+    const noteArr = state.noteCollection.filter((d) => d.id === id);
+
+    if (findIndex >= 0 && noteArr[0]) {
+      noteArr[0].isPinned = isPinned;
+
+      return {
+        ...state,
+        noteCollection: sortNotesByPinnedStatus(state.noteCollection),
+      };
+    }
+
+    return state;
+  }
   if (type === 'add-to-note-collection' && Array.isArray(payload)) {
     return {
       ...state,
-      noteCollection: payload,
+      noteCollection: sortNotesByPinnedStatus([...payload]),
     };
   }
-
-  //   console.log({ state });
 
   return state;
 };

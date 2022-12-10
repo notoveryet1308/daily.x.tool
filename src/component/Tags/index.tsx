@@ -31,7 +31,7 @@ const Tags = ({
       onClick={onTagClick}
       isClearable={isClearable || isClickable}
     >
-      {value}
+      {label}
       {isClearable ? <X className='close-icon' /> : ''}
     </StyledTag>
   );

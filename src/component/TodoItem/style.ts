@@ -100,4 +100,8 @@ export const StyledCreateTodo = styled.div`
     border-color: transparent;
     background-color: ${({ theme }) => theme.colors.secondaryBgColor};
   }
+
+  .create-todo-button {
+    align-self: flex-end;
+  }
 `;

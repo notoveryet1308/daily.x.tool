@@ -1,9 +1,8 @@
 import { useCallback, useMemo } from 'react';
 import isHotkey from 'is-hotkey';
-import { Editable, withReact, Slate, useSlate } from 'slate-react';
+import { Editable, withReact, Slate } from 'slate-react';
 
-
-import { createEditor, Descendant, Transforms, Editor } from 'slate';
+import { createEditor, Descendant, Transforms, Editor, Location } from 'slate';
 import { withHistory } from 'slate-history';
 
 import Elements from './Elements';
@@ -14,13 +13,6 @@ import { toggleMark } from './Components/Blocks';
 import { StyledRichTextWrapper } from './style';
 import { _debounce } from '../../../utils';
 
-const useEmptyEditor = () => {
-  const editor = useSlate();
-  editor.deleteFragment = () => {
-    Transforms.setNodes(editor, {});
-  };
-};
-
 const HOTKEYS = {
   'mod+b': 'bold',
   'mod+i': 'italic',
@@ -29,22 +21,23 @@ const HOTKEYS = {
 };
 
 const RichTextInput = ({
-  placeholder,
+  name,
   onChange,
+  placeholder,
+  minHeight,
   maxHeight = 250,
   autoFocus = true,
-  name,
   clearEditor = false,
   value = initialValue,
 }: {
   name: string;
-  autoFocus?: boolean;
+  minHeight?: number;
   maxHeight?: number;
-  placeholder?: string;
+  autoFocus?: boolean;
   onChange?: Function;
-  clearEditor?: boolean;
-
+  placeholder?: string;
   value?: Descendant[];
+  clearEditor?: boolean;
 }) => {
   const renderElement = useCallback((elProps) => <Elements {...elProps} />, []);
   const renderLeaf = useCallback((elProps) => <Leaf {...elProps} />, []);
@@ -59,7 +52,7 @@ const RichTextInput = ({
     });
   }
   return (
-    <StyledRichTextWrapper title={name}>
+    <StyledRichTextWrapper title={name} minHeight={minHeight}>
       <Slate
         editor={editor}
         value={value}
@@ -105,13 +98,13 @@ const RichTextInput = ({
   );
 };
 
-export const RichTextReadOnly = ({ value = initialValue }) => {
+export const RichTextReadOnly = ({ value = initialValue, className = '' }) => {
   const renderElement = useCallback((elProps) => <Elements {...elProps} />, []);
   const renderLeaf = useCallback((elProps) => <Leaf {...elProps} />, []);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
 
   return (
-    <StyledRichTextWrapper className='rich-text-view-mode'>
+    <StyledRichTextWrapper className={`rich-text-view-mode ${className}`}>
       <Slate editor={editor} value={value}>
         <Editable
           renderElement={renderElement}

@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 
 import { StyledCreateTodo } from './style';
 import { Input } from '../UI/Input';
-import { PrimaryButton } from '../UI/Buton';
+import { PrimaryButton } from '../UI/Button';
 import { _debounce } from '../../utils';
 
 import RichTextInput from '../UI/RichTextEditor';
@@ -53,6 +53,7 @@ const CreateTodo = ({ className }: { className?: string }) => {
         onChange={todoDataHandler}
         placeholder='Enter description'
         clearEditor={allowAction && !todoData.description}
+        minHeight={150}
       />
       <PrimaryButton
         label='Add'

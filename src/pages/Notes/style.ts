@@ -30,6 +30,15 @@ export const StyledNotesPageWrapper = styled.main`
     row-gap: 20px;
     margin-bottom: 40px;
     height: 100%;
+
+    .notes-empty-state {
+      background-color: transparent;
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
     .note-filter {
       width: 100%;
       height: 60px;
@@ -72,11 +81,11 @@ export const StyledNoteListDisplay = styled.div`
   height: auto;
   overflow-y: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 40px;
-  grid-template-rows: auto;
-  grid-auto-flow: row;
-  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 40px;
+  /* grid-template-rows: auto; */
+  grid-auto-rows: 250px;
+  /* justify-content: center; */
   .row-1,
   .row-2,
   .row-3 {

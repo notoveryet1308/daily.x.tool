@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const StyledCreateNoteDetail = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: 16px;
+  row-gap: 12px;
 
   .main-input-form-title {
     border: none;

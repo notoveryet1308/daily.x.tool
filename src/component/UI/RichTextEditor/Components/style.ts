@@ -2,12 +2,12 @@ import styled from 'styled-components';
 
 export const StyledToolbarButton = styled.button<{ active: boolean }>`
   border: none;
+  display: flex;
   cursor: pointer;
   padding: 4px 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border-radius: 2px;
+  align-items: center;
+  justify-content: center;
 
   background: ${({ active, theme }) =>
     active ? theme.colors.primaryColor : 'inherit'};
@@ -22,13 +22,13 @@ export const StyledToolbarButton = styled.button<{ active: boolean }>`
 `;
 
 export const StyledToolbar = styled.div`
+  gap: 4px;
   display: flex;
-  gap: 8px;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.primaryColor};
   padding: 4px 0;
-  margin-bottom: 16px;
-  background-color: inherit;
   flex-wrap: wrap;
-  justify-content: center;
+  margin-bottom: 16px;
   align-items: center;
+  justify-content: center;
+  background-color: inherit;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.primaryColor};
 `;
