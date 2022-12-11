@@ -52,9 +52,8 @@ export const StyledNotesPageWrapper = styled.main`
 
     .create-note-btn-wrapper {
       position: absolute;
-      bottom: 60px;
+      bottom: 40px;
       left: 50%;
-      bottom: 70px;
       transform: translateX(-50%);
       width: 300px;
       display: flex;
