@@ -24,7 +24,5 @@ export const ScrollInView = (viewContainerID: string) => {
 
   document.getElementById(viewContainerID)?.scrollIntoView({
     behavior: 'smooth',
-    block: 'start',
-    inline: 'nearest',
   });
 };
