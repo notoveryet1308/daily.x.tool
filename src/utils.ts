@@ -20,7 +20,6 @@ export const _debounce = ({
 
 
 export const ScrollInView = (viewContainerID: string) => {
-  console.log({ el: document.getElementById(viewContainerID) });
 
   document.getElementById(viewContainerID)?.scrollIntoView({
     behavior: 'smooth',
