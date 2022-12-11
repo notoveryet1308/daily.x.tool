@@ -89,5 +89,9 @@ export const StyledHomePageWrapper = styled.main`
         display: none;
       }
     }
+    
+    @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
+      margin: 0;
+    }
   }
 `;
