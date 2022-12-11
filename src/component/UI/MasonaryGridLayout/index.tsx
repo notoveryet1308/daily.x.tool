@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { useScreenWidth } from '../../../hooks';
+import { breakpoints } from '../../../theme/breakpoint';
 import { StyledMasonryGridWrapper } from './style';
 
 const resizeMasonryItem = (item) => {
@@ -39,8 +41,11 @@ const MasonryGridLayout = ({
   minWidth: number;
   children: React.ReactNode;
 }) => {
+  const [screenWidth] = useScreenWidth();
   useEffect(() => {
-    resizeAllMasonryItems();
+    if (screenWidth > breakpoints.LARGE_MOBILE) {
+      resizeAllMasonryItems();
+    }
   }, [children]);
   return (
     <StyledMasonryGridWrapper minWidth={minWidth} className='masonry'>

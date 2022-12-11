@@ -3,23 +3,22 @@ import styled from 'styled-components';
 export const StyledHomePageWrapper = styled.main`
   width: 100%;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 
   .main-content-wrapper {
     width: 100%;
-    display: flex;
     height: 100%;
+    display: flex;
+    padding: 0 60px 20px;
     justify-content: center;
-    padding: 0 60px;
+    max-height: calc(100vh - 217px);
 
     @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_TABLET}px) {
-      padding: 0 32px;
+      padding: 0 32px 20px;
     }
 
-    @media (max-width: ${({ theme }) => theme.breakpoints.MOBILE}px) {
-      padding: 0 16px;
+    @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
+      padding: 0 16px 16px;
+      max-height: calc(100vh - 240px);
     }
   }
 
@@ -28,7 +27,6 @@ export const StyledHomePageWrapper = styled.main`
     max-width: ${({ theme }) => theme.breakpoints.DESKTOP}px;
     display: flex;
     column-gap: 20px;
-    margin-bottom: 40px;
 
     .content-left-wrapper {
       width: 100%;
@@ -53,7 +51,7 @@ export const StyledHomePageWrapper = styled.main`
       flex-wrap: wrap;
       margin-right: 10px;
       position: relative;
-      max-height: calc(100vh - 320px);
+      max-height: calc(100vh - 274px);
       overflow-y: auto;
 
       .today-todo-item-list {
@@ -89,7 +87,7 @@ export const StyledHomePageWrapper = styled.main`
         display: none;
       }
     }
-    
+
     @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
       margin: 0;
     }
