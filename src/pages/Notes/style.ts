@@ -74,6 +74,13 @@ export const StyledNotesPageWrapper = styled.main`
         font-weight: bold;
       }
     }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
+      margin: 0;
+      .create-note-btn-wrapper{
+        width: 200px;
+      }
+    }
   }
 `;
 

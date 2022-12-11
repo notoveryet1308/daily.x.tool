@@ -44,6 +44,6 @@ export const StyledCreateBtn = styled.button`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
-    padding: 8px 15px;
+    padding: 8px 30px;
   }
 `;

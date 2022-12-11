@@ -4,7 +4,7 @@ export const StyledMainWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100vh;
-  max-heigh: calc(100vh - 64px);
+  max-height: calc(100vh - 64px);
   background-color: ${({ theme }) => theme.colors.primaryBgColor};
   display: flex;
   justify-content: center;
@@ -35,7 +35,6 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Noto Sans', sans-serif; 
-    overflow: hidden;
   }
 
   ::-webkit-scrollbar {
