@@ -42,4 +42,8 @@ export const StyledCreateBtn = styled.button`
   &:hover {
     transform: scale(1.1);
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
+    padding: 8px 15px;
+  }
 `;

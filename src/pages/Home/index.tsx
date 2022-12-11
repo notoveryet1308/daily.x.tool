@@ -24,7 +24,7 @@ const Home = () => {
           <div className='content-left-wrapper'>
             <Title className='today-todo-title'>My Today</Title>
             <div className='today-todo'>
-              <div className='today-todo-item-list'>
+              <div className='today-todo-item-list' id='todo-list-scroll'>
                 {todoCollectionData.length > 0 ? (
                   todoCollectionData.map(
                     ({ id, description, isCompleted, createdOn, duration }) => (
@@ -45,7 +45,10 @@ const Home = () => {
                 )}
               </div>
               <div className='today-todo-create'>
-                <CreateTodo className='todo-create-fields' />
+                <CreateTodo
+                  className='todo-create-fields'
+                  viewContainerID='todo-list-scroll'
+                />
               </div>
             </div>
           </div>

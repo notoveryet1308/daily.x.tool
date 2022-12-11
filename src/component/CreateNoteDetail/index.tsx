@@ -1,7 +1,5 @@
 import { useNoteContext } from '../../Context/NoteDataProvider';
-import { useScreenWidth } from '../../hooks';
 import ColorPicker from '../UI/ColorPicker';
-import { breakpoints } from '../../theme/breakpoint';
 import { Input } from '../UI/Input';
 import RichTextInput from '../UI/RichTextEditor';
 
@@ -18,7 +16,6 @@ const dummyOptions = [
 ];
 
 const CreateNoteDetails = () => {
-  const [screenWidth] = useScreenWidth();
   const { currentNote } = useNoteContext();
 
   const { noteDataHandler } = useNoteDataHandler();
@@ -35,7 +32,7 @@ const CreateNoteDetails = () => {
       />
       <RichTextInput
         maxHeight={400}
-        minHeight={screenWidth <= breakpoints.LARGE_MOBILE ? 300 : 200}
+        minHeight={200}
         autoFocus={false}
         name='noteDescription'
         onChange={noteDataHandler}
