@@ -8,6 +8,7 @@ export const StyledMainWrapper = styled.div`
   display: flex;
   justify-content: center;
   overflow: hidden;
+  overflow-y: auto;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.TABLET}px) {
     min-height: calc(100vh - 87px);

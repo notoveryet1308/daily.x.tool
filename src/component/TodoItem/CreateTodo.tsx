@@ -4,7 +4,7 @@ import { nanoid } from 'nanoid';
 import { StyledCreateTodo } from './style';
 import { Input } from '../UI/Input';
 import { PrimaryButton } from '../UI/Button';
-import { _debounce } from '../../utils';
+import { _debounce, ScrollInView } from '../../utils';
 
 import RichTextInput from '../UI/RichTextEditor';
 
@@ -13,7 +13,13 @@ import { useCreateTodoDataHandler } from './hooks';
 
 const { Title } = Typography;
 
-const CreateTodo = ({ className }: { className?: string }) => {
+const CreateTodo = ({
+  className,
+  viewContainerID,
+}: {
+  className?: string;
+  viewContainerID: string;
+}) => {
   const { addToTodoCollection, todoCollectionData } =
     useTodoCollectionContext();
   const {
@@ -73,6 +79,7 @@ const CreateTodo = ({ className }: { className?: string }) => {
               },
             ]);
           dispatch({ type: 'reset', payload: '' });
+          ScrollInView(viewContainerID);
         }}
       />
     </StyledCreateTodo>

@@ -40,7 +40,7 @@ export const Notes = () => {
           <div className='note-filter'></div>
           <div className='note-list-wrapper'>
             {noteCollection.length > 0 ? (
-              <MasonryGridLayout minWidth={400}>
+              <MasonryGridLayout minWidth={300}>
                 {noteCollection.map((d) => (
                   <div className='masonry-brick' key={d.id}>
                     <NoteView {...d} className='masonry-content' />
@@ -55,7 +55,7 @@ export const Notes = () => {
               />
             )}
           </div>
-          <MovableWrapper>
+          {/* <MovableWrapper> */}
             <div className='create-note-btn-wrapper'>
               <CreateButton
                 label='Create'
@@ -64,7 +64,7 @@ export const Notes = () => {
                 icon={<Plus className='plus-icon' weight='fill' />}
               />
             </div>
-          </MovableWrapper>
+          {/* </MovableWrapper> */}
           <Modal
             open={isOpen}
             onClose={toggleModal}
