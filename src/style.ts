@@ -8,7 +8,8 @@ export const StyledMainWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.primaryBgColor};
   display: flex;
   justify-content: center;
-  
+  overflow: hidden;
+  overflow-y: auto;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.TABLET}px) {
     max-height: calc(100vh - 87px);
@@ -34,7 +35,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'Noto Sans', sans-serif; 
+    font-family: 'Noto Sans', sans-serif;
   }
 
   ::-webkit-scrollbar {

@@ -3,33 +3,32 @@ import styled from 'styled-components';
 export const StyledNotesPageWrapper = styled.main`
   width: 100%;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 
   .main-content-wrapper {
     width: 100%;
     display: flex;
     height: 100%;
     justify-content: center;
-    padding: 0 60px;
-
+    padding: 0 60px 20px;
+    max-height: calc(100vh - 64px);
     @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_TABLET}px) {
-      padding: 0 32px;
+      padding: 0 32px 20px;
+      max-height: calc(100vh - 87px);
     }
 
     @media (max-width: ${({ theme }) => theme.breakpoints.MOBILE}px) {
-      padding: 0 16px;
+      padding: 0 16px 10px;
     }
   }
   .main-content {
     width: 100%;
-    max-width: ${({ theme }) => theme.breakpoints.DESKTOP}px;
-    display: flex;
-    flex-direction: column;
-    row-gap: 20px;
-    margin-bottom: 40px;
     height: 100%;
+    display: flex;
+    row-gap: 20px;
+    position: relative;
+    margin-bottom: 40px;
+    flex-direction: column;
+    max-width: ${({ theme }) => theme.breakpoints.DESKTOP}px;
 
     .notes-empty-state {
       background-color: transparent;
@@ -48,7 +47,6 @@ export const StyledNotesPageWrapper = styled.main`
       position: relative;
       width: 100%;
       height: 100%;
-      max-height: calc(100vh - 160px);
       overflow-y: auto;
     }
 
@@ -77,7 +75,7 @@ export const StyledNotesPageWrapper = styled.main`
 
     @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
       margin: 0;
-      .create-note-btn-wrapper{
+      .create-note-btn-wrapper {
         width: 200px;
       }
     }
