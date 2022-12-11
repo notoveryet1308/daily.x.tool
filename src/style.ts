@@ -3,15 +3,15 @@ import styled, { createGlobalStyle } from 'styled-components';
 export const StyledMainWrapper = styled.div`
   position: relative;
   width: 100%;
-  min-height: calc(100vh - 64px);
+  height: 100vh;
+  max-heigh: calc(100vh - 64px);
   background-color: ${({ theme }) => theme.colors.primaryBgColor};
   display: flex;
   justify-content: center;
-  overflow: hidden;
-  overflow-y: auto;
+  
 
   @media (max-width: ${({ theme }) => theme.breakpoints.TABLET}px) {
-    min-height: calc(100vh - 87px);
+    max-height: calc(100vh - 87px);
   }
 
   &::selection {
@@ -34,8 +34,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'Noto Sans', sans-serif;
-    overflow: hidden;
+    font-family: 'Noto Sans', sans-serif; 
   }
 
   ::-webkit-scrollbar {
