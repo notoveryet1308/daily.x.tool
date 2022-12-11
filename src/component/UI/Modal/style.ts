@@ -89,16 +89,19 @@ export const StyledModal = styled.div<{
       transform: unset;
       width: 100%;
       height: 100%;
+      position: fixed;
 
       .modal-content {
+        top: 0;
         width: 100%;
         height: 100%;
+        border-radius: 0;
         position: relative;
-        top: 0;
 
         .modal-body {
           flex: 1;
           max-height: unset;
+          min-height: calc(100vh - 130px);
         }
       }
     }
