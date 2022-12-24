@@ -10,18 +10,36 @@ export const useScreenWidth = (): [number] => {
   return [screenWidth];
 };
 
-export const useCheckRequiredValue = (values: (string | number)[]) => {
+export const useCheckRequiredValue = ({
+  values,
+  type = 'and',
+}: {
+  values: (string | number | undefined)[];
+  type: 'or' | 'and';
+}) => {
   const [allowAction, setAllowAction] = useState<boolean>(false);
 
   useEffect(() => {
-    values.forEach((val) => {
-      if (!val) {
-        setAllowAction(false);
-      } else {
-        setAllowAction(true);
-      }
-    });
+    if (type === 'and') {
+      values.forEach((val) => {
+        if (!val) {
+          setAllowAction(false);
+        } else {
+          setAllowAction(true);
+        }
+      });
+    }
+
+    if (type === 'or') {
+      values.some((val) => {
+        if (val) {
+          console.log({ allowAction });
+          setAllowAction(true);
+        }
+      });
+    }
   }, [...values]);
+ 
 
   return [allowAction];
 };

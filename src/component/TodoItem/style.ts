@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
-export const StyledTodoItem = styled.div<{ completed: boolean }>`
+export const StyledTodoItem = styled.div<{
+  completed: boolean;
+  duration: boolean;
+}>`
   column-gap: 8px;
   overflow: hidden;
   position: relative;
@@ -37,6 +40,7 @@ export const StyledTodoItem = styled.div<{ completed: boolean }>`
     flex: 1;
     gap: 16px;
     padding: 16px;
+    padding-top: ${({ duration }) => duration && '20px'};
     display: flex;
     position: relative;
     word-wrap: break-word;
@@ -64,6 +68,19 @@ export const StyledTodoItem = styled.div<{ completed: boolean }>`
       background-color: ${({ theme }) => theme.colors.todoItemOverlay};
       border-top: 2px solid ${({ theme }) => theme.colors.primaryColor};
       transform: translateX(${({ completed }) => (!completed ? '100%' : '0')});
+    }
+  }
+
+  .action-btn-wrapper {
+    position: absolute;
+    display: flex;
+    gap: 8px;
+    bottom: 16px;
+    right: 16px;
+    .ph-icon {
+      font-size: 20px;
+      cursor: pointer;
+      color: ${({ theme }) => theme.colors.primaryColor};
     }
   }
 `;

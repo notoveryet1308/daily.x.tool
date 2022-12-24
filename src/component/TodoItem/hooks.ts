@@ -5,9 +5,21 @@ import { useCheckRequiredValue } from '../../hooks';
 
 import { reducer, initialValue } from './utils';
 
-export const useCreateTodoDataHandler = () => {
+export const useCreateTodoDataHandler = ({
+  isEditMode = false,
+}: {
+  isEditMode: boolean;
+}) => {
   const [todoData, dispatch] = useReducer(reducer, initialValue);
-  const [allowAction] = useCheckRequiredValue([todoData.description]);
+  const [allowAction] = !isEditMode
+    ? useCheckRequiredValue({
+        values: [todoData.description],
+        type: 'and',
+      })
+    : useCheckRequiredValue({
+        values: [todoData.description, todoData.duration],
+        type: 'or',
+      });
 
   const todoDataHandler = useCallback(
     (data: { duration?: string; description?: string }) => {

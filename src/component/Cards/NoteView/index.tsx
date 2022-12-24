@@ -1,6 +1,6 @@
 import { PencilLine, Trash } from 'phosphor-react';
 
-import Tags from './../../Tags';
+import Tags from '../../Tags';
 import { StyledNoteView } from './style';
 import { RichTextReadOnly } from '../../UI/RichTextEditor';
 import { getDateFormat } from '../../TodoItem/utils';
