@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import ReactDom from 'react-dom';
 import { X } from 'phosphor-react';
 
@@ -83,6 +83,19 @@ const ModalShell = ({
 const Modal = (props: ModalPropsCustom) => {
   const elementOnMount = document.getElementById('modal-c') as HTMLDivElement;
 
+  useEffect(() => {
+    if (props.open) {
+      elementOnMount.style.display = 'flex';
+      elementOnMount.style.top = '0';
+      elementOnMount.style.left = '0';
+      elementOnMount.style.width = '100%';
+      elementOnMount.style.height = '100%';
+      elementOnMount.style.position = 'fixed';
+    } else {
+      elementOnMount.style.display = 'none';
+    }
+  }, [props.open]);
+  
   return ReactDom.createPortal(<ModalShell {...props} />, elementOnMount);
 };
 

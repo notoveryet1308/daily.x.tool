@@ -68,6 +68,7 @@ const CreateTodo = ({
 
           todoDataHandler(v);
         }}
+        autoFocus={false}
         placeholder='Enter description'
         value={
           isEditMode &&
