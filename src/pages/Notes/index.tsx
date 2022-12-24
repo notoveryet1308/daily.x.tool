@@ -1,18 +1,14 @@
 import { useState } from 'react';
-
 import { Plus } from 'phosphor-react';
-import no_data_img from '../../assets/no_data.svg';
 
 import { StyledNotesPageWrapper } from './style';
-
 import { CreateButton } from '../../component/UI/Button';
-import MovableWrapper from '../../component/MovableWrapper';
 import Modal from '../../component/UI/Modal';
 import CreateNoteDetails from '../../component/CreateNoteDetail';
 import { useNoteContext } from '../../Context/NoteDataProvider';
-import MasonryGridLayout from '../../component/UI/MasonaryGridLayout';
-import NoteView from '../../component/cards/NoteView';
-import NoDataState from '../../component/UI/NoDataState';
+import NoteListDisplay from './NoteListDisplay';
+
+
 
 export const Notes = () => {
   const { noteCollection, noteDispatch, currentNote } = useNoteContext();
@@ -39,31 +35,17 @@ export const Notes = () => {
         <div className='main-content'>
           <div className='note-filter'></div>
           <div className='note-list-wrapper'>
-            {noteCollection.length > 0 ? (
-              <MasonryGridLayout minWidth={300}>
-                {noteCollection.map((d) => (
-                  <div className='masonry-brick' key={d.id}>
-                    <NoteView {...d} className='masonry-content' />
-                  </div>
-                ))}
-              </MasonryGridLayout>
-            ) : (
-              <NoDataState
-                img={no_data_img}
-                message='No notes available.'
-                className='notes-empty-state'
-              />
-            )}
+            <NoteListDisplay data={noteCollection} />
           </div>
           {/* <MovableWrapper> */}
-            <div className='create-note-btn-wrapper'>
-              <CreateButton
-                label='Create'
-                onClick={toggleModal}
-                className='create-note-btn'
-                icon={<Plus className='plus-icon' weight='fill' />}
-              />
-            </div>
+          <div className='create-note-btn-wrapper'>
+            <CreateButton
+              label='Create'
+              onClick={toggleModal}
+              className='create-note-btn'
+              icon={<Plus className='plus-icon' weight='fill' />}
+            />
+          </div>
           {/* </MovableWrapper> */}
           <Modal
             open={isOpen}

@@ -18,8 +18,9 @@ interface ModalPropsCustom {
   className?: string;
   showCloseIcon?: boolean;
   style?: React.CSSProperties;
-  onOk: Function;
+  onOk?: Function;
   okBtnLabel?: string;
+  showFooter?: boolean;
   align: 'top' | 'center';
 }
 
@@ -37,6 +38,7 @@ const ModalShell = ({
   className,
   okBtnLabel,
   align = 'center',
+  showFooter = true,
   showCloseIcon = true,
 }: ModalPropsCustom) => {
   return (
@@ -60,10 +62,10 @@ const ModalShell = ({
               </div>
               <div className='modal-body'>{children}</div>
               <div className='modal-footer'>
-                {!footer ? (
+                {showFooter && !footer ? (
                   <ModalFooter
                     onCancel={onClose}
-                    onOk={onOk}
+                    onOk={onOk ? onOk : () => {}}
                     okBtnLabel={okBtnLabel}
                   />
                 ) : (

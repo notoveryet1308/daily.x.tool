@@ -22,6 +22,7 @@ export const StyledModal = styled.div<{
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: 99999;
 
   .modal-mask-overlay {
     position: absolute;
@@ -86,7 +87,6 @@ export const StyledModal = styled.div<{
     .modal-content-wrapper {
       top: 0;
       left: 0;
-      transform: unset;
       width: 100%;
       height: 100%;
       position: fixed;
@@ -95,6 +95,7 @@ export const StyledModal = styled.div<{
         top: 0;
         width: 100%;
         height: 100%;
+        transform: unset;
         border-radius: 0;
         position: relative;
 

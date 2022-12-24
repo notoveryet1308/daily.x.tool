@@ -18,10 +18,10 @@ export const StyledRichTextWrapper = styled.div<{ minHeight?: number }>`
     blockquote {
       background: ${({ theme }) => theme.colors.secondaryBgColor};
     }
-
-    &.show-border-left{
+    &.show-border-left {
       padding-left: 8px;
       border-left: 1px solid ${({ theme }) => theme.colors.primaryTextColor};
+      border-radius: 0;
     }
   }
 

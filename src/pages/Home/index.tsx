@@ -1,20 +1,31 @@
-import React from 'react';
 import { Typography } from 'antd';
-import TodoItem from '../../component/TodoItem';
+import { useQuery, gql } from '@apollo/client';
+
 import WeatherReport from '../../component/WeatherReport';
 import { StyledHomePageWrapper } from '../Home/style';
 import Scrollbars from 'react-custom-scrollbars-2';
 import CreateTodo from '../../component/TodoItem/CreateTodo';
 import NoDataState from '../../component/UI/NoDataState';
 
-import no_data_img from '../../assets/no_data.svg';
 import no_activity_img from '../../assets/no_activity.svg';
-import { useTodoCollectionContext } from '../../Context/TodoCollectionContext';
+import TodoDisplayList from './TodoDisplayList';
 
 const { Title } = Typography;
 
+export const GET_ALL_TODO = gql`
+  query getAllTodo {
+    getTodo {
+      id
+      duration
+      description
+      createdOn
+      isCompleted
+    }
+  }
+`;
+
 const Home = () => {
-  const { todoCollectionData } = useTodoCollectionContext();
+  const allTodoQuery = useQuery(GET_ALL_TODO);
 
   return (
     <StyledHomePageWrapper>
@@ -25,24 +36,12 @@ const Home = () => {
             <Title className='today-todo-title'>My Today</Title>
             <div className='today-todo'>
               <div className='today-todo-item-list' id='todo-list-scroll'>
-                {todoCollectionData.length > 0 ? (
-                  todoCollectionData.map(
-                    ({ id, description, isCompleted, createdOn, duration }) => (
-                      <TodoItem
-                        key={id}
-                        description={description}
-                        isCompleted={isCompleted}
-                        createdOn={createdOn}
-                        duration={duration}
-                      />
-                    )
-                  )
-                ) : (
-                  <NoDataState
-                    message="Add today's items to be done 🚀"
-                    img={no_data_img}
-                  />
-                )}
+                <TodoDisplayList
+                  data={allTodoQuery.data?.getTodo || []}
+                  isLoading={allTodoQuery.loading}
+                />
+
+                {/* <TodoDisplayList data={todoCollectionData} /> */}
               </div>
               <div className='today-todo-create'>
                 <CreateTodo
