@@ -60,10 +60,6 @@ export const StyledHomePageWrapper = styled.main`
         row-gap: 12px;
         flex: 1;
         min-width: 500px;
-
-        @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_TABLET}px) {
-          min-width: 100%;
-        }
       }
       .today-todo-create {
         position: relative;
@@ -76,6 +72,18 @@ export const StyledHomePageWrapper = styled.main`
           position: sticky;
           top: 0;
         }
+      }
+      @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_TABLET}px) {
+        .today-todo-item-list {
+          min-width: 100%;
+        }
+      }
+      @media (max-width: ${({ theme }) => theme.breakpoints.TABLET}px) {
+        .today-todo-item-list {
+          min-width: 100%;
+        }
+        overflow-y: unset;
+        max-height: unset;
       }
     }
 
