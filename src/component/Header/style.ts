@@ -30,6 +30,11 @@ export const StyledMainNavigation = styled.nav`
   display: flex;
   column-gap: 16px;
   align-items: center;
+  
+  .user-name{
+    color: ${({ theme }) => theme.colors.primaryTextColor};
+    font-size: color: ${({ theme }) => theme.fontSize.medium};
+  }
 `;
 
 export const StyledChangeTheme = styled.span`

@@ -1,5 +1,5 @@
 import { useMutation, gql } from '@apollo/client';
-import { useState, useReducer } from 'react';
+import { useReducer } from 'react';
 import { useCheckRequiredValue } from '../../hooks';
 
 const LOGIN_USER = gql`
@@ -9,8 +9,8 @@ const LOGIN_USER = gql`
 `;
 
 const initialLoginCred: { email: string; password: string } = {
-  email: 'example2@dev.com',
-  password: '12346789',
+  email: '',
+  password: '',
 };
 
 const loginReducer = (
@@ -20,12 +20,10 @@ const loginReducer = (
   const { type, payload } = action;
 
   if (type === 'login-email') {
-    console.log({ email: payload });
     return { ...state, email: payload };
   }
 
   if (type === 'login-password') {
-    console.log({ password: payload });
     return { ...state, password: payload };
   }
 

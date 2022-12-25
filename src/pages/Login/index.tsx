@@ -1,12 +1,10 @@
-import { NavLink } from 'react-router-dom';
-import Loader from '../../component/UI/Loader';
+import { NavLink, Redirect } from "react-router-dom";
 
-import { PrimaryButton } from '../../component/UI/Button';
-import { Input } from '../../component/UI/Input';
-import { StyledLoginPageWrapper } from './style';
-import { useLoginUser } from './hooks';
-import { useState } from 'react';
-import { noop } from '../../utils';
+import { PrimaryButton } from "../../component/UI/Button";
+import { Input } from "../../component/UI/Input";
+import { StyledLoginPageWrapper } from "./style";
+import { useLoginUser } from "./hooks";
+import { noop } from "../../utils";
 
 const Login = () => {
   const {
@@ -20,50 +18,49 @@ const Login = () => {
   } = useLoginUser();
 
   if (data) {
-    console.log(data);
+    localStorage.setItem("accessToken", JSON.stringify(data.login));
+    return <Redirect to="/" />;
   }
-
-  //   console.log({ loading, data, error, loginCred });
 
   return (
     <StyledLoginPageWrapper>
-      <div className='main-content'>
-        <h2 className='login-title'>Welcome back</h2>
-        <div className='login-filed'>
+      <div className="main-content">
+        <h2 className="login-title">Welcome back</h2>
+        <div className="login-filed">
           <Input
-            name='email'
-            type='email'
-            label='Email'
+            name="email"
+            type="email"
+            label="Email"
             value={loginCred.email}
             onChange={({ email }: { email: string }) => {
               console.log({ email });
 
-              dispatchLoginCred({ type: 'login-email', payload: email });
+              dispatchLoginCred({ type: "login-email", payload: email });
             }}
-            placeholder='Enter your email here'
+            placeholder="Enter your email here"
           />
           <Input
-            name='password'
-            type='password'
-            label='Password'
+            name="password"
+            type="password"
+            label="Password"
             value={loginCred.password}
             onChange={({ password }: { password: string }) => {
               console.log({ password });
-              dispatchLoginCred({ type: 'login-password', payload: password });
+              dispatchLoginCred({ type: "login-password", payload: password });
             }}
-            placeholder='Enter your password here'
+            placeholder="Enter your password here"
           />
 
           <PrimaryButton
-            label={loading ? 'Loading...' : 'Login'}
+            label={loading ? "Logging in.." : "Login"}
             onClick={allowAction ? loginHandler : noop}
           />
         </div>
-        <div className='login-footer'>
-          <span className='subtext'>OR</span>
-          <span className='create-account'>
+        <div className="login-footer">
+          <span className="subtext">OR</span>
+          <span className="create-account">
             Create an&nbsp;
-            <NavLink to='sign-up' className='sign-up-link'>
+            <NavLink to="sign-up" className="sign-up-link">
               account ?
             </NavLink>
           </span>
