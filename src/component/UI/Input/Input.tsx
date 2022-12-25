@@ -33,9 +33,9 @@ const Input = ({
     },
     [userInput]
   );
-  useEffect(() => {
-    setUserInput(value);
-  }, [value]);
+  // useEffect(() => {
+  //   setUserInput(value);
+  // }, [value]);
 
   return (
     <StyledUserInputWrapper className={wrapperClassName}>

@@ -30,3 +30,5 @@ export const _debounce = ({
       inline: 'nearest',
     });
   };
+
+  export const noop = () => {};
