@@ -17,7 +17,7 @@ enum buttonType {
   undefined,
 }
 type ButtonProps = {
-  label: string;
+  label: string  | React.ReactNode;
   type?: 'submit' | 'reset' | 'button' | undefined;
   onClick: Function;
   variant?: 'primary' | 'secondary' | 'tertiary' | 'dashed';

@@ -10,6 +10,8 @@ import { GlobalStyle, StyledMainWrapper } from './style';
 import Sprint from './pages/Sprint';
 import Home from './pages/Home';
 import Notes from './pages/Notes';
+import Login from './pages/Login';
+
 import { useAppDataContext } from './Context/AppDataContext';
 
 function App() {
@@ -33,6 +35,7 @@ function App() {
           <Route path='/all-today' component={Today} exact />
           <Route path='/sprint' component={Sprint} exact />
           <Route path='/notes' component={Notes} exact />
+          <Route path='/login' component={Login} exact />
         </Switch>
       </StyledMainWrapper>
     </ThemeProvider>

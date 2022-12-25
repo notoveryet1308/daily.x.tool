@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const { TextArea } = Input;
 
-export const StyledInput = styled(Input)<{ bordered: boolean | undefined }>`
+export const StyledInput = styled.input<{ bordered: boolean | undefined }>`
   padding: ${({ bordered }) => (bordered ? '8px 16px' : 0)};
   border-radius: 4px;
   border: 1px solid ${({ theme }) => theme.colors.secondaryColor};
