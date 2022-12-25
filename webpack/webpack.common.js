@@ -1,18 +1,18 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: path.resolve(__dirname, '..', './src/index.tsx'),
+  entry: path.resolve(__dirname, "..", "./src/index.tsx"),
   resolve: {
     extensions: [
-      '*',
-      '.tsx',
-      '.ts',
-      '.mjs',
-      '.js',
-      '.json',
-      '.gql',
-      '.graphql',
+      "*",
+      ".tsx",
+      ".ts",
+      ".mjs",
+      ".js",
+      ".json",
+      ".gql",
+      ".graphql",
     ],
   },
   module: {
@@ -20,7 +20,7 @@ module.exports = {
       {
         test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
-        use: [{ loader: 'babel-loader' }],
+        use: [{ loader: "babel-loader" }],
       },
       {
         test: /\.m?js/,
@@ -32,25 +32,25 @@ module.exports = {
         test: /\.s[ac]ss$/i,
         use: [
           // Creates `style` nodes from JS strings
-          'style-loader',
+          "style-loader",
           // Translates CSS into CommonJS
-          'css-loader',
+          "css-loader",
           // Compiles Sass to CSS
-          'sass-loader',
+          "sass-loader",
         ],
       },
       {
         test: /\.css$/,
         use: [
           // Creates `style` nodes from JS strings
-          'style-loader',
+          "style-loader",
           // Translates CSS into CommonJS
-          'css-loader',
+          "css-loader",
         ],
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
-        type: 'asset/resource',
+        type: "asset/resource",
         // use: [
         //   {
         //     loader: 'file-loader',
@@ -60,14 +60,14 @@ module.exports = {
     ],
   },
   output: {
-    path: path.resolve(__dirname, '..', './build'),
-    filename: 'bundle.js',
-    publicPath: '/',
+    path: path.resolve(__dirname, "..", "./build"),
+    filename: "bundle.js",
+    publicPath: "/",
   },
-  devServer: { historyApiFallback: true },
+  devServer: { historyApiFallback: true, allowedHosts: 'all' },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '..', './src/index.html'),
+      template: path.resolve(__dirname, "..", "./src/index.html"),
     }),
   ],
 };

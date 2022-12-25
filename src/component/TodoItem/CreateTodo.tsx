@@ -63,11 +63,7 @@ const CreateTodo = ({
 
       <RichTextInput
         name='description'
-        onChange={(v) => {
-          console.log({ v });
-
-          todoDataHandler(v);
-        }}
+        onChange={todoDataHandler}
         autoFocus={false}
         placeholder='Enter description'
         value={

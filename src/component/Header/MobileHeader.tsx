@@ -9,7 +9,7 @@ import { StyledMobileHeader } from './style';
 
 const MobileHeader = ({
   colorTheme,
-  handleColorTheme,
+  handleColorTheme
 }: {
   colorTheme: string;
   handleColorTheme: () => void;
@@ -18,7 +18,7 @@ const MobileHeader = ({
     <StyledMobileHeader>
       <div className='mobile-header-top'>
         <AppTitle />
-        <MainNavigation data={authNavData}>
+        <MainNavigation data={authNavData} type='auth-data'>
           <ChangeTheme
             colorTheme={colorTheme}
             handleColorTheme={handleColorTheme}

@@ -5,7 +5,9 @@ import { useScreenWidth } from '../../hooks';
 import DesktopHeader from '../Header/DesktopHeader';
 import MobileHeader from '../Header/MobileHeader';
 
+
 import { StyledHeaderWrapper } from './style';
+
 
 const Header = ({
   colorTheme,
@@ -15,7 +17,7 @@ const Header = ({
   handleColorTheme: () => void;
 }) => {
   const [screenWidth] = useScreenWidth();
-
+ 
   return (
     <StyledHeaderWrapper>
       <div className='header-content'>
