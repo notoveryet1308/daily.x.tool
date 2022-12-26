@@ -1,3 +1,5 @@
+import React from "react";
+
 export type TextareaProps = {
   allowClear?: true;
   autoSize?: boolean;
@@ -30,4 +32,6 @@ export type InputProps = {
   disabled?: boolean;
   className?: string;
   wrapperClassName?: string;
+  onFocus?: React.FocusEventHandler<HTMLInputElement>,
+  errorMessage?: string;
 };

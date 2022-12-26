@@ -34,6 +34,7 @@ export const StyledUserInputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: ${({ theme }) => theme.space.small};
+  position: relative;
 
   .user-input-label {
     color: ${({ theme }) => theme.colors.secondaryTextColor};
@@ -44,6 +45,13 @@ export const StyledUserInputWrapper = styled.div`
       color: ${({ theme }) => theme.colors.tertiaryTextColor};
       margin-left: ${({ theme }) => theme.space.xSmall};
     }
+  }
+
+  .error-message-input{
+    position: absolute;
+    bottom:-18px;
+    color: ${({ theme }) => theme.colors.errorDark};
+    font-size:${({ theme }) => theme.fontSize.small};
   }
 `;
 

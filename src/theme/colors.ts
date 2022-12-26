@@ -36,6 +36,14 @@ export const whiteThemeColors = {
   createBtnBg:
     'linear-gradient(215.75deg, rgba(38, 83, 217, 1) 18.6%, rgba(172, 38, 217, 1) 79.07%)',
 
+  //alert color
+  warningDark:'#A37E29',
+  warningLight:'#EBD8AD',
+  successDark:'#29A359',
+  successLight:'#ADEBC6',
+  errorDark:'#A33029',
+  errorLight:'#EBB1AD',
+
   // colors with transparency
 
   tempBgColor: 'rgba(215, 209, 238, .8)',
@@ -86,8 +94,15 @@ export const darkThemeColors = {
   createBtnBg:
     'linear-gradient(215.75deg, rgba(38, 83, 217, 1) 18.6%, rgba(172, 38, 217, 1) 79.07%)',
 
-  // colors with transparency
+  // alert color
+  warningDark:'#A37E29',
+  warningLight:'#EBD8AD',
+  successDark:'#29A359',
+  successLight:'#ADEBC6',
+  errorDark:'#A33029',
+  errorLight:'#EBB1AD',
 
+  // colors with transparency
   tempBgColor: 'rgba(28, 19, 60, .8)',
   todoItemOverlay: 'rgba(14, 10, 30, .8)',
   underlineColor: 'rgba(202, 192, 236, .4)',
