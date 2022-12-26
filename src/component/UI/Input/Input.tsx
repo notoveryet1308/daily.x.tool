@@ -16,6 +16,8 @@ const Input = ({
   disabled,
   className,
   wrapperClassName,
+  onFocus, 
+  errorMessage
 }: InputProps) => {
   const [userInput, setUserInput] = useState(value);
 
@@ -55,7 +57,9 @@ const Input = ({
         onBlur={onBlur}
         disabled={disabled}
         className={className}
+        onFocus={onFocus}
       />
+      {errorMessage && <span className='error-message-input'>{errorMessage}</span>}
     </StyledUserInputWrapper>
   );
 };

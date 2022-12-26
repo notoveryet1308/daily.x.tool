@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledBaseButton = styled.button<{ variation?: string }>`
-  padding: 4px 16px;
+  padding: 8px 16px;
   white-space: nowrap;
   border: none;
   border-radius: 4px;
