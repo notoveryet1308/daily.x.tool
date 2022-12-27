@@ -26,7 +26,7 @@ const CreateNoteDetails = () => {
         type='text'
         name='noteTitle'
         placeholder='Title'
-        onChange={noteDataHandler}
+        onChangeHandler={noteDataHandler}
         value={currentNote.data.title}
         className='main-input-form-title'
       />

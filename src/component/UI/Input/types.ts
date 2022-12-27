@@ -19,19 +19,17 @@ export type TextareaProps = {
   wrapperClassName?: string;
 };
 
-export type InputProps = {
+export interface InputProps extends React.HTMLProps<HTMLInputElement> {
   value: string;
   type: string;
   placeholder?: string;
   label?: string;
-  onChange: Function;
   bordered?: boolean;
   name: string;
   optional?: boolean;
-  onBlur?: React.FocusEventHandler<HTMLInputElement>;
   disabled?: boolean;
   className?: string;
   wrapperClassName?: string;
-  onFocus?: React.FocusEventHandler<HTMLInputElement>,
   errorMessage?: string;
-};
+  onChangeHandler: Function;
+}

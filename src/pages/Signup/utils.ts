@@ -23,20 +23,20 @@ export const validatePassword = (password: string)=>{
     }else{
         validatedCheck.length = false  
     }
-
-    if(password.search(/[a-z]/i) >= 1){
+   
+    if(password.toUpperCase() !== password){
        validatedCheck.lowercase = true
     }else{
         validatedCheck.lowercase = false 
     }
 
-    if(password.search(/[0-9]/i) >= 1){
+    if(password.search(/[0-9]/g) >= 1){
         validatedCheck.number = true
     }else{
         validatedCheck.number = false   
     }
 
-    if(password.search(/[A-Z]/i) >= 1){
+    if(password.search(/[A-Z]/g) >= 1){
         validatedCheck.uppercase = true
     }else{
         validatedCheck.uppercase = false

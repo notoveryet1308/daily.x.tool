@@ -1,38 +1,55 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StyledToastWrapper = styled.div`
   max-width: 800px;
   width: 90%;
   margin: 0 auto;
-  margin-top: 90px;
-  position: absolute;
-  padding: 4px 24px;
+  padding: 6px 20px;
+  border-radius: 4px;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  .toast-content{
+  .toast-content {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 16px;
+    gap: 8px;
+
+    .toast-message {
+      font-size: ${({ theme }) => theme.fontSize.medium};
+      line-height: 20px;
+    }
   }
 
-  &.toast-error{
-    background-color: ${({theme})=> theme.colors.errorLight};
-    color: ${({theme})=> theme.colors.errorDark};
+  .ph-icon {
+    font-size: 20px;
+  }
+  .close-icon {
+    color: ${({ theme }) => theme.colors.black};
+    margin-left: 6px;
+    cursor: pointer;
   }
 
-  &.toast-warning{
-    background-color: ${({theme})=> theme.colors.warningLight};
-    color: ${({theme})=> theme.colors.warningDark};
+  &.toast-full {
+    position: absolute;
+    top: 48px;
+    z-index: 21;
   }
 
-  &.toast-success{
-    background-color: ${({theme})=> theme.colors.successLight};
-    color: ${({theme})=> theme.colors.successDark};
+  &.toast-error {
+    background-color: ${({ theme }) => theme.colors.errorLight};
+    color: ${({ theme }) => theme.colors.errorDark};
   }
 
+  &.toast-warning {
+    background-color: ${({ theme }) => theme.colors.warningLight};
+    color: ${({ theme }) => theme.colors.warningDark};
+  }
 
-`
+  &.toast-success {
+    background-color: ${({ theme }) => theme.colors.successLight};
+    color: ${({ theme }) => theme.colors.successDark};
+  }
+`;

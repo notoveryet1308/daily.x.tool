@@ -12,7 +12,7 @@ export const whiteThemeColors = {
   tertiaryColor: '#D8D0F1',
 
   white: '#fff',
-  black: '#000',
+  black: '#2a2e36',
 
   //bgColor
   primaryBgColor: '#F1EEFA',
@@ -70,7 +70,7 @@ export const darkThemeColors = {
   tertiaryColor: '#D8D0F1',
 
   white: '#fff',
-  black: '#000',
+  black: '#2a2e36',
 
   //bgColor
   primaryBgColor: '#0E0A16',
