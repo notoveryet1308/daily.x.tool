@@ -48,12 +48,15 @@ export const StyledLoginPageWrapper = styled.main`
       }
     }
   }
-  @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
-    display: flex;
-    justify-content: flex-end;
-    .main-content {
-      width: 100%;
-      border-radius: 16px;
-    }
-  }
+ 
 `;
+
+
+ // @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
+  //   display: flex;
+  //   justify-content: flex-end;
+  //   .main-content {
+  //     width: 100%;
+  //     border-radius: 16px;
+  //   }
+  // }
