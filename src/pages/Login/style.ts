@@ -10,7 +10,7 @@ export const StyledLoginPageWrapper = styled.main`
     background-color: ${({ theme }) => theme.colors.secondaryBgColor};
     border-radius: 8px;
     margin: 0 auto;
-    margin-top: 100px;
+    margin-top: 60px;
 
     .login-title {
       font-size: ${({ theme }) => theme.fontSize.large2};

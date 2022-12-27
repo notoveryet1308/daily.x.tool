@@ -1,14 +1,14 @@
-import React, { useState, useCallback, useEffect } from 'react';
-import { _debounce } from '../../../utils';
-import { StyledInput, StyledUserInputWrapper } from './style';
-import { InputProps } from './types';
+import React, { useState, useCallback, useEffect } from "react";
+import { noop, _debounce } from "../../../utils";
+import { StyledInput, StyledUserInputWrapper } from "./style";
+import { InputProps } from "./types";
 
 const Input = ({
   value,
   type,
-  placeholder = 'Input here',
+  placeholder = "Input here",
   label,
-  onChange,
+  onChangeHandler,
   bordered = true,
   name,
   optional,
@@ -16,8 +16,8 @@ const Input = ({
   disabled,
   className,
   wrapperClassName,
-  onFocus, 
-  errorMessage
+  onFocus,
+  errorMessage,
 }: InputProps) => {
   const [userInput, setUserInput] = useState(value);
 
@@ -31,7 +31,7 @@ const Input = ({
       //   },
       //   delay: 500,
       // });
-      onChange({ [name]: e.target.value });
+      onChangeHandler({ [name]: e.target.value });
     },
     [userInput]
   );
@@ -42,9 +42,9 @@ const Input = ({
   return (
     <StyledUserInputWrapper className={wrapperClassName}>
       {label && (
-        <p className='user-input-label' title={label}>
+        <p className="user-input-label" title={label}>
           {label}
-          {optional && <span className='optional-field'>(Optional)</span>}
+          {optional && <span className="optional-field">(Optional)</span>}
         </p>
       )}
       <StyledInput
@@ -54,12 +54,14 @@ const Input = ({
         placeholder={placeholder}
         bordered={bordered}
         name={name}
-        onBlur={onBlur}
+        onBlur={onBlur || noop}
         disabled={disabled}
         className={className}
         onFocus={onFocus}
       />
-      {errorMessage && <span className='error-message-input'>{errorMessage}</span>}
+      {errorMessage && (
+        <span className="error-message-input">{errorMessage}</span>
+      )}
     </StyledUserInputWrapper>
   );
 };

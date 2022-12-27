@@ -32,9 +32,7 @@ const Login = () => {
             type="email"
             label="Email"
             value={loginCred.email}
-            onChange={({ email }: { email: string }) => {
-              console.log({ email });
-
+            onChangeHandler={({ email }: { email: string }) => {
               dispatchLoginCred({ type: "login-email", payload: email });
             }}
             placeholder="Enter your email here"
@@ -44,8 +42,7 @@ const Login = () => {
             type="password"
             label="Password"
             value={loginCred.password}
-            onChange={({ password }: { password: string }) => {
-              console.log({ password });
+            onChangeHandler={({ password }: { password: string }) => {
               dispatchLoginCred({ type: "login-password", payload: password });
             }}
             placeholder="Enter your password here"
