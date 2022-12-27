@@ -47,12 +47,26 @@ const signupReducer = (
     return {
       ...state,
       name: payload,
+      fieldsCheck:{
+        ...state.fieldsCheck,
+        name:{
+          ...state.fieldsCheck.name,
+          isPresent: !!payload
+        },
+      }
     };
   }
   if (type === "email") {
     return {
       ...state,
       email: payload,
+      fieldsCheck:{
+        ...state.fieldsCheck,
+        email:{
+          ...state.fieldsCheck.email,
+          isPresent: !!payload
+        },
+      }
     };
   }
   if (type === "password") {
@@ -65,7 +79,8 @@ const signupReducer = (
         ...state.fieldsCheck,
         password:{
           ...state.fieldsCheck.password,
-          isValid: passwordValid
+          isValid: passwordValid,
+          isPresent:!!payload
         },
         confirmPassword:{
           ...state.fieldsCheck.confirmPassword,
@@ -78,6 +93,14 @@ const signupReducer = (
     return {
       ...state,
       confirmPassword: payload,
+      fieldsCheck:{
+        ...state.fieldsCheck,
+        confirmPassword:{
+          ...state.fieldsCheck.confirmPassword,
+          isValid: state.password === payload,
+          isPresent: !!payload
+        }
+      }
     };
   }
 

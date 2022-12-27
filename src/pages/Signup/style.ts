@@ -47,14 +47,7 @@ export const StyledSignupPageWrapper = styled.main`
       }
     }
   }
-  @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
-    display: flex;
-    justify-content: flex-end;
-    .main-content {
-      width: 100%;
-      border-radius: 16px;
-    }
-  }
+ 
 `;
 
 export const StyledFormFieldWrapper = styled.div`
@@ -63,3 +56,13 @@ export const StyledFormFieldWrapper = styled.div`
   row-gap: 24px;
   padding: 24px;
 `;
+
+
+ // @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
+  //   display: flex;
+  //   justify-content: flex-end;
+  //   .main-content {
+  //     width: 100%;
+  //     border-radius: 16px;
+  //   }
+  // }
