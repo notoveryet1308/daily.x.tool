@@ -1,4 +1,5 @@
 import { useReducer } from "react";
+import { gql, useMutation } from "@apollo/client";
 import { SignupReducerActionType, SignupValueType } from "./type";
 import {
   onlyAlphaNumericCharacters,
@@ -117,11 +118,38 @@ const signupReducer = (
   return state;
 };
 
+const CREATE_USER = gql`
+  mutation CreateUser($input: CreateUserInput!) {
+    createUser(input: $input) {
+      user {
+        _id
+        email
+        name
+      }
+      token
+    }
+  }
+`;
+
 export const useUserSignup = () => {
   const [signupValues, dispatchSignup] = useReducer(
     signupReducer,
     initialSignupValue
   );
 
-  return { signupValues, dispatchSignup };
+  const [mutate, { data, loading, error }] = useMutation(CREATE_USER);
+
+  const handleUserCreation = () => {
+    mutate({
+      variables: {
+        input: {
+          name: signupValues.name,
+          email: signupValues.email,
+          password: signupValues.password,
+        },
+      },
+    });
+  };
+
+  return { signupValues, dispatchSignup, handleUserCreation, data, loading, error };
 };

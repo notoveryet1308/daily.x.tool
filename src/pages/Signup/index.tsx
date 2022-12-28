@@ -1,11 +1,19 @@
 import { useCallback } from "react";
-import { ErrorToast } from "../../component/Toast";
+import { Redirect } from "react-router-dom";
+import { ErrorToast, SuccessToast } from "../../component/Toast";
 import FormField from "./FormField";
 import { useUserSignup } from "./hooks";
 import { StyledSignupPageWrapper } from "./style";
 
 const Signup = () => {
-  const { signupValues, dispatchSignup } = useUserSignup();
+  const {
+    signupValues,
+    dispatchSignup,
+    handleUserCreation,
+    data,
+    loading,
+    error: queryError,
+  } = useUserSignup();
 
   const error = useCallback(() => {
     return Object.keys(signupValues.fieldsCheck).map((key) => {
@@ -28,6 +36,11 @@ const Signup = () => {
     signupValues.fieldsCheck.confirmPassword.isValid,
   ]);
 
+  if (data) {
+    localStorage.setItem("accessToken", JSON.stringify(data.token));
+    return <Redirect to="/" />
+  }
+
   return (
     <StyledSignupPageWrapper>
       <div className="main-content">
@@ -37,6 +50,9 @@ const Signup = () => {
           formValues={signupValues}
           onChangeHandler={dispatchSignup}
           allowSubmitAction={false}
+          handleUserCreation={handleUserCreation}
+          userData={data?.createUser}
+          isLoading={loading}
         />
       </div>
     </StyledSignupPageWrapper>
