@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import { PrimaryButton } from "../../component/UI/Button";
 import { Input } from "../../component/UI/Input";
@@ -12,9 +12,19 @@ const FormField = ({
   formValues,
   onChangeHandler,
   allowSubmitAction,
+  handleUserCreation,
+  userData,
+  isLoading,
 }: FormFiledType) => {
   const [focusedPassword, setPasswordFocused] = useState(false);
+  if(userData){
+console.log({userData})
+  }
 
+  const passwordRules = useCallback(()=>{
+    return <PasswordRules password={formValues.password} />
+  },[formValues.password])
+   
   return (
     <StyledFormFieldWrapper>
       <Input
@@ -65,7 +75,7 @@ const FormField = ({
               : ""
           }
         />
-        {focusedPassword && <PasswordRules password={formValues.password} />}
+        {focusedPassword && passwordRules()}
       </div>
 
       <Input
@@ -87,7 +97,7 @@ const FormField = ({
         }
       />
       <PrimaryButton
-        label="Signup"
+        label={isLoading ? "Creating..." : "Signup"}
         type="submit"
         onClick={() => {
           onChangeHandler({ type: "check-field", payload: "" });
@@ -95,7 +105,7 @@ const FormField = ({
           formValues.fieldsCheck["name"].isValid &&
             formValues.fieldsCheck["email"].isValid &&
             formValues.fieldsCheck["confirmPassword"].isValid &&
-            console.log("creating user...", formValues);
+            handleUserCreation();
         }}
       />
     </StyledFormFieldWrapper>

@@ -36,7 +36,7 @@ export const validatePassword = (password: string)=>{
         validatedCheck.number = false   
     }
 
-    if(password.search(/[A-Z]/g) >= 1){
+    if(/[A-Z]/.test(password)){
         validatedCheck.uppercase = true
     }else{
         validatedCheck.uppercase = false

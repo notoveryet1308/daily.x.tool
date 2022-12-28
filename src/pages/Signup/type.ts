@@ -25,4 +25,7 @@ export type FormFiledType = {
   formValues: SignupValueType;
   onChangeHandler: React.Dispatch<SignupReducerActionType>;
   allowSubmitAction: boolean;
+  handleUserCreation: Function;
+  userData: Object | null;
+  isLoading: boolean;
 };

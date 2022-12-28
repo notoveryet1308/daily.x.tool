@@ -30,9 +30,9 @@ const Rule = ({ followed, info }: { followed: boolean; info: string }) => {
   );
 };
 
-const PasswordRules = ({password}:{password: string}) => {
+const PasswordRules = ({ password }: { password: string }) => {
   const { validatedCheck, isValid } = validatePassword(password);
-  
+
   return (
     <StyledPasswordRule>
       <Rule followed={validatedCheck.length} info={RULES_DATA["length"]} />

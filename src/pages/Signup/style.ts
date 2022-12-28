@@ -47,6 +47,13 @@ export const StyledSignupPageWrapper = styled.main`
       }
     }
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
+    .main-content {
+      width: 90%;
+      border-radius: 16px;
+    }
+  }
 `;
 
 export const StyledFormFieldWrapper = styled.div`
