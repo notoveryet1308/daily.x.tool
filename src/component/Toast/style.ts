@@ -2,8 +2,6 @@ import styled from "styled-components";
 
 export const StyledToastWrapper = styled.div`
   max-width: 800px;
-  width: 90%;
-  margin: 0 auto;
   padding: 6px 20px;
   border-radius: 4px;
 
@@ -30,12 +28,6 @@ export const StyledToastWrapper = styled.div`
     color: ${({ theme }) => theme.colors.black};
     margin-left: 6px;
     cursor: pointer;
-  }
-
-  &.toast-full {
-    position: absolute;
-    top: 48px;
-    z-index: 21;
   }
 
   &.toast-error {

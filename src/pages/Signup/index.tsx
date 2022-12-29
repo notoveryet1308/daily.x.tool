@@ -18,7 +18,7 @@ const Signup = () => {
   const error = useCallback(() => {
     return Object.keys(signupValues.fieldsCheck).map((key) => {
       const fieldData = signupValues.fieldsCheck[key];
-      if (fieldData.isPresent && !fieldData.isValid) {
+      if (fieldData.isPresent && fieldData.isValid !== null && !fieldData.isValid ) {
         return (
           <ErrorToast
             key={key}
@@ -36,13 +36,20 @@ const Signup = () => {
     signupValues.fieldsCheck.confirmPassword.isValid,
   ]);
 
-  if (data) {
-    localStorage.setItem("accessToken", JSON.stringify(data.token));
-    return <Redirect to="/" />
+  if (data?.createUser) {
+    localStorage.setItem(
+      "accessToken",
+      JSON.stringify(data.createUser.token)
+    );
+    return <Redirect to="/" />;
+  }
+
+  if (queryError) {
   }
 
   return (
     <StyledSignupPageWrapper>
+      {queryError?.message && <ErrorToast message={queryError.message} position='full'/>}
       <div className="main-content">
         <h2 className="signup-title">Create an account 🎉</h2>
         <div className="signup-validation-error">{error()}</div>

@@ -6,6 +6,8 @@ import {
   validateEmail,
   validatePassword,
 } from "./utils";
+import { GET_CURRENT_USER } from "../../CommonGQL";
+import { Redirect } from "react-router-dom";
 
 const initialSignupValue: SignupValueType = {
   name: "",
@@ -16,25 +18,25 @@ const initialSignupValue: SignupValueType = {
   fieldsCheck: {
     name: {
       isPresent: true,
-      isValid: true,
+      isValid: null,
       requiredErrorMessage: "Full name is a required.",
       validateErrorMessage: "Enter only alphabetical character & number",
     },
     email: {
       isPresent: true,
-      isValid: true,
+      isValid: null,
       requiredErrorMessage: "Email is a required.",
       validateErrorMessage: "Invalid email",
     },
     password: {
       isPresent: true,
-      isValid: true,
+      isValid: null,
       requiredErrorMessage: "Password is a required.",
       validateErrorMessage: "Follow password rules",
     },
     confirmPassword: {
       isPresent: true,
-      isValid: true,
+      isValid: null,
       requiredErrorMessage: "Confirm password is a required.",
       validateErrorMessage: "Password & confirm password did not match.",
     },
@@ -151,5 +153,12 @@ export const useUserSignup = () => {
     });
   };
 
-  return { signupValues, dispatchSignup, handleUserCreation, data, loading, error };
+  return {
+    signupValues,
+    dispatchSignup,
+    handleUserCreation,
+    data,
+    loading,
+    error,
+  };
 };
