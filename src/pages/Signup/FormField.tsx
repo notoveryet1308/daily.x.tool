@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { PrimaryButton } from "../../component/UI/Button";
 import { Input } from "../../component/UI/Input";
@@ -17,14 +17,23 @@ const FormField = ({
   isLoading,
 }: FormFiledType) => {
   const [focusedPassword, setPasswordFocused] = useState(false);
-  if(userData){
-console.log({userData})
+  if (userData) {
+    console.log({ userData });
   }
 
-  const passwordRules = useCallback(()=>{
-    return <PasswordRules password={formValues.password} />
-  },[formValues.password])
-   
+  const passwordRules = useCallback(() => {
+    return <PasswordRules password={formValues.password} />;
+  }, [formValues.password]);
+  
+  useEffect(()=>{
+    formValues.fieldsCheck["name"].isValid &&
+            formValues.fieldsCheck["email"].isValid &&
+            formValues.fieldsCheck["confirmPassword"].isValid &&
+            handleUserCreation();
+  }, [  formValues.fieldsCheck["name"].isValid,
+  formValues.fieldsCheck["email"].isValid ,
+  formValues.fieldsCheck["confirmPassword"].isValid])
+  
   return (
     <StyledFormFieldWrapper>
       <Input
@@ -82,8 +91,8 @@ console.log({userData})
         type="password"
         name="confirmPassword"
         label="Confirm password"
-        value="Rahul Raj"
-        placeholder={formValues.confirmPassword}
+        value={formValues.confirmPassword}
+        placeholder="confirm your password"
         onChangeHandler={({ confirmPassword }: { confirmPassword: string }) => {
           onChangeHandler({
             type: "confirmPassword",
@@ -102,10 +111,9 @@ console.log({userData})
         onClick={() => {
           onChangeHandler({ type: "check-field", payload: "" });
 
-          formValues.fieldsCheck["name"].isValid &&
-            formValues.fieldsCheck["email"].isValid &&
-            formValues.fieldsCheck["confirmPassword"].isValid &&
-            handleUserCreation();
+          console.log({ formValues });
+
+          
         }}
       />
     </StyledFormFieldWrapper>

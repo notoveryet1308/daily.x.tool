@@ -9,7 +9,7 @@ export type SignupValueType = {
   fieldsCheck: {
     [filed: string]: {
       isPresent: boolean;
-      isValid: boolean;
+      isValid: boolean | null;
       requiredErrorMessage: string;
       validateErrorMessage: string;
     };

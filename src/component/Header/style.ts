@@ -101,6 +101,10 @@ export const StyledHeaderNavLink = styled(NavLink)`
     }
   }
 
+  &.user-profile{
+    text-transform: none;
+  }
+
   @media (max-width: ${({ theme }) => theme.breakpoints.TABLET}px) {
     font-size: ${({ theme }) => theme.fontSize.small};
   }

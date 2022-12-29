@@ -23,7 +23,7 @@ export const StyledSignupPageWrapper = styled.main`
       display: flex;
       flex-direction: column;
       gap: 4px;
-      padding-top: 4px;
+      padding: 4px 32px 0 32px;
     }
 
     .signup-footer {
