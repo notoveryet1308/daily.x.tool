@@ -75,6 +75,7 @@ const FormField = ({
           value={formValues.password}
           placeholder="password"
           onFocus={() => setPasswordFocused(true)}
+          onBlur={()=>{setPasswordFocused(false)}}
           onChangeHandler={({ password }: { password: string }) => {
             onChangeHandler({ type: "password", payload: password });
           }}
