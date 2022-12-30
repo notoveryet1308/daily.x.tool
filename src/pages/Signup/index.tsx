@@ -44,8 +44,6 @@ const Signup = () => {
     return <Redirect to="/" />;
   }
 
-  if (queryError) {
-  }
 
   return (
     <StyledSignupPageWrapper>

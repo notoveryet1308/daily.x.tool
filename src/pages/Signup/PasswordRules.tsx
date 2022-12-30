@@ -1,4 +1,7 @@
 import { CheckCircle, Circle } from "phosphor-react";
+import React, { useEffect, useRef, useState } from "react";
+import { useScreenWidth } from "../../hooks";
+import { breakpoints } from "../../theme/breakpoint";
 
 import { StyledPasswordRule } from "./style";
 import { validatePassword } from "./utils";
@@ -31,10 +34,32 @@ const Rule = ({ followed, info }: { followed: boolean; info: string }) => {
 };
 
 const PasswordRules = ({ password }: { password: string }) => {
+  const [screenWidth] = useScreenWidth()
+  const [containerStyle, setContainerStyle] = useState<React.CSSProperties>({})
   const { validatedCheck, isValid } = validatePassword(password);
+  const ruleContainer = useRef();
+
+ 
+  
+
+  useEffect(()=>{
+    if(ruleContainer.current && screenWidth > breakpoints.TABLET){
+      // const rect = ruleContainer.current.getBoundingClientRect()
+      // console.log({rect});
+      
+      // setContainerStyle({
+      //   position:'absolute', 
+      //   bottom: `${rect.top - rect.height}px`, 
+      //   width: `${rect.width}px`, 
+      //   zIndex:2,
+      //   boxShadow:'10px 2px 5px -7px rgba(124,99,207,1)'
+      //   }
+      // )
+    }
+  },[ruleContainer.current])
 
   return (
-    <StyledPasswordRule>
+    <StyledPasswordRule ref={ruleContainer} style={containerStyle}>
       <Rule followed={validatedCheck.length} info={RULES_DATA["length"]} />
       <Rule
         followed={validatedCheck.uppercase}

@@ -30,7 +30,7 @@ export const validatePassword = (password: string)=>{
         validatedCheck.lowercase = false 
     }
 
-    if(password.search(/[0-9]/g) >= 1){
+    if(/[0-9]/.test(password)){
         validatedCheck.number = true
     }else{
         validatedCheck.number = false   
