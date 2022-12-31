@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 export const useScreenWidth = (): [number] => {
   const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
 
-  window.addEventListener('resize', () => {
+  window.addEventListener("resize", () => {
     setScreenWidth(window.innerWidth);
   });
 
@@ -12,15 +12,15 @@ export const useScreenWidth = (): [number] => {
 
 export const useCheckRequiredValue = ({
   values,
-  type = 'and',
+  type = "and",
 }: {
-  values: (string | number | undefined)[];
-  type: 'or' | 'and';
+  values: boolean[];
+  type: "or" | "and";
 }) => {
   const [allowAction, setAllowAction] = useState<boolean>(false);
 
   useEffect(() => {
-    if (type === 'and') {
+    if (type === "and") {
       values.forEach((val) => {
         if (!val) {
           setAllowAction(false);
@@ -30,16 +30,14 @@ export const useCheckRequiredValue = ({
       });
     }
 
-    if (type === 'or') {
+    if (type === "or") {
       values.some((val) => {
         if (val) {
-          console.log({ allowAction });
           setAllowAction(true);
         }
       });
     }
   }, [...values]);
- 
 
   return [allowAction];
 };

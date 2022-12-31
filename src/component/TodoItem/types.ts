@@ -1,12 +1,19 @@
 export type CreateTodoValueType = {
-    description: string;
-    duration?: number;
-    showCommand: boolean;
+  description: {
+    value: string;
+    isRequired: boolean;
+    isPresent: null | boolean;
+    errorMessage: string;
   };
-  
-  export type DispatchType = {
-    type: 'set-duration' | 'set-description' | 'show-command' | 'reset';
-  
-    payload: string | boolean | number;
+  duration: {
+    value: number | null;
+    isRequired: boolean;
+    isPresent: boolean;
   };
-  
+};
+
+export type DispatchType = {
+  type: "set-duration" | "set-description" | "filed-validation" | "reset";
+
+  payload: string | boolean | number;
+};

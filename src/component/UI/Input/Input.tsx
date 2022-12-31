@@ -24,20 +24,23 @@ const Input = ({
   const inputChangeHandler = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>): void => {
       e.preventDefault();
-      setUserInput(e.target.value);
+      const { value } = e.target;
+      setUserInput(value);
       // _debounce({
       //   func: () => {
       //     onChange({ [name]: e.target.value });
       //   },
       //   delay: 500,
       // });
-      onChangeHandler({ [name]: e.target.value });
+      onChangeHandler({ [name]: value, field: name });
     },
     [userInput]
   );
-  // useEffect(() => {
-  //   setUserInput(value);
-  // }, [value]);
+  useEffect(() => {
+    if (value !== userInput) {
+      setUserInput(value);
+    }
+  }, [value]);
 
   return (
     <StyledUserInputWrapper className={wrapperClassName}>
@@ -55,7 +58,7 @@ const Input = ({
         bordered={bordered}
         name={name}
         onBlur={onBlur || noop}
-        disabled={disabled}
+        isDisabled={!!disabled}
         className={className}
         onFocus={onFocus}
       />

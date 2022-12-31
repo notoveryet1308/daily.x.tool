@@ -1,23 +1,28 @@
-import { useCallback, useMemo } from 'react';
-import isHotkey from 'is-hotkey';
-import { Editable, withReact, Slate } from 'slate-react';
+import { useCallback, useMemo } from "react";
+import isHotkey from "is-hotkey";
+import { Editable, withReact, Slate } from "slate-react";
 
-import { createEditor, Descendant, Transforms, Editor, Location } from 'slate';
-import { withHistory } from 'slate-history';
+import { createEditor, Descendant, Transforms, Editor, Node } from "slate";
+import { withHistory } from "slate-history";
 
-import Elements from './Elements';
-import Leaf from './Leaf';
+import Elements from "./Elements";
+import Leaf from "./Leaf";
 
-import Toolbar from './Components/Toolbar';
-import { toggleMark } from './Components/Blocks';
-import { StyledRichTextWrapper } from './style';
-import { _debounce } from '../../../utils';
+import Toolbar from "./Components/Toolbar";
+import { toggleMark } from "./Components/Blocks";
+import { StyledRichTextWrapper } from "./style";
+import { _debounce } from "../../../utils";
 
 const HOTKEYS = {
-  'mod+b': 'bold',
-  'mod+i': 'italic',
-  'mod+u': 'underline',
-  'mod+`': 'code',
+  "mod+b": "bold",
+  "mod+i": "italic",
+  "mod+u": "underline",
+  "mod+`": "code",
+};
+
+const serialize = (nodes: Descendant[]) => {
+  const data = nodes.map((n) => Node.string(n)).join("\n");
+  return !!data;
 };
 
 const RichTextInput = ({
@@ -28,7 +33,9 @@ const RichTextInput = ({
   maxHeight = 250,
   autoFocus = true,
   clearEditor = false,
-  value = initialValue,
+  value = JSON.stringify(initialValue),
+  errorBorder,
+  errorMessage,
 }: {
   name: string;
   minHeight?: number;
@@ -36,8 +43,10 @@ const RichTextInput = ({
   autoFocus?: boolean;
   onChange?: Function;
   placeholder?: string;
-  value?: Descendant[];
+  value?: string;
   clearEditor?: boolean;
+  errorMessage?: string;
+  errorBorder?: boolean;
 }) => {
   const renderElement = useCallback((elProps) => <Elements {...elProps} />, []);
   const renderLeaf = useCallback((elProps) => <Leaf {...elProps} />, []);
@@ -55,25 +64,28 @@ const RichTextInput = ({
     <StyledRichTextWrapper title={name} minHeight={minHeight}>
       <Slate
         editor={editor}
-        value={value}
+        value={value ? JSON.parse(value): initialValue}
         onChange={(value) => {
           const isAstChange = editor.operations.some(
-            (op) => 'set_selection' !== op.type
+            (op) => "set_selection" !== op.type
           );
           if (isAstChange) {
+            const isDataPresent = serialize(value);
             const content = JSON.stringify(value);
             // _debounce({
             //   func: () => onChange({ [name]: content }),
             //   delay: 500,
             // });
 
-            !clearEditor && onChange && onChange({ [name]: content });
+            !clearEditor &&
+              onChange &&
+              onChange({ [name]: isDataPresent ? content : "", field: name });
           }
         }}
       >
         <Toolbar />
         <Editable
-          className='rich-text-editor'
+          className="rich-text-editor"
           placeholder={placeholder}
           renderElement={renderElement}
           renderLeaf={renderLeaf}
@@ -81,7 +93,7 @@ const RichTextInput = ({
           autoFocus={autoFocus}
           style={{
             maxHeight: `${maxHeight}px`,
-            overflowY: 'auto',
+            overflowY: "auto",
           }}
           onKeyDown={(event) => {
             for (const hotkey in HOTKEYS) {
@@ -94,11 +106,12 @@ const RichTextInput = ({
           }}
         />
       </Slate>
+      {errorMessage && <span className="rich-text-error">{errorMessage}</span>}
     </StyledRichTextWrapper>
   );
 };
 
-export const RichTextReadOnly = ({ value = initialValue, className = '' }) => {
+export const RichTextReadOnly = ({ value = initialValue, className = "" }) => {
   const renderElement = useCallback((elProps) => <Elements {...elProps} />, []);
   const renderLeaf = useCallback((elProps) => <Leaf {...elProps} />, []);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
@@ -110,7 +123,7 @@ export const RichTextReadOnly = ({ value = initialValue, className = '' }) => {
           renderElement={renderElement}
           renderLeaf={renderLeaf}
           readOnly
-          placeholder='Enter some plain text...'
+          placeholder="Enter some plain text..."
           onKeyDown={(event) => {
             for (const hotkey in HOTKEYS) {
               if (isHotkey(hotkey, event as any)) {
@@ -128,8 +141,8 @@ export const RichTextReadOnly = ({ value = initialValue, className = '' }) => {
 
 const initialValue: Descendant[] = [
   {
-    type: 'paragraph',
-    children: [{ text: '' }],
+    type: "paragraph",
+    children: [{ text: "" }],
   },
 ];
 

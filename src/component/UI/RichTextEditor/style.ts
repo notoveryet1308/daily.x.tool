@@ -42,6 +42,11 @@ export const StyledRichTextWrapper = styled.div<{ minHeight?: number }>`
     padding: 4px 8px;
     color: #dc9544;
   }
+
+  .rich-text-error{
+    color: ${({ theme }) => theme.colors.errorDark};
+    font-size: ${({ theme }) => theme.fontSize.small};
+  }
 `;
 
 export const StyledOlTag = styled.ol`

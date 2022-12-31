@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const { TextArea } = Input;
 
-export const StyledInput = styled.input<{ bordered: boolean | undefined }>`
+export const StyledInput = styled.input<{ bordered: boolean | undefined; isDisabled: boolean }>`
   padding: ${({ bordered }) => (bordered ? '8px 16px' : 0)};
   border-radius: 4px;
   border: 1px solid ${({ theme }) => theme.colors.secondaryColor};
@@ -13,14 +13,13 @@ export const StyledInput = styled.input<{ bordered: boolean | undefined }>`
   color: ${({ theme }) => theme.colors.secondaryTextColor};
   outline: none;
   border: ${({ bordered }) => !bordered && 'none'};
+  cursor: ${({ isDisabled }) => isDisabled ? 'no-drop':'pointer'};
 
   &&::placeholder {
     font-size: ${({ theme }) => theme.fontSize.medium};
     color: ${({ theme }) => theme.colors.tertiaryTextColor};
   }
-  &.ant-input-disabled {
-    cursor: no-drop;
-  }
+
 
   &:hover,
   &:focus {

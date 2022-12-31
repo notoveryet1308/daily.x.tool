@@ -15,7 +15,7 @@ export interface appDataContextType extends appDataType {
 
 export interface TodoCollectionType {
   id: string;
-  duration?: number;
+  duration: number | null;
   description: string;
   createdOn: number;
   isCompleted: boolean;

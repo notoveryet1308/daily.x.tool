@@ -1,4 +1,6 @@
 import { gql, useMutation } from '@apollo/client';
+import { useTodoCollectionContext } from '../../../Context/TodoCollectionContext';
+import { isLoggedIn } from '../../../utils';
 
 const DELETE_TODO = gql`
   mutation deleteOneTodo($input: DeleteTodoInput!) {
@@ -7,6 +9,8 @@ const DELETE_TODO = gql`
 `;
 
 export const useDeleteTodoMutation = (id: string) => {
+  const userLogged = isLoggedIn()
+  const {todoCollectionData, addToTodoCollection} = useTodoCollectionContext()
   const [deleteTodoMutation, { data, loading, error }] = useMutation(
     DELETE_TODO,
     {
@@ -23,13 +27,13 @@ export const useDeleteTodoMutation = (id: string) => {
   // console.log({ deleteData: data, delLoading: loading, delError: error });
 
   const handleDeleteTodo = () => {
-    deleteTodoMutation({
+    userLogged? deleteTodoMutation({
       variables: {
         input: {
           id: id,
         },
       },
-    });
+    }): addToTodoCollection(todoCollectionData.filter(d=> d.id !== id));
   };
 
   return { handleDeleteTodo };

@@ -36,7 +36,7 @@ export const useLoginUser = () => {
     initialLoginCred
   );
   const [allowAction] = useCheckRequiredValue({
-    values: [loginCred.email, loginCred.password],
+    values: [!!loginCred.email, !!loginCred.password],
     type: 'and',
   });
   const [mutate, { loading, data, error }] = useMutation(LOGIN_USER);

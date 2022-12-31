@@ -1,11 +1,19 @@
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
 
-import { CreateTodoValueType, DispatchType } from './types';
+import { CreateTodoValueType, DispatchType } from "./types";
 
 export const initialValue: CreateTodoValueType = {
-  duration: 0,
-  description: '',
-  showCommand: false,
+  duration: {
+    value: null,
+    isRequired: false,
+    isPresent: false,
+  },
+  description: {
+    value: "",
+    isRequired: true,
+    isPresent: null,
+    errorMessage: "This field is required.",
+  },
 };
 
 export const reducer = (
@@ -13,19 +21,40 @@ export const reducer = (
   action: DispatchType
 ): CreateTodoValueType => {
   const { type, payload } = action;
-  if (type === 'set-description' && typeof payload === 'string') {
-    return { ...state, description: payload };
+  const { duration, description } = state;
+  if (type === "set-description" && typeof payload === "string") {
+    return {
+      ...state,
+      description: {
+        ...description,
+        value: payload,
+        isPresent: description["isPresent"] !== null ? !!payload : null,
+      },
+    };
   }
 
-  if (type === 'set-duration' && typeof payload === 'number') {
-    return { ...state, duration: +payload };
+  if (type === "set-duration" && typeof payload === "number") {
+    return {
+      ...state,
+      duration: {
+        ...duration,
+        value: !!payload ? payload : null,
+        isPresent: !!payload,
+      },
+    };
   }
 
-  if (type === 'show-command' && typeof payload === 'boolean') {
-    return { ...state, showCommand: payload };
+  if (type === "filed-validation") {
+    return {
+      ...state,
+      description: {
+        ...state.description,
+        isPresent: !!description.value,
+      },
+    };
   }
 
-  if (type === 'reset') {
+  if (type === "reset") {
     return initialValue;
   }
 
@@ -36,12 +65,12 @@ export const getDateFormat = (timestamp: number): string => {
   const createdDate = dayjs(timestamp);
   const dateNow = dayjs(Date.now());
 
-  const diff = createdDate.diff(dateNow, 'd');
+  const diff = createdDate.diff(dateNow, "d");
 
-  let dateFormat = '';
+  let dateFormat = "";
 
   if (diff === 0) {
-    dateFormat = 'Added today';
+    dateFormat = "Added today";
   } else if (diff < 7) {
     dateFormat = `Added ${diff} day ago`;
   } else if (diff >= 7 && diff < 30) {
