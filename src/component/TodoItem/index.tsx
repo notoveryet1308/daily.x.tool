@@ -90,6 +90,7 @@ const TodoItem = ({
       >
         <EditTodo
           todoData={{ id, description, duration, isCompleted, createdOn }}
+          onCancel={toggleEditModal}
         />
       </Modal>
     </StyledTodoItem>

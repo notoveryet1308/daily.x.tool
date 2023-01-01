@@ -21,7 +21,6 @@ export const ScrollInView = (
   viewContainerID: string,
   scrollPos: "start" | "end"
 ) => {
-  console.log({ el: document.getElementById(viewContainerID) });
 
   document.getElementById(viewContainerID)?.scrollIntoView({
     behavior: "smooth",

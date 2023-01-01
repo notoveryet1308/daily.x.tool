@@ -36,11 +36,18 @@ const Input = ({
     },
     [userInput]
   );
+
   useEffect(() => {
     if (value !== userInput) {
       setUserInput(value);
     }
   }, [value]);
+
+  useEffect(() => {
+    if (userInput) {
+      onChangeHandler({ [name]: value, field: name });
+    }
+  }, []);
 
   return (
     <StyledUserInputWrapper className={wrapperClassName}>

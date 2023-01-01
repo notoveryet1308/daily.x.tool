@@ -1,9 +1,18 @@
 import { TodoCollectionType } from "../../../Context/types";
+import { PrimaryButton, SecondaryButton } from "../../UI/Button";
 import { useUpdateTodoMutation } from "../gql-query/update";
 import { useCreateTodoDataHandler } from "../hooks";
 import TodoAction from "./ActionCommon";
 
-const EditTodo = ({ todoData }: { todoData: TodoCollectionType }) => {
+import { StyledEditTodo } from "./style";
+
+const EditTodo = ({
+  todoData,
+  onCancel,
+}: {
+  todoData: TodoCollectionType;
+  onCancel: Function;
+}) => {
   const {
     allowAction,
     todoData: todoEditData,
@@ -14,37 +23,51 @@ const EditTodo = ({ todoData }: { todoData: TodoCollectionType }) => {
 
   const onSubmitHandler = () => {
     dispatch({ type: "filed-validation", payload: "" });
+
     if (allowAction) {
       handleTodoUpdate({
         id: todoData.id,
-        duration: todoData.duration,
-        description: todoData.description,
+        duration: todoEditData.duration.value,
+        description: todoEditData.description.value,
         createdOn: todoData.createdOn,
         isCompleted: todoData.isCompleted,
       });
+      onCancel()
     }
   };
 
   return (
-    <TodoAction
-      actionLabel="Update"
-      todoData={{
-        ...todoEditData,
-        description: {
-          ...todoEditData.description,
-          isPresent: !!todoData.description,
-          value: todoData.description,
-        },
-        duration: {
-          ...todoEditData.duration,
-          isPresent: !!todoData.duration,
-          value: todoData.duration,
-        },
-      }}
-      allowAction={allowAction}
-      onChangeHandler={todoDataHandler}
-      onSubmit={onSubmitHandler}
-    />
+    <StyledEditTodo>
+      <TodoAction
+        actionLabel="Update"
+        todoData={{
+          ...todoEditData,
+          description: {
+            ...todoEditData.description,
+            isPresent: !!todoData.description,
+            value: todoData.description,
+          },
+          duration: {
+            ...todoEditData.duration,
+            isPresent: !!todoData.duration,
+            value: todoData.duration,
+          },
+        }}
+        allowAction={allowAction}
+        onChangeHandler={todoDataHandler}
+        onSubmit={onSubmitHandler}
+        hideSubmitAction
+        className="edit-todo-common-field"
+      />
+      <div className="edit-todo-footer">
+        <SecondaryButton onClick={onCancel} label="Cancel" />
+        <PrimaryButton
+          onClick={onSubmitHandler}
+          disabled={!allowAction}
+          label="Update"
+        />
+      </div>
+    </StyledEditTodo>
   );
 };
 

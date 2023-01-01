@@ -11,7 +11,6 @@ export const StyledWeatherReport = styled.div<{ showWeatherDetail: boolean }>`
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 1;
     object-fit: cover;
   }
 
@@ -22,12 +21,10 @@ export const StyledWeatherReport = styled.div<{ showWeatherDetail: boolean }>`
     top: 0;
     left: 0;
     background: ${({ theme }) => theme.colors.weatherBg};
-    z-index: 2;
   }
 
   .home-date-banner {
     position: absolute;
-    z-index: 2;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
@@ -35,7 +32,6 @@ export const StyledWeatherReport = styled.div<{ showWeatherDetail: boolean }>`
 
   .show-weather-detail-btn {
     position: absolute;
-    z-index: 6;
     bottom: 12px;
     left: 50%;
     transform: translateX(-50%);
@@ -48,7 +44,6 @@ export const StyledWeatherReport = styled.div<{ showWeatherDetail: boolean }>`
   }
 
   .weather-content-wrapper {
-    z-index: 3;
     width: 100%;
     height: 100%;
     position: absolute;
@@ -79,12 +74,10 @@ export const StyledWeatherReport = styled.div<{ showWeatherDetail: boolean }>`
     .weather-sky {
       display: flex;
       flex-direction: column;
-      align-item: center;
+      align-items: center;
       position: relative;
-      /* height: 118px; */
 
       .weather-sky-img {
-        /* margin-top: -8px; */
         background-color: ${({ theme }) => theme.colors.tempBgColor};
         border-radius: 50%;
       }

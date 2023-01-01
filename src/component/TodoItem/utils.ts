@@ -34,6 +34,8 @@ export const reducer = (
   }
 
   if (type === "set-duration" && typeof payload === "number") {
+
+   
     return {
       ...state,
       duration: {
@@ -45,11 +47,12 @@ export const reducer = (
   }
 
   if (type === "filed-validation") {
+
     return {
       ...state,
       description: {
         ...state.description,
-        isPresent: !!description.value,
+        isPresent: !!state.description.value,
       },
     };
   }

@@ -41,8 +41,6 @@ export const useLoginUser = () => {
   });
   const [mutate, { loading, data, error }] = useMutation(LOGIN_USER);
 
-  console.log({ allowAction, loginCred });
-
   const loginHandler = () => {
     mutate({
       variables: {

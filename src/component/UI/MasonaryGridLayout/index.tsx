@@ -18,13 +18,6 @@ const resizeMasonryItem = (item) => {
       (rowHeight + rowGap)
   );
   item.style.gridRowEnd = 'span ' + rowSpan;
-
-  console.log({
-    rowHeight,
-    rowSpan,
-    rowGap,
-    iH: item.querySelector('.masonry-content').getBoundingClientRect().height,
-  });
 };
 
 function resizeAllMasonryItems() {

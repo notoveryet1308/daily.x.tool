@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import isHotkey from "is-hotkey";
 import { Editable, withReact, Slate } from "slate-react";
 
@@ -60,11 +60,17 @@ const RichTextInput = ({
       },
     });
   }
+
+  useEffect(() => {
+    if (value) {
+      onChange && onChange({ [name]: value, field: name });
+    }
+  }, []);
   return (
     <StyledRichTextWrapper title={name} minHeight={minHeight}>
       <Slate
         editor={editor}
-        value={value ? JSON.parse(value): initialValue}
+        value={value ? JSON.parse(value) : initialValue}
         onChange={(value) => {
           const isAstChange = editor.operations.some(
             (op) => "set_selection" !== op.type
@@ -115,6 +121,7 @@ export const RichTextReadOnly = ({ value = initialValue, className = "" }) => {
   const renderElement = useCallback((elProps) => <Elements {...elProps} />, []);
   const renderLeaf = useCallback((elProps) => <Leaf {...elProps} />, []);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
+  editor.children = value
 
   return (
     <StyledRichTextWrapper className={`rich-text-view-mode ${className}`}>
@@ -124,15 +131,6 @@ export const RichTextReadOnly = ({ value = initialValue, className = "" }) => {
           renderLeaf={renderLeaf}
           readOnly
           placeholder="Enter some plain text..."
-          onKeyDown={(event) => {
-            for (const hotkey in HOTKEYS) {
-              if (isHotkey(hotkey, event as any)) {
-                event.preventDefault();
-                const mark = HOTKEYS[hotkey];
-                toggleMark(editor, mark);
-              }
-            }
-          }}
         />
       </Slate>
     </StyledRichTextWrapper>

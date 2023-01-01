@@ -16,6 +16,7 @@ const TodoActionCommon = ({
   allowAction,
   actionLabel,
   onSubmit,
+  hideSubmitAction = false,
 }: {
   className?: string;
   todoData: CreateTodoValueType;
@@ -23,6 +24,7 @@ const TodoActionCommon = ({
   allowAction: boolean;
   actionLabel: string;
   onSubmit: Function;
+  hideSubmitAction?: boolean;
 }) => {
   const { duration, description } = todoData;
   return (
@@ -35,7 +37,7 @@ const TodoActionCommon = ({
         label="duration"
         onChangeHandler={onChangeHandler}
         className="create-todo-duration"
-        value={duration.isPresent ? duration.value?.toString():""}
+        value={duration.isPresent ? duration.value?.toString() : ""}
         placeholder="Enter task duration (number)"
       />
 
@@ -53,13 +55,15 @@ const TodoActionCommon = ({
             : ""
         }
       />
-      <PrimaryButton
-        label={actionLabel}
-        type="submit"
-        disabled={!allowAction}
-        className="create-todo-button"
-        onClick={onSubmit}
-      />
+      {!hideSubmitAction && (
+        <PrimaryButton
+          label={actionLabel}
+          type="submit"
+          disabled={!allowAction}
+          className="create-todo-button"
+          onClick={onSubmit}
+        />
+      )}
     </StyledCreateTodo>
   );
 };

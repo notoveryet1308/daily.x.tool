@@ -24,7 +24,6 @@ export const useDeleteTodoMutation = (id: string) => {
     }
   );
 
-  // console.log({ deleteData: data, delLoading: loading, delError: error });
 
   const handleDeleteTodo = () => {
     userLogged? deleteTodoMutation({

@@ -29,7 +29,6 @@ export const useCreateTodoDataHandler = ({
     }) => {
       const duration = data["duration"];
       const description = data["description"];
-    
 
       if (data["field"] === "duration") {
         dispatch({
@@ -38,7 +37,7 @@ export const useCreateTodoDataHandler = ({
         });
       }
       if (data["field"] === "description") {
-        console.log({des: data})
+       
         dispatch({
           type: "set-description",
           payload: description,
