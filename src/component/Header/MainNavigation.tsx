@@ -1,9 +1,6 @@
-import React, { useId, ReactNode } from "react";
-import { useQuery, gql } from "@apollo/client";
+import  { useId, ReactNode } from "react";
 
 import { StyledHeaderNavLink, StyledMainNavigation } from "./style";
-import { GET_CURRENT_USER } from "../../CommonGQL";
-import { Spin } from "antd";
 import { useAppDataContext } from "../../Context/AppDataContext";
 
 const MainNavigation = ({
@@ -17,17 +14,22 @@ const MainNavigation = ({
   children?: ReactNode;
   type?: "auth-data";
 }) => {
- const {isUserAuthenticated, loggedInUserDetail} = useAppDataContext()
+ const {isUserAuthenticated, loggedInUserDetail, dispatch } = useAppDataContext()
 
   return (
     <StyledMainNavigation className={className}>
       {type && type === "auth-data" && isUserAuthenticated && loggedInUserDetail? (
-          <StyledHeaderNavLink to="/profile" className="user-profile">
+          <>
+            <StyledHeaderNavLink to="/profile" className="user-profile">
             Hello, {loggedInUserDetail.name}
           </StyledHeaderNavLink>
+          <p className="user-logout" onClick={()=>{
+            dispatch({type:'reset-auth', payload:''})
+          }}>Logout</p>
+          </>
       ) : (
         data.map(({ label, to }) => (
-          <StyledHeaderNavLink activeClassName="selected" to={to} key={useId()}>
+          <StyledHeaderNavLink activeClassName="selected" to={to} key={`${to}-main-nav-key`}>
             {label}
           </StyledHeaderNavLink>
         ))

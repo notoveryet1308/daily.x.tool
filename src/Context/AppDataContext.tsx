@@ -35,6 +35,7 @@ const reducer = (state: appDataType, action: appDataAction): appDataType => {
     return { ...state, staticColors: [...state.staticColors, payload] };
   }
   if(type === 'reset-auth'){
+    localStorage.removeItem('accessToken')
     return {...state, isUserAuthenticated: false, loggedInUserDetail: null}
   }
   return state;

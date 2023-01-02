@@ -21,7 +21,7 @@ function App() {
   const { themeMode, dispatch } = useAppDataContext();
   const {data, loading, error} = useGetLoggedUserDetail();
 
-  if(!data && isUserAuthenticated() || error){
+  if(isUserAuthenticated() && !loading && !data){
     localStorage.removeItem('accessToken')
     dispatch({type: "reset-auth", payload: ""})
   }
