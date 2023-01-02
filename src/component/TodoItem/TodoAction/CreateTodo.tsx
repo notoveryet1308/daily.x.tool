@@ -1,12 +1,15 @@
 import { nanoid } from "nanoid";
 import { useTodoCollectionContext } from "../../../Context/TodoCollectionContext";
-import { isLoggedIn } from "../../../utils";
+import { useScreenWidth } from "../../../hooks";
+import { breakpoints } from "../../../theme/breakpoint";
+import { isUserAuthenticated, ScrollInView } from "../../../utils";
 import { useCreateTodoMutation } from "../gql-query/create";
 import { useCreateTodoDataHandler } from "../hooks";
 import TodoActionCommon from "./ActionCommon";
 
-const CreateTodo = () => {
-  const userLogged = isLoggedIn();
+const CreateTodo = ({className, viewContainerID}:{ className: string; viewContainerID: string}) => {
+  const [screenWidth] = useScreenWidth()
+  const userLogged = isUserAuthenticated();
   const { addToTodoCollection, todoCollectionData } =
     useTodoCollectionContext();
   const { handleNewTodoCreation } = useCreateTodoMutation();
@@ -37,6 +40,9 @@ const CreateTodo = () => {
           ]);
 
       dispatch({ type: "reset", payload: "" });
+      screenWidth > breakpoints.LARGE_MOBILE && setTimeout(()=>{
+        ScrollInView(viewContainerID, 'end')
+      },0)
     }
   };
 
@@ -47,6 +53,7 @@ const CreateTodo = () => {
       allowAction={allowAction}
       onChangeHandler={todoDataHandler}
       onSubmit={onSubmitHandler}
+      className={className}
     />
   );
 };

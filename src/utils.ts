@@ -1,3 +1,5 @@
+import jwt_decode from "jwt-decode";
+
 export const _debounce = ({
   func,
   delay,
@@ -21,7 +23,6 @@ export const ScrollInView = (
   viewContainerID: string,
   scrollPos: "start" | "end"
 ) => {
-
   document.getElementById(viewContainerID)?.scrollIntoView({
     behavior: "smooth",
     block: scrollPos,
@@ -31,8 +32,15 @@ export const ScrollInView = (
 
 export const noop = () => {};
 
-export const isLoggedIn = () => {
+export const isUserAuthenticated = () => {
   const token = localStorage.getItem("accessToken");
 
   return !!token;
 };
+
+export const getCurrentLoggedInUserDeatil = ()=>{
+  const token = localStorage.getItem("accessToken"); 
+  const decoded:{email: string; _id: string; name: string } | null = token ? jwt_decode(token): null;
+
+  return decoded;
+}

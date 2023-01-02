@@ -41,6 +41,7 @@ export const StyledWeatherReport = styled.div<{ showWeatherDetail: boolean }>`
     cursor: pointer;
     font-size: ${({ theme }) => theme.fontSize.small};
     border-radius: 2px;
+    z-index: 1;
   }
 
   .weather-content-wrapper {

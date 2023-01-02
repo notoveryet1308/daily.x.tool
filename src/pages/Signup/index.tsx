@@ -1,11 +1,13 @@
 import { useCallback } from "react";
 import { Redirect } from "react-router-dom";
 import { ErrorToast, SuccessToast } from "../../component/Toast";
+import { useAppDataContext } from "../../Context/AppDataContext";
 import FormField from "./FormField";
 import { useUserSignup } from "./hooks";
 import { StyledSignupPageWrapper } from "./style";
 
 const Signup = () => {
+  const { isUserAuthenticated, loggedInUserDetail} = useAppDataContext()
   const {
     signupValues,
     dispatchSignup,
@@ -18,7 +20,11 @@ const Signup = () => {
   const error = useCallback(() => {
     return Object.keys(signupValues.fieldsCheck).map((key) => {
       const fieldData = signupValues.fieldsCheck[key];
-      if (fieldData.isPresent && fieldData.isValid !== null && !fieldData.isValid ) {
+      if (
+        fieldData.isPresent &&
+        fieldData.isValid !== null &&
+        !fieldData.isValid
+      ) {
         return (
           <ErrorToast
             key={key}
@@ -36,18 +42,15 @@ const Signup = () => {
     signupValues.fieldsCheck.confirmPassword.isValid,
   ]);
 
-  if (data?.createUser) {
-    localStorage.setItem(
-      "accessToken",
-      JSON.stringify(data.createUser.token)
-    );
+  if (isUserAuthenticated && loggedInUserDetail) {
     return <Redirect to="/" />;
   }
 
-
   return (
     <StyledSignupPageWrapper>
-      {queryError?.message && <ErrorToast message={queryError.message} position='full'/>}
+      {queryError?.message && (
+        <ErrorToast message={queryError.message} position="full" />
+      )}
       <div className="main-content">
         <h2 className="signup-title">Create an account 🎉</h2>
         <div className="signup-validation-error">{error()}</div>

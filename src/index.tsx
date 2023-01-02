@@ -16,8 +16,8 @@ const root = createRoot(rootElement);
 
 root.render(
   <StrictMode>
-    <Router>
       <ApolloProvider client={client}>
+      <Router>
         <AppDataProvider>
           <TodoCollectionProvider>
             <NoteContextProvider>
@@ -25,7 +25,7 @@ root.render(
             </NoteContextProvider>
           </TodoCollectionProvider>
         </AppDataProvider>
-      </ApolloProvider>
-    </Router>
+        </Router>
+      </ApolloProvider> 
   </StrictMode>
 );

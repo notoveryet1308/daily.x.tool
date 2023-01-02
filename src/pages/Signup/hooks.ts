@@ -1,13 +1,15 @@
 import { useReducer } from "react";
 import { gql, useMutation } from "@apollo/client";
+import jwt_decode from "jwt-decode";
+
 import { SignupReducerActionType, SignupValueType } from "./type";
 import {
   onlyAlphaNumericCharacters,
   validateEmail,
   validatePassword,
 } from "./utils";
-import { GET_CURRENT_USER } from "../../CommonGQL";
-import { Redirect } from "react-router-dom";
+
+import { useAppDataContext } from "../../Context/AppDataContext";
 
 const initialSignupValue: SignupValueType = {
   name: "",
@@ -139,7 +141,15 @@ export const useUserSignup = () => {
     initialSignupValue
   );
 
-  const [mutate, { data, loading, error }] = useMutation(CREATE_USER);
+  const { dispatch } = useAppDataContext();
+  const [mutate, { data, loading, error }] = useMutation(CREATE_USER, {
+    onCompleted(data) {
+      localStorage.setItem("accessToken", JSON.stringify(data.createUser.token));
+      const jwtDecoded:{email: string; _id: string; name: string} = jwt_decode(data.createUser.token)
+      dispatch({ type: "user-auth", payload: jwtDecoded });
+    },
+   
+  });
 
   const handleUserCreation = () => {
     mutate({

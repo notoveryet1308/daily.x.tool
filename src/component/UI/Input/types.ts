@@ -32,4 +32,5 @@ export interface InputProps extends React.HTMLProps<HTMLInputElement> {
   wrapperClassName?: string;
   errorMessage?: string;
   onChangeHandler: Function;
+  errorBorder?: boolean;
 }

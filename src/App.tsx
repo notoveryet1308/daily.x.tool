@@ -14,6 +14,7 @@ import Signup from "./pages/Signup";
 
 import { useAppDataContext } from "./Context/AppDataContext";
 
+
 function App() {
   const { themeMode, dispatch } = useAppDataContext();
 

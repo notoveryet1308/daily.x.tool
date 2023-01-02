@@ -5,20 +5,23 @@ import { Input } from "../../component/UI/Input";
 import { StyledLoginPageWrapper } from "./style";
 import { useLoginUser } from "./hooks";
 import { noop } from "../../utils";
+import { useAppDataContext } from "../../Context/AppDataContext";
+import { ErrorToast } from "../../component/Toast";
 
 const Login = () => {
+  const {isUserAuthenticated, loggedInUserDetail} = useAppDataContext()
   const {
     loginHandler,
     dispatchLoginCred,
     allowAction,
     loginCred,
     loading,
-    data,
-    error,
+    error: queryError,
   } = useLoginUser();
 
-  if (data) {
-    localStorage.setItem("accessToken", JSON.stringify(data.login));
+
+
+  if (isUserAuthenticated && loggedInUserDetail) {
     return <Redirect to="/" />;
   }
 
@@ -27,6 +30,7 @@ const Login = () => {
       <div className="main-content">
         <h2 className="login-title">Welcome back</h2>
         <div className="login-filed">
+          {queryError && <ErrorToast message={queryError.message} position="full"/>}
           <Input
             name="email"
             type="email"
@@ -36,6 +40,7 @@ const Login = () => {
               dispatchLoginCred({ type: "login-email", payload: email });
             }}
             placeholder="Enter your email here"
+            errorBorder={!!queryError?.message}
           />
           <Input
             name="password"
@@ -46,11 +51,13 @@ const Login = () => {
               dispatchLoginCred({ type: "login-password", payload: password });
             }}
             placeholder="Enter your password here"
+            errorBorder={!!queryError?.message}
           />
 
           <PrimaryButton
             label={loading ? "Logging in.." : "Login"}
             onClick={allowAction ? loginHandler : noop}
+            disabled={loading}
           />
         </div>
         <div className="login-footer">

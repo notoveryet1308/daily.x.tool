@@ -109,6 +109,7 @@ const FormField = ({
         onClick={() => {
           onChangeHandler({ type: "check-field", payload: "" });
         }}
+        disabled={isLoading}
       />
     </StyledFormFieldWrapper>
   );

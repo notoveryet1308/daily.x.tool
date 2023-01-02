@@ -4,6 +4,7 @@ import { useQuery, gql } from "@apollo/client";
 import { StyledHeaderNavLink, StyledMainNavigation } from "./style";
 import { GET_CURRENT_USER } from "../../CommonGQL";
 import { Spin } from "antd";
+import { useAppDataContext } from "../../Context/AppDataContext";
 
 const MainNavigation = ({
   className,
@@ -16,19 +17,14 @@ const MainNavigation = ({
   children?: ReactNode;
   type?: "auth-data";
 }) => {
-  const token = localStorage.getItem("accessToken");
-  const currentUserQuery = useQuery(GET_CURRENT_USER);
+ const {isUserAuthenticated, loggedInUserDetail} = useAppDataContext()
 
   return (
     <StyledMainNavigation className={className}>
-      {type && type === "auth-data" && token ? (
-        currentUserQuery.loading ? (
-          <p className="user-name">Loading...</p>
-        ) : (
+      {type && type === "auth-data" && isUserAuthenticated && loggedInUserDetail? (
           <StyledHeaderNavLink to="/profile" className="user-profile">
-            Hello, {currentUserQuery?.data?.getCurrentLoggedInUser.name}
+            Hello, {loggedInUserDetail.name}
           </StyledHeaderNavLink>
-        )
       ) : (
         data.map(({ label, to }) => (
           <StyledHeaderNavLink activeClassName="selected" to={to} key={useId()}>

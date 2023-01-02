@@ -15,7 +15,6 @@ const { Title } = Typography;
 const Home = () => {
   const { userLogged, allTodoQuery, todoCollectionData } = useGetTodoData();
 
-
   return (
     <StyledHomePageWrapper>
       <WeatherReport />
@@ -33,13 +32,11 @@ const Home = () => {
                   }
                   isLoading={userLogged ? allTodoQuery.loading : false}
                 />
-
-                {/* <TodoDisplayList data={todoCollectionData} /> */}
               </div>
               <div className="today-todo-create">
                 <CreateTodo
-                // className='todo-create-fields'
-                // viewContainerID='todo-list-scroll'
+                 className='todo-create-fields'
+                 viewContainerID='todo-list-scroll'
                 />
               </div>
             </div>

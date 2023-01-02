@@ -9,5 +9,5 @@ export const StyledDateBanner = styled.div`
   align-items: center;
   border-radius: 0 0 2px 2px;
   font-size: ${({ theme }) => theme.fontSize.medium};
-  color: ${({ theme }) => theme.colors.primaryTextColor};
+  color: ${({ theme }) => theme.colors.white};
 `;

@@ -1,13 +1,17 @@
 import React, { createContext, useReducer, useContext } from 'react';
 import { StaticColors } from '../theme/constants';
+import { isUserAuthenticated, getCurrentLoggedInUserDeatil } from '../utils';
 import { appDataType, appDataContextType, appDataAction } from './types';
+
+
 
 const initialState: appDataType = {
   themeMode: window.matchMedia('(prefers-color-scheme: dark)').matches
     ? 'dark'
     : 'main',
-  isUserAuthenticated: false,
+  isUserAuthenticated: isUserAuthenticated(),
   staticColors: StaticColors,
+  loggedInUserDetail: getCurrentLoggedInUserDeatil(),
 };
 
 export const AppDataContext = createContext<appDataContextType>(
@@ -23,8 +27,8 @@ const reducer = (state: appDataType, action: appDataAction): appDataType => {
   ) {
     return { ...state, themeMode: payload };
   }
-  if (type === 'user-auth' && typeof payload === 'boolean') {
-    return { ...state, isUserAuthenticated: payload };
+  if (type === 'user-auth' && typeof payload === 'object') {
+    return { ...state, isUserAuthenticated: true, loggedInUserDetail: payload };
   }
 
   if (type === 'set-more-static-colors' && typeof payload === 'string') {

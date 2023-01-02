@@ -3,10 +3,10 @@ import styled from 'styled-components';
 
 const { TextArea } = Input;
 
-export const StyledInput = styled.input<{ bordered: boolean | undefined; isDisabled: boolean }>`
+export const StyledInput = styled.input<{ bordered: boolean | undefined; isDisabled: boolean; errorBorder: boolean; }>`
   padding: ${({ bordered }) => (bordered ? '8px 16px' : 0)};
   border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.colors.secondaryColor};
+  border: 1px solid ${({ theme, errorBorder }) => errorBorder? theme.colors.errorLight: theme.colors.secondaryColor};
   background-color: inherit;
   font-size: ${({ theme }) => theme.fontSize.medium};
   font-family: inherit;

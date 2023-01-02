@@ -2,7 +2,7 @@ import { gql, useMutation } from "@apollo/client";
 import { useTodoCollectionContext } from "../../../Context/TodoCollectionContext";
 import { TodoCollectionType } from "../../../Context/types";
 import { GET_ALL_TODO } from "../../../pages/Home/queryHooks";
-import { isLoggedIn } from "../../../utils";
+import { isUserAuthenticated } from "../../../utils";
 import TodoActionCommon from "../TodoAction/ActionCommon";
 
 const UPDATE_TODO_STATE = gql`
@@ -18,7 +18,7 @@ const UPDATE_TODO_STATE = gql`
 `;
 
 export const useUpdateTodoMutation = () => {
-  const userLogged = isLoggedIn();
+  const userLogged = isUserAuthenticated();
   const [mutate] = useMutation(UPDATE_TODO_STATE);
   const { todoCollectionData, addToTodoCollection } =
     useTodoCollectionContext();

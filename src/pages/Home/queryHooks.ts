@@ -1,6 +1,6 @@
 import { useQuery, gql } from "@apollo/client";
-import { isLoggedIn } from "../../utils";
-import {useTodoCollectionContext} from '../../Context/TodoCollectionContext'
+import { isUserAuthenticated } from "../../utils";
+import { useTodoCollectionContext } from "../../Context/TodoCollectionContext";
 
 export const GET_ALL_TODO = gql`
   query getAllTodo {
@@ -15,10 +15,9 @@ export const GET_ALL_TODO = gql`
 `;
 
 export const useGetTodoData = () => {
-  const isLogged = isLoggedIn();
-  const {todoCollectionData} = useTodoCollectionContext()
+  const isLogged = isUserAuthenticated();
+  const { todoCollectionData } = useTodoCollectionContext();
   const allTodoQuery = useQuery(GET_ALL_TODO);
 
-  return { userLogged:isLogged,  todoCollectionData, allTodoQuery }
-
+  return { userLogged: isLogged, todoCollectionData, allTodoQuery };
 };
