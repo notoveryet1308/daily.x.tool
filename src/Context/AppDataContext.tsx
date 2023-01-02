@@ -34,6 +34,9 @@ const reducer = (state: appDataType, action: appDataAction): appDataType => {
   if (type === 'set-more-static-colors' && typeof payload === 'string') {
     return { ...state, staticColors: [...state.staticColors, payload] };
   }
+  if(type === 'reset-auth'){
+    return {...state, isUserAuthenticated: false, loggedInUserDetail: null}
+  }
   return state;
 };
 

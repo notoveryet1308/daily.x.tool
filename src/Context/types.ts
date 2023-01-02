@@ -13,7 +13,7 @@ export type appDataType = {
 };
 
 export type appDataAction = {
-  type: "change-themeMode" | "user-auth" | "set-more-static-colors";
+  type: "change-themeMode" | "user-auth" | "set-more-static-colors" | "reset-auth";
   payload: string | boolean | userType;
 };
 

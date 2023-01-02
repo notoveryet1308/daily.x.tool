@@ -13,10 +13,18 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 
 import { useAppDataContext } from "./Context/AppDataContext";
+import { useGetLoggedUserDetail } from "./CommonGQL";
+import {  isUserAuthenticated } from "./utils";
 
 
 function App() {
   const { themeMode, dispatch } = useAppDataContext();
+  const {data, loading, error} = useGetLoggedUserDetail();
+
+  if(!data && isUserAuthenticated() || error){
+    localStorage.removeItem('accessToken')
+    dispatch({type: "reset-auth", payload: ""})
+  }
 
   const handleColorTheme = () => {
     if (themeMode === "main") {
