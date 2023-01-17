@@ -9,6 +9,7 @@ import NoDataState from "../../component/UI/NoDataState";
 import no_activity_img from "../../assets/no_activity.svg";
 import TodoDisplayList from "./TodoDisplayList";
 import { useGetTodoData } from "./queryHooks";
+import { shouldShowInToday } from "../../component/TodoItem/utils";
 
 const { Title } = Typography;
 
@@ -27,8 +28,8 @@ const Home = () => {
                 <TodoDisplayList
                   data={
                     userLogged
-                      ? allTodoQuery.data?.getTodo || []
-                      : todoCollectionData
+                      ? allTodoQuery.data?.getTodo.filter((data)=> shouldShowInToday({...data})) || []
+                      : todoCollectionData.filter((data)=> shouldShowInToday({...data}))
                   }
                   isLoading={userLogged ? allTodoQuery.loading : false}
                 />

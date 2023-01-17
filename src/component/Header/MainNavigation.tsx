@@ -17,7 +17,7 @@ const MainNavigation = ({
  const {isUserAuthenticated, loggedInUserDetail, dispatch } = useAppDataContext()
 
   return (
-    <StyledMainNavigation className={className}>
+    <StyledMainNavigation className={`${className} ${type === 'auth-data'? 'end':'center'}`}>
       {type && type === "auth-data" && isUserAuthenticated && loggedInUserDetail? (
           <>
             <StyledHeaderNavLink to="/profile" className="user-profile">

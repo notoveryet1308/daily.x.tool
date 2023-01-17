@@ -1,8 +1,8 @@
 export const navData = [
-  {
-    label: 'All Today',
-    to: '/all-today',
-  },
+  // {
+  //   label: 'All Today',
+  //   to: '/all-today',
+  // },
   {
     label: 'Sprint',
     to: '/sprint',
