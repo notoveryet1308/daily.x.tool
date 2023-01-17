@@ -20,7 +20,7 @@ const EditTodo = ({
     todoDataHandler,
     dispatch,
   } = useCreateTodoDataHandler({ isEditMode: true });
-  const { handleTodoUpdate, mutationState } = useUpdateTodoMutation();
+  const { handleTodoUpdate } = useUpdateTodoMutation();
 
 
 
@@ -35,14 +35,9 @@ const EditTodo = ({
         createdOn: todoData.createdOn,
         isCompleted: todoData.isCompleted,
       });
+      onCancel();
     } 
   };
-
-  useEffect(()=>{
-    if(mutationState.called && !mutationState.loading && mutationState?.data){
-      onCancel()
-    }
-  },[mutationState.called , mutationState.loading])
 
   return (
     <StyledEditTodo>
@@ -71,8 +66,8 @@ const EditTodo = ({
         <SecondaryButton onClick={onCancel} label="Cancel" />
         <PrimaryButton
           onClick={onSubmitHandler}
-          disabled={!allowAction || (mutationState.called && mutationState.loading)}
-          label={mutationState.called && mutationState.loading ?  "Updating":"Update"}
+          disabled={!allowAction}
+          label={"Update"}
         />
       </div>
     </StyledEditTodo>
