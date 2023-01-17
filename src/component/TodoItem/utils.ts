@@ -68,7 +68,9 @@ export const getDateFormat = (timestamp: number): string => {
   const createdDate = dayjs(timestamp);
   const dateNow = dayjs(Date.now());
 
-  const diff = createdDate.diff(dateNow, "d");
+  const diff = dateNow.diff(createdDate, "d");
+
+  console.log(diff)
 
   let dateFormat = "";
 
@@ -78,8 +80,27 @@ export const getDateFormat = (timestamp: number): string => {
     dateFormat = `Added ${diff} day ago`;
   } else if (diff >= 7 && diff < 30) {
     const wk = Math.floor(diff / 7);
-    dateFormat = `Added ${wk}wk ago`;
+    dateFormat = `Added ${wk} wk ago`;
   }
 
   return dateFormat;
 };
+
+export const isAddedToday = (timestamp: number): boolean=>{
+  const createdDate = dayjs(timestamp);
+  const dateNow = dayjs(Date.now());
+
+  const diff = dateNow.diff(createdDate, "d");
+  return diff === 0 ? true : false;
+}
+
+export const shouldShowInToday= ({createdOn, duration = 0, isCompleted}:{createdOn: number; duration: number | null; isCompleted: boolean}): boolean=>{
+    const addedToday = isAddedToday(createdOn);
+
+    if(duration){
+      return true
+    }
+
+    return addedToday;
+
+}

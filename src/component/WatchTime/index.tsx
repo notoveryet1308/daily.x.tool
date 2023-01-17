@@ -35,15 +35,15 @@ const WatchTime = () => {
     <StyledWatchTime>
       <div className="hours time-data" title="hours">
         <Title className="time-value">{timeData.hours}</Title>
-        <span className="time-info">Hours</span>
+        <span className="time-info">hours</span>
       </div>
       <div className="hours time-data" title="Minutes">
         <Title className="time-value">{timeData.mins}</Title>
-        <span className="time-info">Mins</span>
+        <span className="time-info">mins</span>
       </div>
       <div className="hours time-data" title="seconds">
         <Title className="time-value">{timeData.secs}</Title>
-        <span className="time-info">Secs</span>
+        <span className="time-info">secs</span>
       </div>
     </StyledWatchTime>
   );

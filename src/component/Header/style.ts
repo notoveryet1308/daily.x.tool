@@ -10,9 +10,9 @@ export const StyledHeaderWrapper = styled.header`
   justify-content: center;
 
   .header-content {
-    display: flex;
+    display: grid;
     align-items: center;
-    justify-content: space-between;
+    grid-template-columns: repeat(3, 1fr);
     max-width: 1280px;
     width: 100%;
   }
@@ -20,6 +20,14 @@ export const StyledHeaderWrapper = styled.header`
   @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_TABLET}px) {
     padding: 16px 32px;
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.TABLET}px) {
+    .header-content{
+      grid-template-columns: 1fr;
+    }
+    
+  }
+
 
   @media (max-width: ${({ theme }) => theme.breakpoints.MOBILE}px) {
     padding: 16px 16px;
@@ -30,7 +38,13 @@ export const StyledMainNavigation = styled.nav`
   display: flex;
   column-gap: 16px;
   align-items: center;
-  
+
+  &.center{
+    justify-content: center;
+  }
+  &.end{
+    justify-content: flex-end;
+  }
   .user-logout{
     color: ${({ theme }) => theme.colors.primaryTextColor};
     font-size: color: ${({ theme }) => theme.fontSize.medium};
@@ -107,7 +121,5 @@ export const StyledHeaderNavLink = styled(NavLink)`
     text-transform: none;
   }
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.TABLET}px) {
-    font-size: ${({ theme }) => theme.fontSize.small};
-  }
+  
 `;

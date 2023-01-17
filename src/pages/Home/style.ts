@@ -49,7 +49,6 @@ export const StyledHomePageWrapper = styled.main`
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
-      margin-right: 10px;
       position: relative;
       max-height: calc(100vh - 274px);
       overflow-y: auto;

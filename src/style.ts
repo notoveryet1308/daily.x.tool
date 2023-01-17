@@ -12,7 +12,7 @@ export const StyledMainWrapper = styled.div`
   overflow-y: auto;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.TABLET}px) {
-    max-height: calc(100vh - 87px);
+    max-height: calc(100vh - 90px);
   }
 
   &::selection {

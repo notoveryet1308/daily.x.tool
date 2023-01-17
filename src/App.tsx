@@ -4,7 +4,7 @@ import { ThemeProvider } from "styled-components";
 import theme from "./theme";
 
 import Header from "./component/Header";
-import Today from "./pages/AllTodays";
+// import Today from "./pages/AllTodays";
 import { GlobalStyle, StyledMainWrapper } from "./style";
 import Sprint from "./pages/Sprint";
 import Home from "./pages/Home";
@@ -41,7 +41,7 @@ function App() {
       <StyledMainWrapper>
         <Switch>
           <Route path="/" component={Home} exact />
-          <Route path="/all-today" component={Today} exact />
+          {/* <Route path="/all-today" component={Today} exact /> */}
           <Route path="/sprint" component={Sprint} exact />
           <Route path="/notes" component={Notes} exact />
           <Route path="/login" component={Login} exact />
