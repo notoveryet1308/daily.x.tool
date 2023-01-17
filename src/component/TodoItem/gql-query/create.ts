@@ -1,6 +1,6 @@
-import { gql, useMutation } from '@apollo/client';
-import { nanoid } from 'nanoid';
-import { GET_ALL_TODO } from '../../../pages/Home';
+import { gql, useMutation } from "@apollo/client";
+import { nanoid } from "nanoid";
+import { GET_ALL_TODO } from "../../../pages/Home/queryHooks";
 
 const CREATE_TODO_GQL = gql`
   mutation CreateNewTodo($newTodo: CreateTodoInput!) {
@@ -30,7 +30,7 @@ export const useCreateTodoMutation = () => {
   });
 
   const handleNewTodoCreation = (todoData: {
-    duration?: number;
+    duration: number | null;
     description: string;
   }) => {
     const todoID = nanoid();
@@ -46,14 +46,14 @@ export const useCreateTodoMutation = () => {
         },
       },
       optimisticResponse: {
-        __typename: 'Mutation',
+        __typename: "Mutation",
         createTodo: {
           id: todoID,
           description: todoData.description,
           duration: todoData.duration,
           isCompleted: false,
           createdOn,
-          __typename: 'Todo',
+          __typename: "Todo",
         },
       },
     });

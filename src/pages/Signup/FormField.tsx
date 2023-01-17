@@ -17,9 +17,6 @@ const FormField = ({
   isLoading,
 }: FormFiledType) => {
   const [focusedPassword, setPasswordFocused] = useState(false);
-  if (userData) {
-    console.log({ userData });
-  }
 
   const passwordRules = useCallback(() => {
     return <PasswordRules password={formValues.password} />;
@@ -111,11 +108,8 @@ const FormField = ({
         type="submit"
         onClick={() => {
           onChangeHandler({ type: "check-field", payload: "" });
-
-          console.log({ formValues });
-
-          
         }}
+        disabled={isLoading}
       />
     </StyledFormFieldWrapper>
   );

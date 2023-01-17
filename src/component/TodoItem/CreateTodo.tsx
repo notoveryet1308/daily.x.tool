@@ -35,7 +35,6 @@ const CreateTodo = ({
     todoData,
     dispatch,
     todoDataHandler,
-    showCommandHandler,
     allowAction,
   } = useCreateTodoDataHandler({ isEditMode: !!isEditMode });
 

@@ -31,10 +31,12 @@ export const StyledMainNavigation = styled.nav`
   column-gap: 16px;
   align-items: center;
   
-  .user-name{
+  .user-logout{
     color: ${({ theme }) => theme.colors.primaryTextColor};
     font-size: color: ${({ theme }) => theme.fontSize.medium};
+    cursor: pointer;
   }
+
 `;
 
 export const StyledChangeTheme = styled.span`

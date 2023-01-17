@@ -12,6 +12,7 @@ const TodoDisplayList = ({
   isLoading: boolean;
 }) => {
 
+
   if (isLoading) {
     return <Loader />;
   }

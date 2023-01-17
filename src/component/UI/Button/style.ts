@@ -7,7 +7,7 @@ export const StyledBaseButton = styled.button<{ variation?: string }>`
   border-radius: 4px;
   line-height: 22px;
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.primaryTextColor};
+  color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSize.medium};
 
   &.primary-btn {

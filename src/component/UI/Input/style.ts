@@ -3,24 +3,23 @@ import styled from 'styled-components';
 
 const { TextArea } = Input;
 
-export const StyledInput = styled.input<{ bordered: boolean | undefined }>`
+export const StyledInput = styled.input<{ bordered: boolean | undefined; isDisabled: boolean; errorBorder: boolean; }>`
   padding: ${({ bordered }) => (bordered ? '8px 16px' : 0)};
   border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.colors.secondaryColor};
+  border: 1px solid ${({ theme, errorBorder }) => errorBorder? theme.colors.errorLight: theme.colors.secondaryColor};
   background-color: inherit;
   font-size: ${({ theme }) => theme.fontSize.medium};
   font-family: inherit;
   color: ${({ theme }) => theme.colors.secondaryTextColor};
   outline: none;
   border: ${({ bordered }) => !bordered && 'none'};
+  cursor: ${({ isDisabled }) => isDisabled ? 'no-drop':'pointer'};
 
   &&::placeholder {
     font-size: ${({ theme }) => theme.fontSize.medium};
     color: ${({ theme }) => theme.colors.tertiaryTextColor};
   }
-  &.ant-input-disabled {
-    cursor: no-drop;
-  }
+
 
   &:hover,
   &:focus {

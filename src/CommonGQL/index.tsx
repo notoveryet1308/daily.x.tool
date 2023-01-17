@@ -1,4 +1,4 @@
-import {gql} from '@apollo/client'
+import { gql, useQuery } from "@apollo/client";
 
 export const GET_CURRENT_USER = gql`
   query CurrentUser {
@@ -9,3 +9,8 @@ export const GET_CURRENT_USER = gql`
     }
   }
 `;
+
+export const useGetLoggedUserDetail = () => {
+  const loggedUserQuer = useQuery(GET_CURRENT_USER);
+  return loggedUserQuer;
+};

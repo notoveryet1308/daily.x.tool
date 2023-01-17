@@ -20,7 +20,7 @@ export type TextareaProps = {
 };
 
 export interface InputProps extends React.HTMLProps<HTMLInputElement> {
-  value: string;
+  value?: string;
   type: string;
   placeholder?: string;
   label?: string;
@@ -32,4 +32,5 @@ export interface InputProps extends React.HTMLProps<HTMLInputElement> {
   wrapperClassName?: string;
   errorMessage?: string;
   onChangeHandler: Function;
+  errorBorder?: boolean;
 }

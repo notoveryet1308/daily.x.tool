@@ -1,6 +1,9 @@
-import { useMutation, gql } from '@apollo/client';
 import { useReducer } from 'react';
+import { useMutation, gql } from '@apollo/client';
+import jwt_decode from "jwt-decode";
+
 import { useCheckRequiredValue } from '../../hooks';
+import { useAppDataContext } from '../../Context/AppDataContext';
 
 const LOGIN_USER = gql`
   mutation LoginUser($input: LoginInput!) {
@@ -31,17 +34,24 @@ const loginReducer = (
 };
 
 export const useLoginUser = () => {
+ const {dispatch} = useAppDataContext()
   const [loginCred, dispatchLoginCred] = useReducer(
     loginReducer,
     initialLoginCred
   );
   const [allowAction] = useCheckRequiredValue({
-    values: [loginCred.email, loginCred.password],
+    values: [!!loginCred.email, !!loginCred.password],
     type: 'and',
   });
-  const [mutate, { loading, data, error }] = useMutation(LOGIN_USER);
-
-  console.log({ allowAction, loginCred });
+  const [mutate, { loading, data, error }] = useMutation(LOGIN_USER, {
+    onCompleted(data){
+      if(data.login){
+        localStorage.setItem("accessToken", JSON.stringify(data.login));
+       const jwtDecoded:{email: string; _id: string; name: string} = jwt_decode(data.login)
+       dispatch({ type: "user-auth", payload: jwtDecoded });
+      }
+    }
+  });
 
   const loginHandler = () => {
     mutate({
