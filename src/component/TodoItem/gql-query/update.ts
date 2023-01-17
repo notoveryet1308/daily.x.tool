@@ -19,9 +19,10 @@ const UPDATE_TODO_STATE = gql`
 
 export const useUpdateTodoMutation = () => {
   const userLogged = isUserAuthenticated();
-  const [mutate] = useMutation(UPDATE_TODO_STATE);
+  const [mutate, mutationState] = useMutation(UPDATE_TODO_STATE);
   const { todoCollectionData, addToTodoCollection } =
     useTodoCollectionContext();
+
 
   const handleCompleteAction = (todoData: TodoCollectionType) => {
     userLogged
@@ -91,5 +92,5 @@ export const useUpdateTodoMutation = () => {
         );
   };
 
-  return { handleCompleteAction, handleTodoUpdate };
+  return { handleCompleteAction, handleTodoUpdate, mutationState };
 };

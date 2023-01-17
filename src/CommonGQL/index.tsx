@@ -12,5 +12,5 @@ export const GET_CURRENT_USER = gql`
 
 export const useGetLoggedUserDetail = () => {
   const loggedUserQuer = useQuery(GET_CURRENT_USER);
-  return loggedUserQuer
+  return loggedUserQuer;
 };

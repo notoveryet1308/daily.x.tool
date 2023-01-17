@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { TodoCollectionType } from "../../../Context/types";
 import { PrimaryButton, SecondaryButton } from "../../UI/Button";
 import { useUpdateTodoMutation } from "../gql-query/update";
@@ -19,7 +20,9 @@ const EditTodo = ({
     todoDataHandler,
     dispatch,
   } = useCreateTodoDataHandler({ isEditMode: true });
-  const { handleTodoUpdate } = useUpdateTodoMutation();
+  const { handleTodoUpdate, mutationState } = useUpdateTodoMutation();
+
+
 
   const onSubmitHandler = () => {
     dispatch({ type: "filed-validation", payload: "" });
@@ -32,9 +35,14 @@ const EditTodo = ({
         createdOn: todoData.createdOn,
         isCompleted: todoData.isCompleted,
       });
+    } 
+  };
+
+  useEffect(()=>{
+    if(mutationState.called && !mutationState.loading && mutationState?.data){
       onCancel()
     }
-  };
+  },[mutationState.called , mutationState.loading])
 
   return (
     <StyledEditTodo>
@@ -63,8 +71,8 @@ const EditTodo = ({
         <SecondaryButton onClick={onCancel} label="Cancel" />
         <PrimaryButton
           onClick={onSubmitHandler}
-          disabled={!allowAction}
-          label="Update"
+          disabled={!allowAction || (mutationState.called && mutationState.loading)}
+          label={mutationState.called && mutationState.loading ?  "Updating":"Update"}
         />
       </div>
     </StyledEditTodo>
