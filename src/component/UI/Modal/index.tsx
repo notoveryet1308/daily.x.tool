@@ -91,6 +91,7 @@ const Modal = (props: ModalPropsCustom) => {
       elementOnMount.style.width = '100%';
       elementOnMount.style.height = '100%';
       elementOnMount.style.position = 'fixed';
+      elementOnMount.style.zIndex = '999';
     } else {
       elementOnMount.style.display = 'none';
     }

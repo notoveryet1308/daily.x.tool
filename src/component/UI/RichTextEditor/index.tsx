@@ -36,6 +36,7 @@ const RichTextInput = ({
   value = JSON.stringify(initialValue),
   errorBorder,
   errorMessage,
+  className,
 }: {
   name: string;
   minHeight?: number;
@@ -47,6 +48,7 @@ const RichTextInput = ({
   clearEditor?: boolean;
   errorMessage?: string;
   errorBorder?: boolean;
+  className?: string;
 }) => {
   const renderElement = useCallback((elProps) => <Elements {...elProps} />, []);
   const renderLeaf = useCallback((elProps) => <Leaf {...elProps} />, []);
@@ -67,7 +69,7 @@ const RichTextInput = ({
     }
   }, []);
   return (
-    <StyledRichTextWrapper title={name} minHeight={minHeight}>
+    <StyledRichTextWrapper title={name} minHeight={minHeight} className={className}>
       <Slate
         editor={editor}
         value={value ? JSON.parse(value) : initialValue}

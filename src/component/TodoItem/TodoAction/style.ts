@@ -17,5 +17,9 @@ export const StyledEditTodo = styled.div`
     align-items: center;
   }
 
+  .todo-description{
+    height: 100%;
+  }
+
 `
 

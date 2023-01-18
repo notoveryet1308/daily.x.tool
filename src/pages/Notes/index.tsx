@@ -37,7 +37,6 @@ export const Notes = () => {
           <div className='note-list-wrapper'>
             <NoteListDisplay data={noteCollection} />
           </div>
-          {/* <MovableWrapper> */}
           <div className='create-note-btn-wrapper'>
             <CreateButton
               label='Create'
@@ -46,7 +45,6 @@ export const Notes = () => {
               icon={<Plus className='plus-icon' weight='fill' />}
             />
           </div>
-          {/* </MovableWrapper> */}
           <Modal
             open={isOpen}
             onClose={toggleModal}
@@ -54,6 +52,7 @@ export const Notes = () => {
             title='Create note'
             width={600}
             align='top'
+            okBtnLabel='Add'
           >
             <CreateNoteDetails />
           </Modal>
