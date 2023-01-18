@@ -100,7 +100,7 @@ export const CreateButton = ({
 }) => {
   return (
     <StyledCreateBtn className={className} onClick={onClick}>
-      <span>{label}</span>
+      <span className='btn-label'>{label}</span>
       {icon && icon}
     </StyledCreateBtn>
   );

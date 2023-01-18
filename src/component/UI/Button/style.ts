@@ -44,6 +44,12 @@ export const StyledCreateBtn = styled.button`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
-    padding: 8px 30px;
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 16px;
+
+    .btn-label{
+      display: none;
+    }
   }
 `;
