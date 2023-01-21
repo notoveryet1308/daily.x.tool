@@ -11,7 +11,7 @@ const borderAnimation = () => keyframes`
 `;
 
 export const StyledNoteView = styled.div<{
-  colorHex: string;
+  hexCode: string;
   showAnimation: boolean;
 }>`
   position: relative;
@@ -29,9 +29,9 @@ export const StyledNoteView = styled.div<{
     gap: 8px;
   }
 
-  background-color: ${({ theme, colorHex }) =>
+  background-color: ${({ theme, hexCode }) =>
     theme.mixins.convertHexToHsl({
-      colorHex,
+      hexCode,
       saturation: theme.colors.saturation,
       lightness: theme.colors.lightnessL1,
     })};
@@ -40,6 +40,7 @@ export const StyledNoteView = styled.div<{
     line-height: 18px;
     font-size: ${({ theme }) => theme.fontSize.large};
     color: ${({ theme }) => theme.colors.primaryTextColor};
+    margin-bottom: 8px;
   }
 
   .note-view-description {
@@ -74,9 +75,9 @@ export const StyledNoteView = styled.div<{
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background-color: ${({ theme, colorHex }) =>
+    background-color: ${({ theme, hexCode }) =>
       theme.mixins.convertHexToHsl({
-        colorHex,
+        hexCode,
         saturation: theme.colors.saturation,
         lightness: theme.colors.lightnessL3,
       })};

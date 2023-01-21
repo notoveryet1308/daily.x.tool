@@ -6,10 +6,11 @@ export const currentNoteInitialValue: currentNoteDataType = {
     id: '', //not-user dependent
     tags: [],
     title: '',
-    colorHex: StaticColors[0],
+    hexCode: StaticColors[0],
     description: '',
     isPinned: false, //not-user dependent
     createdOn: 0, //not-user dependent
+    updatedOn: 0,
   },
   isAllRequiredDataAvailable: false,
 };

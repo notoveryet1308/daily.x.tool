@@ -46,10 +46,11 @@ export interface NoteDataType {
   id: string;
   title: string;
   tags: tagType[];
-  colorHex: string;
+  hexCode: string;
   createdOn: number;
   isPinned: boolean;
   description: string;
+  updatedOn: number;
 }
 
 export interface currentNoteDataType {
@@ -57,7 +58,7 @@ export interface currentNoteDataType {
   isAllRequiredDataAvailable: boolean;
 }
 
-export interface InitialValueType {
+export interface InitialNoteValueType {
   currentNote: currentNoteDataType;
   noteCollection: NoteDataType[] | [];
 }
@@ -81,6 +82,6 @@ export type DispatchActionType = {
     | { id: string; isPinned: boolean };
 };
 
-export interface NoteContextDataType extends InitialValueType {
+export interface NoteContextDataType extends InitialNoteValueType {
   noteDispatch: React.Dispatch<DispatchActionType>;
 }

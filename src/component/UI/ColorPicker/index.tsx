@@ -38,7 +38,7 @@ const ColorPicker = ({
       <div className='color-picker-content'>
         {staticColors.map((d) => (
           <ColorBox
-            colorHex={d}
+            hexCode={d}
             onClick={onChangeHandler}
             selectedColor={selectedColor}
           />

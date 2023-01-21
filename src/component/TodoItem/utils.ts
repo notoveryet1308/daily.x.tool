@@ -70,8 +70,6 @@ export const getDateFormat = (timestamp: number): string => {
 
   const diff = dateNow.diff(createdDate, "d");
 
-  console.log(diff)
-
   let dateFormat = "";
 
   if (diff === 0) {

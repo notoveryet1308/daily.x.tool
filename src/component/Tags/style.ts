@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledTag = styled.span<{
-  colorHex: string;
+  hexCode: string;
   isClearable: boolean;
 }>`
   padding: 4px 8px;
@@ -18,9 +18,9 @@ export const StyledTag = styled.span<{
   cursor: ${({ isClearable }) => (isClearable ? 'pointer' : 'auto')};
   line-height: 14px;
 
-  background-color: ${({ theme, colorHex }) =>
+  background-color: ${({ theme, hexCode }) =>
     theme.mixins.convertHexToHsl({
-      colorHex,
+      hexCode,
       saturation: theme.colors.saturation,
       lightness: theme.colors.lightnessL2,
     })};

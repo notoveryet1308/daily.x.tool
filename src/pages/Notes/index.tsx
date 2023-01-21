@@ -7,24 +7,37 @@ import Modal from '../../component/UI/Modal';
 import CreateNoteDetails from '../../component/CreateNoteDetail';
 import { useNoteContext } from '../../Context/NoteDataProvider';
 import NoteListDisplay from './NoteListDisplay';
-
-
+import { isUserAuthenticated } from '../../utils';
+import { useCreateNote } from '../../component/CreateNoteDetail/gql-query';
+import { useNoteData } from './hook';
 
 export const Notes = () => {
-  const { noteCollection, noteDispatch, currentNote } = useNoteContext();
+  const {
+    currentNote,
+    noteCollection,
+    getNoteQuery,
+    noteDispatch,
+    handleCreateNote,
+    userLogged,
+  } = useNoteData();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
     noteDispatch({ type: 'reset-current-note', payload: '' });
   };
-
+  
   const onOkHandler = () => {
     if (currentNote.isAllRequiredDataAvailable) {
-      noteDispatch({
-        type: 'add-to-note-collection',
-        payload: [currentNote.data, ...noteCollection],
-      });
+     
+
+      const userLogged = isUserAuthenticated();
+      userLogged
+        ? handleCreateNote(currentNote.data)
+        : noteDispatch({
+            type: 'add-to-note-collection',
+            payload: [currentNote.data, ...noteCollection],
+          });
       toggleModal();
     }
   };
@@ -35,7 +48,15 @@ export const Notes = () => {
         <div className='main-content'>
           <div className='note-filter'></div>
           <div className='note-list-wrapper'>
-            <NoteListDisplay data={noteCollection} />
+            <NoteListDisplay
+              data={
+                userLogged ? getNoteQuery.data?.getNote || [] : noteCollection
+              }
+              queryState={{
+                isLoading: getNoteQuery.loading,
+                error: getNoteQuery.error?.message || '',
+              }}
+            />
           </div>
           <div className='create-note-btn-wrapper'>
             <CreateButton

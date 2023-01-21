@@ -1,6 +1,10 @@
 import { nanoid } from 'nanoid';
 import { currentNoteInitialValue } from './initialValues';
-import { InitialValueType, DispatchActionType, NoteDataType } from './types';
+import {
+  InitialNoteValueType,
+  DispatchActionType,
+  NoteDataType,
+} from './types';
 
 const isAllRequiredFieldsAvailable = ({
   type,
@@ -37,9 +41,9 @@ const sortNotesByPinnedStatus = (data: NoteDataType[]) => {
 };
 
 export const noteReducer = (
-  state: InitialValueType,
+  state: InitialNoteValueType,
   action: DispatchActionType
-): InitialValueType => {
+): InitialNoteValueType => {
   const { type, payload } = action;
   const { currentNote } = state;
   const { data } = currentNote;
@@ -56,6 +60,7 @@ export const noteReducer = (
           ...data,
           id: nanoid(),
           createdOn: Date.now(),
+          updatedOn: Date.now(),
           title: payload,
         },
         isAllRequiredDataAvailable: isAvailable,
@@ -95,7 +100,7 @@ export const noteReducer = (
       ...state,
       currentNote: {
         ...currentNote,
-        data: { ...data, colorHex: payload },
+        data: { ...data, hexCode: payload },
         isAllRequiredDataAvailable: isAvailable,
       },
     };
@@ -125,6 +130,7 @@ export const noteReducer = (
     return state;
   }
   if (type === 'add-to-note-collection' && Array.isArray(payload)) {
+    localStorage.setItem('local-notes', JSON.stringify(payload));
     return {
       ...state,
       noteCollection: sortNotesByPinnedStatus([...payload]),
