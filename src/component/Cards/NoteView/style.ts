@@ -42,6 +42,12 @@ export const StyledNoteView = styled.div<{
     color: ${({ theme }) => theme.colors.primaryTextColor};
     margin-bottom: 8px;
   }
+  .note-preview-title{
+    line-height: 18px;
+    font-size: ${({ theme }) => theme.fontSize.large};
+    color: ${({ theme }) => theme.colors.tertiaryTextColor};
+    margin-bottom: 8px;
+  }
 
   .note-view-description {
     font-size: ${({ theme }) => theme.fontSize.medium};

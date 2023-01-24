@@ -1,4 +1,7 @@
+import { useHistory } from 'react-router-dom';
+
 import { useNoteContext } from '../../Context/NoteDataProvider';
+import { PrimaryButton } from '../UI/Button';
 import ColorPicker from '../UI/ColorPicker';
 import { Input } from '../UI/Input';
 import RichTextInput from '../UI/RichTextEditor';
@@ -15,13 +18,20 @@ const dummyOptions = [
   { label: 'React', value: 'react', id: 'react-vco0p' },
 ];
 
-const CreateNoteDetails = () => {
+const CreateNoteDetails = ({
+  className,
+  onAddHandler,
+}: {
+  className?: string;
+  onAddHandler: Function;
+}) => {
+  const navigate = useHistory();
   const { currentNote } = useNoteContext();
 
   const { noteDataHandler } = useNoteDataHandler();
 
   return (
-    <StyledCreateNoteDetail>
+    <StyledCreateNoteDetail className={className}>
       <Input
         type='text'
         name='noteTitle'
@@ -37,6 +47,7 @@ const CreateNoteDetails = () => {
         name='noteDescription'
         onChange={noteDataHandler}
         placeholder='Note description'
+        className='create-note-description'
       />
       <Select
         isCreatable
@@ -47,6 +58,13 @@ const CreateNoteDetails = () => {
         searchPlaceholder='Search tags'
       />
       <ColorPicker name='noteColor' onChange={noteDataHandler} />
+      <PrimaryButton
+        onClick={() => {
+          onAddHandler();
+          navigate.goBack();
+        }}
+        label='Add'
+      />
     </StyledCreateNoteDetail>
   );
 };

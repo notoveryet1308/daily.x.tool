@@ -18,6 +18,7 @@ const NoteView = ({
   isPinned,
   createdOn,
   className,
+  isPreview = false,
 }: {
   id: string;
   hexCode: string;
@@ -27,6 +28,7 @@ const NoteView = ({
   isPinned?: boolean;
   createdOn: number;
   className?: string;
+  isPreview?: boolean;
 }) => {
   const isAddedJustNow = Date.now() - createdOn < milliseconds;
 
@@ -46,6 +48,7 @@ const NoteView = ({
     >
       <div className='top-wrapper'>
         {title && <h2 className='note-view-title'>{title}</h2>}
+        {!title && isPreview && <h2 className='note-preview-title'>title here...</h2>}
         {description && (
           <RichTextReadOnly
             value={JSON.parse(description)}

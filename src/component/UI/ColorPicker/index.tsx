@@ -36,11 +36,12 @@ const ColorPicker = ({
     <StyledColorPicker>
       <label className='color-picker-label'>{label}</label>
       <div className='color-picker-content'>
-        {staticColors.map((d) => (
+        {staticColors.map((d, index) => (
           <ColorBox
             hexCode={d}
             onClick={onChangeHandler}
             selectedColor={selectedColor}
+            key={d+index}
           />
         ))}
         <PlusCircle className='plus-circle-icon' onClick={openColorPicker} />

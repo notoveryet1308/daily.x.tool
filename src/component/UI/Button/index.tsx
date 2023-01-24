@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyledBaseButton, StyledCreateBtn } from './style';
+import { NavLink } from 'react-router-dom';
 
 enum buttonVariant {
   'default',
@@ -17,7 +18,7 @@ enum buttonType {
   undefined,
 }
 type ButtonProps = {
-  label: string  | React.ReactNode;
+  label: string | React.ReactNode;
   type?: 'submit' | 'reset' | 'button' | undefined;
   onClick: Function;
   variant?: 'primary' | 'secondary' | 'tertiary' | 'dashed';
@@ -103,5 +104,26 @@ export const CreateButton = ({
       <span className='btn-label'>{label}</span>
       {icon && icon}
     </StyledCreateBtn>
+  );
+};
+
+export const CreateNavButton = ({
+  label,
+  to,
+  icon,
+  className,
+}: {
+  label: string;
+  icon?: React.ReactNode;
+  className?: string;
+  to: string;
+}) => {
+  return (
+    <NavLink to={to}>
+      <StyledCreateBtn className={className}>
+        <span className='btn-label'>{label}</span>
+        {icon && icon}
+      </StyledCreateBtn>
+    </NavLink>
   );
 };

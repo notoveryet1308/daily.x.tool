@@ -1,21 +1,13 @@
-import Draggable, { DraggableData, DraggableEvent } from 'react-draggable';
-import React, { MouseEvent, useEffect, useRef, useState } from 'react';
-import { StyledMovableWrapper } from './style';
 
-type Position = {
-  xRate: number;
-  yRate: number;
-};
+import React, {  useRef,  } from 'react';
+import { StyledMovableWrapper } from './style';
+import { breakpoints } from '../../theme/breakpoint';
 
 const MovableWrapper = ({
   children,
-  xPos = 0,
-  yPos = 0,
   className = '',
 }: {
   children: React.ReactNode;
-  xPos?: number;
-  yPos?: number;
   className?: string;
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -44,7 +36,8 @@ const MovableWrapper = ({
             left > 0 &&
             left < maxLimitWidth &&
             top > 0 &&
-            top < innerHeight - (height + 80)
+            top < innerHeight - (height + 80) &&
+            innerWidth > breakpoints.LARGE_MOBILE
           ) {
             element.style.left = left + 'px';
             element.style.top = top + 'px';

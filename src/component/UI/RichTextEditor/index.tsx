@@ -20,7 +20,7 @@ const HOTKEYS = {
   "mod+`": "code",
 };
 
-const serialize = (nodes: Descendant[]) => {
+export const serialize = (nodes: Descendant[]) => {
   const data = nodes.map((n) => Node.string(n)).join("\n");
   return !!data;
 };

@@ -62,7 +62,6 @@ export const StyledNotesPageWrapper = styled.main`
       background: ${({ theme }) => theme.colors.createBtnBg};
       border-radius: 4px;
       overflow: hidden;
-      
 
       .create-note-btn {
       }
@@ -80,6 +79,79 @@ export const StyledNotesPageWrapper = styled.main`
         left: calc(100% - 48px);
         transform: unset;
       }
+    }
+  }
+`;
+
+export const StyledCreateNotePageWrapper = styled.main`
+  width: 100%;
+  position: relative;
+
+  .main-content-wrapper {
+    width: 100%;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    padding: 0 60px 20px;
+    max-height: calc(100vh - 64px);
+    @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_TABLET}px) {
+      padding: 0 32px 20px;
+      max-height: calc(100vh - 87px);
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.MOBILE}px) {
+      padding: 0 16px 10px;
+    }
+  }
+
+  .main-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 20px;
+    position: relative;
+    margin-bottom: 40px;
+    max-width: ${({ theme }) => theme.breakpoints.DESKTOP}px;
+    padding: 24px 0;
+    position: relative;
+
+    .create-note-fields {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      gap: 24px;
+      overflow-y: scroll;
+      flex: 1;
+      min-width: 360px;
+
+      .create-note-inputs {
+        height: 100%;
+        .create-note-description {
+          flex: 1;
+        }
+      }
+    }
+
+    .create-note-preview {
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      width: 100%;
+      height: 100%;
+      max-width: 500px;
+      .create-note {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.TABLET}px) {
+      .create-note-preview{
+        display: none;
+      }
+      
     }
   }
 `;
