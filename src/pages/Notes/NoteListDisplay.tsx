@@ -16,7 +16,7 @@ const NoteListDisplay = ({
   if (queryState.isLoading) {
     return <Loader />;
   }
-  if (!queryState.isLoading && !queryState.error && !data.length) {
+  if (!queryState.isLoading && !data.length) {
     return (
       <NoDataState
         img={no_data_img}
@@ -26,7 +26,7 @@ const NoteListDisplay = ({
     );
   }
   return (
-    <MasonryGridLayout minWidth={300}>
+    <MasonryGridLayout minWidth={400}>
       {data.length &&
         data.map((d) => (
           <div className='masonry-brick' key={d.id}>
