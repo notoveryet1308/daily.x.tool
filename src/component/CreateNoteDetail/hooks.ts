@@ -21,8 +21,9 @@ export const useNoteDataHandler = () => {
       isPinned?: boolean;
       field?: string;
     }) => {
-      if (noteTitle) {
-        noteDispatch({ type: 'set-current-note-title', payload: noteTitle });
+     
+      if (field === "noteTitle") {
+        noteDispatch({ type: 'set-current-note-title', payload: noteTitle || '' });
       }
   
       if (field === "noteDescription") {

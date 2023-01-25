@@ -49,7 +49,7 @@ export const noteReducer = (
   const { data } = currentNote;
   const isAvailable = isAllRequiredFieldsAvailable({
     type: 'or',
-    values: [type === 'set-current-note-description' ? !!payload: true],
+    values: [type === 'set-current-note-description' && !!payload, type === 'set-current-note-title' && !!payload],
   });
   if (type === 'set-current-note-title' && typeof payload === 'string') {
     return {

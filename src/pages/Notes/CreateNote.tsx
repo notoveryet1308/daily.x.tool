@@ -3,6 +3,7 @@ import { StyledCreateNotePageWrapper } from './style';
 import { useNoteData } from './hook';
 import { PrimaryButton } from '../../component/UI/Button';
 import NoteView from '../../component/Cards/NoteView';
+import Back from '../../component/UI/Back';
 
 const CreateNote = () => {
   const {
@@ -21,11 +22,14 @@ const CreateNote = () => {
             type: 'add-to-note-collection',
             payload: [currentNote.data, ...noteCollection],
           });
+
+      noteDispatch({ type: 'reset-current-note', payload: '' });
     }
   };
   return (
     <StyledCreateNotePageWrapper>
       <div className='main-content-wrapper'>
+        <Back />
         <div className='main-content'>
           <div className='create-note-fields'>
             <CreateNoteDetails

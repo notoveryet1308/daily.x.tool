@@ -48,7 +48,9 @@ const NoteView = ({
     >
       <div className='top-wrapper'>
         {title && <h2 className='note-view-title'>{title}</h2>}
-        {!title && isPreview && <h2 className='note-preview-title'>title here...</h2>}
+        {!title && isPreview && (
+          <h2 className='note-preview-title'>title here...</h2>
+        )}
         {description && (
           <RichTextReadOnly
             value={JSON.parse(description)}
@@ -71,11 +73,13 @@ const NoteView = ({
         )}
       </div>
       <span className='note-created-on'>{getDateFormat(createdOn)}</span>
-      <div className='action-btn-wrapper'>
-        <PencilLine className='edit-icon ph-icon' />
-        <Trash className='trash-icon ph-icon' />
-      </div>
-      {isPinned ? <div className='note-view-pinned'></div> : null}
+      {!isPreview && (
+        <div className='action-btn-wrapper'>
+          <PencilLine className='edit-icon ph-icon' />
+          <Trash className='trash-icon ph-icon' />
+        </div>
+      )}
+      {!isPreview && isPinned ? <div className='note-view-pinned'></div> : null}
     </StyledNoteView>
   );
 };
