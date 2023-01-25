@@ -1,27 +1,27 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-import isHotkey from "is-hotkey";
-import { Editable, withReact, Slate } from "slate-react";
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import isHotkey from 'is-hotkey';
+import { Editable, withReact, Slate } from 'slate-react';
 
-import { createEditor, Descendant, Transforms, Editor, Node } from "slate";
-import { withHistory } from "slate-history";
+import { createEditor, Descendant, Transforms, Editor, Node } from 'slate';
+import { withHistory } from 'slate-history';
 
-import Elements from "./Elements";
-import Leaf from "./Leaf";
+import Elements from './Elements';
+import Leaf from './Leaf';
 
-import Toolbar from "./Components/Toolbar";
-import { toggleMark } from "./Components/Blocks";
-import { StyledRichTextWrapper } from "./style";
-import { _debounce } from "../../../utils";
+import Toolbar from './Components/Toolbar';
+import { toggleMark } from './Components/Blocks';
+import { StyledRichTextWrapper } from './style';
+import { _debounce } from '../../../utils';
 
 const HOTKEYS = {
-  "mod+b": "bold",
-  "mod+i": "italic",
-  "mod+u": "underline",
-  "mod+`": "code",
+  'mod+b': 'bold',
+  'mod+i': 'italic',
+  'mod+u': 'underline',
+  'mod+`': 'code',
 };
 
 export const serialize = (nodes: Descendant[]) => {
-  const data = nodes.map((n) => Node.string(n)).join("\n");
+  const data = nodes.map((n) => Node.string(n)).join('\n');
   return !!data;
 };
 
@@ -33,7 +33,7 @@ const RichTextInput = ({
   maxHeight = 250,
   autoFocus = true,
   clearEditor = false,
-  value = JSON.stringify(initialValue),
+  value,
   errorBorder,
   errorMessage,
   className,
@@ -69,13 +69,17 @@ const RichTextInput = ({
     }
   }, []);
   return (
-    <StyledRichTextWrapper title={name} minHeight={minHeight} className={className}>
+    <StyledRichTextWrapper
+      title={name}
+      minHeight={minHeight}
+      className={className}
+    >
       <Slate
         editor={editor}
         value={value ? JSON.parse(value) : initialValue}
         onChange={(value) => {
           const isAstChange = editor.operations.some(
-            (op) => "set_selection" !== op.type
+            (op) => 'set_selection' !== op.type
           );
           if (isAstChange) {
             const isDataPresent = serialize(value);
@@ -87,13 +91,13 @@ const RichTextInput = ({
 
             !clearEditor &&
               onChange &&
-              onChange({ [name]: isDataPresent ? content : "", field: name });
+              onChange({ [name]: isDataPresent ? content : '', field: name });
           }
         }}
       >
         <Toolbar />
         <Editable
-          className="rich-text-editor"
+          className='rich-text-editor'
           placeholder={placeholder}
           renderElement={renderElement}
           renderLeaf={renderLeaf}
@@ -101,7 +105,7 @@ const RichTextInput = ({
           autoFocus={autoFocus}
           style={{
             maxHeight: `${maxHeight}px`,
-            overflowY: "auto",
+            overflowY: 'auto',
           }}
           onKeyDown={(event) => {
             for (const hotkey in HOTKEYS) {
@@ -114,16 +118,20 @@ const RichTextInput = ({
           }}
         />
       </Slate>
-      {errorMessage && <span className="rich-text-error">{errorMessage}</span>}
+      {errorMessage && <span className='rich-text-error'>{errorMessage}</span>}
     </StyledRichTextWrapper>
   );
 };
 
-export const RichTextReadOnly = ({ value = initialValue, className = "" }) => {
+export const RichTextReadOnly = ({
+  value = initialValue,
+  className = '',
+  placeholder = 'Rich text here..',
+}) => {
   const renderElement = useCallback((elProps) => <Elements {...elProps} />, []);
   const renderLeaf = useCallback((elProps) => <Leaf {...elProps} />, []);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
-  editor.children = value
+  editor.children = value;
 
   return (
     <StyledRichTextWrapper className={`rich-text-view-mode ${className}`}>
@@ -132,7 +140,7 @@ export const RichTextReadOnly = ({ value = initialValue, className = "" }) => {
           renderElement={renderElement}
           renderLeaf={renderLeaf}
           readOnly
-          placeholder="Enter some plain text..."
+          placeholder={placeholder}
         />
       </Slate>
     </StyledRichTextWrapper>
@@ -141,8 +149,8 @@ export const RichTextReadOnly = ({ value = initialValue, className = "" }) => {
 
 const initialValue: Descendant[] = [
   {
-    type: "paragraph",
-    children: [{ text: "" }],
+    type: 'paragraph',
+    children: [{ text: '' }],
   },
 ];
 

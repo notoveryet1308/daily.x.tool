@@ -53,6 +53,7 @@ const NoteView = ({
           <RichTextReadOnly
             value={JSON.parse(description)}
             className='show-border-left'
+            placeholder='note description'
           />
         )}
         {tags && tags?.length > 0 && (

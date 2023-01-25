@@ -108,11 +108,12 @@ export const StyledCreateNotePageWrapper = styled.main`
     width: 100%;
     height: 100%;
     display: flex;
+    justify-content: center;
     gap: 20px;
     position: relative;
     margin-bottom: 40px;
     max-width: ${({ theme }) => theme.breakpoints.DESKTOP}px;
-    padding: 24px 0;
+    padding: 60px 0 24px 0;
     position: relative;
 
     .create-note-fields {
@@ -121,11 +122,10 @@ export const StyledCreateNotePageWrapper = styled.main`
       height: 100%;
       gap: 24px;
       overflow-y: scroll;
-      flex: 1;
       min-width: 360px;
+      max-width: 500px;
 
       .create-note-inputs {
-        height: 100%;
         .create-note-description {
           flex: 1;
         }
@@ -139,19 +139,18 @@ export const StyledCreateNotePageWrapper = styled.main`
       justify-content: flex-start;
       align-items: flex-start;
       width: 100%;
-      height: 100%;
+      /* height: 100%; */
       max-width: 500px;
       .create-note {
         width: 100%;
-        height: 100%;
+        /* height: 100%; */
       }
     }
 
     @media (max-width: ${({ theme }) => theme.breakpoints.TABLET}px) {
-      .create-note-preview{
+      .create-note-preview {
         display: none;
       }
-      
     }
   }
 `;

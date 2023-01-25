@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledColorPicker = styled.div`
-  gap: 4px;
+  gap: 8px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

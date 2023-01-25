@@ -60,10 +60,13 @@ const CreateNoteDetails = ({
       <ColorPicker name='noteColor' onChange={noteDataHandler} />
       <PrimaryButton
         onClick={() => {
-          onAddHandler();
-          navigate.goBack();
+          if(currentNote.isAllRequiredDataAvailable){
+            onAddHandler();
+            navigate.goBack();
+          }
         }}
         label='Add'
+        disabled={!currentNote.isAllRequiredDataAvailable}
       />
     </StyledCreateNoteDetail>
   );

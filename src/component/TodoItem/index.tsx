@@ -74,7 +74,7 @@ const TodoItem = ({
         )}
       </div>
       <div className="todo-description-wrapper">
-        <RichTextReadOnly value={JSON.parse(description)} />
+        <RichTextReadOnly value={JSON.parse(description)} placeholder='todo description'/>
         <span className="todo-creation-date">{creationActivity}</span>
         <div className="action-btn-wrapper">
           <PencilLine className="edit-icon ph-icon" onClick={toggleEditModal} />

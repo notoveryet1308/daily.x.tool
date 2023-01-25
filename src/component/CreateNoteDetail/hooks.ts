@@ -12,22 +12,26 @@ export const useNoteDataHandler = () => {
       noteTags,
       noteColor,
       isPinned,
+      field,
     }: {
       noteTitle?: string;
       noteDescription?: string;
       noteTags?: tagType[];
       noteColor?: string;
       isPinned?: boolean;
+      field?: string;
     }) => {
       if (noteTitle) {
         noteDispatch({ type: 'set-current-note-title', payload: noteTitle });
       }
-      if (noteDescription) {
+  
+      if (field === "noteDescription") {
         noteDispatch({
           type: 'set-current-note-description',
-          payload: noteDescription,
+          payload: noteDescription || '',
         });
       }
+
       if (noteTags) {
         noteDispatch({ type: 'set-current-note-tags', payload: noteTags });
       }
@@ -44,4 +48,3 @@ export const useNoteDataHandler = () => {
 
   return { noteDataHandler };
 };
-
