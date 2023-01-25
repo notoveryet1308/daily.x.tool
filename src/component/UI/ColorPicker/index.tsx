@@ -4,6 +4,7 @@ import { PlusCircle } from 'phosphor-react';
 import { useAppDataContext } from '../../../Context/AppDataContext';
 import ColorBox from './ColorBox';
 import { StyledColorInput, StyledColorPicker } from './style';
+import { _debounce } from '../../../utils';
 
 const ColorPicker = ({
   onChange,
@@ -30,6 +31,10 @@ const ColorPicker = ({
     dispatch({ type: 'set-more-static-colors', payload: hexValue });
     setSelectedColor(hexValue);
     onChange({ [name]: hexValue });
+    // _debounce({
+    //   func: () => onChange({ [name]: hexValue }),
+    //   delay: 500,
+    // });
   };
 
   return (
@@ -41,7 +46,7 @@ const ColorPicker = ({
             hexCode={d}
             onClick={onChangeHandler}
             selectedColor={selectedColor}
-            key={d+index}
+            key={d + index}
           />
         ))}
         <PlusCircle className='plus-circle-icon' onClick={openColorPicker} />

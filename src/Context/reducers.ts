@@ -47,10 +47,7 @@ export const noteReducer = (
   const { type, payload } = action;
   const { currentNote } = state;
   const { data } = currentNote;
-  const isAvailable = isAllRequiredFieldsAvailable({
-    type: 'or',
-    values: [type === 'set-current-note-description' && !!payload, type === 'set-current-note-title' && !!payload],
-  });
+
   if (type === 'set-current-note-title' && typeof payload === 'string') {
     return {
       ...state,
@@ -63,7 +60,10 @@ export const noteReducer = (
           updatedOn: Date.now(),
           title: payload,
         },
-        isAllRequiredDataAvailable: isAvailable,
+        isAllRequiredDataAvailable: isAllRequiredFieldsAvailable({
+          type: 'or',
+          values: [!!payload, !!data.description],
+        }),
       },
     };
   }
@@ -79,7 +79,10 @@ export const noteReducer = (
           createdOn: Date.now(),
           description: payload,
         },
-        isAllRequiredDataAvailable: isAvailable,
+        isAllRequiredDataAvailable: isAllRequiredFieldsAvailable({
+          type: 'or',
+          values: [!!payload, !!data.title],
+        }),
       },
     };
   }
@@ -90,7 +93,10 @@ export const noteReducer = (
       currentNote: {
         ...currentNote,
         data: { ...data, tags: payload },
-        isAllRequiredDataAvailable: isAvailable,
+        isAllRequiredDataAvailable: isAllRequiredFieldsAvailable({
+          type: 'or',
+          values: [!!data.title, !!data.description],
+        }),
       },
     };
   }
@@ -101,7 +107,10 @@ export const noteReducer = (
       currentNote: {
         ...currentNote,
         data: { ...data, hexCode: payload },
-        isAllRequiredDataAvailable: isAvailable,
+        isAllRequiredDataAvailable: isAllRequiredFieldsAvailable({
+          type: 'or',
+          values: [!!data.title, !!data.description],
+        }),
       },
     };
   }
