@@ -112,22 +112,22 @@ export const StyledNoteView = styled.div<{
 export const StyledNoteEdit = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
+  gap: 16px;
 
   .note-edit-input {
     display: flex;
     flex-direction: column;
     gap: 12px;
 
-    .main-input-form-title{
+    .main-input-form-title {
       border: none;
-      background-color: ${({theme})=> theme.colors.secondaryBgColor};
+      background-color: ${({ theme }) => theme.colors.secondaryBgColor};
     }
   }
 
   .note-edit-action-btn {
     display: flex;
     gap: 12px;
+    align-self: flex-end;
   }
 `;

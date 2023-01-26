@@ -19,4 +19,8 @@ export const StyledBack = styled.div`
   &:hover {
     border-color: ${({ theme }) => theme.colors.primaryTextColor};
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.TABLET}px) {
+    margin: 0;
+  }
 `;

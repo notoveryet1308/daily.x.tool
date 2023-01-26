@@ -96,6 +96,7 @@ export const StyledCreateNotePageWrapper = styled.main`
     justify-content: center;
     padding: 0 60px 20px;
     max-height: calc(100vh - 64px);
+
     @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_TABLET}px) {
       padding: 0 32px 20px;
       max-height: calc(100vh - 87px);
@@ -126,6 +127,7 @@ export const StyledCreateNotePageWrapper = styled.main`
       overflow-y: scroll;
       min-width: 360px;
       max-width: 500px;
+      align-self: center;
 
       .create-note-inputs {
         .create-note-description {
@@ -150,6 +152,8 @@ export const StyledCreateNotePageWrapper = styled.main`
     }
 
     @media (max-width: ${({ theme }) => theme.breakpoints.TABLET}px) {
+      flex-direction: column;
+      padding-top: 20px;
       .create-note-preview {
         display: none;
       }

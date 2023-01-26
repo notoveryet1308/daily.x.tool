@@ -31,6 +31,7 @@ const CreateNote = () => {
       <div className='main-content-wrapper'>
         <Back />
         <div className='main-content'>
+          <Back isMobile/>
           <div className='create-note-fields'>
             <CreateNoteDetails
               className='create-note-inputs'
