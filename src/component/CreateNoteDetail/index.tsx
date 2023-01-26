@@ -2,14 +2,10 @@ import { useHistory } from 'react-router-dom';
 
 import { useNoteContext } from '../../Context/NoteDataProvider';
 import { PrimaryButton } from '../UI/Button';
-import ColorPicker from '../UI/ColorPicker';
-import { Input } from '../UI/Input';
-import RichTextInput from '../UI/RichTextEditor';
-
-import Select from '../UI/Select';
 import { useNoteDataHandler } from './hooks';
 
 import { StyledCreateNoteDetail } from './style';
+import InputFields from './InputFields';
 
 const dummyOptions = [
   { label: 'Javascript', value: 'javascript', id: 'Javascript-xx21' },
@@ -32,35 +28,14 @@ const CreateNoteDetails = ({
 
   return (
     <StyledCreateNoteDetail className={className}>
-      <Input
-        type='text'
-        name='noteTitle'
-        placeholder='Title'
-        onChangeHandler={noteDataHandler}
-        value={currentNote.data.title}
-        className='main-input-form-title'
+      <InputFields
+        currentNote={currentNote}
+        noteDataHandler={noteDataHandler}
+        tagOptions={dummyOptions}
       />
-      <RichTextInput
-        maxHeight={400}
-        minHeight={200}
-        autoFocus={false}
-        name='noteDescription'
-        onChange={noteDataHandler}
-        placeholder='Note description'
-        className='create-note-description'
-      />
-      <Select
-        isCreatable
-        name='noteTags'
-        options={dummyOptions}
-        onChange={noteDataHandler}
-        values={currentNote.data.tags}
-        searchPlaceholder='Search tags'
-      />
-      <ColorPicker name='noteColor' onChange={noteDataHandler} />
       <PrimaryButton
         onClick={() => {
-          if(currentNote.isAllRequiredDataAvailable){
+          if (currentNote.isAllRequiredDataAvailable) {
             onAddHandler();
             navigate.goBack();
           }

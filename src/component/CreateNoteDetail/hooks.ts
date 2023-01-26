@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useNoteContext } from '../../Context/NoteDataProvider';
-import { tagType } from '../../Context/types';
+import { tagType, NoteDataType } from '../../Context/types';
 
 export const useNoteDataHandler = () => {
   const { noteDispatch } = useNoteContext();
@@ -21,12 +21,14 @@ export const useNoteDataHandler = () => {
       isPinned?: boolean;
       field?: string;
     }) => {
-     
-      if (field === "noteTitle") {
-        noteDispatch({ type: 'set-current-note-title', payload: noteTitle || '' });
+      if (field === 'noteTitle') {
+        noteDispatch({
+          type: 'set-current-note-title',
+          payload: noteTitle || '',
+        });
       }
-  
-      if (field === "noteDescription") {
+
+      if (field === 'noteDescription') {
         noteDispatch({
           type: 'set-current-note-description',
           payload: noteDescription || '',
@@ -47,5 +49,30 @@ export const useNoteDataHandler = () => {
     []
   );
 
-  return { noteDataHandler };
+  const updateCurrentNote = ({
+    id,
+    title,
+    description,
+    tags,
+    updatedOn,
+    createdOn,
+    isPinned,
+    hexCode,
+  }: NoteDataType) => {
+    noteDispatch({
+      type: 'update-current-note',
+      payload: {
+        id,
+        title,
+        description,
+        tags,
+        updatedOn,
+        createdOn,
+        isPinned,
+        hexCode,
+      },
+    });
+  };
+
+  return { noteDataHandler, updateCurrentNote };
 };

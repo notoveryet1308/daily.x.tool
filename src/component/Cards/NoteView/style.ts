@@ -13,6 +13,8 @@ const borderAnimation = () => keyframes`
 export const StyledNoteView = styled.div<{
   hexCode: string;
   showAnimation: boolean;
+  editMode: boolean;
+  isEditing: boolean;
 }>`
   position: relative;
   display: flex;
@@ -29,12 +31,14 @@ export const StyledNoteView = styled.div<{
     gap: 8px;
   }
 
-  background-color: ${({ theme, hexCode }) =>
-    theme.mixins.convertHexToHsl({
-      hexCode,
-      saturation: theme.colors.saturation,
-      lightness: theme.colors.lightnessL1,
-    })};
+  background-color: ${({ theme, hexCode, editMode }) =>
+    !editMode
+      ? theme.mixins.convertHexToHsl({
+          hexCode,
+          saturation: theme.colors.saturation,
+          lightness: theme.colors.lightnessL1,
+        })
+      : theme.colors.tertiaryBgColor};
 
   .note-view-title {
     line-height: 18px;
@@ -42,7 +46,7 @@ export const StyledNoteView = styled.div<{
     color: ${({ theme }) => theme.colors.primaryTextColor};
     margin-bottom: 8px;
   }
-  .note-preview-title{
+  .note-preview-title {
     line-height: 18px;
     font-size: ${({ theme }) => theme.fontSize.large};
     color: ${({ theme }) => theme.colors.tertiaryTextColor};
@@ -72,6 +76,12 @@ export const StyledNoteView = styled.div<{
       cursor: pointer;
       color: ${({ theme }) => theme.colors.primaryColor};
     }
+
+    .edit-icon {
+      cursor: ${({ isEditing }) => (isEditing ? 'no-drop' : 'pointer')};
+      color: ${({ theme, isEditing }) =>
+        isEditing && theme.colors.disabledColor};
+    }
   }
 
   .note-view-pinned {
@@ -97,4 +107,27 @@ export const StyledNoteView = styled.div<{
   animation-name: ${({ showAnimation }) => showAnimation && borderAnimation()};
   animation-duration: 5s;
   overflow: hidden;
+`;
+
+export const StyledNoteEdit = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+
+  .note-edit-input {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .main-input-form-title{
+      border: none;
+      background-color: ${({theme})=> theme.colors.secondaryBgColor};
+    }
+  }
+
+  .note-edit-action-btn {
+    display: flex;
+    gap: 12px;
+  }
 `;

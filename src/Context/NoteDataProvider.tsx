@@ -9,6 +9,7 @@ const noteData = localStoredNotes ? JSON.parse(localStoredNotes) : [];
 const initialValues: InitialNoteValueType = {
   currentNote: currentNoteInitialValue,
   noteCollection: noteData,
+  isEditing: false,
 };
 
 export const NoteContext = createContext<NoteContextDataType>(

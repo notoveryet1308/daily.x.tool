@@ -36,7 +36,7 @@ export const useCreateNote = () => {
       });
     },
   });
-  const { loggedInUserDetail } = useAppDataContext();
+
 
   const handleCreateNote = ({
     id,
@@ -59,7 +59,6 @@ export const useCreateNote = () => {
           createdOn,
           updatedOn,
           hexCode,
-          userId: loggedInUserDetail?._id,
         },
       },
       optimisticResponse: {

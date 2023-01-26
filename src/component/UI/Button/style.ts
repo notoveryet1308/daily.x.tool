@@ -20,7 +20,7 @@ export const StyledBaseButton = styled.button<{ variation?: string }>`
   }
   &.disabled-btn {
     cursor: no-drop;
-    color: ${({ theme }) => theme.colors.disabledTextColor};
+    color: ${({ theme }) => theme.colors.disabledColor};
   }
 `;
 
@@ -48,7 +48,7 @@ export const StyledCreateBtn = styled.button`
     flex-direction: column-reverse;
     padding: 16px;
 
-    .btn-label{
+    .btn-label {
       display: none;
     }
   }

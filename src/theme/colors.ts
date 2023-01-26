@@ -23,8 +23,9 @@ export const whiteThemeColors = {
   primaryTextColor: '#160D2E',
   secondaryTextColor: '#382778',
   tertiaryTextColor: '#8C7CD0',
-  disabledTextColor: '#382777',
+  disabledColor: '#B3ABCF',
   primaryTextColorReversed: '#F1EFF8',
+
 
   //alert color
   successColor: '#07A671',
@@ -81,7 +82,7 @@ export const darkThemeColors = {
   primaryTextColor: '#F1EFF8',
   secondaryTextColor: '#D8D0EE',
   tertiaryTextColor: '#BCB1E3',
-  disabledTextColor: '#382777',
+  disabledColor: '#392283',
   primaryTextColorReversed: '#F1EFF8',
 
   // alert color

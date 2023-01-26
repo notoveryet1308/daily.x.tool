@@ -62,6 +62,7 @@ export const StyledNotesPageWrapper = styled.main`
       background: ${({ theme }) => theme.colors.createBtnBg};
       border-radius: 4px;
       overflow: hidden;
+      cursor: move;
 
       .create-note-btn {
       }
@@ -78,6 +79,7 @@ export const StyledNotesPageWrapper = styled.main`
         border-radius: 50%;
         left: calc(100% - 48px);
         transform: unset;
+        cursor: default;
       }
     }
   }

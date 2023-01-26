@@ -55,9 +55,6 @@ export const noteReducer = (
         ...currentNote,
         data: {
           ...data,
-          id: nanoid(),
-          createdOn: Date.now(),
-          updatedOn: Date.now(),
           title: payload,
         },
         isAllRequiredDataAvailable: isAllRequiredFieldsAvailable({
@@ -75,8 +72,6 @@ export const noteReducer = (
         ...currentNote,
         data: {
           ...data,
-          id: nanoid(),
-          createdOn: Date.now(),
           description: payload,
         },
         isAllRequiredDataAvailable: isAllRequiredFieldsAvailable({
@@ -115,6 +110,10 @@ export const noteReducer = (
     };
   }
 
+  if(type === 'set-note-editing-status' && typeof payload === 'boolean'){
+    return {...state, isEditing: payload}
+  }
+
   if (type === 'reset-current-note') {
     return { ...state, currentNote: { ...currentNoteInitialValue } };
   }
@@ -139,10 +138,23 @@ export const noteReducer = (
     return state;
   }
   if (type === 'add-to-note-collection' && Array.isArray(payload)) {
+    console.log({ reducer: payload });
     localStorage.setItem('local-notes', JSON.stringify(payload));
     return {
       ...state,
       noteCollection: sortNotesByPinnedStatus([...payload]),
+    };
+  }
+
+  if (type === 'update-current-note') {
+    return {
+      ...state,
+      currentNote: {
+        ...currentNote,
+        data: payload,
+        isAllRequiredDataAvailable: true,
+        isUpdated: true,
+      },
     };
   }
 

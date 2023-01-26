@@ -13,7 +13,7 @@ const NoteListDisplay = ({
   data: NoteDataType[] | [];
   queryState: { isLoading: Boolean; error?: string };
 }) => {
-  if (queryState.isLoading) {
+  if (queryState.isLoading && !data) {
     return <Loader />;
   }
   if (!queryState.isLoading && !data.length) {

@@ -31,10 +31,6 @@ const ColorPicker = ({
     dispatch({ type: 'set-more-static-colors', payload: hexValue });
     setSelectedColor(hexValue);
     onChange({ [name]: hexValue });
-    // _debounce({
-    //   func: () => onChange({ [name]: hexValue }),
-    //   delay: 500,
-    // });
   };
 
   return (

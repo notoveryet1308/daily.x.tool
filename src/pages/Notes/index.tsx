@@ -12,19 +12,11 @@ import MovableWrapper from '../../component/MovableWrapper';
 
 export const Notes = () => {
   const {
-    currentNote,
     noteCollection,
     getNoteQuery,
     noteDispatch,
-    handleCreateNote,
     userLogged,
   } = useNoteData();
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleModal = () => {
-    setIsOpen(!isOpen);
-    noteDispatch({ type: 'reset-current-note', payload: '' });
-  };
 
   return (
     <StyledNotesPageWrapper>
