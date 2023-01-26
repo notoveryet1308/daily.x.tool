@@ -128,12 +128,7 @@ export const StyledCreateNotePageWrapper = styled.main`
       min-width: 360px;
       max-width: 500px;
       align-self: center;
-
-      .create-note-inputs {
-        .create-note-description {
-          flex: 1;
-        }
-      }
+      flex: 1;
     }
 
     .create-note-preview {
@@ -143,11 +138,9 @@ export const StyledCreateNotePageWrapper = styled.main`
       justify-content: flex-start;
       align-items: flex-start;
       width: 100%;
-      /* height: 100%; */
       max-width: 500px;
       .create-note {
         width: 100%;
-        /* height: 100%; */
       }
     }
 

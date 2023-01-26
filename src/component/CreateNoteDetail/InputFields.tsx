@@ -4,6 +4,8 @@ import { Input } from '../UI/Input';
 import RichTextInput from '../UI/RichTextEditor';
 import Select from '../UI/Select';
 
+import {StyledNoteInputField} from './style'
+
 const InputFields = ({
   noteDataHandler,
   currentNote,
@@ -15,7 +17,7 @@ const InputFields = ({
 }) => {
 
   return (
-    <>
+    <StyledNoteInputField>
       <Input
         type='text'
         name='noteTitle'
@@ -43,7 +45,7 @@ const InputFields = ({
         searchPlaceholder='Search tags'
       />
       <ColorPicker name='noteColor' onChange={noteDataHandler} />
-    </>
+    </StyledNoteInputField>
   );
 };
 
