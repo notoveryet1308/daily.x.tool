@@ -1,10 +1,10 @@
-import { currentNoteDataType, tagType } from '../../Context/types';
-import ColorPicker from '../UI/ColorPicker';
-import { Input } from '../UI/Input';
-import RichTextInput from '../UI/RichTextEditor';
-import Select from '../UI/Select';
+import { currentNoteDataType, tagType } from "../../Context/types";
+import ColorPicker from "../UI/ColorPicker";
+import { Input } from "../UI/Input";
+import RichTextInput from "../UI/RichTextEditor";
+import Select from "../UI/Select";
 
-import {StyledNoteInputField} from './style'
+import { StyledNoteInputField } from "./style";
 
 const InputFields = ({
   noteDataHandler,
@@ -15,36 +15,37 @@ const InputFields = ({
   currentNote: currentNoteDataType;
   tagOptions: tagType[];
 }) => {
-
   return (
     <StyledNoteInputField>
-      <Input
-        type='text'
-        name='noteTitle'
-        placeholder='Title'
-        onChangeHandler={noteDataHandler}
-        value={currentNote.data.title}
-        className='main-input-form-title'
-      />
-      <RichTextInput
-        maxHeight={400}
-        minHeight={200}
-        autoFocus={false}
-        name='noteDescription'
-        onChange={noteDataHandler}
-        placeholder='Note description'
-        className='create-note-description'
-        value={currentNote.data.description}
-      />
+      <div className="main-note-inputs">
+        <Input
+          type="text"
+          name="noteTitle"
+          placeholder="Enter note title"
+          onChangeHandler={noteDataHandler}
+          value={currentNote.data.title}
+          className="main-input-form-title"
+        />
+        <RichTextInput
+          maxHeight={400}
+          minHeight={200}
+          autoFocus={false}
+          name="noteDescription"
+          onChange={noteDataHandler}
+          placeholder="Note description"
+          className="create-note-description"
+          value={currentNote.data.description}
+        />
+      </div>
       <Select
         isCreatable
-        name='noteTags'
+        name="noteTags"
         options={tagOptions}
         onChange={noteDataHandler}
         values={currentNote.data.tags}
-        searchPlaceholder='Search tags'
+        searchPlaceholder="Search tags"
       />
-      <ColorPicker name='noteColor' onChange={noteDataHandler} />
+      <ColorPicker name="noteColor" onChange={noteDataHandler} />
     </StyledNoteInputField>
   );
 };

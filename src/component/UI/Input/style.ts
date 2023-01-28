@@ -1,25 +1,33 @@
-import { Input } from 'antd';
-import styled from 'styled-components';
+import { Input } from "antd";
+import styled from "styled-components";
 
 const { TextArea } = Input;
 
-export const StyledInput = styled.input<{ bordered: boolean | undefined; isDisabled: boolean; errorBorder: boolean; }>`
-  padding: ${({ bordered }) => (bordered ? '8px 16px' : 0)};
+export const StyledInput = styled.input<{
+  bordered: boolean | undefined;
+  isDisabled: boolean;
+  errorBorder: boolean;
+  isToggelablePassword: boolean;
+}>`
+  padding: ${({ bordered }) => (bordered ? "8px 16px" : 0)};
+  padding-right: ${({ isToggelablePassword }) =>
+    isToggelablePassword ? "32px" : "16px"};
   border-radius: 4px;
-  border: 1px solid ${({ theme, errorBorder }) => errorBorder? theme.colors.errorLight: theme.colors.secondaryColor};
+  border: 1px solid
+    ${({ theme, errorBorder }) =>
+      errorBorder ? theme.colors.errorLight : theme.colors.secondaryColor};
   background-color: inherit;
   font-size: ${({ theme }) => theme.fontSize.medium};
   font-family: inherit;
   color: ${({ theme }) => theme.colors.secondaryTextColor};
   outline: none;
-  border: ${({ bordered }) => !bordered && 'none'};
-  cursor: ${({ isDisabled }) => isDisabled ? 'no-drop':'pointer'};
-
+  border: ${({ bordered }) => !bordered && "none"};
+  cursor: ${({ isDisabled }) => (isDisabled ? "no-drop" : "pointer")};
+  width: 100%;
   &&::placeholder {
     font-size: ${({ theme }) => theme.fontSize.medium};
     color: ${({ theme }) => theme.colors.tertiaryTextColor};
   }
-
 
   &:hover,
   &:focus {
@@ -46,11 +54,28 @@ export const StyledUserInputWrapper = styled.div`
     }
   }
 
-  .error-message-input{
+  .user-input {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    .password-icon {
+      position: absolute;
+      background: inherit;
+      right: 0;
+      width: 30px;
+      font-size: 20px;
+      color: ${({ theme }) => theme.colors.primaryColor};
+      cursor: pointer;
+    }
+  }
+
+  .error-message-input {
     position: absolute;
-    bottom:-18px;
+    bottom: -18px;
     color: ${({ theme }) => theme.colors.errorDark};
-    font-size:${({ theme }) => theme.fontSize.small};
+    font-size: ${({ theme }) => theme.fontSize.small};
   }
 `;
 

@@ -40,6 +40,7 @@ const CreateNoteDetails = ({
             navigate.goBack();
           }
         }}
+        className="create-note-submit"
         label='Add'
         disabled={!currentNote.isAllRequiredDataAvailable}
       />

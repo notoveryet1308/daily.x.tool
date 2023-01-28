@@ -33,4 +33,5 @@ export interface InputProps extends React.HTMLProps<HTMLInputElement> {
   errorMessage?: string;
   onChangeHandler: Function;
   errorBorder?: boolean;
+  showPassword?: boolean;
 }

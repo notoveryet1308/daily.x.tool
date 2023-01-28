@@ -1,14 +1,14 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
-import NoteInputs from '../../CreateNoteDetail/InputFields';
-import { NoteEditPropsType } from './type';
+import NoteInputs from "../../CreateNoteDetail/InputFields";
+import { NoteEditPropsType } from "./type";
 
-import { StyledNoteEdit } from './style';
-import { useNoteDataHandler } from '../../CreateNoteDetail/hooks';
-import { useNoteContext } from '../../../Context/NoteDataProvider';
-import { PrimaryButton, SecondaryButton } from '../../UI/Button';
-import Loader from '../../UI/Loader';
-import { useUpdateNote } from './hooks';
+import { StyledNoteEdit } from "./style";
+import { useNoteDataHandler } from "../../CreateNoteDetail/hooks";
+import { useNoteContext } from "../../../Context/NoteDataProvider";
+import { PrimaryButton, SecondaryButton } from "../../UI/Button";
+import Loader from "../../UI/Loader";
+import { useUpdateNote } from "./hooks";
 
 const NoteEdit = ({
   id,
@@ -44,21 +44,29 @@ const NoteEdit = ({
 
   return (
     <StyledNoteEdit>
-      <div className='note-edit-input'>
+      <div className="note-edit-input">
         <NoteInputs
           noteDataHandler={noteDataHandler}
           currentNote={currentNote}
           tagOptions={[]}
         />
       </div>
-      <div className='note-edit-action-btn'>
-        <SecondaryButton label='Cancel' onClick={toggleIsEditing} />
-        <PrimaryButton label='Update note' onClick={() => {
-          if(currentNote.isAllRequiredDataAvailable){
-            handleNoteUpdate();
-            toggleIsEditing();
-          }
-        }} disabled={!currentNote.isAllRequiredDataAvailable}/>
+      <div className="note-edit-action-btn">
+        <SecondaryButton
+          label="Cancel"
+          onClick={toggleIsEditing}
+          className="note-edit-cancel-btn"
+        />
+        <PrimaryButton
+          label="Update note"
+          onClick={() => {
+            if (currentNote.isAllRequiredDataAvailable) {
+              handleNoteUpdate();
+              toggleIsEditing();
+            }
+          }}
+          disabled={!currentNote.isAllRequiredDataAvailable}
+        />
       </div>
     </StyledNoteEdit>
   );

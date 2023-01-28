@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
+import { Eye, EyeSlash } from "phosphor-react";
 import { noop, _debounce } from "../../../utils";
 import { StyledInput, StyledUserInputWrapper } from "./style";
 import { InputProps } from "./types";
@@ -19,7 +20,9 @@ const Input = ({
   onFocus,
   errorMessage,
   errorBorder,
+  showPassword = false,
 }: InputProps) => {
+  const [isPasswordVisible, setPasswordVisible] = useState(false);
   const [userInput, setUserInput] = useState(value);
 
   const inputChangeHandler = useCallback(
@@ -58,19 +61,40 @@ const Input = ({
           {optional && <span className="optional-field">(Optional)</span>}
         </p>
       )}
-      <StyledInput
-        type={type}
-        value={userInput}
-        onChange={inputChangeHandler}
-        placeholder={placeholder}
-        bordered={bordered}
-        name={name}
-        onBlur={onBlur || noop}
-        isDisabled={!!disabled}
-        className={className}
-        onFocus={onFocus}
-        errorBorder={!!errorBorder}
-      />
+      <div className="user-input">
+        <StyledInput
+          type={
+            type === "password" && showPassword && isPasswordVisible
+              ? "text"
+              : type
+          }
+          value={userInput}
+          onChange={inputChangeHandler}
+          placeholder={placeholder}
+          bordered={bordered}
+          name={name}
+          onBlur={onBlur || noop}
+          isDisabled={!!disabled}
+          className={className}
+          onFocus={onFocus}
+          errorBorder={!!errorBorder}
+          isToggelablePassword={type === "password" && showPassword}
+        />
+        {type === "password" &&
+          showPassword &&
+          (isPasswordVisible ? (
+            <EyeSlash
+              className="eye-closed password-icon"
+              onClick={() => setPasswordVisible(!isPasswordVisible)}
+            />
+          ) : (
+            <Eye
+              className="eye-open password-icon"
+              onClick={() => setPasswordVisible(!isPasswordVisible)}
+            />
+          ))}
+      </div>
+
       {errorMessage && (
         <span className="error-message-input">{errorMessage}</span>
       )}

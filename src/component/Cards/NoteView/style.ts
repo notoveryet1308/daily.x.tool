@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from "styled-components";
 
 const borderAnimation = () => keyframes`
   from{
@@ -78,7 +78,7 @@ export const StyledNoteView = styled.div<{
     }
 
     .edit-icon {
-      cursor: ${({ isEditing }) => (isEditing ? 'no-drop' : 'pointer')};
+      cursor: ${({ isEditing }) => (isEditing ? "no-drop" : "pointer")};
       color: ${({ theme, isEditing }) =>
         isEditing && theme.colors.disabledColor};
     }

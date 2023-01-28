@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StyledBaseButton = styled.button<{ variation?: string }>`
   padding: 8px 16px;
@@ -15,6 +15,7 @@ export const StyledBaseButton = styled.button<{ variation?: string }>`
   }
 
   &.secondary-btn {
+    color: ${({ theme }) => theme.colors.primaryTextColor};
     border: 1px solid ${({ theme }) => theme.colors.primaryColor};
     background-color: inherit;
   }
