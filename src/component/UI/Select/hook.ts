@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { optionType } from './types';
-import { filterFromArrays } from './utils';
+import { useState, useEffect } from "react";
+import { optionType } from "./types";
+import { filterFromArrays } from "./utils";
 
 export const useSearchSelect = ({
   isSearchable,
@@ -11,6 +11,7 @@ export const useSearchSelect = ({
   options,
   name,
   onChange,
+  onCreation,
 }: {
   isSearchable: boolean;
   allOptions: optionType[];
@@ -20,9 +21,10 @@ export const useSearchSelect = ({
   options: optionType[];
   name: string;
   onChange: Function;
+  onCreation?: Function;
 }) => {
   const [exactSearchFound, setExactSearchFound] = useState<boolean>(false);
-  const [searchInput, setSearchInput] = useState<string>('');
+  const [searchInput, setSearchInput] = useState<string>("");
 
   const handleOnchange = (inputValue: string) => {
     setSearchInput(inputValue);
@@ -31,7 +33,8 @@ export const useSearchSelect = ({
   const onCreate = (data: optionType) => {
     setSelectedValue([data, ...selectedValue]);
     onChange({ [name]: [data, ...selectedValue] });
-    setSearchInput('');
+    setSearchInput("");
+    onCreation && onCreation(data);
   };
 
   useEffect(() => {
@@ -95,6 +98,7 @@ export const useSelectData = ({
     setAllOptions([...allOptions, data]);
     onChange({ [name]: filteredValue });
   };
+
 
   return {
     onClear,

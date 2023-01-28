@@ -1,23 +1,23 @@
 import { StyledColorBox } from './style';
 
 const ColorBox = ({
-  colorHex,
+  hexCode,
   onClick,
   selectedColor,
 }: {
-  colorHex: string;
+  hexCode: string;
   onClick: Function;
   selectedColor: string;
 }) => {
   const onClickHandler = () => {
-    onClick(colorHex);
+    onClick(hexCode);
   };
   return (
     <StyledColorBox
       className='color-box-overlay'
-      colorHex={colorHex}
+      hexCode={hexCode}
       onClick={onClickHandler}
-      isSelected={selectedColor === colorHex}
+      isSelected={selectedColor === hexCode}
     >
       <div className='color-box-select'></div>
     </StyledColorBox>

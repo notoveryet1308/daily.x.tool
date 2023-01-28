@@ -1,6 +1,10 @@
 import { nanoid } from 'nanoid';
 import { currentNoteInitialValue } from './initialValues';
-import { InitialValueType, DispatchActionType, NoteDataType } from './types';
+import {
+  InitialNoteValueType,
+  DispatchActionType,
+  NoteDataType,
+} from './types';
 
 const isAllRequiredFieldsAvailable = ({
   type,
@@ -37,16 +41,13 @@ const sortNotesByPinnedStatus = (data: NoteDataType[]) => {
 };
 
 export const noteReducer = (
-  state: InitialValueType,
+  state: InitialNoteValueType,
   action: DispatchActionType
-): InitialValueType => {
+): InitialNoteValueType => {
   const { type, payload } = action;
   const { currentNote } = state;
   const { data } = currentNote;
-  const isAvailable = isAllRequiredFieldsAvailable({
-    type: 'or',
-    values: [!!payload, !!data.description],
-  });
+
   if (type === 'set-current-note-title' && typeof payload === 'string') {
     return {
       ...state,
@@ -54,11 +55,12 @@ export const noteReducer = (
         ...currentNote,
         data: {
           ...data,
-          id: nanoid(),
-          createdOn: Date.now(),
           title: payload,
         },
-        isAllRequiredDataAvailable: isAvailable,
+        isAllRequiredDataAvailable: isAllRequiredFieldsAvailable({
+          type: 'or',
+          values: [!!payload, !!data.description],
+        }),
       },
     };
   }
@@ -70,11 +72,12 @@ export const noteReducer = (
         ...currentNote,
         data: {
           ...data,
-          id: nanoid(),
-          createdOn: Date.now(),
           description: payload,
         },
-        isAllRequiredDataAvailable: isAvailable,
+        isAllRequiredDataAvailable: isAllRequiredFieldsAvailable({
+          type: 'or',
+          values: [!!payload, !!data.title],
+        }),
       },
     };
   }
@@ -85,7 +88,10 @@ export const noteReducer = (
       currentNote: {
         ...currentNote,
         data: { ...data, tags: payload },
-        isAllRequiredDataAvailable: isAvailable,
+        isAllRequiredDataAvailable: isAllRequiredFieldsAvailable({
+          type: 'or',
+          values: [!!data.title, !!data.description],
+        }),
       },
     };
   }
@@ -95,10 +101,17 @@ export const noteReducer = (
       ...state,
       currentNote: {
         ...currentNote,
-        data: { ...data, colorHex: payload },
-        isAllRequiredDataAvailable: isAvailable,
+        data: { ...data, hexCode: payload },
+        isAllRequiredDataAvailable: isAllRequiredFieldsAvailable({
+          type: 'or',
+          values: [!!data.title, !!data.description],
+        }),
       },
     };
+  }
+
+  if(type === 'set-note-editing-status' && typeof payload === 'boolean'){
+    return {...state, isEditing: payload}
   }
 
   if (type === 'reset-current-note') {
@@ -125,9 +138,22 @@ export const noteReducer = (
     return state;
   }
   if (type === 'add-to-note-collection' && Array.isArray(payload)) {
+    localStorage.setItem('local-notes', JSON.stringify(payload));
     return {
       ...state,
       noteCollection: sortNotesByPinnedStatus([...payload]),
+    };
+  }
+
+  if (type === 'update-current-note') {
+    return {
+      ...state,
+      currentNote: {
+        ...currentNote,
+        data: payload,
+        isAllRequiredDataAvailable: true,
+        isUpdated: true,
+      },
     };
   }
 

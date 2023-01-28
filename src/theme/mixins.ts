@@ -2,15 +2,15 @@ import color from 'color';
 
 const mixins = {
   convertHexToHsl: ({
-    colorHex,
+    hexCode,
     saturation,
     lightness,
   }: {
-    colorHex: string;
+    hexCode: string;
     saturation: number;
     lightness: number;
   }) => {
-    const hue = color(colorHex).hue();
+    const hue = color(hexCode).hue();
 
     return `hsl(${hue} ${saturation}% ${lightness}%)`;
   },

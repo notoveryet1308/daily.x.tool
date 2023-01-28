@@ -39,7 +39,7 @@ const RenderOptions = ({
               value={value}
               label={label}
               onClick={onClick}
-              colorHex='#7C63CF'
+              hexCode='#7C63CF'
               isClickable={isClickable}
               isClearable={isClearable}
             />
@@ -51,7 +51,7 @@ const RenderOptions = ({
       )}
       {data.length <= 0 && showMenuMessage && !searchInput && (
         <span className='empty-menu-option-message'>
-          No more option here...
+          No more here but you can create new option.
         </span>
       )}
       {isCreatable && searchInput && (

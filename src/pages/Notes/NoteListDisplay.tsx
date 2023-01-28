@@ -4,9 +4,19 @@ import { NoteDataType } from '../../Context/types';
 
 import no_data_img from '../../assets/no_data.svg';
 import NoDataState from '../../component/UI/NoDataState';
+import Loader from '../../component/UI/Loader';
 
-const NoteListDisplay = ({ data }: { data: NoteDataType[] | [] }) => {
-  if (!data.length) {
+const NoteListDisplay = ({
+  data,
+  queryState,
+}: {
+  data: NoteDataType[] | [];
+  queryState: { isLoading: Boolean; error?: string };
+}) => {
+  if (queryState.isLoading && !data) {
+    return <Loader />;
+  }
+  if (!queryState.isLoading && !data.length) {
     return (
       <NoDataState
         img={no_data_img}
@@ -16,12 +26,13 @@ const NoteListDisplay = ({ data }: { data: NoteDataType[] | [] }) => {
     );
   }
   return (
-    <MasonryGridLayout minWidth={300}>
-      {data.map((d) => (
-        <div className='masonry-brick' key={d.id}>
-          <NoteView {...d} className='masonry-content' />
-        </div>
-      ))}
+    <MasonryGridLayout minWidth={400}>
+      {data.length &&
+        data.map((d) => (
+          <div className='masonry-brick' key={d.id}>
+            <NoteView {...d} className='masonry-content' />
+          </div>
+        ))}
     </MasonryGridLayout>
   );
 };

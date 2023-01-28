@@ -1,19 +1,22 @@
-
 export type userType = {
   _id: string;
   name: string;
   email: string;
-}
+};
 
 export type appDataType = {
-  themeMode: "main" | "dark";
+  themeMode: 'main' | 'dark';
   isUserAuthenticated: boolean;
   staticColors: string[];
   loggedInUserDetail: userType | null;
 };
 
 export type appDataAction = {
-  type: "change-themeMode" | "user-auth" | "set-more-static-colors" | "reset-auth";
+  type:
+    | 'change-themeMode'
+    | 'user-auth'
+    | 'set-more-static-colors'
+    | 'reset-auth';
   payload: string | boolean | userType;
 };
 
@@ -46,41 +49,47 @@ export interface NoteDataType {
   id: string;
   title: string;
   tags: tagType[];
-  colorHex: string;
+  hexCode: string;
   createdOn: number;
   isPinned: boolean;
   description: string;
+  updatedOn: number;
 }
 
 export interface currentNoteDataType {
   data: NoteDataType;
   isAllRequiredDataAvailable: boolean;
+  isUpdated: boolean;
 }
 
-export interface InitialValueType {
+export interface InitialNoteValueType {
   currentNote: currentNoteDataType;
   noteCollection: NoteDataType[] | [];
+  isEditing: boolean;
 }
 
 export type DispatchActionType = {
   type:
-    | "set-current-note-title"
-    | "set-current-note-tags"
-    | "set-current-note-description"
-    | "set-current-note-color-hex"
-    | "set-current-note-auto-value"
-    | "add-to-note-collection"
-    | "update-isPinned-status"
-    | "reset-current-note";
+    | 'set-current-note-title'
+    | 'set-current-note-tags'
+    | 'set-current-note-description'
+    | 'set-current-note-color-hex'
+    | 'set-current-note-auto-value'
+    | 'add-to-note-collection'
+    | 'update-isPinned-status'
+    | 'reset-current-note'
+    | 'update-current-note'
+    | 'set-note-editing-status'
   payload:
     | string
     | number
     | boolean
     | tagType[]
     | NoteDataType[]
+    | NoteDataType
     | { id: string; isPinned: boolean };
 };
 
-export interface NoteContextDataType extends InitialValueType {
+export interface NoteContextDataType extends InitialNoteValueType {
   noteDispatch: React.Dispatch<DispatchActionType>;
 }

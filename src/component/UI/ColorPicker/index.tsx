@@ -4,6 +4,7 @@ import { PlusCircle } from 'phosphor-react';
 import { useAppDataContext } from '../../../Context/AppDataContext';
 import ColorBox from './ColorBox';
 import { StyledColorInput, StyledColorPicker } from './style';
+import { _debounce } from '../../../utils';
 
 const ColorPicker = ({
   onChange,
@@ -36,11 +37,12 @@ const ColorPicker = ({
     <StyledColorPicker>
       <label className='color-picker-label'>{label}</label>
       <div className='color-picker-content'>
-        {staticColors.map((d) => (
+        {staticColors.map((d, index) => (
           <ColorBox
-            colorHex={d}
+            hexCode={d}
             onClick={onChangeHandler}
             selectedColor={selectedColor}
+            key={d + index}
           />
         ))}
         <PlusCircle className='plus-circle-icon' onClick={openColorPicker} />

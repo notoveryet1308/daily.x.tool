@@ -1,12 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
-import { StyledSelect } from './style';
-import { dummyOptions } from './data';
-import SelectInput from './SelectInput';
-import RenderOptions from './RenderOptions';
-import { selectProps } from './types';
-import { useSearchSelect, useSelectData } from './hook';
-import { filterFromArrays } from './utils';
+import { StyledSelect } from "./style";
+import { dummyOptions } from "./data";
+import SelectInput from "./SelectInput";
+import RenderOptions from "./RenderOptions";
+import { selectProps } from "./types";
+import { useSearchSelect, useSelectData } from "./hook";
+import { filterFromArrays } from "./utils";
 
 const Select = ({
   name,
@@ -19,7 +19,10 @@ const Select = ({
   searchPlaceholder,
   onMenuOpen = () => {},
   options = dummyOptions,
+  onCreation,
+  creationQueryState,
 }: selectProps) => {
+
   const {
     onClear,
     onSelect,
@@ -42,6 +45,7 @@ const Select = ({
       setAllOptions,
       setSelectedValue,
       isSearchable: !!isSearchable || !!isCreatable,
+      onCreation,
     });
 
   useEffect(() => {
@@ -54,7 +58,7 @@ const Select = ({
 
   return (
     <StyledSelect isSearchable={!!isSearchable || !!isCreatable}>
-      <div className='select-top' onClick={onInputClick}>
+      <div className="select-top" onClick={onInputClick}>
         {selectedValue.length > 0 ? (
           <RenderOptions
             data={selectedValue}
@@ -63,34 +67,38 @@ const Select = ({
             showDropdownIndicationIcon
           />
         ) : (
-          <SelectInput placeholder={btnLabel || 'Select tags'} type='button' />
+          <SelectInput placeholder={btnLabel || "Select tags"} type="button" />
         )}
       </div>
       {isMenuOpen && (
-        <div className='select-menu-wrapper'>
+        <div className="select-menu-wrapper">
           {(isCreatable || isSearchable) && (
-            <div className='select-search'>
+            <div className="select-search">
               <SelectInput
-                type='text'
+                type="text"
                 stopPropagation
                 onChange={handleOnchange}
                 showDropdownIndication={false}
-                placeholder={searchPlaceholder || 'Search and select'}
+                placeholder={searchPlaceholder || "Search and select"}
                 onFocus={() => setMenuOpen(true)}
                 value={searchInput}
               />
             </div>
           )}
-          <RenderOptions
-            isClickable
-            showMenuMessage
-            data={allOptions}
-            onClick={onSelect}
-            className='render-options'
-            isCreatable={!exactSearchFound && isCreatable}
-            searchInput={searchInput}
-            onCreate={onCreate}
-          />
+          {creationQueryState && !creationQueryState.loading ? (
+            <RenderOptions
+              isClickable
+              showMenuMessage
+              data={allOptions}
+              onClick={onSelect}
+              className="render-options"
+              isCreatable={!exactSearchFound && isCreatable}
+              searchInput={searchInput}
+              onCreate={onCreate}
+            />
+          ) : (
+            "Loading..."
+          )}
         </div>
       )}
     </StyledSelect>

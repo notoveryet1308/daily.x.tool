@@ -1,12 +1,11 @@
-import { useNoteContext } from '../../Context/NoteDataProvider';
-import ColorPicker from '../UI/ColorPicker';
-import { Input } from '../UI/Input';
-import RichTextInput from '../UI/RichTextEditor';
+import { useHistory } from 'react-router-dom';
 
-import Select from '../UI/Select';
+import { useNoteContext } from '../../Context/NoteDataProvider';
+import { PrimaryButton } from '../UI/Button';
 import { useNoteDataHandler } from './hooks';
 
 import { StyledCreateNoteDetail } from './style';
+import InputFields from './InputFields';
 
 const dummyOptions = [
   { label: 'Javascript', value: 'javascript', id: 'Javascript-xx21' },
@@ -15,38 +14,36 @@ const dummyOptions = [
   { label: 'React', value: 'react', id: 'react-vco0p' },
 ];
 
-const CreateNoteDetails = () => {
+const CreateNoteDetails = ({
+  className,
+  onAddHandler,
+}: {
+  className?: string;
+  onAddHandler: Function;
+}) => {
+  const navigate = useHistory();
   const { currentNote } = useNoteContext();
 
   const { noteDataHandler } = useNoteDataHandler();
 
   return (
-    <StyledCreateNoteDetail>
-      <Input
-        type='text'
-        name='noteTitle'
-        placeholder='Title'
-        onChangeHandler={noteDataHandler}
-        value={currentNote.data.title}
-        className='main-input-form-title'
+    <StyledCreateNoteDetail className={className}>
+      <InputFields
+        currentNote={currentNote}
+        noteDataHandler={noteDataHandler}
+        tagOptions={dummyOptions}
       />
-      <RichTextInput
-        maxHeight={400}
-        minHeight={200}
-        autoFocus={false}
-        name='noteDescription'
-        onChange={noteDataHandler}
-        placeholder='Note description'
+      <PrimaryButton
+        onClick={() => {
+          if (currentNote.isAllRequiredDataAvailable) {
+            onAddHandler();
+            navigate.goBack();
+          }
+        }}
+        className="create-note-submit"
+        label='Add'
+        disabled={!currentNote.isAllRequiredDataAvailable}
       />
-      <Select
-        isCreatable
-        name='noteTags'
-        options={dummyOptions}
-        onChange={noteDataHandler}
-        values={currentNote.data.tags}
-        searchPlaceholder='Search tags'
-      />
-      <ColorPicker name='noteColor' onChange={noteDataHandler} />
     </StyledCreateNoteDetail>
   );
 };

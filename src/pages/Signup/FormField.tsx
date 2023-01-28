@@ -21,16 +21,18 @@ const FormField = ({
   const passwordRules = useCallback(() => {
     return <PasswordRules password={formValues.password} />;
   }, [formValues.password]);
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     formValues.fieldsCheck["name"].isValid &&
-            formValues.fieldsCheck["email"].isValid &&
-            formValues.fieldsCheck["confirmPassword"].isValid &&
-            handleUserCreation();
-  }, [  formValues.fieldsCheck["name"].isValid,
-  formValues.fieldsCheck["email"].isValid ,
-  formValues.fieldsCheck["confirmPassword"].isValid])
-  
+      formValues.fieldsCheck["email"].isValid &&
+      formValues.fieldsCheck["confirmPassword"].isValid &&
+      handleUserCreation();
+  }, [
+    formValues.fieldsCheck["name"].isValid,
+    formValues.fieldsCheck["email"].isValid,
+    formValues.fieldsCheck["confirmPassword"].isValid,
+  ]);
+
   return (
     <StyledFormFieldWrapper>
       <Input
@@ -70,9 +72,12 @@ const FormField = ({
           name="password"
           label="Password"
           value={formValues.password}
+          showPassword
           placeholder="password"
           onFocus={() => setPasswordFocused(true)}
-          onBlur={()=>{setPasswordFocused(false)}}
+          onBlur={() => {
+            setPasswordFocused(false);
+          }}
           onChangeHandler={({ password }: { password: string }) => {
             onChangeHandler({ type: "password", payload: password });
           }}

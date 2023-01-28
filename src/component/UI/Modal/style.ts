@@ -22,7 +22,7 @@ export const StyledModal = styled.div<{
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 999;
+  
 
   .modal-mask-overlay {
     position: absolute;
@@ -102,7 +102,7 @@ export const StyledModal = styled.div<{
         .modal-body {
           flex: 1;
           max-height: unset;
-          min-height: calc(100vh - 130px);
+          /* min-height: calc(100vh - 130px); */
         }
       }
     }

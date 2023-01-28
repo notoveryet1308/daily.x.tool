@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledMovableWrapper = styled.div`
-  position: relative;
+  position: absolute;
 
   .move-icon-wrapper {
     position: absolute;

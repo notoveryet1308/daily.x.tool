@@ -1,15 +1,17 @@
-import { StaticColors } from '../theme/constants';
-import { currentNoteDataType } from './types';
+import { StaticColors } from "../theme/constants";
+import { currentNoteDataType } from "./types";
 
 export const currentNoteInitialValue: currentNoteDataType = {
   data: {
-    id: '', //not-user dependent
+    id: "", //not-user dependent
     tags: [],
-    title: '',
-    colorHex: StaticColors[0],
-    description: '',
+    title: "",
+    hexCode: StaticColors[0],
+    description: "",
     isPinned: false, //not-user dependent
-    createdOn: 0, //not-user dependent
+    createdOn: Date.now(), //not-user dependent
+    updatedOn: Date.now(),
   },
   isAllRequiredDataAvailable: false,
+  isUpdated: false,
 };

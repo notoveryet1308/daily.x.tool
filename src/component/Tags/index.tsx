@@ -6,14 +6,14 @@ const Tags = ({
   id,
   value,
   label,
-  colorHex = '#293970',
+  hexCode = '#293970',
   isClearable = false,
   isClickable = false,
   onClick,
 }: {
   id: string;
   value: string;
-  colorHex?: string;
+  hexCode?: string;
   isClearable?: boolean;
   onClick?: Function;
   label?: string;
@@ -26,7 +26,7 @@ const Tags = ({
   };
   return (
     <StyledTag
-      colorHex={colorHex}
+      hexCode={hexCode}
       title={value}
       onClick={onTagClick}
       isClearable={isClearable || isClickable}

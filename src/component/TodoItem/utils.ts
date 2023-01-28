@@ -1,6 +1,6 @@
-import dayjs from "dayjs";
+import dayjs from 'dayjs';
 
-import { CreateTodoValueType, DispatchType } from "./types";
+import { CreateTodoValueType, DispatchType } from './types';
 
 export const initialValue: CreateTodoValueType = {
   duration: {
@@ -9,10 +9,10 @@ export const initialValue: CreateTodoValueType = {
     isPresent: false,
   },
   description: {
-    value: "",
+    value: '',
     isRequired: true,
     isPresent: null,
-    errorMessage: "This field is required.",
+    errorMessage: 'This field is required.',
   },
 };
 
@@ -22,20 +22,18 @@ export const reducer = (
 ): CreateTodoValueType => {
   const { type, payload } = action;
   const { duration, description } = state;
-  if (type === "set-description" && typeof payload === "string") {
+  if (type === 'set-description' && typeof payload === 'string') {
     return {
       ...state,
       description: {
         ...description,
         value: payload,
-        isPresent: description["isPresent"] !== null ? !!payload : null,
+        isPresent: description['isPresent'] !== null ? !!payload : null,
       },
     };
   }
 
-  if (type === "set-duration" && typeof payload === "number") {
-
-   
+  if (type === 'set-duration' && typeof payload === 'number') {
     return {
       ...state,
       duration: {
@@ -46,8 +44,7 @@ export const reducer = (
     };
   }
 
-  if (type === "filed-validation") {
-
+  if (type === 'filed-validation') {
     return {
       ...state,
       description: {
@@ -57,7 +54,7 @@ export const reducer = (
     };
   }
 
-  if (type === "reset") {
+  if (type === 'reset') {
     return initialValue;
   }
 
@@ -68,14 +65,12 @@ export const getDateFormat = (timestamp: number): string => {
   const createdDate = dayjs(timestamp);
   const dateNow = dayjs(Date.now());
 
-  const diff = dateNow.diff(createdDate, "d");
+  const diff = dateNow.diff(createdDate, 'd');
 
-  console.log(diff)
-
-  let dateFormat = "";
+  let dateFormat = '';
 
   if (diff === 0) {
-    dateFormat = "Added today";
+    dateFormat = 'Added today';
   } else if (diff < 7) {
     dateFormat = `Added ${diff} day ago`;
   } else if (diff >= 7 && diff < 30) {
@@ -86,21 +81,28 @@ export const getDateFormat = (timestamp: number): string => {
   return dateFormat;
 };
 
-export const isAddedToday = (timestamp: number): boolean=>{
+export const isAddedToday = (timestamp: number): boolean => {
   const createdDate = dayjs(timestamp);
   const dateNow = dayjs(Date.now());
 
-  const diff = dateNow.diff(createdDate, "d");
+  const diff = dateNow.diff(createdDate, 'd');
   return diff === 0 ? true : false;
-}
+};
 
-export const shouldShowInToday= ({createdOn, duration = 0, isCompleted}:{createdOn: number; duration: number | null; isCompleted: boolean}): boolean=>{
-    const addedToday = isAddedToday(createdOn);
+export const shouldShowInToday = ({
+  createdOn,
+  duration = 0,
+  isCompleted,
+}: {
+  createdOn: number;
+  duration: number | null;
+  isCompleted: boolean;
+}): boolean => {
+  const addedToday = isAddedToday(createdOn);
 
-    if(duration){
-      return true
-    }
+  if (duration) {
+    return true;
+  }
 
-    return addedToday;
-
-}
+  return addedToday;
+};

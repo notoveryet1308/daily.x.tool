@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledColorPicker = styled.div`
-  gap: 4px;
+  gap: 8px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -11,6 +11,7 @@ export const StyledColorPicker = styled.div`
 
   .color-picker-content {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 8px;
   }
@@ -30,7 +31,7 @@ export const StyledColorPicker = styled.div`
 `;
 
 export const StyledColorBox = styled.div<{
-  colorHex: string;
+  hexCode: string;
   isSelected: boolean;
 }>`
   width: 32px;
@@ -43,13 +44,13 @@ export const StyledColorBox = styled.div<{
   opacity: ${({ isSelected }) => (isSelected ? 1 : 0.8)};
   background-color: ${({ theme }) => theme.colors.primaryBgColor};
   border: 2px solid
-    ${({ colorHex, isSelected }) => (isSelected ? colorHex : 'transparent')};
+    ${({ hexCode, isSelected }) => (isSelected ? hexCode : 'transparent')};
 
   .color-box-select {
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    background-color: ${({ colorHex }) => colorHex};
+    background-color: ${({ hexCode }) => hexCode};
   }
 `;
 

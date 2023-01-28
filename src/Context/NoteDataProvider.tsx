@@ -1,11 +1,15 @@
 import React, { createContext, useContext, useReducer } from 'react';
 import { noteReducer } from './reducers';
-import { InitialValueType, NoteContextDataType } from './types';
+import { InitialNoteValueType, NoteContextDataType } from './types';
 import { currentNoteInitialValue } from './initialValues';
 
-const initialValues: InitialValueType = {
+const localStoredNotes = localStorage.getItem('local-notes');
+const noteData = localStoredNotes ? JSON.parse(localStoredNotes) : [];
+
+const initialValues: InitialNoteValueType = {
   currentNote: currentNoteInitialValue,
-  noteCollection: [],
+  noteCollection: noteData,
+  isEditing: false,
 };
 
 export const NoteContext = createContext<NoteContextDataType>(

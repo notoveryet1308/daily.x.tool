@@ -7,8 +7,14 @@ import { useCreateTodoMutation } from "../gql-query/create";
 import { useCreateTodoDataHandler } from "../hooks";
 import TodoActionCommon from "./ActionCommon";
 
-const CreateTodo = ({className, viewContainerID}:{ className: string; viewContainerID: string}) => {
-  const [screenWidth] = useScreenWidth()
+const CreateTodo = ({
+  className,
+  viewContainerID,
+}: {
+  className: string;
+  viewContainerID: string;
+}) => {
+  const [screenWidth] = useScreenWidth();
   const userLogged = isUserAuthenticated();
   const { addToTodoCollection, todoCollectionData } =
     useTodoCollectionContext();
@@ -40,9 +46,10 @@ const CreateTodo = ({className, viewContainerID}:{ className: string; viewContai
           ]);
 
       dispatch({ type: "reset", payload: "" });
-      screenWidth > breakpoints.LARGE_MOBILE && setTimeout(()=>{
-        ScrollInView(viewContainerID, 'end')
-      },0)
+      screenWidth > breakpoints.LARGE_MOBILE &&
+        setTimeout(() => {
+          ScrollInView(viewContainerID, "end");
+        }, 0);
     }
   };
 

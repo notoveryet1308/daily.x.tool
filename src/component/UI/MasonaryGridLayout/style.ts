@@ -5,7 +5,7 @@ export const StyledMasonryGridWrapper = styled.div<{ minWidth: number | null }>`
   grid-gap: 20px;
   grid-template-columns: repeat(
     auto-fit,
-    minmax(${({ minWidth }) => `${minWidth}px` || '300px'}, 1fr)
+    minmax(${({ minWidth }) => `${minWidth}px` || '400px'}, 1fr)
   );
   grid-auto-rows: 5px;
 

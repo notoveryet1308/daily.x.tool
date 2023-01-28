@@ -9,6 +9,8 @@ import { GlobalStyle, StyledMainWrapper } from "./style";
 import Sprint from "./pages/Sprint";
 import Home from "./pages/Home";
 import Notes from "./pages/Notes";
+import CreateNote from "./pages/Notes/CreateNote";
+
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 
@@ -44,6 +46,7 @@ function App() {
           {/* <Route path="/all-today" component={Today} exact /> */}
           <Route path="/sprint" component={Sprint} exact />
           <Route path="/notes" component={Notes} exact />
+          <Route path="/notes/create" component={CreateNote} exact />
           <Route path="/login" component={Login} exact />
           <Route path="/sign-up" component={Signup} exact />
         </Switch>
