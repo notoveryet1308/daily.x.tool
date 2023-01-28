@@ -1,8 +1,11 @@
 import { currentNoteDataType, tagType } from "../../Context/types";
+import { isUserAuthenticated } from "../../utils";
 import ColorPicker from "../UI/ColorPicker";
 import { Input } from "../UI/Input";
+import Loader from "../UI/Loader";
 import RichTextInput from "../UI/RichTextEditor";
 import Select from "../UI/Select";
+import { useCreateTag, useGetTags } from "./gql-query";
 
 import { StyledNoteInputField } from "./style";
 
@@ -15,6 +18,9 @@ const InputFields = ({
   currentNote: currentNoteDataType;
   tagOptions: tagType[];
 }) => {
+  const { handleCreatetag } = useCreateTag();
+  const tagQuery = useGetTags();
+
   return (
     <StyledNoteInputField>
       <div className="main-note-inputs">
@@ -37,14 +43,24 @@ const InputFields = ({
           value={currentNote.data.description}
         />
       </div>
-      <Select
-        isCreatable
-        name="noteTags"
-        options={tagOptions}
-        onChange={noteDataHandler}
-        values={currentNote.data.tags}
-        searchPlaceholder="Search tags"
-      />
+      {isUserAuthenticated() && tagQuery.loading ? (
+        <Loader />
+      ) : (
+        <Select
+          isCreatable
+          name="noteTags"
+          options={tagQuery?.data?.getTag || tagOptions}
+          onChange={noteDataHandler}
+          values={currentNote.data.tags}
+          searchPlaceholder="Search tags"
+          onCreation={handleCreatetag}
+          creationQueryState={{
+            loading: tagQuery.loading,
+            error: `${tagQuery.error}`,
+          }}
+        />
+      )}
+
       <ColorPicker name="noteColor" onChange={noteDataHandler} />
     </StyledNoteInputField>
   );

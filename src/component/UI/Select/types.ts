@@ -1,19 +1,23 @@
 export type optionType = {
-    label: string;
-    value: string;
-    id: string;
+  label: string;
+  value: string;
+  id: string;
+};
+
+export type selectProps = {
+  name: string;
+  onMenuOpen?: Function;
+  options: optionType[];
+  values: optionType[];
+  onChange: Function;
+  isClearable?: boolean;
+  isSearchable?: boolean;
+  isCreatable?: boolean;
+  btnLabel?: string;
+  searchPlaceholder?: string;
+  onCreation?: Function;
+  creationQueryState?: {
+    loading: boolean;
+    error: string;
   };
-  
-  export type selectProps = {
-    name: string;
-    onMenuOpen?: Function;
-    options: optionType[];
-    values: optionType[];
-    onChange: Function;
-    isClearable?: boolean;
-    isSearchable?: boolean;
-    isCreatable?: boolean;
-    btnLabel?: string;
-    searchPlaceholder?: string;
-  };
-  
+};

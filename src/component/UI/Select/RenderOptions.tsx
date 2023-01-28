@@ -51,7 +51,7 @@ const RenderOptions = ({
       )}
       {data.length <= 0 && showMenuMessage && !searchInput && (
         <span className='empty-menu-option-message'>
-          No more option here...
+          No more here but you can create new option.
         </span>
       )}
       {isCreatable && searchInput && (
