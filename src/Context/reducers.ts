@@ -138,7 +138,6 @@ export const noteReducer = (
     return state;
   }
   if (type === 'add-to-note-collection' && Array.isArray(payload)) {
-    console.log({ reducer: payload });
     localStorage.setItem('local-notes', JSON.stringify(payload));
     return {
       ...state,

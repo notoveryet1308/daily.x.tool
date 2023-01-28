@@ -1,9 +1,9 @@
-import CreateNoteDetails from '../../component/CreateNoteDetail';
-import { StyledCreateNotePageWrapper } from './style';
-import { useNoteData } from './hook';
-import { PrimaryButton } from '../../component/UI/Button';
-import NoteView from '../../component/Cards/NoteView';
-import Back from '../../component/UI/Back';
+import CreateNoteDetails from "../../component/CreateNoteDetail";
+import { StyledCreateNotePageWrapper } from "./style";
+import { useNoteData } from "./hook";
+import { nanoid } from "nanoid";
+import NoteView from "../../component/Cards/NoteView";
+import Back from "../../component/UI/Back";
 
 const CreateNote = () => {
   const {
@@ -17,29 +17,29 @@ const CreateNote = () => {
   const onClickHandler = () => {
     if (currentNote.isAllRequiredDataAvailable) {
       userLogged
-        ? handleCreateNote(currentNote.data)
+        ? handleCreateNote({ ...currentNote.data, id: nanoid() })
         : noteDispatch({
-            type: 'add-to-note-collection',
-            payload: [currentNote.data, ...noteCollection],
+            type: "add-to-note-collection",
+            payload: [{ ...currentNote.data, id: nanoid() }, ...noteCollection],
           });
 
-      noteDispatch({ type: 'reset-current-note', payload: '' });
+      noteDispatch({ type: "reset-current-note", payload: "" });
     }
   };
   return (
     <StyledCreateNotePageWrapper>
-      <div className='main-content-wrapper'>
+      <div className="main-content-wrapper">
         <Back />
-        <div className='main-content'>
-          <Back isMobile/>
-          <div className='create-note-fields'>
+        <div className="main-content">
+          <Back isMobile />
+          <div className="create-note-fields">
             <CreateNoteDetails
-              className='create-note-inputs'
+              className="create-note-inputs"
               onAddHandler={onClickHandler}
             />
           </div>
-          <div className='create-note-preview'>
-            <NoteView {...currentNote.data} className='create-note' isPreview />
+          <div className="create-note-preview">
+            <NoteView {...currentNote.data} className="create-note" isPreview />
           </div>
         </div>
       </div>
