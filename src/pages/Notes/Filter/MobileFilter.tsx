@@ -51,9 +51,9 @@ const MobileFilter = () => {
           placement="bottom"
           open={drawerOpen}
           onClose={onDrawerClose}
+          height="auto"
         >
           {filterType && filterContent[filterType].comp}
-          <PrimaryButton label="Apply" onClick={onDrawerClose} />
         </StyledMobileDrawerNoteFilter>
       )}
     </StyledMobileFilter>
