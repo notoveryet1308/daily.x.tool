@@ -1,5 +1,5 @@
 import { StaticColors } from "../theme/constants";
-import { currentNoteDataType } from "./types";
+import { currentNoteDataType, NoteFilterDataType } from "./types";
 
 export const currentNoteInitialValue: currentNoteDataType = {
   data: {
@@ -14,4 +14,9 @@ export const currentNoteInitialValue: currentNoteDataType = {
   },
   isAllRequiredDataAvailable: false,
   isUpdated: false,
+};
+
+export const NoteFilterInitialData: NoteFilterDataType = {
+  colors: [],
+  noteTags: [],
 };

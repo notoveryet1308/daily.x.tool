@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { CaretDown, CaretUp, ArrowsDownUp } from "phosphor-react";
 import { StyledDropdownShell } from "./style";
 
@@ -14,6 +14,7 @@ export type DropdownShellPropType = {
   contentZIndex?: number;
   hideContent?: boolean;
   name?: string;
+  isContentVisible?: boolean;
 };
 
 const DropdownShell = ({
@@ -28,13 +29,19 @@ const DropdownShell = ({
   hideContent = false,
   onDropdownBtnClick,
   name,
+  isContentVisible = false,
 }: DropdownShellPropType) => {
-  const [contentVisible, setContentVisible] = useState(false);
+  const [contentVisible, setContentVisible] = useState(isContentVisible);
 
   const handleToggelDropdown = () => {
     setContentVisible(!contentVisible);
     onDropdownBtnClick && onDropdownBtnClick({ name: name || "" });
   };
+
+  useEffect(() => {
+    setContentVisible(isContentVisible);
+  }, [isContentVisible]);
+
   return (
     <StyledDropdownShell
       className={`dd-shell ${className}`}
@@ -46,7 +53,9 @@ const DropdownShell = ({
           <span className="dd-shell-custom-icon">{btnIcon}</span>
           <span className="dd-main-btn-label">
             {btnLabel}
-            {multi ? selectedValueCount || "" : selectedValue || ""}
+            {multi
+              ? (!!selectedValueCount && ` ${selectedValueCount} value`) || ""
+              : selectedValue || ""}
           </span>
         </div>
         {!contentVisible ? (

@@ -1,25 +1,28 @@
-import { nanoid } from 'nanoid';
-import { currentNoteInitialValue } from './initialValues';
+import { nanoid } from "nanoid";
+import {
+  currentNoteInitialValue,
+  NoteFilterInitialData,
+} from "./initialValues";
 import {
   InitialNoteValueType,
   DispatchActionType,
   NoteDataType,
-} from './types';
+} from "./types";
 
 const isAllRequiredFieldsAvailable = ({
   type,
   values,
 }: {
-  type: 'or' | 'and';
+  type: "or" | "and";
   values: boolean[];
 }): boolean => {
   let isAvailable = false;
 
-  if (type === 'or' && values.includes(true)) {
+  if (type === "or" && values.includes(true)) {
     isAvailable = true;
   }
 
-  if (type === 'and' && !values.includes(false)) {
+  if (type === "and" && !values.includes(false)) {
     isAvailable = true;
   }
 
@@ -48,7 +51,7 @@ export const noteReducer = (
   const { currentNote } = state;
   const { data } = currentNote;
 
-  if (type === 'set-current-note-title' && typeof payload === 'string') {
+  if (type === "set-current-note-title" && typeof payload === "string") {
     return {
       ...state,
       currentNote: {
@@ -58,14 +61,14 @@ export const noteReducer = (
           title: payload,
         },
         isAllRequiredDataAvailable: isAllRequiredFieldsAvailable({
-          type: 'or',
+          type: "or",
           values: [!!payload, !!data.description],
         }),
       },
     };
   }
 
-  if (type === 'set-current-note-description' && typeof payload === 'string') {
+  if (type === "set-current-note-description" && typeof payload === "string") {
     return {
       ...state,
       currentNote: {
@@ -75,52 +78,52 @@ export const noteReducer = (
           description: payload,
         },
         isAllRequiredDataAvailable: isAllRequiredFieldsAvailable({
-          type: 'or',
+          type: "or",
           values: [!!payload, !!data.title],
         }),
       },
     };
   }
 
-  if (type === 'set-current-note-tags' && Array.isArray(payload)) {
+  if (type === "set-current-note-tags" && Array.isArray(payload)) {
     return {
       ...state,
       currentNote: {
         ...currentNote,
         data: { ...data, tags: payload },
         isAllRequiredDataAvailable: isAllRequiredFieldsAvailable({
-          type: 'or',
+          type: "or",
           values: [!!data.title, !!data.description],
         }),
       },
     };
   }
 
-  if (type === 'set-current-note-color-hex' && typeof payload === 'string') {
+  if (type === "set-current-note-color-hex" && typeof payload === "string") {
     return {
       ...state,
       currentNote: {
         ...currentNote,
         data: { ...data, hexCode: payload },
         isAllRequiredDataAvailable: isAllRequiredFieldsAvailable({
-          type: 'or',
+          type: "or",
           values: [!!data.title, !!data.description],
         }),
       },
     };
   }
 
-  if(type === 'set-note-editing-status' && typeof payload === 'boolean'){
-    return {...state, isEditing: payload}
+  if (type === "set-note-editing-status" && typeof payload === "boolean") {
+    return { ...state, isEditing: payload };
   }
 
-  if (type === 'reset-current-note') {
+  if (type === "reset-current-note") {
     return { ...state, currentNote: { ...currentNoteInitialValue } };
   }
   if (
-    type === 'update-isPinned-status' &&
+    type === "update-isPinned-status" &&
     !Array.isArray(payload) &&
-    typeof payload === 'object'
+    typeof payload === "object"
   ) {
     const { id, isPinned } = payload;
     const findIndex = state.noteCollection.findIndex((d) => d.id === id);
@@ -137,15 +140,15 @@ export const noteReducer = (
 
     return state;
   }
-  if (type === 'add-to-note-collection' && Array.isArray(payload)) {
-    localStorage.setItem('local-notes', JSON.stringify(payload));
+  if (type === "add-to-note-collection" && Array.isArray(payload)) {
+    localStorage.setItem("local-notes", JSON.stringify(payload));
     return {
       ...state,
       noteCollection: sortNotesByPinnedStatus([...payload]),
     };
   }
 
-  if (type === 'update-current-note') {
+  if (type === "update-current-note") {
     return {
       ...state,
       currentNote: {
@@ -154,6 +157,20 @@ export const noteReducer = (
         isAllRequiredDataAvailable: true,
         isUpdated: true,
       },
+    };
+  }
+
+  if (type === "update-note-filter") {
+    return {
+      ...state,
+      noteFilter: payload,
+    };
+  }
+
+  if (type === "reset-note-filter") {
+    return {
+      ...state,
+      noteFilter: NoteFilterInitialData,
     };
   }
 

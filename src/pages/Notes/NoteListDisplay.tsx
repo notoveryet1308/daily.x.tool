@@ -5,6 +5,38 @@ import { NoteDataType } from "../../Context/types";
 import no_data_img from "../../assets/no_data.svg";
 import NoDataState from "../../component/UI/NoDataState";
 import Loader from "../../component/UI/Loader";
+import { useNoteContext } from "../../Context/NoteDataProvider";
+import { NoteFilterDataType } from "../../Context/types";
+
+const filterData = (
+  data: NoteDataType[],
+  { colors, noteTags }: NoteFilterDataType
+): NoteDataType[] => {
+  const filteredNote = data
+    .filter((d) => {
+      if (!colors.length) {
+        return d;
+      }
+      if (colors.includes(d.hexCode)) {
+        return d;
+      }
+    })
+    .filter((d) => {
+      if (!noteTags.length) {
+        return d;
+      }
+      const availableTagIds = d.tags.map((d) => d.id);
+      const filterTagIds = noteTags.map((d) => d.id);
+      if (
+        noteTags.length > 0 &&
+        filterTagIds.some((id) => availableTagIds.includes(id))
+      ) {
+        return d;
+      }
+    });
+
+  return filteredNote;
+};
 
 const NoteListDisplay = ({
   data,
@@ -13,6 +45,7 @@ const NoteListDisplay = ({
   data: NoteDataType[] | [];
   queryState: { isLoading: Boolean; error?: string };
 }) => {
+  const { noteFilter } = useNoteContext();
   if (queryState.isLoading) {
     return <Loader />;
   }
@@ -25,10 +58,21 @@ const NoteListDisplay = ({
       />
     );
   }
+
+  if (data.length > 0 && !filterData(data, noteFilter).length) {
+    console.log("rrr");
+    return (
+      <NoDataState
+        img={no_data_img}
+        message="No notes found with applied filers."
+        className="notes-empty-state"
+      />
+    );
+  }
   return (
     <MasonryGridLayout minWidth={400}>
-      {data.length &&
-        data.map((d) => (
+      {data.length > 0 &&
+        filterData(data, noteFilter).map((d) => (
           <div className="masonry-brick" key={d.id}>
             <NoteView {...d} className="masonry-content" />
           </div>

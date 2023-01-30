@@ -5,10 +5,11 @@ import { StyledColorTag } from "./style";
 type ColorTagPropType = {
   hexCode: string;
   onClick: Function;
+  selected?: boolean;
 };
 
-const ColorTag = ({ hexCode, onClick }: ColorTagPropType) => {
-  const [isSelected, setSelected] = useState(false);
+const ColorTag = ({ hexCode, onClick, selected = false }: ColorTagPropType) => {
+  const [isSelected, setSelected] = useState(selected);
 
   const handleOnClick = () => {
     setSelected(!isSelected);

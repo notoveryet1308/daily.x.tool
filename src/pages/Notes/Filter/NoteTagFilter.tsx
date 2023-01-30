@@ -1,29 +1,28 @@
 import { useGetTags } from "../../../component/CreateNoteDetail/gql-query";
-
+import { useNoteContext } from "../../../Context/NoteDataProvider";
 import Select from "../../../component/UI/Select";
 import Loader from "../../../component/UI/Loader";
 import { isUserAuthenticated } from "../../../utils";
 
 import { StyledNoteTagFilter } from "./style";
 
-const NoteTagFilter = () => {
+const NoteTagFilter = ({ onDataChange }: { onDataChange: Function }) => {
+  const { noteFilter } = useNoteContext();
   const tagQuery = useGetTags();
   const logged = isUserAuthenticated();
-
-  console.log({ logged });
 
   return (
     <StyledNoteTagFilter>
       <span className="note-tag-label"> Tag </span>
-      {logged ? (
-        tagQuery.loading && <Loader />
+      {logged && tagQuery.loading ? (
+        <Loader />
       ) : (
         <Select
-          name="noteTag"
+          name="noteTags"
           options={tagQuery.data?.getTag}
           btnLabel="Choose tag"
-          values={[]}
-          onChange={() => {}}
+          values={noteFilter.noteTags}
+          onChange={onDataChange}
           isClearable
           isSearchable={false}
           creationQueryState={{

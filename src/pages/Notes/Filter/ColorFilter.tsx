@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ColorTag } from "../../../component/Tags";
 import { StaticColors } from "../../../theme/constants";
 import { StyledColorFilter } from "./style";
 
-const ColorFilter = () => {
-  const [selectedColors, setSelectedColor] = useState<string[]>([]);
+import { useNoteContext } from "../../../Context/NoteDataProvider";
+
+const ColorFilter = ({ onDataChange }: { onDataChange: Function }) => {
+  const { noteFilter } = useNoteContext();
+  const [selectedColors, setSelectedColor] = useState<string[]>(
+    noteFilter.colors
+  );
 
   const handleColorSelection = ({
     hexCode,
@@ -21,12 +26,21 @@ const ColorFilter = () => {
     }
   };
 
+  useEffect(() => {
+    onDataChange({ colors: selectedColors });
+  }, [selectedColors]);
+
   return (
     <StyledColorFilter>
       <span className="color-label">Color</span>
       <div className="color-wrapper">
         {StaticColors.map((d, id) => (
-          <ColorTag key={id} hexCode={d} onClick={handleColorSelection} />
+          <ColorTag
+            key={id}
+            hexCode={d}
+            onClick={handleColorSelection}
+            selected={noteFilter.colors.includes(d)}
+          />
         ))}
       </div>
     </StyledColorFilter>

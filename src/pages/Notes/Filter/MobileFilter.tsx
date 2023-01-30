@@ -20,6 +20,12 @@ const MobileFilter = () => {
     setFilterType(name);
     setDrawerOpen(true);
   };
+
+  const onDrawerClose = () => {
+    setDrawerOpen(false);
+    setFilterType(null);
+  };
+
   return (
     <StyledMobileFilter>
       <DropdownShell
@@ -28,6 +34,7 @@ const MobileFilter = () => {
         btnIcon={<ArrowsDownUp />}
         hideContent
         onDropdownBtnClick={handleFilterClick}
+        isContentVisible={filterType === "sort"}
       />
       <DropdownShell
         name="filter"
@@ -36,16 +43,17 @@ const MobileFilter = () => {
         multi={false}
         hideContent
         onDropdownBtnClick={handleFilterClick}
+        isContentVisible={filterType === "filter"}
       />
       {drawerOpen && (
         <StyledMobileDrawerNoteFilter
           title={filterType && filterContent[filterType].label}
           placement="bottom"
           open={drawerOpen}
-          onClose={() => setDrawerOpen(false)}
+          onClose={onDrawerClose}
         >
           {filterType && filterContent[filterType].comp}
-          <PrimaryButton label="Apply" onClick={() => setDrawerOpen(false)} />
+          <PrimaryButton label="Apply" onClick={onDrawerClose} />
         </StyledMobileDrawerNoteFilter>
       )}
     </StyledMobileFilter>
