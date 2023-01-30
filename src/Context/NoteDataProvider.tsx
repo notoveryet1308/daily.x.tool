@@ -1,14 +1,18 @@
-import React, { createContext, useContext, useReducer } from 'react';
-import { noteReducer } from './reducers';
-import { InitialNoteValueType, NoteContextDataType } from './types';
-import { currentNoteInitialValue } from './initialValues';
+import React, { createContext, useContext, useReducer } from "react";
+import { noteReducer } from "./reducers";
+import { InitialNoteValueType, NoteContextDataType } from "./types";
+import {
+  currentNoteInitialValue,
+  NoteFilterInitialData,
+} from "./initialValues";
 
-const localStoredNotes = localStorage.getItem('local-notes');
+const localStoredNotes = localStorage.getItem("local-notes");
 const noteData = localStoredNotes ? JSON.parse(localStoredNotes) : [];
 
 const initialValues: InitialNoteValueType = {
   currentNote: currentNoteInitialValue,
   noteCollection: noteData,
+  noteFilter: NoteFilterInitialData,
   isEditing: false,
 };
 

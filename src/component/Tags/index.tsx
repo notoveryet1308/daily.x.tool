@@ -1,12 +1,15 @@
-import React, { MouseEventHandler } from 'react';
-import { StyledTag } from './style';
-import { X } from 'phosphor-react';
+import React from "react";
+
+import ColorTag from "./ColorTag";
+
+import { StyledTag } from "./style";
+import { X } from "phosphor-react";
 
 const Tags = ({
   id,
   value,
   label,
-  hexCode = '#293970',
+  hexCode = "#293970",
   isClearable = false,
   isClickable = false,
   onClick,
@@ -32,9 +35,11 @@ const Tags = ({
       isClearable={isClearable || isClickable}
     >
       {label}
-      {isClearable ? <X className='close-icon' /> : ''}
+      {isClearable ? <X className="close-icon" /> : ""}
     </StyledTag>
   );
 };
 
 export default Tags;
+
+export { ColorTag };

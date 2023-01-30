@@ -5,7 +5,7 @@ export type userType = {
 };
 
 export type appDataType = {
-  themeMode: 'main' | 'dark';
+  themeMode: "main" | "dark";
   isUserAuthenticated: boolean;
   staticColors: string[];
   loggedInUserDetail: userType | null;
@@ -13,10 +13,10 @@ export type appDataType = {
 
 export type appDataAction = {
   type:
-    | 'change-themeMode'
-    | 'user-auth'
-    | 'set-more-static-colors'
-    | 'reset-auth';
+    | "change-themeMode"
+    | "user-auth"
+    | "set-more-static-colors"
+    | "reset-auth";
   payload: string | boolean | userType;
 };
 
@@ -66,20 +66,28 @@ export interface InitialNoteValueType {
   currentNote: currentNoteDataType;
   noteCollection: NoteDataType[] | [];
   isEditing: boolean;
+  noteFilter: NoteFilterDataType;
+}
+
+export interface NoteFilterDataType {
+  colors: string[] | [];
+  noteTags: tagType[] | [];
 }
 
 export type DispatchActionType = {
   type:
-    | 'set-current-note-title'
-    | 'set-current-note-tags'
-    | 'set-current-note-description'
-    | 'set-current-note-color-hex'
-    | 'set-current-note-auto-value'
-    | 'add-to-note-collection'
-    | 'update-isPinned-status'
-    | 'reset-current-note'
-    | 'update-current-note'
-    | 'set-note-editing-status'
+    | "set-current-note-title"
+    | "set-current-note-tags"
+    | "set-current-note-description"
+    | "set-current-note-color-hex"
+    | "set-current-note-auto-value"
+    | "add-to-note-collection"
+    | "update-isPinned-status"
+    | "reset-current-note"
+    | "update-current-note"
+    | "set-note-editing-status"
+    | "update-note-filter"
+    | "reset-note-filter";
   payload:
     | string
     | number
@@ -87,7 +95,8 @@ export type DispatchActionType = {
     | tagType[]
     | NoteDataType[]
     | NoteDataType
-    | { id: string; isPinned: boolean };
+    | { id: string; isPinned: boolean }
+    | NoteFilterDataType;
 };
 
 export interface NoteContextDataType extends InitialNoteValueType {

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StyledNotesPageWrapper = styled.main`
   width: 100%;
@@ -24,7 +24,7 @@ export const StyledNotesPageWrapper = styled.main`
     width: 100%;
     height: 100%;
     display: flex;
-    row-gap: 20px;
+    gap: 20px;
     position: relative;
     margin-bottom: 40px;
     flex-direction: column;
@@ -40,7 +40,7 @@ export const StyledNotesPageWrapper = styled.main`
 
     .note-filter {
       width: 100%;
-      height: 60px;
+      margin: 20px 0;
     }
 
     .note-list-wrapper {

@@ -5,6 +5,7 @@ import { CreateNavButton } from "../../component/UI/Button";
 import NoteListDisplay from "./NoteListDisplay";
 import { useNoteData } from "./hook";
 import MovableWrapper from "../../component/MovableWrapper";
+import NoteFilter from "./Filter/Index";
 
 export const Notes = () => {
   const { noteCollection, getNoteQuery, userLogged } = useNoteData();
@@ -13,7 +14,9 @@ export const Notes = () => {
     <StyledNotesPageWrapper>
       <div className="main-content-wrapper">
         <div className="main-content">
-          <div className="note-filter"></div>
+          <div className="note-filter">
+            <NoteFilter />
+          </div>
           <div className="note-list-wrapper">
             <NoteListDisplay
               data={
