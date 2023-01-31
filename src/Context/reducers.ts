@@ -50,6 +50,20 @@ export const noteReducer = (
   const { type, payload } = action;
   const { currentNote } = state;
   const { data } = currentNote;
+  
+  if(type === "update-note-search"){
+    return {
+      ...state,
+      noteSearch: payload
+    }
+  }
+  
+   if(type === "reset-note-search"){
+    return {
+      ...state,
+      noteSearch: ''
+    }
+  }
 
   if (type === "set-current-note-title" && typeof payload === "string") {
     return {
@@ -120,6 +134,7 @@ export const noteReducer = (
   if (type === "reset-current-note") {
     return { ...state, currentNote: { ...currentNoteInitialValue } };
   }
+  
   if (
     type === "update-isPinned-status" &&
     !Array.isArray(payload) &&

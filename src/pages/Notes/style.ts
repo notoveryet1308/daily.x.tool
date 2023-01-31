@@ -81,6 +81,16 @@ export const StyledNotesPageWrapper = styled.main`
         transform: unset;
         cursor: default;
       }
+
+      .mobile-note-search-btn {
+        width: 50px;
+        border-radius: 50%;
+        right: 16px;
+        transform: unset;
+        cursor: default;
+        bottom: 120px;
+        position: absolute;
+      }
     }
   }
 `;

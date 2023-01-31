@@ -6,6 +6,7 @@ import NoteListDisplay from "./NoteListDisplay";
 import { useNoteData } from "./hook";
 import MovableWrapper from "../../component/MovableWrapper";
 import NoteFilter from "./Filter/Index";
+import MobileSearch from "./Search/component/MobileSearch";
 
 export const Notes = () => {
   const { noteCollection, getNoteQuery, userLogged } = useNoteData();
@@ -40,6 +41,7 @@ export const Notes = () => {
               />
             )}
           </MovableWrapper>
+          <MobileSearch />
         </div>
       </div>
     </StyledNotesPageWrapper>

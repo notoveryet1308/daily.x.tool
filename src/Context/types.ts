@@ -67,6 +67,7 @@ export interface InitialNoteValueType {
   noteCollection: NoteDataType[] | [];
   isEditing: boolean;
   noteFilter: NoteFilterDataType;
+  noteSearch: string;
 }
 
 export interface NoteFilterDataType {
@@ -87,7 +88,9 @@ export type DispatchActionType = {
     | "update-current-note"
     | "set-note-editing-status"
     | "update-note-filter"
-    | "reset-note-filter";
+    | "reset-note-filter"
+    | "update-note-search"
+    | "reset-note-search";
   payload:
     | string
     | number

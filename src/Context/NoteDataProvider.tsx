@@ -13,6 +13,7 @@ const initialValues: InitialNoteValueType = {
   currentNote: currentNoteInitialValue,
   noteCollection: noteData,
   noteFilter: NoteFilterInitialData,
+  noteSearch:'',
   isEditing: false,
 };
 

@@ -1,20 +1,26 @@
 import { MagnifyingGlass } from "phosphor-react";
 import { Input } from "../../../../component/UI/Input";
+import { useNoteContext } from "../../../../Context/NoteDataProvider";
 
 import { StyledNoteSearch } from "./style";
 const NoteSearch = () => {
+  const { noteSearch, noteDispatch } = useNoteContext();
   return (
     <StyledNoteSearch>
       <Input
         type="text"
-        label="search"
         name="noteSearch"
-        onChangeHandler={() => {}}
+        onChangeHandler={({ noteSearch }: { noteSearch: string }) => {
+          noteDispatch({ type: "update-note-search", payload: noteSearch });
+        }}
         placeholder="Search.."
-        value=""
+        value={noteSearch}
         className="note-search"
       />
-      <MagnifyingGlass className="search-icon" />
+      <MagnifyingGlass
+        className="search-icon"
+        onClick={() => noteDispatch({ type: "reset-note-search", payload: "" })}
+      />
     </StyledNoteSearch>
   );
 };
