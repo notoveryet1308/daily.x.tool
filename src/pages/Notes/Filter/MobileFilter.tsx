@@ -7,6 +7,7 @@ import SortContent from "./SortContent";
 
 import { StyledMobileFilter, StyledMobileDrawerNoteFilter } from "./style";
 import { PrimaryButton } from "../../../component/UI/Button";
+import { useNoteContext } from "../../../Context/NoteDataProvider";
 
 const filterContent = {
   sort: { comp: <SortContent />, label: "Sort by" },
@@ -14,6 +15,7 @@ const filterContent = {
 };
 
 const MobileFilter = () => {
+  const { noteFilter } = useNoteContext();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [filterType, setFilterType] = useState<"sort" | "filter" | null>(null);
   const handleFilterClick = ({ name }: { name: "sort" | "filter" }) => {
@@ -40,10 +42,13 @@ const MobileFilter = () => {
         name="filter"
         btnLabel="Filter by"
         btnIcon={<Funnel />}
-        multi={false}
+        multi
         hideContent
         onDropdownBtnClick={handleFilterClick}
         isContentVisible={filterType === "filter"}
+        selectedValueCount={
+          noteFilter.colors.length + noteFilter.noteTags.length
+        }
       />
       {drawerOpen && (
         <StyledMobileDrawerNoteFilter
@@ -51,7 +56,7 @@ const MobileFilter = () => {
           placement="bottom"
           open={drawerOpen}
           onClose={onDrawerClose}
-          height="auto"
+          height="300px"
         >
           {filterType && filterContent[filterType].comp}
         </StyledMobileDrawerNoteFilter>

@@ -15,7 +15,9 @@ export const Notes = () => {
       <div className="main-content-wrapper">
         <div className="main-content">
           <div className="note-filter">
-            <NoteFilter />
+            {(userLogged
+              ? getNoteQuery.data?.getNote.length > 0
+              : noteCollection.length > 0) && <NoteFilter />}
           </div>
           <div className="note-list-wrapper">
             <NoteListDisplay
@@ -29,12 +31,14 @@ export const Notes = () => {
             />
           </div>
           <MovableWrapper className="create-note-btn-wrapper">
-            <CreateNavButton
-              label="Create"
-              className="create-note-btn"
-              icon={<Plus className="plus-icon" weight="fill" />}
-              to="/notes/create"
-            />
+            {!getNoteQuery.loading && (
+              <CreateNavButton
+                label="Create"
+                className="create-note-btn"
+                icon={<Plus className="plus-icon" weight="fill" />}
+                to="/notes/create"
+              />
+            )}
           </MovableWrapper>
         </div>
       </div>
