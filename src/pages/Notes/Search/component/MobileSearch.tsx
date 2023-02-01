@@ -1,12 +1,15 @@
 import { useState } from "react";
-import { CreateButton } from "../../../../component/UI/Button";
+import { SecondaryButton } from "../../../../component/UI/Button";
+
 import RDrawer from "../../../../component/UI/Drawer";
 import NoteSearch from "./NoteSearch";
 import { MagnifyingGlass } from "phosphor-react";
 import { useScreenWidth } from "../../../../hooks";
 import { breakpoints } from "../../../../theme/breakpoint";
+import { useNoteContext } from "../../../../Context/NoteDataProvider";
 
 const MobileSearch = () => {
+  const { noteSearch } = useNoteContext();
   const [screenWidth] = useScreenWidth();
   const [isOpen, setOpen] = useState(false);
   const toggelSearch = () => {
@@ -26,11 +29,12 @@ const MobileSearch = () => {
       >
         <NoteSearch />
       </RDrawer>
-      <CreateButton
+      <SecondaryButton
         className="mobile-note-search-btn"
         onClick={toggelSearch}
-        label="search"
         icon={<MagnifyingGlass className="note-search-icon mobile" />}
+        isRounded
+        isActive={!!noteSearch}
       />
     </>
   );

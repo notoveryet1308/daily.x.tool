@@ -38,9 +38,9 @@ export const StyledNotesPageWrapper = styled.main`
       transform: translate(-50%, -50%);
     }
 
-    .note-filter {
+    .note-filter-search {
       width: 100%;
-      margin: 20px 0;
+      margin-top: 20px;
     }
 
     .note-list-wrapper {
@@ -83,13 +83,13 @@ export const StyledNotesPageWrapper = styled.main`
       }
 
       .mobile-note-search-btn {
-        width: 50px;
-        border-radius: 50%;
-        right: 16px;
-        transform: unset;
-        cursor: default;
+        right: 0;
         bottom: 120px;
         position: absolute;
+
+        .note-search-icon {
+          font-size: 14px;
+        }
       }
     }
   }

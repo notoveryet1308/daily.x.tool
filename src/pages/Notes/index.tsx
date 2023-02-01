@@ -15,7 +15,7 @@ export const Notes = () => {
     <StyledNotesPageWrapper>
       <div className="main-content-wrapper">
         <div className="main-content">
-          <div className="note-filter">
+          <div className="note-filter-search">
             {(userLogged
               ? getNoteQuery.data?.getNote.length > 0
               : noteCollection.length > 0) && <NoteFilter />}
@@ -31,17 +31,19 @@ export const Notes = () => {
               }}
             />
           </div>
-          <MovableWrapper className="create-note-btn-wrapper">
-            {!getNoteQuery.loading && (
-              <CreateNavButton
-                label="Create"
-                className="create-note-btn"
-                icon={<Plus className="plus-icon" weight="fill" />}
-                to="/notes/create"
-              />
-            )}
-          </MovableWrapper>
-          <MobileSearch />
+          {!getNoteQuery.loading && (
+            <>
+              <MovableWrapper className="create-note-btn-wrapper">
+                <CreateNavButton
+                  label="Create"
+                  className="create-note-btn"
+                  icon={<Plus className="plus-icon" weight="fill" />}
+                  to="/notes/create"
+                />
+              </MovableWrapper>
+              <MobileSearch />
+            </>
+          )}
         </div>
       </div>
     </StyledNotesPageWrapper>
