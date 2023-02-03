@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyledBaseButton = styled.button<{ variation?: string }>`
+  position: relative;
   padding: 8px 16px;
   white-space: nowrap;
   border: none;
@@ -9,6 +10,26 @@ export const StyledBaseButton = styled.button<{ variation?: string }>`
   cursor: pointer;
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSize.medium};
+
+  .active {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: ${({ theme }) => theme.colors.successColor};
+    top: -1px;
+    right: 0;
+  }
+
+  &.rounded {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   &.primary-btn {
     background-color: ${({ theme }) => theme.colors.primaryColor};

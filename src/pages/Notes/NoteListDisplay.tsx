@@ -10,7 +10,8 @@ import { NoteFilterDataType } from "../../Context/types";
 
 const filterData = (
   data: NoteDataType[],
-  { colors, noteTags }: NoteFilterDataType
+  { colors, noteTags }: NoteFilterDataType,
+  searchValue: string
 ): NoteDataType[] => {
   const filteredNote = data
     .filter((d) => {
@@ -33,6 +34,19 @@ const filterData = (
       ) {
         return d;
       }
+    })
+    .filter((d) => {
+      if (!searchValue) {
+        return d;
+      }
+      if (
+        d.title.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()) ||
+        d.description
+          .toLocaleLowerCase()
+          .includes(searchValue.toLocaleLowerCase())
+      ) {
+        return d;
+      }
     });
 
   return filteredNote;
@@ -45,7 +59,7 @@ const NoteListDisplay = ({
   data: NoteDataType[] | [];
   queryState: { isLoading: Boolean; error?: string };
 }) => {
-  const { noteFilter } = useNoteContext();
+  const { noteFilter, noteSearch } = useNoteContext();
   if (queryState.isLoading) {
     return <Loader />;
   }
@@ -59,7 +73,7 @@ const NoteListDisplay = ({
     );
   }
 
-  if (data.length > 0 && !filterData(data, noteFilter).length) {
+  if (data.length > 0 && !filterData(data, noteFilter, noteSearch).length) {
     console.log("rrr");
     return (
       <NoDataState
@@ -72,7 +86,7 @@ const NoteListDisplay = ({
   return (
     <MasonryGridLayout minWidth={400}>
       {data.length > 0 &&
-        filterData(data, noteFilter).map((d) => (
+        filterData(data, noteFilter, noteSearch).map((d) => (
           <div className="masonry-brick" key={d.id}>
             <NoteView {...d} className="masonry-content" />
           </div>

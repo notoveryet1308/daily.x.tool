@@ -3,13 +3,16 @@ import { StyledBaseButton, StyledCreateBtn } from "./style";
 import { NavLink } from "react-router-dom";
 
 type ButtonProps = {
-  label: string | React.ReactNode;
+  label?: string | React.ReactNode;
   type?: "submit" | "reset" | "button" | undefined;
   onClick: Function;
   variant?: "primary" | "secondary" | "tertiary" | "dashed";
   disabled?: boolean;
   style?: React.CSSProperties;
   className?: string;
+  icon?: React.ReactNode;
+  isActive?: boolean;
+  isRounded?: boolean;
 };
 
 const BaseButton = ({
@@ -20,6 +23,9 @@ const BaseButton = ({
   disabled,
   style,
   className,
+  icon,
+  isActive = false,
+  isRounded = false,
 }: ButtonProps) => {
   return (
     <StyledBaseButton
@@ -28,9 +34,12 @@ const BaseButton = ({
       onClick={() => {
         onClick();
       }}
-      className={`${variant}-btn ${disabled && "disabled-btn"} ${className}`}
+      className={`${variant}-btn ${disabled && "disabled-btn"} ${className}  ${
+        isRounded && "rounded"
+      }`}
     >
-      {label}
+      {icon} {label}
+      {isActive && <span className="active"> </span>}
     </StyledBaseButton>
   );
 };
@@ -41,6 +50,7 @@ export const PrimaryButton = ({
   disabled,
   onClick,
   className,
+  ...rest
 }: ButtonProps) => {
   return (
     <BaseButton
@@ -50,6 +60,7 @@ export const PrimaryButton = ({
       disabled={disabled}
       onClick={onClick}
       className={className}
+      {...rest}
     />
   );
 };
@@ -60,6 +71,7 @@ export const SecondaryButton = ({
   disabled,
   onClick,
   className,
+  ...rest
 }: ButtonProps) => {
   return (
     <BaseButton
@@ -69,6 +81,7 @@ export const SecondaryButton = ({
       disabled={disabled}
       onClick={onClick}
       className={className}
+      {...rest}
     />
   );
 };
