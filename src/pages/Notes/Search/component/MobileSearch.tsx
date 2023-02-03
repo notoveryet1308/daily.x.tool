@@ -26,6 +26,7 @@ const MobileSearch = () => {
         title="Search"
         onClose={toggelSearch}
         height="180"
+        className="no-header-title"
       >
         <NoteSearch />
       </RDrawer>

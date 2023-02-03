@@ -26,4 +26,15 @@ export const StyledDrawer = styled(Drawer)`
     display: flex;
     flex-direction: column;
   }
+
+  &&.no-header-title {
+    .ant-drawer-header {
+      padding-top: 24px;
+      border-color: transparent;
+
+      .ant-drawer-title {
+        display: none;
+      }
+    }
+  }
 `;

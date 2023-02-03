@@ -31,7 +31,7 @@ export const Notes = () => {
               }}
             />
           </div>
-          {!getNoteQuery.loading && (
+          {(!userLogged || !getNoteQuery.loading) && (
             <>
               <MovableWrapper className="create-note-btn-wrapper">
                 <CreateNavButton

@@ -52,6 +52,19 @@ export const StyledMobileDrawerNoteFilter = styled(Drawer)`
 export const StyledNoteFilter = styled.div`
   width: 100%;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .reset-label {
+    color: ${({ theme }) => theme.colors.primaryTextColor};
+    font-size: 14px;
+    cursor: pointer;
+
+    &:hover {
+      color: ${({ theme }) => theme.colors.primaryColor};
+    }
+  }
 `;
 
 export const StyledDesktopFilter = styled.div`
@@ -61,6 +74,14 @@ export const StyledDesktopFilter = styled.div`
   display: flex;
   gap: 20px;
   align-items: center;
+  justify-content: space-between;
+
+  .dropdown-wrapper {
+    display: flex;
+    gap: 20px;
+    flex: 1;
+    max-width: 600px;
+  }
 `;
 
 export const StyledMobileFilter = styled.div`
