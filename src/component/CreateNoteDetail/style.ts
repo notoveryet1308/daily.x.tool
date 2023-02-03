@@ -9,6 +9,10 @@ export const StyledCreateNoteDetail = styled.div`
     margin: 16px 0;
   }
 
+  .main-input-form-title {
+    height: 50px;
+  }
+
   .create-note-submit {
     color: ${({ theme }) => theme.colors.white};
   }

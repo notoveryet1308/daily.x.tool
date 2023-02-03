@@ -41,7 +41,8 @@ export const Notes = () => {
                   to="/notes/create"
                 />
               </MovableWrapper>
-              <MobileSearch />
+              {getNoteQuery.data?.getNote.length > 0 ||
+                (noteCollection.length > 0 && <MobileSearch />)}
             </>
           )}
         </div>

@@ -122,6 +122,7 @@ export const StyledNoteEdit = styled.div`
     .main-input-form-title {
       border: none;
       background-color: ${({ theme }) => theme.colors.secondaryBgColor};
+      height: 50px;
     }
   }
 

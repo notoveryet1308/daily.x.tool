@@ -35,10 +35,17 @@ export const StyledDropdownShell = styled.div<{
       font-size: 14px;
       overflow-x: auto;
       scrollbar-width: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
 
       .dd-shell-custom-icon {
         font-size: 20px;
         display: flex;
+      }
+
+      .dd-main-btn-label {
+        white-space: nowrap;
       }
     }
 

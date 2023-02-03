@@ -4,13 +4,15 @@ import styled from "styled-components";
 export const StyledLoginPageWrapper = styled.main`
   width: 100%;
   position: relative;
-
+  overflow: hidden;
   .main-content {
+    position: relative;
     width: 400px;
     background-color: ${({ theme }) => theme.colors.secondaryBgColor};
     border-radius: 8px;
     margin: 0 auto;
     margin-top: 60px;
+    z-index: 2;
 
     .login-title {
       font-size: ${({ theme }) => theme.fontSize.large2};
