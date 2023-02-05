@@ -1,31 +1,29 @@
-import React from 'react';
+import AppTitle from "../UI/AppTitle";
+import ChangeTheme from "../Header/ChangeTheme";
+import MainNavigation from "../Header/MainNavigation";
+import { navData, authNavData } from "./data";
 
-import AppTitle from '../UI/AppTitle';
-import ChangeTheme from '../Header/ChangeTheme';
-import MainNavigation from '../Header/MainNavigation';
-import { navData, authNavData } from './data';
-
-import { StyledMobileHeader } from './style';
+import { StyledMobileHeader } from "./style";
 
 const MobileHeader = ({
   colorTheme,
-  handleColorTheme
+  handleColorTheme,
 }: {
   colorTheme: string;
   handleColorTheme: () => void;
 }) => {
   return (
     <StyledMobileHeader>
-      <div className='mobile-header-top'>
+      <div className="mobile-header-top">
         <AppTitle />
-        <MainNavigation data={authNavData} type='auth-data'>
+        <MainNavigation data={authNavData} type="auth-data">
           <ChangeTheme
             colorTheme={colorTheme}
             handleColorTheme={handleColorTheme}
           />
         </MainNavigation>
       </div>
-      <div className='mobile-header-bottom'>
+      <div className="mobile-header-bottom">
         <MainNavigation data={navData} />
       </div>
     </StyledMobileHeader>
