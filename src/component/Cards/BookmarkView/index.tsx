@@ -1,9 +1,19 @@
 import { useState } from "react";
 
-import { BookBookmark, PencilSimple, Trash, Link } from "phosphor-react";
+import {
+  BookBookmark,
+  PencilSimple,
+  Trash,
+  CheckCircle,
+  Link as LinkIcon,
+} from "phosphor-react";
 import { StyledBookmarViewCard } from "./style";
 import Tags from "../../Tags";
 import { tagType } from "../../../Context/types";
+import { useScreenWidth } from "../../../hooks";
+import { breakpoints } from "../../../theme/breakpoint";
+
+import { useLinkCopy } from "./hook";
 
 const dummyOGImg =
   "https://images.unsplash.com/photo-1675438321407-b458c45a71d4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80";
@@ -19,7 +29,7 @@ type BookmarkPropType = {
 
 const BookmarkViewCard = ({
   ogImg = dummyOGImg,
-  ogTitle = "Subscriptions in GraphQL with Apollo 2.0",
+  ogTitle = "Subscriptions in GraphQL with Apollo 2.0.",
   url = "https://medium.com/@itReverie/subscriptions-in-graphql-with-apollo-2-0-6db44401f009",
   tags = [
     { id: "x1", label: "medium", value: "medium" },
@@ -29,7 +39,10 @@ const BookmarkViewCard = ({
   domain = "medium.com",
   ogDescription = "In this article we will create a small application to create real time messages and update the favorite ones by using subscriptions with GraphQL, Apollo Server, Apollo Client and React.",
 }: BookmarkPropType) => {
+  const { isLinkCopied, copyLinkText } = useLinkCopy();
+  const [screenWidth] = useScreenWidth();
   const [isActionsVisible, setActionsVisible] = useState(false);
+  const inMobile = screenWidth <= breakpoints.LARGE_MOBILE;
 
   return (
     <StyledBookmarViewCard
@@ -52,10 +65,19 @@ const BookmarkViewCard = ({
           </div>
         )}
 
-        <div className="bkm-actions">
-          {isActionsVisible && (
+        <div className="bkm-actions" onClick={(e) => e.preventDefault()}>
+          {(isActionsVisible || inMobile) && (
             <>
-              {/* <Link className="bkm-icon link" /> */}
+              {!isLinkCopied ? (
+                <LinkIcon
+                  className="bkm-icon link"
+                  onClick={() => {
+                    copyLinkText({ url });
+                  }}
+                />
+              ) : (
+                <CheckCircle className="bkm-icon check" />
+              )}
               <PencilSimple className="bkm-icon edit" />
               <Trash className="bkm-icon delete" />
             </>

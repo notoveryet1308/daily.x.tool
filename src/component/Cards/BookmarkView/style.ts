@@ -1,5 +1,14 @@
 import styled from "styled-components";
 
+const truncate = ({ line }: { line: number }) => `
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: ${line};
+    white-space: pre-wrap;
+
+`;
+
 export const StyledBookmarViewCard = styled.a<{ isMouseHover: boolean }>`
   text-decoration: none;
   position: relative;
@@ -51,8 +60,12 @@ export const StyledBookmarViewCard = styled.a<{ isMouseHover: boolean }>`
         color: ${({ theme }) => theme.colors.primaryColor};
         z-index: 2;
         filter: blur(0);
+        
+        &.check{
+          color: ${({ theme }) => theme.colors.successColor};
+        }
 
-        &:hover {
+        &:hover:not(.check) {
           color: ${({ theme }) => theme.colors.primaryTextColor};
         }
       }
@@ -71,19 +84,21 @@ export const StyledBookmarViewCard = styled.a<{ isMouseHover: boolean }>`
     .bkm-title {
       color: ${({ theme }) => theme.colors.primaryTextColor};
       font-size: 14px;
+      ${truncate({ line: 2 })}
     }
     .bkm-description {
       color: ${({ theme }) => theme.colors.secondaryTextColor};
       font-size: 12px;
       overflow: hidden;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-      white-space: pre-wrap;
+      ${truncate({ line: 2 })};
     }
     .bkm-domain {
       color: ${({ theme }) => theme.colors.tertiaryTextColor};
       font-size: 12px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      
     }
 
     .bkm-tags {
@@ -115,19 +130,8 @@ export const StyledBookmarViewCard = styled.a<{ isMouseHover: boolean }>`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
-    flex-direction: column;
-
-    .bkm-img-holder {
-      width: 100%;
-       height: 100px;
-      .bkm-img {
-        max-height: 100px;
-      }
-      
-      .bkm-img-empty{  
-        width: 100%;
-        height: 100px;
-      }
+   &&& .bkm-actions {
+      opacity: 0.9;
     }
   }
 `;
