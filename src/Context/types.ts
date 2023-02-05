@@ -75,7 +75,7 @@ export interface NoteFilterDataType {
   noteTags: tagType[] | [];
 }
 
-export type DispatchActionType = {
+export type NoteDispatchActionType = {
   type:
     | "set-current-note-title"
     | "set-current-note-tags"
@@ -103,5 +103,45 @@ export type DispatchActionType = {
 };
 
 export interface NoteContextDataType extends InitialNoteValueType {
-  noteDispatch: React.Dispatch<DispatchActionType>;
+  noteDispatch: React.Dispatch<NoteDispatchActionType>;
+}
+
+export interface BookmarkDataType {
+  id: string;
+  ogImg?: string;
+  ogTitle?: string;
+  ogUrl?: string;
+  tags: tagType[];
+  ogSiteName?: string;
+  ogDescription?: string;
+  hexCode: string;
+}
+
+export interface CurrentBookmarkDataType {
+  data: BookmarkDataType;
+  isAllRequiredDataAvailable: boolean;
+  isUpdated: boolean;
+}
+
+export interface BookmarkInitialDataType {
+  currentBookmark: CurrentBookmarkDataType;
+  bookmarkCollection: BookmarkDataType[] | [];
+}
+
+export type BookmarkDispatchActionType = {
+  type:
+    | "set-current-bookmark-img"
+    | "set-current-bookmark-title"
+    | "set-current-bookmark-description"
+    | "set-current-bookmark-url"
+    | "set-current-bookmark-tags"
+    | "set-current-bookmark-site-name"
+    | "set-current-bookmark-color"
+    | "add-to-bookmark-collection";
+
+  payload: string | number | boolean | tagType[] | BookmarkDataType[];
+};
+
+export interface BookmarkContextDataType extends BookmarkInitialDataType {
+  bookmarkDispatch: React.Dispatch<BookmarkDispatchActionType>;
 }

@@ -63,9 +63,7 @@ export const StyledNotesPageWrapper = styled.main`
       border-radius: 4px;
       overflow: hidden;
       cursor: move;
-
-      .create-note-btn {
-      }
+      
       .plus-icon {
         font-size: 20px;
         font-weight: bold;

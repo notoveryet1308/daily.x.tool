@@ -19,24 +19,26 @@ const dummyOGImg =
   "https://images.unsplash.com/photo-1675438321407-b458c45a71d4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80";
 
 type BookmarkPropType = {
+  id: string;
   ogImg?: string;
   ogTitle?: string;
-  url?: string;
+  ogUrl?: string;
   tags: tagType[];
-  domain?: string;
+  ogSiteName?: string;
   ogDescription?: string;
+  hexCode: string;
 };
 
 const BookmarkViewCard = ({
   ogImg = dummyOGImg,
   ogTitle = "Subscriptions in GraphQL with Apollo 2.0.",
-  url = "https://medium.com/@itReverie/subscriptions-in-graphql-with-apollo-2-0-6db44401f009",
+  ogUrl = "https://medium.com/@itReverie/subscriptions-in-graphql-with-apollo-2-0-6db44401f009",
   tags = [
     { id: "x1", label: "medium", value: "medium" },
     { id: "x2", label: "medium2", value: "medium-2" },
     { id: "x3", label: "medium3", value: "medium-3" },
   ],
-  domain = "medium.com",
+  ogSiteName = "medium.com",
   ogDescription = "In this article we will create a small application to create real time messages and update the favorite ones by using subscriptions with GraphQL, Apollo Server, Apollo Client and React.",
 }: BookmarkPropType) => {
   const { isLinkCopied, copyLinkText } = useLinkCopy();
@@ -46,7 +48,7 @@ const BookmarkViewCard = ({
 
   return (
     <StyledBookmarViewCard
-      href={url}
+      href={ogUrl}
       target="_blank"
       isMouseHover={isActionsVisible}
       onMouseOver={() => {
@@ -72,7 +74,7 @@ const BookmarkViewCard = ({
                 <LinkIcon
                   className="bkm-icon link"
                   onClick={() => {
-                    copyLinkText({ url });
+                    copyLinkText({ url: ogUrl });
                   }}
                 />
               ) : (
@@ -95,15 +97,15 @@ const BookmarkViewCard = ({
             {ogDescription}
           </p>
         )}
-        {domain && (
+        {ogSiteName && (
           <span className="bkm-domain" role="domain-name">
-            {domain}
+            {ogSiteName}
           </span>
         )}
         {tags && (
           <div className="bkm-tags" role="tag-list">
             {tags.map((d) => (
-              <Tags {...d} />
+              <Tags {...d} key={d.id} />
             ))}
           </div>
         )}

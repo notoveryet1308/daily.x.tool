@@ -1,6 +1,6 @@
-import React, { useState, useCallback } from 'react';
-import { StyledTextArea, StyledUserInputWrapper } from './style';
-import { TextareaProps } from './types';
+import React, { useState, useCallback, useEffect } from "react";
+import { StyledTextArea, StyledUserInputWrapper } from "./style";
+import { TextareaProps } from "./types";
 
 const Textarea = ({
   value,
@@ -30,12 +30,24 @@ const Textarea = ({
     [userInput]
   );
 
+  useEffect(() => {
+    if (value !== userInput) {
+      setUserInput(value);
+    }
+  }, [value]);
+
+  useEffect(() => {
+    if (userInput) {
+      onChange({ [name]: value, field: name });
+    }
+  }, []);
+
   return (
     <StyledUserInputWrapper className={wrapperClassName}>
       {label && (
-        <p className='user-input-label' title={label}>
+        <p className="user-input-label" title={label}>
           {label}
-          {optional && <span className='optional-field'>(Optional)</span>}
+          {optional && <span className="optional-field">(Optional)</span>}
         </p>
       )}
       <StyledTextArea

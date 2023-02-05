@@ -11,6 +11,7 @@ import Home from "./pages/Home";
 import Notes from "./pages/Notes";
 import CreateNote from "./pages/Notes/CreateNote";
 import Bookmark from "./pages/Bookmark";
+import BookmarkCreate from "./pages/Bookmark/BookmarkCreate";
 
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -40,6 +41,7 @@ function App() {
     <ThemeProvider theme={{ ...theme, colors: theme.colors[themeMode] }}>
       <GlobalStyle />
       <Header colorTheme={themeMode} handleColorTheme={handleColorTheme} />
+
       <StyledMainWrapper>
         <Switch>
           <Route path="/" component={Home} exact />
@@ -50,6 +52,7 @@ function App() {
           <Route path="/login" component={Login} exact />
           <Route path="/sign-up" component={Signup} exact />
           <Route path="/bookmark" component={Bookmark} exact />
+          <Route path="/bookmark/create" component={BookmarkCreate} exact />
         </Switch>
       </StyledMainWrapper>
     </ThemeProvider>
