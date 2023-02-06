@@ -1,4 +1,5 @@
 import { useMutation, useQuery } from "@apollo/client";
+import { useHistory } from "react-router-dom";
 import gql from "graphql-tag";
 import { nanoid } from "nanoid";
 
@@ -53,10 +54,15 @@ const CREATE_BOOKMARK = gql`
 `;
 
 export const useCreateBookmark = () => {
+  const history = useHistory();
   const { bookmarkDispatch, bookmarkCollection, currentBookmark } =
     useBookmarkContext();
   const [mutate, bookmarkCreateQueryState] = useMutation(CREATE_BOOKMARK);
   const userLogged = isUserAuthenticated();
+
+  if (bookmarkCreateQueryState.called && !bookmarkCreateQueryState.loading) {
+    history.push("/bookmark");
+  }
 
   const handleBookmarkCreation = () => {
     userLogged

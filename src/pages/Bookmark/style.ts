@@ -31,11 +31,18 @@ export const StyledBookmarkPageWrapper = styled.main`
     max-width: ${({ theme }) => theme.breakpoints.DESKTOP}px;
 
     .bookmark-list-content {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-      gap: 20px;
+      display: flex;
       justify-content: center;
-      align-items: center;
+      height: auto;
+      .no-data-state {
+        height: 80vh;
+        background-color: ${({ theme }) => theme.colors.primaryBgColor};
+      }
+
+      .empty-bookmark-icon {
+        font-size: 60px;
+        color: ${({ theme }) => theme.colors.secondaryGreyColor};
+      }
     }
 
     .create-bookmark-btn-wrapper {
@@ -81,6 +88,7 @@ export const StyledBookmarkCreate = styled.div`
     height: 100%;
     padding: 0 60px 20px;
     max-height: calc(100vh - 64px);
+    justify-content: center;
 
     @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_TABLET}px) {
       padding: 0 32px 20px;
@@ -107,7 +115,7 @@ export const StyledBookmarkCreate = styled.div`
     .create-bookmark-fields {
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 32px;
       max-width: 500px;
       width: 100%;
       padding-bottom: 60px;
@@ -133,5 +141,18 @@ export const StyledBookmarkCreate = styled.div`
       padding-top: 20px;
       justify-content: flex-start;
     }
+  }
+`;
+
+export const StyledBookmarkDisplayList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 20px;
+  height: 100%;
+  align-items: flex-start;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
+    display: flex;
+    flex-direction: column;
   }
 `;

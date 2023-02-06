@@ -1,7 +1,6 @@
 import { Plus, BookBookmark } from "phosphor-react";
 
 import { StyledBookmarkPageWrapper } from "./style";
-import BookmarkViewCard from "../../component/Cards/BookmarkView";
 import MovableWrapper from "../../component/MovableWrapper";
 import { CreateNavButton } from "../../component/UI/Button";
 import { useBookmarkContext } from "../../Context/BookmarkDataProvider";
@@ -10,6 +9,7 @@ import { isUserAuthenticated } from "../../utils";
 import NoDataState from "../../component/UI/NoDataState";
 import { BookmarkDataType } from "../../Context/types";
 import Loader from "../../component/UI/Loader";
+import BookmarkDisplayList from "./BookmarkDisplayList";
 
 const ServeContent = ({
   isLoading,
@@ -30,22 +30,22 @@ const ServeContent = ({
     }
 
     if (serverBookmarData && serverBookmarData.length) {
-      return serverBookmarData.map((d) => <BookmarkViewCard {...d} />);
+      return <BookmarkDisplayList bookmarkData={serverBookmarData} />;
     } else {
       return (
         <NoDataState
-          message="You don't have any bookmark"
+          message="You don't have any bookmark yet."
           icon={<BookBookmark className="empty-bookmark-icon" />}
         />
       );
     }
   } else {
     if (localBookmarkData.length) {
-      return localBookmarkData.map((d) => <BookmarkViewCard {...d} />);
+      return <BookmarkDisplayList bookmarkData={localBookmarkData} />;
     } else {
       return (
         <NoDataState
-          message="You don't have any bookmark"
+          message="You don't have any bookmark yet."
           icon={<BookBookmark className="empty-bookmark-icon" />}
         />
       );

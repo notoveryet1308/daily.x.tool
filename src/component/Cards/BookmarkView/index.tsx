@@ -38,6 +38,7 @@ const BookmarkViewCard = ({
     { id: "x2", label: "medium2", value: "medium-2" },
     { id: "x3", label: "medium3", value: "medium-3" },
   ],
+  hexCode,
   ogSiteName = "medium.com",
   ogDescription = "In this article we will create a small application to create real time messages and update the favorite ones by using subscriptions with GraphQL, Apollo Server, Apollo Client and React.",
 }: BookmarkPropType) => {
@@ -57,6 +58,7 @@ const BookmarkViewCard = ({
       onMouseLeave={() => {
         setActionsVisible(false);
       }}
+      hexCode={hexCode}
     >
       <div className="bkm-img-holder">
         {ogImg ? (
@@ -105,7 +107,7 @@ const BookmarkViewCard = ({
         {tags && (
           <div className="bkm-tags" role="tag-list">
             {tags.map((d) => (
-              <Tags {...d} key={d.id} />
+              <Tags {...d} key={d.id} hexCode={hexCode} />
             ))}
           </div>
         )}

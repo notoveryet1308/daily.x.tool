@@ -38,9 +38,18 @@ export const isUserAuthenticated = () => {
   return !!token;
 };
 
-export const getCurrentLoggedInUserDeatil = ()=>{
-  const token = localStorage.getItem("accessToken"); 
-  const decoded:{email: string; _id: string; name: string } | null = token ? jwt_decode(token): null;
+export const getCurrentLoggedInUserDeatil = () => {
+  const token = localStorage.getItem("accessToken");
+  const decoded: { email: string; _id: string; name: string } | null = token
+    ? jwt_decode(token)
+    : null;
 
   return decoded;
-}
+};
+
+export const securedUrlRegex = (value: string) => {
+  const regex =
+    /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
+
+  return regex.test(value);
+};

@@ -10,6 +10,7 @@ import Back from "../../component/UI/Back";
 import { PrimaryButton } from "../../component/UI/Button";
 import { useCreateBookmark, useGenerateLinkPreviewData } from "./hook";
 import { useBookmarkContext } from "../../Context/BookmarkDataProvider";
+import { securedUrlRegex } from "../../utils";
 
 const BookmarkCreate = () => {
   const { handleLinkData, previewQueryState } = useGenerateLinkPreviewData();
@@ -67,7 +68,7 @@ const BookmarkCreate = () => {
             {!previewQueryState.called && (
               <PrimaryButton
                 label="Get preview data"
-                disabled={!bookmarkUrl}
+                disabled={!securedUrlRegex(bookmarkUrl)}
                 onClick={() => {
                   if (bookmarkUrl) {
                     handleLinkData(bookmarkUrl);

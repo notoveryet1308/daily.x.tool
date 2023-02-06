@@ -9,7 +9,10 @@ const truncate = ({ line }: { line: number }) => `
 
 `;
 
-export const StyledBookmarViewCard = styled.a<{ isMouseHover: boolean }>`
+export const StyledBookmarViewCard = styled.a<{
+  isMouseHover: boolean;
+  hexCode: string;
+}>`
   text-decoration: none;
   position: relative;
   border-radius: 8px;
