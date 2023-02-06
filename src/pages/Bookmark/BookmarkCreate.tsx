@@ -8,13 +8,14 @@ import Loader from "../../component/UI/Loader";
 
 import Back from "../../component/UI/Back";
 import { PrimaryButton } from "../../component/UI/Button";
-import { useGenerateLinkPreviewData } from "./qglHook";
+import { useCreateBookmark, useGenerateLinkPreviewData } from "./hook";
 import { useBookmarkContext } from "../../Context/BookmarkDataProvider";
 
 const BookmarkCreate = () => {
   const { handleLinkData, previewQueryState } = useGenerateLinkPreviewData();
-  const { bookmarkDispatch, currentBookmark, bookmarkCollection } =
-    useBookmarkContext();
+  const { currentBookmark } = useBookmarkContext();
+  const { handleBookmarkCreation, bookmarkCreateQueryState } =
+    useCreateBookmark();
   const [bookmarkUrl, setBookmarkUrl] = useState<string>("");
 
   return (
@@ -46,16 +47,15 @@ const BookmarkCreate = () => {
                     tags={[]}
                   />
                   <PrimaryButton
-                    label="Create bookmark"
+                    label={
+                      bookmarkCreateQueryState.loading
+                        ? "Creating..."
+                        : "Create bookmark"
+                    }
+                    disabled={bookmarkCreateQueryState.loading}
                     onClick={() => {
                       if (currentBookmark.data) {
-                        bookmarkDispatch({
-                          type: "add-to-bookmark-collection",
-                          payload: [
-                            currentBookmark.data,
-                            ...bookmarkCollection,
-                          ],
-                        });
+                        handleBookmarkCreation();
                       }
                     }}
                   />
@@ -67,6 +67,7 @@ const BookmarkCreate = () => {
             {!previewQueryState.called && (
               <PrimaryButton
                 label="Get preview data"
+                disabled={!bookmarkUrl}
                 onClick={() => {
                   if (bookmarkUrl) {
                     handleLinkData(bookmarkUrl);

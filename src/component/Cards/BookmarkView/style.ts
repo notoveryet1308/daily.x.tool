@@ -27,6 +27,7 @@ export const StyledBookmarViewCard = styled.a<{ isMouseHover: boolean }>`
     .bkm-img {
       width: 100%;
       max-height: 180px;
+      height: 100%;
       object-fit: cover;
     }
     
