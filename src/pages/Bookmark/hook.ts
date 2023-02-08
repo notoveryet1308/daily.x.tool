@@ -57,7 +57,19 @@ export const useCreateBookmark = () => {
   const history = useHistory();
   const { bookmarkDispatch, bookmarkCollection, currentBookmark } =
     useBookmarkContext();
-  const [mutate, bookmarkCreateQueryState] = useMutation(CREATE_BOOKMARK);
+  const [mutate, bookmarkCreateQueryState] = useMutation(CREATE_BOOKMARK, {
+    update(cache, { data: { createBookmark } }) {
+      const existingNote = cache.readQuery({
+        query: GET_BOOKMARK,
+      });
+      cache.writeQuery({
+        query: GET_BOOKMARK,
+        data: {
+          getBookmark: [...existingNote?.getBookmark, createBookmark],
+        },
+      });
+    },
+  });
   const userLogged = isUserAuthenticated();
 
   if (bookmarkCreateQueryState.called && !bookmarkCreateQueryState.loading) {
@@ -65,12 +77,21 @@ export const useCreateBookmark = () => {
   }
 
   const handleBookmarkCreation = () => {
+    const id = nanoid();
     userLogged
       ? mutate({
           variables: {
             input: {
               ...currentBookmark.data,
-              id: nanoid(),
+              id,
+            },
+          },
+          optimisticResponse: {
+            __typename: "Mutation",
+            createBookmark: {
+              ...currentBookmark.data,
+              id,
+              __tynamename: "Bookmark",
             },
           },
         })

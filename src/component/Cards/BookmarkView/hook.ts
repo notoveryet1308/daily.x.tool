@@ -1,4 +1,8 @@
 import { useEffect, useState } from "react";
+import { useMutation } from "@apollo/client";
+import gql from "graphql-tag";
+
+import { isUserAuthenticated } from "../../../utils";
 import { useBookmarkContext } from "../../../Context/BookmarkDataProvider";
 import { tagType } from "../../../Context/types";
 
@@ -97,4 +101,41 @@ export const useBookmarkInputData = () => {
   };
 
   return { handleBookmarkData };
+};
+
+const DELETE_BOOKMARK = gql`
+  mutation DeleteBookmark($input: DeleteBookmarkInput!) {
+    deleteBookmark(input: $input)
+  }
+`;
+
+export const useDeleteBookmark = () => {
+  const userLogged = isUserAuthenticated();
+  const { bookmarkDispatch, bookmarkCollection } = useBookmarkContext();
+  const [mutate, bookmarkDeleteQuery] = useMutation(DELETE_BOOKMARK, {
+    update(cache, _) {
+      cache.modify({
+        fields: {
+          getBookmark() {},
+        },
+      });
+    },
+  });
+
+  const handleBookmarDeletion = (id: string) => {
+    userLogged
+      ? mutate({
+          variables: {
+            input: {
+              id,
+            },
+          },
+        })
+      : bookmarkDispatch({
+          type: "add-to-bookmark-collection",
+          payload: bookmarkCollection.filter((d) => d.id !== id),
+        });
+  };
+
+  return { bookmarkDeleteQuery, handleBookmarDeletion };
 };

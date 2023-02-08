@@ -99,7 +99,8 @@ const Input = ({
         <span className="error-message-input">{errorMessage}</span>
       )}
       {type === "url" &&
-        (userInput && securedUrlRegex(userInput) ? (
+        userInput &&
+        (securedUrlRegex(userInput) ? (
           <span className="url-validation-info correct">Valid url</span>
         ) : (
           <span className="url-validation-info wrong">Invalid url</span>

@@ -13,7 +13,7 @@ import { tagType } from "../../../Context/types";
 import { useScreenWidth } from "../../../hooks";
 import { breakpoints } from "../../../theme/breakpoint";
 
-import { useLinkCopy } from "./hook";
+import { useDeleteBookmark, useLinkCopy } from "./hook";
 
 const dummyOGImg =
   "https://images.unsplash.com/photo-1675438321407-b458c45a71d4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80";
@@ -30,6 +30,7 @@ type BookmarkPropType = {
 };
 
 const BookmarkViewCard = ({
+  id,
   ogImg = dummyOGImg,
   ogTitle = "Subscriptions in GraphQL with Apollo 2.0.",
   ogUrl = "https://medium.com/@itReverie/subscriptions-in-graphql-with-apollo-2-0-6db44401f009",
@@ -42,6 +43,7 @@ const BookmarkViewCard = ({
   ogSiteName = "medium.com",
   ogDescription = "In this article we will create a small application to create real time messages and update the favorite ones by using subscriptions with GraphQL, Apollo Server, Apollo Client and React.",
 }: BookmarkPropType) => {
+  const { handleBookmarDeletion, bookmarkDeleteQuery } = useDeleteBookmark();
   const { isLinkCopied, copyLinkText } = useLinkCopy();
   const [screenWidth] = useScreenWidth();
   const [isActionsVisible, setActionsVisible] = useState(false);
@@ -82,8 +84,13 @@ const BookmarkViewCard = ({
               ) : (
                 <CheckCircle className="bkm-icon check" />
               )}
-              <PencilSimple className="bkm-icon edit" />
-              <Trash className="bkm-icon delete" />
+              {/* <PencilSimple className="bkm-icon edit" /> */}
+              <Trash
+                className="bkm-icon delete"
+                onClick={() => {
+                  handleBookmarDeletion(id);
+                }}
+              />
             </>
           )}
         </div>

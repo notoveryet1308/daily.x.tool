@@ -11,7 +11,7 @@ const NoDataState = ({
   message?: string;
   img?: string;
   className?: string;
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
 }) => {
   return (
     <StyledNoDataWrapper className={`no-data-state ${className}`}>
