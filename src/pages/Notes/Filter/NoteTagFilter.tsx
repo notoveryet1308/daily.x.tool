@@ -1,4 +1,4 @@
-import { useGetTags } from "../../../component/CreateNoteDetail/gql-query";
+import { useGetTags } from "../../../CommonGQL/hooks";
 import { useNoteContext } from "../../../Context/NoteDataProvider";
 import Select from "../../../component/UI/Select";
 import Loader from "../../../component/UI/Loader";

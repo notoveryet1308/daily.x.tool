@@ -1,9 +1,10 @@
 import Select from "../../../UI/Select";
 import { Input, TextArea } from "../../../UI/Input";
 import { StyledBookmarkInput } from "./style";
-import { tagType } from "../../../Context/types";
+import { tagType } from "../../../../Context/types";
 import ColorPicker from "../../../UI/ColorPicker";
 import { useBookmarkInputData } from "../hook";
+import { useGetTags, useCreateTag } from "../../../../CommonGQL/hooks";
 
 type BookmarkInputPropType = {
   id: string;
@@ -26,6 +27,8 @@ const BookmarkInput = ({
   ogUrl,
 }: BookmarkInputPropType) => {
   const { handleBookmarkData } = useBookmarkInputData();
+  const { handleCreatetag } = useCreateTag();
+  const tagQuery = useGetTags();
 
   return (
     <StyledBookmarkInput>
@@ -80,10 +83,14 @@ const BookmarkInput = ({
         isClearable
         isSearchable
         isCreatable
-        options={[]}
+        options={tagQuery?.data?.getTag || []}
         values={tags}
         onChange={handleBookmarkData}
-        creationQueryState={{ loading: false, error: "" }}
+        onCreation={handleCreatetag}
+        creationQueryState={{
+          loading: tagQuery.loading,
+          error: `${tagQuery.error}`,
+        }}
       />
     </StyledBookmarkInput>
   );

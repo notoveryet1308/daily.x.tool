@@ -82,7 +82,7 @@ const BookmarkViewCard = ({
                   }}
                 />
               ) : (
-                <CheckCircle className="bkm-icon check" />
+                <CheckCircle weight="fill" className="bkm-icon check" />
               )}
               {/* <PencilSimple className="bkm-icon edit" /> */}
               <Trash

@@ -7,7 +7,7 @@ import { useUserSignup } from "./hooks";
 import { StyledSignupPageWrapper } from "./style";
 
 const Signup = () => {
-  const { isUserAuthenticated, loggedInUserDetail} = useAppDataContext()
+  const { isUserAuthenticated, loggedInUserDetail } = useAppDataContext();
   const {
     signupValues,
     dispatchSignup,

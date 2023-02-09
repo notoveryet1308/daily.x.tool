@@ -51,7 +51,7 @@ export const StyledSignupPageWrapper = styled.main`
   @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
     .main-content {
       width: 90%;
-      border-radius: 16px;
+      border-radius: 8px;
     }
   }
 `;
@@ -63,9 +63,9 @@ export const StyledFormFieldWrapper = styled.div`
   padding: 20px 24px 32px 24px;
 
   .signup-password-rule {
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 8px;
   }
 `;
 
@@ -73,7 +73,7 @@ export const StyledPasswordRule = styled.div`
   padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 4px;
   background-color: ${({ theme }) => theme.colors.tertiaryBgColor};
   border: 1px solid ${({ theme }) => theme.colors.primaryColor};
   border-radius: 8px;
@@ -98,7 +98,6 @@ export const StyledPasswordRule = styled.div`
     }
     .password-rule-followed {
       color: ${({ theme }) => theme.colors.primaryTextColor};
-      font-weight: 600;
     }
   }
 `;

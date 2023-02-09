@@ -118,7 +118,6 @@ export const StyledBookmarkCreate = styled.div`
       gap: 32px;
       max-width: 500px;
       width: 100%;
-      padding-bottom: 60px;
 
       .create-bookmark-url-wrapper {
         background-color: ${({ theme }) => theme.colors.tertiaryBgColor};
@@ -149,6 +148,7 @@ export const StyledBookmarkDisplayList = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
   gap: 20px;
   height: 100%;
+  width: 100%;
   align-items: flex-start;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {

@@ -36,6 +36,7 @@ const BookmarkCreate = () => {
                 onChangeHandler={({ bookmarkUrl }: { bookmarkUrl: string }) => {
                   setBookmarkUrl(bookmarkUrl);
                 }}
+                showValidUrlMessage
               />
             </div>
             {bookmarkUrl &&
@@ -45,6 +46,7 @@ const BookmarkCreate = () => {
                 <>
                   <BookmarkInput
                     {...previewQueryState.data?.generatePreviewData}
+                    ogUrl={bookmarkUrl}
                     tags={[]}
                   />
                   <PrimaryButton

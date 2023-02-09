@@ -5,7 +5,7 @@ import { Input } from "../UI/Input";
 import Loader from "../UI/Loader";
 import RichTextInput from "../UI/RichTextEditor";
 import Select from "../UI/Select";
-import { useCreateTag, useGetTags } from "./gql-query";
+import { useCreateTag, useGetTags } from "../../CommonGQL/hooks";
 
 import { StyledNoteInputField } from "./style";
 

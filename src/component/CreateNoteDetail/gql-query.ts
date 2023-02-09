@@ -1,7 +1,6 @@
-import { gql, useMutation, useQuery } from "@apollo/client";
-import { NoteDataType, tagType } from "../../Context/types";
+import { gql, useMutation } from "@apollo/client";
+import { NoteDataType } from "../../Context/types";
 import { GET_NOTE } from "../../pages/Notes/gql-query";
-import { isUserAuthenticated } from "../../utils";
 
 const CREATE_NOTE = gql`
   mutation CreateNote($input: CreateNoteInput!) {
@@ -21,73 +20,6 @@ const CREATE_NOTE = gql`
     }
   }
 `;
-
-export const GET_TAG = gql`
-  query GetTag {
-    getTag {
-      id
-      label
-      value
-    }
-  }
-`;
-
-export const CREATE_TAG = gql`
-  mutation CreateTag($input: CreateTagInput!) {
-    createTag(input: $input) {
-      id
-      label
-      value
-    }
-  }
-`;
-
-export const useCreateTag = () => {
-  const [mutate, creationState] = useMutation(CREATE_TAG, {
-    update(cache, { data: { createTag } }) {
-      const existingNote = cache.readQuery({
-        query: GET_TAG,
-      });
-      cache.writeQuery({
-        query: GET_TAG,
-        data: {
-          getTag: [...existingNote?.getTag, createTag],
-        },
-      });
-    },
-  });
-
-  const handleCreatetag = ({ id, label, value }: tagType) => {
-    console.log({ id, label, value });
-    const logged = isUserAuthenticated();
-    logged &&
-      mutate({
-        variables: {
-          input: {
-            id,
-            label,
-            value,
-          },
-        },
-        optimisticResponse: {
-          __typename: "Mutation",
-          createTag: {
-            id,
-            label,
-            value,
-            __typename: "Tag",
-          },
-        },
-      });
-  };
-
-  return { handleCreatetag, creationState };
-};
-
-export const useGetTags = () => {
-  const tagQuery = useQuery(GET_TAG);
-  return tagQuery;
-};
 
 export const useCreateNote = () => {
   const [mutateNote] = useMutation(CREATE_NOTE, {

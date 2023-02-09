@@ -95,13 +95,16 @@ export const useCreateBookmark = () => {
             },
           },
         })
-      : bookmarkDispatch({
-          type: "add-to-bookmark-collection",
-          payload: [
-            { ...currentBookmark.data, id: nanoid() },
-            ...bookmarkCollection,
-          ],
-        });
+      : (function () {
+          bookmarkDispatch({
+            type: "add-to-bookmark-collection",
+            payload: [
+              { ...currentBookmark.data, id: nanoid() },
+              ...bookmarkCollection,
+            ],
+          });
+          history.push("/bookmark");
+        })();
   };
 
   return { handleBookmarkCreation, bookmarkCreateQueryState };

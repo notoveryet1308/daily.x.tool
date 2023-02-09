@@ -21,6 +21,7 @@ const Input = ({
   errorMessage,
   errorBorder,
   showPassword = false,
+  showValidUrlMessage = false,
 }: InputProps) => {
   const [isPasswordVisible, setPasswordVisible] = useState(false);
   const [userInput, setUserInput] = useState(value);
@@ -83,12 +84,12 @@ const Input = ({
         {type === "password" &&
           showPassword &&
           (isPasswordVisible ? (
-            <EyeSlash
+            <Eye
               className="eye-closed password-icon"
               onClick={() => setPasswordVisible(!isPasswordVisible)}
             />
           ) : (
-            <Eye
+            <EyeSlash
               className="eye-open password-icon"
               onClick={() => setPasswordVisible(!isPasswordVisible)}
             />
@@ -99,6 +100,7 @@ const Input = ({
         <span className="error-message-input">{errorMessage}</span>
       )}
       {type === "url" &&
+        showValidUrlMessage &&
         userInput &&
         (securedUrlRegex(userInput) ? (
           <span className="url-validation-info correct">Valid url</span>
