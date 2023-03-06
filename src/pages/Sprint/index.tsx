@@ -1,7 +1,13 @@
-import React from 'react';
+import { StyledSprintPlanner } from "./style";
 
 const Sprint = () => {
-  return <h1>Sprint</h1>;
+  return (
+    <StyledSprintPlanner>
+      <p className="info">
+        Backend & UI desiging is in progress for this page !! 🚧
+      </p>
+    </StyledSprintPlanner>
+  );
 };
 
 export default Sprint;

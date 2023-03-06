@@ -1,7 +1,6 @@
 import { CheckCircle, Circle } from "phosphor-react";
 import React, { useEffect, useRef, useState } from "react";
-import { useScreenWidth } from "../../hooks";
-import { breakpoints } from "../../theme/breakpoint";
+import { darkThemeColors } from "../../theme/colors";
 
 import { StyledPasswordRule } from "./style";
 import { validatePassword } from "./utils";
@@ -18,7 +17,7 @@ const Rule = ({ followed, info }: { followed: boolean; info: string }) => {
   return (
     <div className="password-rule">
       {followed ? (
-        <CheckCircle className="checked-circle-icon ph-icon" />
+        <CheckCircle weight="fill" className="checked-circle-icon ph-icon" />
       ) : (
         <Circle className="circle-icon ph-icon" />
       )}
@@ -34,29 +33,24 @@ const Rule = ({ followed, info }: { followed: boolean; info: string }) => {
 };
 
 const PasswordRules = ({ password }: { password: string }) => {
-  const [screenWidth] = useScreenWidth()
-  const [containerStyle, setContainerStyle] = useState<React.CSSProperties>({})
-  const { validatedCheck, isValid } = validatePassword(password);
-  const ruleContainer = useRef();
+  const [containerStyle, setContainerStyle] = useState<React.CSSProperties>({});
+  const { validatedCheck } = validatePassword(password);
+  const ruleContainer = useRef<HTMLDivElement | null>(null);
 
- 
-  
+  useEffect(() => {
+    if (ruleContainer.current) {
+      const targetRect = ruleContainer.current.getBoundingClientRect();
 
-  useEffect(()=>{
-    if(ruleContainer.current && screenWidth > breakpoints.TABLET){
-      // const rect = ruleContainer.current.getBoundingClientRect()
-      // console.log({rect});
-      
-      // setContainerStyle({
-      //   position:'absolute', 
-      //   bottom: `${rect.top - rect.height}px`, 
-      //   width: `${rect.width}px`, 
-      //   zIndex:2,
-      //   boxShadow:'10px 2px 5px -7px rgba(124,99,207,1)'
-      //   }
-      // )
+      setContainerStyle({
+        position: "absolute",
+        top: `-${targetRect.height + 8}px`,
+        left: "0px",
+        width: `100%`,
+        zIndex: 2,
+        boxShadow: `0px 2px 1px ${darkThemeColors.primaryColor}`,
+      });
     }
-  },[ruleContainer.current])
+  }, [ruleContainer.current]);
 
   return (
     <StyledPasswordRule ref={ruleContainer} style={containerStyle}>

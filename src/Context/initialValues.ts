@@ -1,5 +1,9 @@
 import { StaticColors } from "../theme/constants";
-import { currentNoteDataType, NoteFilterDataType } from "./types";
+import {
+  currentNoteDataType,
+  NoteFilterDataType,
+  CurrentBookmarkDataType,
+} from "./types";
 
 export const currentNoteInitialValue: currentNoteDataType = {
   data: {
@@ -19,4 +23,19 @@ export const currentNoteInitialValue: currentNoteDataType = {
 export const NoteFilterInitialData: NoteFilterDataType = {
   colors: [],
   noteTags: [],
+};
+
+export const CurrentBookmarkInitialValue: CurrentBookmarkDataType = {
+  data: {
+    id: "",
+    ogDescription: "",
+    ogTitle: "",
+    ogSiteName: "",
+    tags: [],
+    hexCode: StaticColors[0],
+    ogImg: "",
+    ogUrl: "",
+  },
+  isAllRequiredDataAvailable: false,
+  isUpdated: false,
 };

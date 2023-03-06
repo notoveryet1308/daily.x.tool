@@ -10,22 +10,23 @@ import Sprint from "./pages/Sprint";
 import Home from "./pages/Home";
 import Notes from "./pages/Notes";
 import CreateNote from "./pages/Notes/CreateNote";
+import Bookmark from "./pages/Bookmark";
+import BookmarkCreate from "./pages/Bookmark/BookmarkCreate";
 
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 
 import { useAppDataContext } from "./Context/AppDataContext";
 import { useGetLoggedUserDetail } from "./CommonGQL";
-import {  isUserAuthenticated } from "./utils";
-
+import { isUserAuthenticated } from "./utils";
 
 function App() {
   const { themeMode, dispatch } = useAppDataContext();
-  const {data, loading, error} = useGetLoggedUserDetail();
+  const { data, loading, error } = useGetLoggedUserDetail();
 
-  if(isUserAuthenticated() && !loading && !data){
-    localStorage.removeItem('accessToken')
-    dispatch({type: "reset-auth", payload: ""})
+  if (isUserAuthenticated() && !loading && !data) {
+    localStorage.removeItem("accessToken");
+    dispatch({ type: "reset-auth", payload: "" });
   }
 
   const handleColorTheme = () => {
@@ -40,6 +41,7 @@ function App() {
     <ThemeProvider theme={{ ...theme, colors: theme.colors[themeMode] }}>
       <GlobalStyle />
       <Header colorTheme={themeMode} handleColorTheme={handleColorTheme} />
+
       <StyledMainWrapper>
         <Switch>
           <Route path="/" component={Home} exact />
@@ -49,6 +51,8 @@ function App() {
           <Route path="/notes/create" component={CreateNote} exact />
           <Route path="/login" component={Login} exact />
           <Route path="/sign-up" component={Signup} exact />
+          <Route path="/bookmark" component={Bookmark} exact />
+          <Route path="/bookmark/create" component={BookmarkCreate} exact />
         </Switch>
       </StyledMainWrapper>
     </ThemeProvider>

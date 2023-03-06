@@ -1,11 +1,15 @@
 import { nanoid } from "nanoid";
+
 import {
   currentNoteInitialValue,
   NoteFilterInitialData,
 } from "./initialValues";
+
 import {
   InitialNoteValueType,
-  DispatchActionType,
+  NoteDispatchActionType,
+  BookmarkDispatchActionType,
+  BookmarkInitialDataType,
   NoteDataType,
 } from "./types";
 
@@ -43,26 +47,120 @@ const sortNotesByPinnedStatus = (data: NoteDataType[]) => {
   return noteAllData;
 };
 
+export const bookmarkReducer = (
+  state: BookmarkInitialDataType,
+  action: BookmarkDispatchActionType
+): BookmarkInitialDataType => {
+  const { type, payload } = action;
+  const { currentBookmark } = state;
+
+  if (type === "set-current-bookmark-title" && typeof payload === "string") {
+    return {
+      ...state,
+      currentBookmark: {
+        ...currentBookmark,
+        data: { ...currentBookmark.data, ogTitle: payload },
+      },
+    };
+  }
+
+  if (
+    type === "set-current-bookmark-description" &&
+    typeof payload === "string"
+  ) {
+    return {
+      ...state,
+      currentBookmark: {
+        ...currentBookmark,
+        data: { ...currentBookmark.data, ogDescription: payload },
+      },
+    };
+  }
+
+  if (type === "set-current-bookmark-img" && typeof payload === "string") {
+    return {
+      ...state,
+      currentBookmark: {
+        ...currentBookmark,
+        data: { ...currentBookmark.data, ogImg: payload },
+      },
+    };
+  }
+
+  if (type === "set-current-bookmark-tags") {
+    return {
+      ...state,
+      currentBookmark: {
+        ...currentBookmark,
+        data: { ...currentBookmark.data, tags: payload },
+      },
+    };
+  }
+
+  if (
+    type === "set-current-bookmark-site-name" &&
+    typeof payload === "string"
+  ) {
+    return {
+      ...state,
+      currentBookmark: {
+        ...currentBookmark,
+        data: { ...currentBookmark.data, ogSiteName: payload },
+      },
+    };
+  }
+
+  if (type === "set-current-bookmark-url" && typeof payload === "string") {
+    return {
+      ...state,
+      currentBookmark: {
+        ...currentBookmark,
+        data: { ...currentBookmark.data, ogUrl: payload },
+      },
+    };
+  }
+
+  if (type === "set-current-bookmark-color" && typeof payload === "string") {
+    return {
+      ...state,
+      currentBookmark: {
+        ...currentBookmark,
+        data: { ...currentBookmark.data, hexCode: payload },
+      },
+    };
+  }
+
+  if (type === "add-to-bookmark-collection") {
+    localStorage.setItem("local-bookmark", JSON.stringify(payload));
+    return {
+      ...state,
+      bookmarkCollection: payload,
+    };
+  }
+
+  return { ...state };
+};
+
 export const noteReducer = (
   state: InitialNoteValueType,
-  action: DispatchActionType
+  action: NoteDispatchActionType
 ): InitialNoteValueType => {
   const { type, payload } = action;
   const { currentNote } = state;
   const { data } = currentNote;
-  
-  if(type === "update-note-search"){
+
+  if (type === "update-note-search") {
     return {
       ...state,
-      noteSearch: payload
-    }
+      noteSearch: payload,
+    };
   }
-  
-   if(type === "reset-note-search"){
+
+  if (type === "reset-note-search") {
     return {
       ...state,
-      noteSearch: ''
-    }
+      noteSearch: "",
+    };
   }
 
   if (type === "set-current-note-title" && typeof payload === "string") {
@@ -134,7 +232,7 @@ export const noteReducer = (
   if (type === "reset-current-note") {
     return { ...state, currentNote: { ...currentNoteInitialValue } };
   }
-  
+
   if (
     type === "update-isPinned-status" &&
     !Array.isArray(payload) &&

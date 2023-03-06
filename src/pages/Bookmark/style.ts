@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledNotesPageWrapper = styled.main`
+export const StyledBookmarkPageWrapper = styled.main`
   width: 100%;
   position: relative;
 
@@ -24,34 +24,29 @@ export const StyledNotesPageWrapper = styled.main`
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: column;
     gap: 20px;
     position: relative;
     margin-bottom: 40px;
-    flex-direction: column;
     max-width: ${({ theme }) => theme.breakpoints.DESKTOP}px;
 
-    .notes-empty-state {
-      background-color: transparent;
-      position: absolute;
-      top: 40%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+    .bookmark-list-content {
+      display: flex;
+      justify-content: center;
+      height: auto;
+      .no-data-state {
+        height: 80vh;
+        background-color: ${({ theme }) => theme.colors.primaryBgColor};
+      }
+
+      .empty-bookmark-icon {
+        font-size: 60px;
+        color: ${({ theme }) => theme.colors.secondaryGreyColor};
+      }
     }
 
-    .note-filter-search {
-      width: 100%;
-      margin-top: 20px;
-    }
-
-    .note-list-wrapper {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      overflow-y: auto;
-    }
-
-    .create-note-btn-wrapper {
-      position: absolute;
+    .create-bookmark-btn-wrapper {
+      position: fixed;
       bottom: 40px;
       left: 50%;
       transform: translateX(-50%);
@@ -63,7 +58,7 @@ export const StyledNotesPageWrapper = styled.main`
       border-radius: 4px;
       overflow: hidden;
       cursor: move;
-      
+
       .plus-icon {
         font-size: 20px;
         font-weight: bold;
@@ -72,28 +67,18 @@ export const StyledNotesPageWrapper = styled.main`
 
     @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
       margin: 0;
-      .create-note-btn-wrapper {
+      .create-bookmark-btn-wrapper {
         width: unset;
         border-radius: 50%;
-        left: calc(100% - 48px);
+        left: calc(100% - 60px);
         transform: unset;
         cursor: default;
-      }
-
-      .mobile-note-search-btn {
-        right: 0;
-        bottom: 120px;
-        position: absolute;
-
-        .note-search-icon {
-          font-size: 14px;
-        }
       }
     }
   }
 `;
 
-export const StyledCreateNotePageWrapper = styled.main`
+export const StyledBookmarkCreate = styled.div`
   width: 100%;
   position: relative;
 
@@ -101,9 +86,9 @@ export const StyledCreateNotePageWrapper = styled.main`
     width: 100%;
     display: flex;
     height: 100%;
-    justify-content: center;
     padding: 0 60px 20px;
     max-height: calc(100vh - 64px);
+    justify-content: center;
 
     @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_TABLET}px) {
       padding: 0 32px 20px;
@@ -127,57 +112,47 @@ export const StyledCreateNotePageWrapper = styled.main`
     padding: 60px 0 24px 0;
     position: relative;
 
-    .create-note-fields {
+    .create-bookmark-fields {
       display: flex;
       flex-direction: column;
-      height: 100%;
-      gap: 24px;
-      overflow-y: scroll;
-      min-width: 360px;
+      gap: 32px;
       max-width: 500px;
-      align-self: center;
-      flex: 1;
-    }
-
-    .create-note-preview {
-      position: sticky;
-      top: 0;
-      display: flex;
-      justify-content: flex-start;
-      align-items: flex-start;
       width: 100%;
-      max-width: 500px;
-      .create-note {
-        width: 100%;
+
+      .create-bookmark-url-wrapper {
+        background-color: ${({ theme }) => theme.colors.tertiaryBgColor};
+        padding: 4px 8px;
+        border-radius: 40px;
+        border: 1px solid transparent;
+
+        &:focus-within {
+          border: 1px solid ${({ theme }) => theme.colors.primaryColor};
+        }
+
+        .bookmark-url {
+          border: none;
+        }
       }
     }
 
     @media (max-width: ${({ theme }) => theme.breakpoints.TABLET}px) {
       flex-direction: column;
       padding-top: 20px;
-      .create-note-preview {
-        display: none;
-      }
+      justify-content: flex-start;
     }
   }
 `;
 
-export const StyledNoteListDisplay = styled.div`
-  max-height: calc(100vh - 160px);
-  height: auto;
-  overflow-y: auto;
+export const StyledBookmarkDisplayList = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 40px;
-  /* grid-template-rows: auto; */
-  grid-auto-rows: 250px;
-  /* justify-content: center; */
-  .row-1,
-  .row-2,
-  .row-3 {
-    display: grid;
-    gap: 40px;
-    grid-template-columns: minmax(300px, 1fr);
-    grid-template-rows: auto;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 20px;
+  height: 100%;
+  width: 100%;
+  align-items: flex-start;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
+    display: flex;
+    flex-direction: column;
   }
 `;

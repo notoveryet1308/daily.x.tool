@@ -77,6 +77,21 @@ export const StyledUserInputWrapper = styled.div`
     color: ${({ theme }) => theme.colors.errorDark};
     font-size: ${({ theme }) => theme.fontSize.small};
   }
+
+  .url-validation-info {
+    position: absolute;
+    bottom: -24px;
+    right: 0;
+    font-size: ${({ theme }) => theme.fontSize.small};
+
+    &.wrong {
+      color: ${({ theme }) => theme.colors.errorDark};
+    }
+
+    &.correct {
+      color: ${({ theme }) => theme.colors.successColor};
+    }
+  }
 `;
 
 export const StyledTextArea = styled(TextArea)<{ minheight?: number }>`

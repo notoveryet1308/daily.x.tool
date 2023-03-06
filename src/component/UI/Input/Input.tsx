@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Eye, EyeSlash } from "phosphor-react";
-import { noop, _debounce } from "../../../utils";
+import { noop, securedUrlRegex, _debounce } from "../../../utils";
 import { StyledInput, StyledUserInputWrapper } from "./style";
 import { InputProps } from "./types";
 
@@ -21,6 +21,7 @@ const Input = ({
   errorMessage,
   errorBorder,
   showPassword = false,
+  showValidUrlMessage = false,
 }: InputProps) => {
   const [isPasswordVisible, setPasswordVisible] = useState(false);
   const [userInput, setUserInput] = useState(value);
@@ -83,12 +84,12 @@ const Input = ({
         {type === "password" &&
           showPassword &&
           (isPasswordVisible ? (
-            <EyeSlash
+            <Eye
               className="eye-closed password-icon"
               onClick={() => setPasswordVisible(!isPasswordVisible)}
             />
           ) : (
-            <Eye
+            <EyeSlash
               className="eye-open password-icon"
               onClick={() => setPasswordVisible(!isPasswordVisible)}
             />
@@ -98,6 +99,14 @@ const Input = ({
       {errorMessage && (
         <span className="error-message-input">{errorMessage}</span>
       )}
+      {type === "url" &&
+        showValidUrlMessage &&
+        userInput &&
+        (securedUrlRegex(userInput) ? (
+          <span className="url-validation-info correct">Valid url</span>
+        ) : (
+          <span className="url-validation-info wrong">Invalid url</span>
+        ))}
     </StyledUserInputWrapper>
   );
 };

@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from "styled-components";
 
 export const StyledMainWrapper = styled.div`
   position: relative;
@@ -36,6 +36,7 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Noto Sans', sans-serif;
+    background-color: ${({ theme }) => theme.colors.primaryBgColor};
   }
 
   ::-webkit-scrollbar {
@@ -76,4 +77,21 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
   }
+  
+   @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px){
+       ::-webkit-scrollbar {
+         width: 4px;
+      }
+    
+    ::-webkit-scrollbar-track {
+      background: none;
+      border-radius: 2px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background-color: ${({ theme }) => theme.colors.scrollbarColor};
+      border-radius: 2px;
+      }
+   }
+  
 `;

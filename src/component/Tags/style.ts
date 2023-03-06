@@ -17,6 +17,7 @@ export const StyledTag = styled.span<{
   gap: 8px;
   cursor: ${({ isClearable }) => (isClearable ? "pointer" : "auto")};
   line-height: 14px;
+  white-space: nowrap;
 
   background-color: ${({ theme, hexCode }) =>
     theme.mixins.convertHexToHsl({
