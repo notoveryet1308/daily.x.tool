@@ -4,8 +4,8 @@ export const navData = [
   //   to: '/all-today',
   // },
   {
-    label: 'Sprint',
-    to: '/sprint',
+    label: 'Planner',
+    to: '/planner',
   },
   {
     label: 'Bookmark',
