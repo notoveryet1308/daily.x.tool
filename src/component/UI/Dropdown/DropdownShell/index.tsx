@@ -15,6 +15,7 @@ export type DropdownShellPropType = {
   hideContent?: boolean;
   name?: string;
   isContentVisible?: boolean;
+  transparentButton?: boolean;
 };
 
 const DropdownShell = ({
@@ -30,6 +31,7 @@ const DropdownShell = ({
   onDropdownBtnClick,
   name,
   isContentVisible = false,
+  transparentButton = false,
 }: DropdownShellPropType) => {
   const [contentVisible, setContentVisible] = useState(isContentVisible);
 
@@ -47,6 +49,7 @@ const DropdownShell = ({
       className={`dd-shell ${className}`}
       isSelected={!!selectedValue || !!selectedValueCount || !!contentVisible}
       contentZIndex={contentZIndex}
+      transparentButton={transparentButton}
     >
       <button className="dd-shell-main-btn" onClick={handleToggelDropdown}>
         <div className="dd-shell-main-btn-label-wrapper">

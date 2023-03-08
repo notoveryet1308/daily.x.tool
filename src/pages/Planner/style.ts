@@ -41,7 +41,6 @@ export const StyledPlannerPage = styled.section`
     border-bottom: 1px solid ${({ theme }) => theme.colors.primaryGreyColor};
 
     @media (max-width: ${({ theme }) => theme.breakpoints.TABLET}px) {
-      height: 40px;
     }
   }
 `;

@@ -61,6 +61,8 @@ export const whiteThemeColors = {
   scrollbarColor: "#9383D4",
   scrollbarBgColor: "rgba(61,61,61, .1)",
 
+  plannerCreateColor: "#3B0BDA",
+
   // hue
   [SATURATION]: 45,
   [LIGHTNESS_L1]: 88,
@@ -118,6 +120,8 @@ export const darkThemeColors = {
   underlineColor: "rgba(202, 192, 236, .4)",
   ruleBreakerColor: "#2690EB",
   modalMaskOverlay: "rgba(14, 10, 22, 0.8)",
+
+  plannerCreateColor: "#3B0BDA",
 
   scrollbarColor: "#483C78",
   scrollbarBgColor: "rgba(217, 217, 217, .1)",

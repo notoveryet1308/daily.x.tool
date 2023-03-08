@@ -1,7 +1,6 @@
 import { DropdownShell } from "../../../component/UI/Dropdown";
 import { ArrowsDownUp, Funnel } from "phosphor-react";
 
-import Tags from "../../../component/Tags";
 import FilterContent from "./FilterContent";
 import SortContent from "./SortContent";
 
