@@ -44,3 +44,17 @@ export const StyledPlannerPage = styled.section`
     }
   }
 `;
+
+export const StyledDrawerTitle = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .drawer-title-icon {
+    font-size: 20px;
+  }
+
+  .label {
+    color: ${({ theme }) => theme.colors.primaryTextColor};
+  }
+`;

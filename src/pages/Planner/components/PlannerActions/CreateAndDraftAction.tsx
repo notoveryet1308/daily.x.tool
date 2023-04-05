@@ -5,7 +5,11 @@ import { StyledCreateAndDraftAction } from "./style";
 const CreateAndDraftAction = () => {
   return (
     <StyledCreateAndDraftAction className="create-and-draft-wrapper">
-      <PrimaryButton className="create-ticket-btn" label="Create" />
+      <PrimaryButton
+        className="create-ticket-btn"
+        label="Create"
+        onClick={() => {}}
+      />
       <NavLink className="draft-nav-btn" to="planner/draft/ticket">
         Drafts
       </NavLink>

@@ -41,7 +41,7 @@ export const StyledPlannerActions = styled.div`
       width: 300px;
     }
 
-    @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
+    @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {qw
       .dd-content {
         display: none;
       }
@@ -55,6 +55,7 @@ export const StyledCreateAndDraftAction = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     .create-ticket-btn {
       background: ${({ theme }) => theme.colors.plannerCreateColor};
       padding: 8px 32px;
@@ -63,6 +64,17 @@ export const StyledCreateAndDraftAction = styled.div`
     .draft-nav-btn {
       color: ${({ theme }) => theme.colors.secondaryTextColor};
       font-size: 14px;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
+      bottom: 0;
+      left: 0;
+      padding: 8px 20px;
+      position: fixed;
+      flex-direction: row-reverse;
+      width: 100%;
+      border-top: 1px solid ${({ theme }) => theme.colors.primaryGreyColor};
+      
     }
   }
 `;
