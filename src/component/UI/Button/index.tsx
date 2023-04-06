@@ -13,6 +13,7 @@ type ButtonProps = {
   icon?: React.ReactNode;
   isActive?: boolean;
   isRounded?: boolean;
+  size?: "default" | "small";
 };
 
 const BaseButton = ({
@@ -26,6 +27,7 @@ const BaseButton = ({
   icon,
   isActive = false,
   isRounded = false,
+  size = "default",
 }: ButtonProps) => {
   return (
     <StyledBaseButton
@@ -36,7 +38,7 @@ const BaseButton = ({
       }}
       className={`${variant}-btn ${disabled && "disabled-btn"} ${className}  ${
         isRounded && "rounded"
-      }`}
+      } ${size}`}
     >
       {icon} {label}
       {isActive && <span className="active"> </span>}
@@ -78,6 +80,27 @@ export const SecondaryButton = ({
       type={type}
       label={label}
       variant="secondary"
+      disabled={disabled}
+      onClick={onClick}
+      className={className}
+      {...rest}
+    />
+  );
+};
+
+export const TertiaryButton = ({
+  label,
+  type,
+  disabled,
+  onClick,
+  className,
+  ...rest
+}: ButtonProps) => {
+  return (
+    <BaseButton
+      type={type}
+      label={label}
+      variant="tertiary"
       disabled={disabled}
       onClick={onClick}
       className={className}

@@ -58,7 +58,7 @@ export const StyledCreateAndDraftAction = styled.div`
 
     .create-ticket-btn {
       background: ${({ theme }) => theme.colors.plannerCreateColor};
-      padding: 8px 32px;
+      padding: 4px 16px;
     }
 
     .draft-nav-btn {

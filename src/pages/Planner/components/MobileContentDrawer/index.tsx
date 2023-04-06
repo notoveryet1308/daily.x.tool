@@ -1,8 +1,6 @@
 import { ReactNode } from "react";
 
-import { StyledDrawerTitle } from "./style";
-
-import Drawer from "../../../../component/UI/Drawer";
+import { StyledDrawerTitle, StyledDrawer } from "./style";
 
 type MobileContentDrawerProps = {
   toggleDrawer: Function;
@@ -18,14 +16,15 @@ const MobileContentDrawer = ({
   children,
 }: MobileContentDrawerProps) => {
   return (
-    <Drawer
+    <StyledDrawer
       placement="bottom"
       open={isOpen}
       onClose={toggleDrawer}
       title={title}
+      height="auto"
     >
       {children}
-    </Drawer>
+    </StyledDrawer>
   );
 };
 

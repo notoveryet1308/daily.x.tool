@@ -29,7 +29,7 @@ const People = () => {
         hideContent={isMobile}
         isContentVisible={openDrawer}
         onDropdownBtnClick={handleDrawerOpen}
-      />
+      />  
 
       {isMobile && (
         <MobileContentDrawer

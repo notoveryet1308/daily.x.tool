@@ -9,6 +9,7 @@ const CreateAndDraftAction = () => {
         className="create-ticket-btn"
         label="Create"
         onClick={() => {}}
+        size="small"
       />
       <NavLink className="draft-nav-btn" to="planner/draft/ticket">
         Drafts

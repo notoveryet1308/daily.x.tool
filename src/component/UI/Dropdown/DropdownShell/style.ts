@@ -66,7 +66,7 @@ export const StyledDropdownShell = styled.div<{
     z-index: ${({ contentZIndex }) => contentZIndex || 2};
     border-radius: 8px;
     border: 1px solid ${({ theme }) => theme.colors.primaryColor};
-    padding: 16px;
+    /* padding: 12px; */
 
     .dd-content-empty {
       color: ${({ theme }) => theme.colors.secondaryTextColor};
