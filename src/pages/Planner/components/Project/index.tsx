@@ -10,13 +10,16 @@ import { StyledDrawerTitle } from "../../style";
 
 const People = () => {
   const [openDrawer, setDrawerOpen] = useState(false);
+  const [hideContent, setHideContent] = useState(false);
   const [screenWidth] = useScreenWidth();
   const isMobile = screenWidth <= breakpoints.LARGE_MOBILE;
 
-  const handleDrawerOpen = () => {
+  const handleDropDownClick = () => {
     if (isMobile) {
       setDrawerOpen(!openDrawer);
     }
+
+    setHideContent(false);
   };
 
   return (
@@ -24,16 +27,17 @@ const People = () => {
       <DropdownShell
         btnLabel="Project"
         btnIcon={<Strategy />}
-        content={<ProjectContent />}
+        content={<ProjectContent onHideContent={() => setHideContent(true)} />}
         transparentButton
         hideContent={isMobile}
         isContentVisible={openDrawer}
-        onDropdownBtnClick={handleDrawerOpen}
-      />  
+        onDropdownBtnClick={handleDropDownClick}
+        closeDropdownContent={hideContent}
+      />
 
       {isMobile && (
         <MobileContentDrawer
-          toggleDrawer={handleDrawerOpen}
+          toggleDrawer={handleDropDownClick}
           isOpen={openDrawer}
           title={
             <StyledDrawerTitle>
@@ -42,7 +46,7 @@ const People = () => {
             </StyledDrawerTitle>
           }
         >
-          <ProjectContent />
+          <ProjectContent onHideContent={handleDropDownClick} />
         </MobileContentDrawer>
       )}
     </>

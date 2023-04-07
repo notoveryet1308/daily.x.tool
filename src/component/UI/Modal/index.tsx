@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
-import ReactDom from 'react-dom';
-import { X } from 'phosphor-react';
+import React, { useEffect } from "react";
+import ReactDom from "react-dom";
+import { X } from "phosphor-react";
 
-import { StyledModal } from './style';
-import ModalHeader from './Header';
-import ModalFooter from './Footer';
+import { StyledModal } from "./style";
+import ModalHeader from "./Header";
+import ModalFooter from "./Footer";
 
 interface ModalPropsCustom {
   height?: number;
@@ -21,7 +21,7 @@ interface ModalPropsCustom {
   onOk?: Function;
   okBtnLabel?: string;
   showFooter?: boolean;
-  align: 'top' | 'center';
+  align: "top" | "center";
 }
 
 const ModalShell = ({
@@ -37,7 +37,7 @@ const ModalShell = ({
   children,
   className,
   okBtnLabel,
-  align = 'center',
+  align = "center",
   showFooter = true,
   showCloseIcon = true,
 }: ModalPropsCustom) => {
@@ -45,23 +45,23 @@ const ModalShell = ({
     <>
       {open && (
         <StyledModal
-          aria-label='modal'
+          aria-label="modal"
           height={height}
           width={width}
           className={`${className} base-modal`}
           align={align}
         >
-          <div className='modal-mask-overlay'></div>
-          <div role='dailog' className='modal-content-wrapper' style={style}>
-            <div className='modal-content'>
-              <div className='modal-header'>
+          <div className="modal-mask-overlay"></div>
+          <div role="dailog" className="modal-content-wrapper" style={style}>
+            <div className="modal-content">
+              <div className="modal-header">
                 {!header ? <ModalHeader title={title} /> : header}
                 {showCloseIcon ? (
-                  <X className='modal-x-icon' onClick={() => onClose()} />
+                  <X className="modal-x-icon" onClick={() => onClose()} />
                 ) : null}
               </div>
-              <div className='modal-body'>{children}</div>
-              <div className='modal-footer'>
+              <div className="modal-body">{children}</div>
+              <div className="modal-footer">
                 {showFooter && !footer ? (
                   <ModalFooter
                     onCancel={onClose}
@@ -81,22 +81,23 @@ const ModalShell = ({
 };
 
 const Modal = (props: ModalPropsCustom) => {
-  const elementOnMount = document.getElementById('modal-c') as HTMLDivElement;
+  const elementOnMount = document.getElementById("modal-c") as HTMLDivElement;
 
   useEffect(() => {
     if (props.open) {
-      elementOnMount.style.display = 'flex';
-      elementOnMount.style.top = '0';
-      elementOnMount.style.left = '0';
-      elementOnMount.style.width = '100%';
-      elementOnMount.style.height = '100%';
-      elementOnMount.style.position = 'fixed';
-      elementOnMount.style.zIndex = '999';
-    } else {
-      elementOnMount.style.display = 'none';
+      elementOnMount.style.display = "flex";
+      elementOnMount.style.top = "0";
+      elementOnMount.style.left = "0";
+      elementOnMount.style.width = "100%";
+      elementOnMount.style.height = "100%";
+      elementOnMount.style.position = "fixed";
+      elementOnMount.style.zIndex = "999";
     }
+    return () => {
+      elementOnMount.style.display = "none";
+    };
   }, [props.open]);
-  
+
   return ReactDom.createPortal(<ModalShell {...props} />, elementOnMount);
 };
 

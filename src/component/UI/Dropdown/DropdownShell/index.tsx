@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { CaretDown, CaretUp, ArrowsDownUp } from "phosphor-react";
 import { StyledDropdownShell } from "./style";
 
@@ -16,6 +16,7 @@ export type DropdownShellPropType = {
   name?: string;
   isContentVisible?: boolean;
   transparentButton?: boolean;
+  closeDropdownContent?: boolean;
 };
 
 const DropdownShell = ({
@@ -32,10 +33,12 @@ const DropdownShell = ({
   name,
   isContentVisible = false,
   transparentButton = false,
+  closeDropdownContent = false,
 }: DropdownShellPropType) => {
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const [contentVisible, setContentVisible] = useState(isContentVisible);
 
-  const handleToggelDropdown = () => {
+  const handleToggleDropdown = () => {
     setContentVisible(!contentVisible);
     onDropdownBtnClick && onDropdownBtnClick({ name: name || "" });
   };
@@ -44,14 +47,21 @@ const DropdownShell = ({
     setContentVisible(isContentVisible);
   }, [isContentVisible]);
 
+  useEffect(() => {
+    if (closeDropdownContent) {
+      setContentVisible(false);
+    }
+  }, [closeDropdownContent]);
+
   return (
     <StyledDropdownShell
       className={`dd-shell ${className}`}
       isSelected={!!selectedValue || !!selectedValueCount || !!contentVisible}
       contentZIndex={contentZIndex}
       transparentButton={transparentButton}
+      ref={dropdownRef}
     >
-      <button className="dd-shell-main-btn" onClick={handleToggelDropdown}>
+      <button className="dd-shell-main-btn" onClick={handleToggleDropdown}>
         <div className="dd-shell-main-btn-label-wrapper">
           <span className="dd-shell-custom-icon">{btnIcon}</span>
           <span className="dd-main-btn-label">

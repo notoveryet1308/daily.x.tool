@@ -1,6 +1,6 @@
 import React from "react";
 import noDataImg from "../../../assets/no_data.svg";
-import { StyledNoDataWrapper } from "./style";
+import { StyledNoDataWrapper, StyledInlineNoDataFound } from "./style";
 
 const NoDataState = ({
   message,
@@ -21,4 +21,26 @@ const NoDataState = ({
   );
 };
 
+const InlineNoDataFound = ({
+  icon,
+  mainText,
+  subText,
+}: {
+  icon?: React.ReactNode;
+  mainText: string;
+  subText: string;
+}) => {
+  return (
+    <StyledInlineNoDataFound>
+      <div className="inline-top">
+        {icon && <span className="inline-top-icon">{icon}</span>}
+        <h4 className="inline-top-main-text">{mainText}</h4>
+      </div>
+      <span className="inline-sub-text">{subText}</span>
+    </StyledInlineNoDataFound>
+  );
+};
+
 export default NoDataState;
+
+export { InlineNoDataFound };

@@ -25,7 +25,7 @@ const Textarea = ({
     (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
       e.preventDefault();
       setUserInput(e.target.value);
-      onChange({ [name]: e.target.value });
+      onChange({ [name]: e.target.value, field: name });
     },
     [userInput]
   );

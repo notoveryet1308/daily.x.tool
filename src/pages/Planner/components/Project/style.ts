@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
+import Modal from "../../../../component/UI/Modal";
+
 export const StyledProjectContent = styled.div`
   width: 100%;
   height: 100%;
@@ -16,16 +18,12 @@ export const StyledProjectContent = styled.div`
   }
 
   .project-content-footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
     width: 100%;
     display: flex;
     align-items: center;
     column-gap: 16px;
     justify-content: flex-end;
     padding: 12px;
-    border-top: 1px solid ${({ theme }) => theme.colors.secondaryGreyColor};
   }
 `;
 
@@ -73,6 +71,22 @@ export const StyledCreateProjectFiled = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  flex: 1;
 `;
 
-export const StyledCreateProjectFooter = styled.div``;
+export const StyledCreateProjectFooter = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+
+  padding: 16px 0;
+`;
+
+export const StyledModal = styled(Modal)`
+  &&&& .modal-body {
+    padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
+  }
+`;

@@ -6,7 +6,10 @@ export const CREATE_PROJECT = gql`
       id
       name
       description
-      owner
+      owner {
+        _id
+        email
+      }
       projectKey
     }
   }
@@ -18,7 +21,7 @@ export const GET_ALL_PROJECTS = gql`
       id
       name
       description
-      owner{
+      owner {
         _id
         email
       }
