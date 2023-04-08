@@ -1,6 +1,11 @@
 import { useMutation, useQuery } from "@apollo/client";
 
-import { CREATE_PROJECT, GET_ALL_PROJECTS } from "./gql";
+import {
+  ADD_TEAM_MEMBER,
+  CREATE_PROJECT,
+  GET_ALL_PROJECTS,
+  GET_MY_TEAM_MEMBER_DETAIL,
+} from "./gql";
 import { ProjectCreateInput } from "../type";
 
 export const useCreateProject = () => {
@@ -12,7 +17,7 @@ export const useCreateProject = () => {
       cache.writeQuery({
         query: GET_ALL_PROJECTS,
         data: {
-          getNote: [...existingNote?.getAllProjects, createProject],
+          getAllProjects: [...existingNote?.getAllProjects, createProject],
         },
       });
     },
@@ -41,4 +46,27 @@ export const useCreateProject = () => {
 export const useGetAllProjects = () => {
   const getProjectFetchState = useQuery(GET_ALL_PROJECTS);
   return getProjectFetchState;
+};
+
+export const useGetMyTeamMemberDetail = () => {
+  const getAllTeamMemberState = useQuery(GET_MY_TEAM_MEMBER_DETAIL);
+  return getAllTeamMemberState;
+};
+
+export const useAddTeamMember = () => {
+  const [mutate, addMemberState] = useMutation(ADD_TEAM_MEMBER, {
+    refetchQueries: [GET_MY_TEAM_MEMBER_DETAIL],
+  });
+
+  const handleAddTeamMember = (email: string) => {
+    mutate({
+      variables: {
+        input: {
+          email,
+        },
+      },
+    });
+  };
+
+  return { handleAddTeamMember, addMemberState };
 };

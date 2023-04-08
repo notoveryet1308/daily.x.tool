@@ -4,13 +4,17 @@ export const GET_CURRENT_USER = gql`
   query CurrentUser {
     getCurrentLoggedInUser {
       _id
-      name
       email
+      password
+      name
+      profession
+      avatar
+      teamMember
     }
   }
 `;
 
 export const useGetLoggedUserDetail = () => {
-  const loggedUserQuer = useQuery(GET_CURRENT_USER);
-  return loggedUserQuer;
+  const loggedUserQuery = useQuery(GET_CURRENT_USER);
+  return loggedUserQuery;
 };

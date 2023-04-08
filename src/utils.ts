@@ -53,3 +53,16 @@ export const securedUrlRegex = (value: string) => {
 
   return regex.test(value);
 };
+
+export const getInitials = (data: string) => {
+  const [first, second] = data.split(" ");
+
+  let initial;
+  if (first && !second) {
+    initial = `${first.charAt(0)}${first.charAt(1)}`;
+  } else {
+    initial = `${first.charAt(0)}${second.charAt(0)}`;
+  }
+
+  return initial;
+};

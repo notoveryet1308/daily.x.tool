@@ -9,6 +9,8 @@ export const CREATE_PROJECT = gql`
       owner {
         _id
         email
+        name
+        teamMember
       }
       projectKey
     }
@@ -24,8 +26,36 @@ export const GET_ALL_PROJECTS = gql`
       owner {
         _id
         email
+        name
+        teamMember
       }
       projectKey
+    }
+  }
+`;
+
+export const ADD_TEAM_MEMBER = gql`
+  mutation addTeamMember($input: CreateTeamInput!) {
+    addTeamMember(input: $input) {
+      _id
+      email
+      name
+      profession
+      avatar
+      teamMember
+    }
+  }
+`;
+
+export const GET_MY_TEAM_MEMBER_DETAIL = gql`
+  query getMyTeamMemberDetail {
+    getMyTeamMemberDetail {
+      _id
+      email
+      name
+      profession
+      avatar
+      teamMember
     }
   }
 `;

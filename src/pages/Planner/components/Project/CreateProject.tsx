@@ -1,14 +1,13 @@
-import { useState, useEffect } from "react";
 import { useImmer } from "use-immer";
 
 import { Input, TextArea } from "../../../../component/UI/Input";
-import { PrimaryButton, TertiaryButton } from "../../../../component/UI/Button";
 
-import { StyledCreateProjectFiled, StyledCreateProjectFooter } from "./style";
+import { StyledCreateProjectFiled } from "./style";
 import { useCheckRequiredValue } from "../../../../hooks";
 import { useCreateProject } from "../../graphql";
 import { nanoid } from "nanoid";
 import { SuccessToast } from "../../../../component/Toast";
+import ActionFooter from "../ActionFooter";
 
 type projectDataFields = "projectName" | "projectKey" | "projectDescription";
 
@@ -45,8 +44,6 @@ const CreateProject = ({ onCancel }: { onCancel: Function }) => {
     onCancel();
     return <SuccessToast position="full" message="Project created!!" />;
   }
-
-  console.log({ creationState });
 
   return (
     <>
@@ -99,26 +96,22 @@ const CreateProject = ({ onCancel }: { onCancel: Function }) => {
           }}
         />
       </StyledCreateProjectFiled>
-      <StyledCreateProjectFooter>
-        <TertiaryButton size="small" label="Cancel" onClick={onCancel} />
-        <PrimaryButton
-          size="small"
-          disabled={!allowAction || creationState.loading}
-          label={
-            creationState.called && creationState.loading
-              ? "Creating..."
-              : "Create"
-          }
-          onClick={() => {
-            handleCreateProject({
-              id: nanoid(),
-              name: createProjectData.projectName,
-              description: createProjectData.projectDescription,
-              projectKey: createProjectData.projectKey,
-            });
-          }}
-        />
-      </StyledCreateProjectFooter>
+      <ActionFooter
+        onCancel={onCancel}
+        cancelBtnLabel="Cancel"
+        primaryActionLabel="Create"
+        inProcessActionLabel="Creating.."
+        allowAction={allowAction}
+        loading={creationState.called && creationState.loading}
+        onConfirm={() => {
+          handleCreateProject({
+            id: nanoid(),
+            name: createProjectData.projectName,
+            description: createProjectData.projectDescription,
+            projectKey: createProjectData.projectKey,
+          });
+        }}
+      />
     </>
   );
 };

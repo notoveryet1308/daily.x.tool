@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Modal from "../../component/UI/Modal";
 
 export const StyledPlannerPage = styled.section`
   width: 100%;
@@ -56,5 +57,13 @@ export const StyledDrawerTitle = styled.div`
 
   .label {
     color: ${({ theme }) => theme.colors.primaryTextColor};
+  }
+`;
+
+export const StyledModal = styled(Modal)`
+  &&&& .modal-body {
+    padding: 24px 0 0 0;
+    display: flex;
+    flex-direction: column;
   }
 `;
