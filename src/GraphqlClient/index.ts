@@ -1,8 +1,7 @@
-import { ApolloClient, InMemoryCache, HttpLink, from } from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
+import { ApolloClient, InMemoryCache, HttpLink, from } from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 
-
-import { onError } from '@apollo/client/link/error';
+import { onError } from "@apollo/client/link/error";
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
@@ -17,22 +16,22 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
-  let token = (localStorage.getItem('accessToken'));
-  if(token){
-    token = JSON.parse(token)
+  let token = localStorage.getItem("accessToken");
+  if (token) {
+    token = JSON.parse(token);
   }
   // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
       authorization: token ? `Bearer ${token}` : "",
-    }
-  }
+    },
+  };
 });
 
 const httpLink = new HttpLink({
   uri: 'https://dailyxtoolapi.onrender.com/graphql',
-  // uri: 'https://notoveryet1308-sturdy-space-spoon-x99pwp6j4jq369v6-4000.preview.app.github.dev/graphql',
+  // uri: "http://localhost:4000/graphql",
 });
 const client = new ApolloClient({
   cache: new InMemoryCache(),

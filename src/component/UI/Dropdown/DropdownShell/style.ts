@@ -3,10 +3,10 @@ import styled from "styled-components";
 export const StyledDropdownShell = styled.div<{
   isSelected: boolean;
   contentZIndex: number;
+  transparentButton: boolean;
 }>`
   position: relative;
   width: 100%;
-  min-width: 150px;
 
   .dd-shell-main-btn {
     width: 100%;
@@ -15,7 +15,8 @@ export const StyledDropdownShell = styled.div<{
     justify-content: space-between;
     align-items: center;
     overflow: hidden;
-    background: ${({ theme }) => theme.colors.secondaryBgColor};
+    background: ${({ theme, transparentButton }) =>
+      !transparentButton ? theme.colors.secondaryBgColor : "transparent"};
     border-radius: 8px;
     border: 1px solid transparent;
     border-color: ${({ isSelected, theme }) =>
@@ -52,6 +53,7 @@ export const StyledDropdownShell = styled.div<{
     .dd-btn-caret-icon {
       font-size: 20px;
       color: ${({ theme }) => theme.colors.primaryTextColor};
+      margin-left: 8px;
     }
   }
 
@@ -64,7 +66,7 @@ export const StyledDropdownShell = styled.div<{
     z-index: ${({ contentZIndex }) => contentZIndex || 2};
     border-radius: 8px;
     border: 1px solid ${({ theme }) => theme.colors.primaryColor};
-    padding: 16px;
+    /* padding: 12px; */
 
     .dd-content-empty {
       color: ${({ theme }) => theme.colors.secondaryTextColor};

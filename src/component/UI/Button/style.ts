@@ -11,6 +11,10 @@ export const StyledBaseButton = styled.button<{ variation?: string }>`
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSize.medium};
 
+  &.small {
+    padding: 4px 8px;
+  }
+
   .active {
     position: absolute;
     width: 12px;
@@ -39,6 +43,11 @@ export const StyledBaseButton = styled.button<{ variation?: string }>`
     color: ${({ theme }) => theme.colors.primaryTextColor};
     border: 1px solid ${({ theme }) => theme.colors.primaryColor};
     background-color: inherit;
+  }
+  &.tertiary-btn {
+    border: none;
+    background-color: inherit;
+    color: ${({ theme }) => theme.colors.primaryTextColor};
   }
   &.disabled-btn {
     cursor: no-drop;
