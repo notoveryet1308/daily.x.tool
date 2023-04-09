@@ -72,3 +72,18 @@ export const StyledCreateProjectFiled = styled.div`
   flex: 1;
   padding: 0 16px;
 `;
+
+export const StyledProjectName = styled.div`
+  display: flex;
+  padding: 4px 16px;
+  background: ${({ theme }) => theme.colors.secondaryBgColor};
+  border-radius: 4px;
+  cursor: pointer;
+  color: ${({ theme }) => theme.colors.primaryTextColor};
+  font-size: 14px;
+  border: 1px solid transparent;
+
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.primaryGreyColor};
+  }
+`;

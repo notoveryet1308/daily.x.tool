@@ -62,7 +62,7 @@ export const StyledDrawerTitle = styled.div`
 
 export const StyledModal = styled(Modal)`
   &&&& .modal-body {
-    padding: 24px 0 0 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
   }

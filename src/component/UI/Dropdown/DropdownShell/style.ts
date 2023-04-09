@@ -4,9 +4,16 @@ export const StyledDropdownShell = styled.div<{
   isSelected: boolean;
   contentZIndex: number;
   transparentButton: boolean;
+  dropdownName: boolean;
 }>`
   position: relative;
   width: 100%;
+
+  .dropdown-shell-name {
+    color: ${({ theme }) => theme.colors.primaryTextColor};
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
 
   .dd-shell-main-btn {
     width: 100%;
@@ -60,7 +67,7 @@ export const StyledDropdownShell = styled.div<{
   .dd-content {
     width: 100%;
     position: absolute;
-    top: 48px;
+    top: ${({ dropdownName }) => (dropdownName ? "80px" : "48px")};
     left: 0;
     background: ${({ theme }) => theme.colors.primaryBgColor};
     z-index: ${({ contentZIndex }) => contentZIndex || 2};

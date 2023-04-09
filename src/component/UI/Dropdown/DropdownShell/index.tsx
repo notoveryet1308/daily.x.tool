@@ -4,6 +4,7 @@ import { StyledDropdownShell } from "./style";
 import { useOutsideClickHook } from "../../../../hooks";
 
 export type DropdownShellPropType = {
+  dropdownName?: string;
   btnLabel: string;
   selectedValue?: any;
   multi?: boolean;
@@ -18,6 +19,7 @@ export type DropdownShellPropType = {
   isContentVisible?: boolean;
   transparentButton?: boolean;
   closeDropdownContent?: boolean;
+  selectedContent?: React.ReactNode;
 };
 
 const DropdownShell = ({
@@ -35,6 +37,8 @@ const DropdownShell = ({
   isContentVisible = false,
   transparentButton = false,
   closeDropdownContent = false,
+  selectedContent,
+  dropdownName,
 }: DropdownShellPropType) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -65,16 +69,25 @@ const DropdownShell = ({
       contentZIndex={contentZIndex}
       transparentButton={transparentButton}
       ref={dropdownRef}
+      dropdownName={!!dropdownName}
     >
+      {dropdownName && <p className="dropdown-shell-name">{dropdownName}</p>}
       <button className="dd-shell-main-btn" onClick={handleToggleDropdown}>
         <div className="dd-shell-main-btn-label-wrapper">
-          <span className="dd-shell-custom-icon">{btnIcon}</span>
-          <span className="dd-main-btn-label">
-            {btnLabel}
-            {multi
-              ? (!!selectedValueCount && ` ${selectedValueCount} value`) || ""
-              : selectedValue || ""}
-          </span>
+          {!selectedContent ? (
+            <>
+              <span className="dd-shell-custom-icon">{btnIcon}</span>
+              <span className="dd-main-btn-label">
+                {btnLabel}
+                {multi
+                  ? (!!selectedValueCount && ` ${selectedValueCount} value`) ||
+                    ""
+                  : selectedValue || ""}
+              </span>
+            </>
+          ) : (
+            selectedContent
+          )}
         </div>
         {!contentVisible ? (
           <CaretDown className="dd-btn-caret-icon down" />

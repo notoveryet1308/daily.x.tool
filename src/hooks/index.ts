@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { breakpoints } from "../theme/breakpoint";
 
 export const useScreenWidth = (): [number] => {
   const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
@@ -81,4 +82,10 @@ export const useOutsideClickHook = (handler: (event: Event) => void, ref) => {
   );
 
   // return ref;
+};
+
+export const useInMobile = () => {
+  const [screenWidth] = useScreenWidth();
+
+  return breakpoints.LARGE_MOBILE >= screenWidth;
 };

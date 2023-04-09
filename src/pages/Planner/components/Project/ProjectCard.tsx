@@ -1,5 +1,5 @@
 import Divider from "../../../../component/UI/Divider";
-import { StyledProjectCard } from "./style";
+import { StyledProjectCard, StyledProjectName } from "./style";
 import { ProjectFiled } from "../../type";
 
 const ProjectCard = (props: ProjectFiled) => {
@@ -28,6 +28,20 @@ const ProjectCard = (props: ProjectFiled) => {
         </span>
       </div>
     </StyledProjectCard>
+  );
+};
+
+export const ProjectName = ({
+  name,
+  onClick,
+}: {
+  name: string;
+  onClick?: Function;
+}) => {
+  return (
+    <StyledProjectName onClick={() => onClick && onClick()}>
+      {name}
+    </StyledProjectName>
   );
 };
 
