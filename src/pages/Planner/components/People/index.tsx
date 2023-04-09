@@ -11,6 +11,7 @@ import MobileContentDrawer from "../MobileContentDrawer";
 const People = () => {
   const [openDrawer, setDrawerOpen] = useState(false);
   const [screenWidth] = useScreenWidth();
+  const [hideContent, setHideContent] = useState(false);
   const isMobile = screenWidth <= breakpoints.LARGE_MOBILE;
 
   const handleDrawerOpen = () => {
@@ -24,11 +25,12 @@ const People = () => {
       <DropdownShell
         btnLabel="People"
         btnIcon={<Users />}
-        content={<PeopleContent />}
+        content={<PeopleContent onHideContent={() => setHideContent(true)} />}
         hideContent={isMobile}
         transparentButton
         onDropdownBtnClick={handleDrawerOpen}
         isContentVisible={openDrawer}
+        closeDropdownContent={hideContent}
       />
       {isMobile && (
         <MobileContentDrawer
@@ -41,7 +43,7 @@ const People = () => {
             </StyledDrawerTitle>
           }
         >
-          <PeopleContent />
+          <PeopleContent onHideContent={handleDrawerOpen} />
         </MobileContentDrawer>
       )}
     </>

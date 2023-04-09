@@ -10,10 +10,11 @@ export const StyledPeopleContent = styled.div`
     min-height: 200px;
     overflow-y: auto;
     gap: 12px;
+    padding: 24px;
   }
 `;
 
 export const StyledAddToTeam = styled.div`
-  padding: 0 16px;
+  padding: 0 24px;
   flex: 1;
 `;

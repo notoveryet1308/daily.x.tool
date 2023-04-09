@@ -74,7 +74,6 @@ const NoteListDisplay = ({
   }
 
   if (data.length > 0 && !filterData(data, noteFilter, noteSearch).length) {
-    console.log("rrr");
     return (
       <NoDataState
         img={no_data_img}

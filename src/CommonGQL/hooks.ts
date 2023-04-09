@@ -39,7 +39,6 @@ export const useCreateTag = () => {
   });
 
   const handleCreatetag = ({ id, label, value }: tagType) => {
-    console.log({ id, label, value });
     const logged = isUserAuthenticated();
     logged &&
       mutate({

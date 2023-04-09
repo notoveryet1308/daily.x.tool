@@ -20,8 +20,6 @@ const PeopleContent = ({ onHideContent }: { onHideContent: Function }) => {
   const [screenWidth] = useScreenWidth();
   const [isAddingMember, setAddingMember] = useState(false);
 
-  console.log({ loading, data, error });
-
   const handleAddingMember = () => {
     setAddingMember(!isAddingMember);
   };

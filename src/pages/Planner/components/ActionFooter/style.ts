@@ -6,5 +6,5 @@ export const StyledActionFooter = styled.div`
   align-items: center;
   gap: 16px;
 
-  padding: 16px;
+  padding: 16px 24px;
 `;
