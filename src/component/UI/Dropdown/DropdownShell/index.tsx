@@ -1,6 +1,7 @@
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { CaretDown, CaretUp, ArrowsDownUp } from "phosphor-react";
 import { StyledDropdownShell } from "./style";
+import { useOutsideClickHook } from "../../../../hooks";
 
 export type DropdownShellPropType = {
   btnLabel: string;
@@ -36,12 +37,16 @@ const DropdownShell = ({
   closeDropdownContent = false,
 }: DropdownShellPropType) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
+
   const [contentVisible, setContentVisible] = useState(isContentVisible);
 
   const handleToggleDropdown = () => {
     setContentVisible(!contentVisible);
     onDropdownBtnClick && onDropdownBtnClick({ name: name || "" });
   };
+  useOutsideClickHook(() => {
+    setContentVisible(false);
+  }, dropdownRef);
 
   useEffect(() => {
     setContentVisible(isContentVisible);

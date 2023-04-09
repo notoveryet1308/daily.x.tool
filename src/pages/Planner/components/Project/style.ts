@@ -7,7 +7,7 @@ export const StyledProjectContent = styled.div`
   position: relative;
 
   .project-list {
-    padding: 12px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
     gap: 8px;

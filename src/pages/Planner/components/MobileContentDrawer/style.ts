@@ -14,6 +14,6 @@ export const StyledDrawerTitle = styled.div`
 
 export const StyledDrawer = styled(Drawer)`
   && .ant-drawer-body {
-    padding: 16px 16px 0 16px;
+    padding: 0;
   }
 `;
