@@ -59,3 +59,9 @@ export const GET_MY_TEAM_MEMBER_DETAIL = gql`
     }
   }
 `;
+
+export const GET_PROJECT_NAMES = gql`
+  query GetAllProjectsName {
+    getProjectNames
+  }
+`;

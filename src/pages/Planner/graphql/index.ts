@@ -5,6 +5,7 @@ import {
   CREATE_PROJECT,
   GET_ALL_PROJECTS,
   GET_MY_TEAM_MEMBER_DETAIL,
+  GET_PROJECT_NAMES,
 } from "./gql";
 import { ProjectCreateInput } from "../type";
 
@@ -69,4 +70,9 @@ export const useAddTeamMember = () => {
   };
 
   return { handleAddTeamMember, addMemberState };
+};
+
+export const useGetProjectNames = () => {
+  const getProjectNames = useQuery(GET_PROJECT_NAMES);
+  return getProjectNames;
 };

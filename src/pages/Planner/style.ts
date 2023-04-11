@@ -35,15 +35,6 @@ export const StyledPlannerPage = styled.section`
       margin: 0;
     }
   }
-
-  .planner-actions-nav-wrapper {
-    height: 60px;
-    width: 100%;
-    border-bottom: 1px solid ${({ theme }) => theme.colors.primaryGreyColor};
-
-    @media (max-width: ${({ theme }) => theme.breakpoints.TABLET}px) {
-    }
-  }
 `;
 
 export const StyledDrawerTitle = styled.div`
