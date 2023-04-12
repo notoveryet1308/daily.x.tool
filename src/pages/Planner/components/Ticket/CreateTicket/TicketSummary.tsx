@@ -1,5 +1,6 @@
 import { Input } from "../../../../../component/UI/Input";
 import { StyledSummaryView } from "./style";
+import { StyledTicketSummaryInput } from "./style";
 
 const TicketSummary = ({
   value,
@@ -13,12 +14,13 @@ const TicketSummary = ({
   return (
     <>
       {isEditing ? (
-        <Input
-          type="text"
+        <StyledTicketSummaryInput
           name="ticketSummary"
           placeholder="Add summary"
           value={value}
-          onChangeHandler={({
+          // bordered={false}
+          className="ticket-summary-input"
+          onChange={({
             ticketSummary,
             field,
           }: {

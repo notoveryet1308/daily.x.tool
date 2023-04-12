@@ -31,6 +31,12 @@ export const StyledPlannerPage = styled.section`
     margin-bottom: 40px;
     flex-direction: column;
     max-width: ${({ theme }) => theme.breakpoints.DESKTOP}px;
+
+
+    .ticket-detail-input{
+      flex: 1;
+    }
+
     @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
       margin: 0;
     }

@@ -4,8 +4,9 @@ export const StyledIssueType = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 4px 8px;
-  gap: 4px;
+  /* padding: 4px 8px; */
+  gap: 8px;
+  cursor: pointer;
 
   .issue-type-icon {
     font-size: 16px;

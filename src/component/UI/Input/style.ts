@@ -94,7 +94,7 @@ export const StyledUserInputWrapper = styled.div`
   }
 `;
 
-export const StyledTextArea = styled(TextArea)<{ minheight?: number }>`
+export const StyledTextArea = styled.textarea<{ minheight?: number }>`
   width: 100%;
   height: auto;
   outline: none;

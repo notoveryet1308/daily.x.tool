@@ -9,24 +9,30 @@ import { StyledCreateTicketStepOneView } from "./style";
 const StepOneView = ({
   projectData,
   issueType,
+  onEdit,
 }: {
-  projectData: ProjectFiled;
-  issueType: string;
+  projectData: ProjectFiled | null;
+  issueType: string | null;
+  onEdit: Function;
 }) => {
   return (
     <StyledCreateTicketStepOneView>
       <span className="project-data-wrapper">
-        Project name -
-        <span className="project-data-value">{projectData.name}</span>
+        Project name:
+        <span className="project-data-value">{projectData?.name || "---"}</span>
       </span>
-      <Divider type="vertical" />
+      <Divider type="vertical" className="step-one-view-divider" />
       <span className="project-data-wrapper">
-        Issue type -
-        <IssueTypeBase type={issueType} onClick={noop} />
+        Issue type:
+        {issueType ? (
+          <IssueTypeBase type={issueType} onClick={noop} />
+        ) : (
+          <span className="project-data-value">---</span>
+        )}
       </span>
 
       <span className="edit-step-one">
-        <Pencil className="pencil-icon" />
+        <Pencil className="pencil-icon" onClick={() => onEdit()} />
       </span>
     </StyledCreateTicketStepOneView>
   );

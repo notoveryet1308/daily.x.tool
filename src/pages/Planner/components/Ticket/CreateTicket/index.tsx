@@ -4,10 +4,28 @@ import { StyledCreateTicket } from "./style";
 import CreateTicketStepOneShell from "./StepOne";
 import StepOneView from "./StepOneView";
 import PlannerShell from "../../../PlannerShell";
+import Back from "../../../../../component/UI/Back";
+import {
+  PrimaryButton,
+  TertiaryButton,
+} from "../../../../../component/UI/Button";
+import { useInMobile } from "../../../../../hooks";
+import TicketSummary from "./TicketSummary";
+import TicketDetail from "./TicketDetail";
+import TicketProperty from "./TicketProperty";
+import Divider from "../../../../../component/UI/Divider";
 
 const CreateTicket = () => {
+  const inMobile = useInMobile();
+
   const {
-    createTicketData: { project, issueType },
+    createTicketData: {
+      project,
+      issueType,
+      ticketSummary,
+      ticketDetail,
+      ticketStatus,
+    },
     setCreateTicketData,
     allowAction,
   } = useCreateTicketData();
@@ -33,9 +51,46 @@ const CreateTicket = () => {
   return (
     <PlannerShell>
       <StyledCreateTicket>
-        {project && issueType && (
-          <StepOneView issueType={issueType} projectData={project} />
-        )}
+        <div className={`ticket-creation-action ${inMobile && "in-mobile"}`}>
+          <Back isMobile={inMobile} />
+          <div className="action-btn-wrapper">
+            <TertiaryButton
+              size="small"
+              label="Save as draft"
+              onClick={() => {}}
+            />
+            <PrimaryButton size="small" label="Publish" onClick={() => {}} />
+          </div>
+        </div>
+
+        <div className="ticket-input-field">
+          <div className="input-section-left">
+            <StepOneView
+              issueType={issueType}
+              projectData={project}
+              onEdit={handleCreateStepOne}
+            />
+
+            <TicketSummary
+              isEditing
+              value={ticketSummary || ""}
+              onChangeHandler={onChangeHandler}
+            />
+
+            <TicketDetail
+              onChangeHandler={onChangeHandler}
+              value={ticketDetail}
+              isCreating
+            />
+          </div>
+          <Divider type="vertical" />
+          <div className="input-section-right">
+            <TicketProperty
+              ticketStatus={ticketStatus || ""}
+              onChangeHandler={onChangeHandler}
+            />
+          </div>
+        </div>
 
         {createStepOne && (
           <CreateTicketStepOneShell
