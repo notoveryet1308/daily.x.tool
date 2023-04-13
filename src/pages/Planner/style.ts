@@ -31,17 +31,14 @@ export const StyledPlannerPage = styled.section`
     margin-bottom: 40px;
     flex-direction: column;
     max-width: ${({ theme }) => theme.breakpoints.DESKTOP}px;
+
+
+    .ticket-detail-input{
+      flex: 1;
+    }
+
     @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
       margin: 0;
-    }
-  }
-
-  .planner-actions-nav-wrapper {
-    height: 60px;
-    width: 100%;
-    border-bottom: 1px solid ${({ theme }) => theme.colors.primaryGreyColor};
-
-    @media (max-width: ${({ theme }) => theme.breakpoints.TABLET}px) {
     }
   }
 `;

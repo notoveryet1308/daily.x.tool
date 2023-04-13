@@ -7,6 +7,7 @@ type MobileContentDrawerProps = {
   isOpen: boolean;
   title: ReactNode;
   children: ReactNode;
+  height?: string;
 };
 
 const MobileContentDrawer = ({
@@ -14,6 +15,7 @@ const MobileContentDrawer = ({
   isOpen,
   title,
   children,
+  height = "auto",
 }: MobileContentDrawerProps) => {
   return (
     <StyledDrawer
@@ -21,7 +23,7 @@ const MobileContentDrawer = ({
       open={isOpen}
       onClose={toggleDrawer}
       title={title}
-      height="auto"
+      height={height}
     >
       {children}
     </StyledDrawer>

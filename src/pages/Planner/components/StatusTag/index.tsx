@@ -1,6 +1,7 @@
 import Tags from "../../../../component/Tags";
 
-import { STATUS_TAG_TYPE_DAT, STATUS_TYPE } from "./constant";
+import { StyledBaseStatus } from "./style";
+import { STATUS_TAG_TYPE_DETAIL, STATUS_TYPE } from "./constant";
 
 const BaseStatusTag = ({
   onClick,
@@ -9,17 +10,11 @@ const BaseStatusTag = ({
   onClick: Function;
   type: string;
 }) => {
-  const { hexCode, label, value } = STATUS_TAG_TYPE_DAT[type];
+  const { hexCode, label } = STATUS_TAG_TYPE_DETAIL[type];
   return (
-    <Tags
-      id={value}
-      value={value}
-      label={label}
-      onClick={onClick}
-      hexCode={hexCode}
-      isClearable={false}
-      isClickable
-    />
+    <StyledBaseStatus onClick={() => onClick()} hexCode={hexCode}>
+      {label}
+    </StyledBaseStatus>
   );
 };
 
@@ -54,3 +49,5 @@ export const NotABugStatus = ({ onClick }: { onClick: Function }) => (
 export const DuplicateStatus = ({ onClick }: { onClick: Function }) => (
   <BaseStatusTag type={STATUS_TYPE.DUPLICATE} onClick={onClick} />
 );
+
+export default BaseStatusTag;

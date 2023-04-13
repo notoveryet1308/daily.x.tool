@@ -2,11 +2,13 @@ import styled from "styled-components";
 
 export const StyledPlannerActions = styled.div`
   width: 100%;
-  height: 100%;
+  height: 60px;
+  width: 100%;
   display: flex;
   gap: 8px;
   justify-content: flex-start;
   align-items: center;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.primaryGreyColor};
 
   .all-work-active-state {
     display: flex;
@@ -41,8 +43,8 @@ export const StyledPlannerActions = styled.div`
       width: 300px;
     }
 
-    @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {qw
-      .dd-content {
+    @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
+      qw .dd-content {
         display: none;
       }
     }
@@ -74,7 +76,6 @@ export const StyledCreateAndDraftAction = styled.div`
       flex-direction: row-reverse;
       width: 100%;
       border-top: 1px solid ${({ theme }) => theme.colors.primaryGreyColor};
-      
     }
   }
 `;
