@@ -15,6 +15,7 @@ export const StyledCreateTicket = styled.div`
   flex-direction: column;
   gap: 16px;
   flex: 1;
+  position: relative;
 
   .ticket-creation-action {
     display: flex;
@@ -52,6 +53,37 @@ export const StyledCreateTicket = styled.div`
       display: flex;
       flex-direction: column;
       width: 300px;
+    }
+  }
+
+  .set-property-footer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 8px;
+    align-items: center;
+    color: ${({ theme }) => theme.colors.primaryTextColor};
+    cursor: pointer;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 16px;
+    background-color: ${({ theme }) => theme.colors.primaryGreyColor};
+    border-top: 1px solid ${({ theme }) => theme.colors.primaryColor};
+
+    .list-icon {
+      color: ${({ theme }) => theme.colors.secondaryTextColor};
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
+    && .input-section-right {
+      display: none;
+    }
+
+    .ant-divider {
+      display: none;
     }
   }
 `;
@@ -116,4 +148,9 @@ export const StyledCreateStepTwo = styled.div`
 export const StyledTicketProperty = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 16px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
+    padding: 24px;
+  }
 `;

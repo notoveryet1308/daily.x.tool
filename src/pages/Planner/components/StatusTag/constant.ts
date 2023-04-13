@@ -1,4 +1,5 @@
 export const STATUS_TYPE = {
+  NOT_STARTED_YET: "not-started-yet",
   TO_DO: "to-do",
   IN_PROGRESS: "in-progress",
   SENT_TO_QA: "sent-to-qa",
@@ -36,19 +37,24 @@ export const STATUS_TAG_TYPE_DETAIL = {
     value: STATUS_TYPE.DONE,
   },
   [STATUS_TYPE.BLOCKED]: {
-    hexCode: "#646464",
+    hexCode: "#342F44",
     label: "BLOCKED",
     value: STATUS_TYPE.BLOCKED,
   },
   [STATUS_TYPE.NOT_A_BUG]: {
-    hexCode: "#646464",
+    hexCode: "#342F44",
     label: "NOT A BUG",
     value: STATUS_TYPE.NOT_A_BUG,
   },
   [STATUS_TYPE.DUPLICATE]: {
-    hexCode: "#646464",
+    hexCode: "#342F44",
     label: "DUPLICATE",
     value: STATUS_TYPE.DUPLICATE,
+  },
+  [STATUS_TYPE.NOT_STARTED_YET]: {
+    hexCode: "#342F44",
+    label: "NOT STARTED YET",
+    value: STATUS_TYPE.NOT_STARTED_YET,
   },
 };
 
@@ -63,6 +69,7 @@ export const STATUS_TAG_TYPE_DETAIL = {
 // | STATUS_TYPE.DUPLICATE;
 
 export const STATUS_TYPE_DATA = [
+  STATUS_TYPE.NOT_STARTED_YET,
   STATUS_TYPE.TO_DO,
   STATUS_TYPE.IN_PROGRESS,
   STATUS_TYPE.SENT_TO_QA,

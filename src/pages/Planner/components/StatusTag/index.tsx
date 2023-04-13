@@ -1,5 +1,6 @@
 import Tags from "../../../../component/Tags";
 
+import { StyledBaseStatus } from "./style";
 import { STATUS_TAG_TYPE_DETAIL, STATUS_TYPE } from "./constant";
 
 const BaseStatusTag = ({
@@ -9,17 +10,11 @@ const BaseStatusTag = ({
   onClick: Function;
   type: string;
 }) => {
-  const { hexCode, label, value } = STATUS_TAG_TYPE_DETAIL[type];
+  const { hexCode, label } = STATUS_TAG_TYPE_DETAIL[type];
   return (
-    <Tags
-      id={value}
-      value={value}
-      label={label}
-      onClick={onClick}
-      hexCode={hexCode}
-      isClearable={false}
-      isClickable
-    />
+    <StyledBaseStatus onClick={() => onClick()} hexCode={hexCode}>
+      {label}
+    </StyledBaseStatus>
   );
 };
 

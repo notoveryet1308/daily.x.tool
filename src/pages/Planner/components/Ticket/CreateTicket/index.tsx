@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { List } from "phosphor-react";
+
 import { useCreateTicketData } from "../hooks";
 import { StyledCreateTicket } from "./style";
 import CreateTicketStepOneShell from "./StepOne";
@@ -14,6 +16,7 @@ import TicketSummary from "./TicketSummary";
 import TicketDetail from "./TicketDetail";
 import TicketProperty from "./TicketProperty";
 import Divider from "../../../../../component/UI/Divider";
+import MobileContentDrawer from "../../MobileContentDrawer";
 
 const CreateTicket = () => {
   const inMobile = useInMobile();
@@ -25,12 +28,15 @@ const CreateTicket = () => {
       ticketSummary,
       ticketDetail,
       ticketStatus,
+      ticketPriority,
     },
     setCreateTicketData,
     allowAction,
   } = useCreateTicketData();
 
   const [createStepOne, setCreateStepOne] = useState(true);
+  const [editTicketPropertyOnMobile, setEditTicketPropertyOnMobile] =
+    useState(false);
 
   const handleCreateStepOne = () => {
     setCreateStepOne(!createStepOne);
@@ -46,6 +52,10 @@ const CreateTicket = () => {
     setCreateTicketData((draft) => {
       draft[field] = value;
     });
+  };
+
+  const toggleEditPropTicket = () => {
+    setEditTicketPropertyOnMobile(!editTicketPropertyOnMobile);
   };
 
   return (
@@ -88,11 +98,36 @@ const CreateTicket = () => {
             <TicketProperty
               ticketStatus={ticketStatus || ""}
               onChangeHandler={onChangeHandler}
+              ticketPriority={ticketPriority}
             />
           </div>
         </div>
 
-        {createStepOne && (
+        {inMobile && (
+          <>
+            <div
+              className="set-property-footer"
+              onClick={() => toggleEditPropTicket()}
+            >
+              <List className="list-icon" />
+              Set properties
+            </div>
+            <MobileContentDrawer
+              title="Set properties"
+              isOpen={editTicketPropertyOnMobile}
+              toggleDrawer={toggleEditPropTicket}
+              height="calc(100vh - 120px)"
+            >
+              <TicketProperty
+                ticketStatus={ticketStatus || ""}
+                onChangeHandler={onChangeHandler}
+                ticketPriority={ticketPriority}
+              />
+            </MobileContentDrawer>
+          </>
+        )}
+
+        {!createStepOne && (
           <CreateTicketStepOneShell
             isCreating={createStepOne}
             projectName={project?.name || ""}
