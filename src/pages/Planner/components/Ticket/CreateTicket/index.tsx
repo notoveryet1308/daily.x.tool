@@ -127,7 +127,7 @@ const CreateTicket = () => {
           </>
         )}
 
-        {!createStepOne && (
+        {createStepOne && (
           <CreateTicketStepOneShell
             isCreating={createStepOne}
             projectName={project?.name || ""}
