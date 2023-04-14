@@ -80,4 +80,10 @@ export const StyledDropdownShell = styled.div<{
       font-size: 14px;
     }
   }
+
+  &&.disabled {
+    .dd-shell-main-btn {
+      cursor: no-drop;
+    }
+  }
 `;

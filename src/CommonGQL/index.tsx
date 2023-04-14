@@ -5,7 +5,6 @@ export const GET_CURRENT_USER = gql`
     getCurrentLoggedInUser {
       _id
       email
-      password
       name
       profession
       avatar

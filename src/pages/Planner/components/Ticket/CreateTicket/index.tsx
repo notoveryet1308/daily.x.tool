@@ -29,9 +29,13 @@ const CreateTicket = () => {
       ticketDetail,
       ticketStatus,
       ticketPriority,
+      ticketAssignee,
+      ticketReporter,
     },
     setCreateTicketData,
     allowAction,
+    teamDataLoading,
+    teamMemberData,
   } = useCreateTicketData();
 
   const [createStepOne, setCreateStepOne] = useState(true);
@@ -99,6 +103,10 @@ const CreateTicket = () => {
               ticketStatus={ticketStatus || ""}
               onChangeHandler={onChangeHandler}
               ticketPriority={ticketPriority}
+              ticketAssignee={ticketAssignee}
+              teamMemberData={teamMemberData}
+              teamMemberDataLoading={teamDataLoading}
+              ticketReporter={ticketReporter}
             />
           </div>
         </div>
@@ -122,6 +130,10 @@ const CreateTicket = () => {
                 ticketStatus={ticketStatus || ""}
                 onChangeHandler={onChangeHandler}
                 ticketPriority={ticketPriority}
+                ticketAssignee={ticketAssignee}
+                teamMemberData={teamMemberData}
+                teamMemberDataLoading={teamDataLoading}
+                ticketReporter={ticketReporter}
               />
             </MobileContentDrawer>
           </>

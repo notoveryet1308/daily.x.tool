@@ -40,9 +40,14 @@ export const isUserAuthenticated = () => {
 
 export const getCurrentLoggedInUserDeatil = () => {
   const token = localStorage.getItem("accessToken");
-  const decoded: { email: string; _id: string; name: string } | null = token
-    ? jwt_decode(token)
-    : null;
+  const decoded: {
+    email: string;
+    _id: string;
+    name: string;
+    profession: string;
+    avatar: string;
+    teamMember: string[];
+  } | null = token ? jwt_decode(token) : null;
 
   return decoded;
 };

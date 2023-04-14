@@ -150,6 +150,11 @@ export const StyledTicketProperty = styled.div`
   flex-direction: column;
   gap: 16px;
 
+  .unassigned-label {
+    font-size: 12px;
+    color: ${({ theme }) => theme.colors.secondaryTextColor};
+  }
+
   @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
     padding: 24px;
   }
