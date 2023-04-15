@@ -7,7 +7,6 @@ export const StyledTag = styled.span<{
   padding: 4px 8px;
   color: ${({ theme }) => theme.colors.primaryTextColor};
   font-size: ${({ theme }) => theme.fontSize.small};
-  line-height: 12px;
   display: inline-flex;
   justify-content: center;
   align-items: center;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledBaseStatus = styled.div<{ hexCode: string }>`
   padding: 4px 8px;
   color: ${({ theme }) => theme.colors.primaryTextColorReversed};
-  font-size: 14px;
+  font-size: 10px;
   display: inline-flex;
   justify-content: center;
   align-items: center;

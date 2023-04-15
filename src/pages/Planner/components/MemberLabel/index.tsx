@@ -1,9 +1,17 @@
-import { getInitials } from "../../../../utils";
+import { getInitials, noop } from "../../../../utils";
 import { StyledMemberLabel } from "./style";
 
-const MemberLabel = ({ name, avatar }: { name: string; avatar?: string }) => {
+const MemberLabel = ({
+  name,
+  avatar,
+  onClick = noop,
+}: {
+  name: string;
+  avatar?: string;
+  onClick?: Function;
+}) => {
   return (
-    <StyledMemberLabel>
+    <StyledMemberLabel onClick={() => onClick()}>
       <div className="member-dp">
         {avatar ? (
           <img src={avatar} />

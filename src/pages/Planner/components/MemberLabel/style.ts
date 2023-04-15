@@ -10,8 +10,8 @@ export const StyledMemberLabel = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     background-color: ${({ theme }) => theme.colors.secondaryGreyColor};
     border: 1px solid ${({ theme }) => theme.colors.tertiaryGreyColor};
     border-radius: 50%;
@@ -19,7 +19,7 @@ export const StyledMemberLabel = styled.div`
     .initial {
       color: ${({ theme }) => theme.colors.primaryTextColor};
       text-transform: uppercase;
-      font-size: 12px;
+      font-size: 8px;
     }
   }
 

@@ -20,6 +20,8 @@ export type DropdownShellPropType = {
   transparentButton?: boolean;
   closeDropdownContent?: boolean;
   selectedContent?: React.ReactNode;
+  disabled?: boolean;
+  showCaret?: boolean;
 };
 
 const DropdownShell = ({
@@ -39,14 +41,18 @@ const DropdownShell = ({
   closeDropdownContent = false,
   selectedContent,
   dropdownName,
+  disabled,
+  showCaret = true,
 }: DropdownShellPropType) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const [contentVisible, setContentVisible] = useState(isContentVisible);
 
   const handleToggleDropdown = () => {
-    setContentVisible(!contentVisible);
-    onDropdownBtnClick && onDropdownBtnClick({ name: name || "" });
+    if (!disabled) {
+      setContentVisible(!contentVisible);
+      onDropdownBtnClick && onDropdownBtnClick({ name: name || "" });
+    }
   };
   useOutsideClickHook(() => {
     setContentVisible(false);
@@ -64,7 +70,7 @@ const DropdownShell = ({
 
   return (
     <StyledDropdownShell
-      className={`dd-shell ${className}`}
+      className={`dd-shell ${className} ${disabled ? "disabled" : ""}`}
       isSelected={!!selectedValue || !!selectedValueCount || !!contentVisible}
       contentZIndex={contentZIndex}
       transparentButton={transparentButton}
@@ -89,11 +95,12 @@ const DropdownShell = ({
             selectedContent
           )}
         </div>
-        {!contentVisible ? (
-          <CaretDown className="dd-btn-caret-icon down" />
-        ) : (
-          <CaretUp className="dd-btn-caret-icon up" />
-        )}
+        {showCaret &&
+          (!contentVisible ? (
+            <CaretDown className="dd-btn-caret-icon down" />
+          ) : (
+            <CaretUp className="dd-btn-caret-icon up" />
+          ))}
       </button>
       {!hideContent && contentVisible ? (
         <div className="dd-content">
