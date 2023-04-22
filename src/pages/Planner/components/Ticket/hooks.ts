@@ -4,8 +4,9 @@ import { ProjectFiled, UserFiled } from "../../type";
 import { useCheckRequiredValue } from "../../../../hooks";
 import { STATUS_TYPE } from "../StatusTag/constant";
 import { PRIORITIES } from "../PriorityLabel/constant";
-import { useGetMyTeamMemberDetail } from "../../graphql";
+import { useCreateTicket, useGetMyTeamMemberDetail } from "../../graphql";
 import { useGetLoggedUserDetail } from "../../../../CommonGQL";
+import { nanoid } from "nanoid";
 
 export const useCreateTicketData = () => {
   const loggedInUser = useGetLoggedUserDetail();
@@ -16,8 +17,10 @@ export const useCreateTicketData = () => {
     ticketDetail: string | null;
     ticketStatus: string;
     ticketPriority: string;
-    ticketAssignee: UserFiled | "UNASSIGNED";
+    ticketAssigneeId: string | null;
     ticketReporter: UserFiled | null;
+    ticketCreated: number;
+    ticketUpdated: number;
   }>({
     project: null,
     issueType: null,
@@ -25,15 +28,38 @@ export const useCreateTicketData = () => {
     ticketDetail: null,
     ticketStatus: STATUS_TYPE.NOT_STARTED_YET,
     ticketPriority: PRIORITIES.LOW,
-    ticketAssignee: "UNASSIGNED",
+    ticketAssigneeId: null,
     ticketReporter: null,
+    ticketCreated: Date.now(),
+    ticketUpdated: Date.now(),
   });
 
-  const [allowAction] = useCheckRequiredValue({
+  const [allowActionStepOne] = useCheckRequiredValue({
     values: [!!createTicketData.project, !!createTicketData.issueType],
     type: "and",
   });
+  const [allowActionPublish] = useCheckRequiredValue({
+    values: [!!createTicketData.ticketSummary, !!createTicketData.ticketDetail],
+    type: "and",
+  });
   const teamMemberDetail = useGetMyTeamMemberDetail();
+  const { handleCreateTicket, createTicketState } = useCreateTicket();
+
+  const publishTicketHandler = () => {
+    handleCreateTicket({
+      id: nanoid(),
+      projectId: createTicketData.project?.id as string,
+      issueType: createTicketData.issueType as string,
+      description: createTicketData.ticketDetail as string,
+      status: createTicketData.ticketStatus,
+      summary: createTicketData.ticketSummary as string,
+      priority: createTicketData.ticketPriority,
+      assigneeId: createTicketData.ticketAssigneeId,
+      created: createTicketData.ticketCreated,
+      updated: createTicketData.ticketUpdated,
+      isDraft: false,
+    });
+  };
 
   useEffect(() => {
     if (loggedInUser.data?.getCurrentLoggedInUser) {
@@ -46,9 +72,14 @@ export const useCreateTicketData = () => {
   return {
     createTicketData,
     setCreateTicketData,
-    allowAction,
+    allowActionStepOne,
     teamDataLoading: teamMemberDetail.loading,
     teamDataError: teamMemberDetail.error?.message,
     teamMemberData: teamMemberDetail.data?.getMyTeamMemberDetail,
+    publishTicketHandler,
+    isTicketPublishing: createTicketState.called && createTicketState.loading,
+    isTicketPublished:
+      createTicketState.called && createTicketState.data?.createTicket,
+    allowActionPublish,
   };
 };

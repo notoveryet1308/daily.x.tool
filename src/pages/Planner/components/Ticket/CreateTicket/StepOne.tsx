@@ -123,6 +123,7 @@ const CreateTicketStepOne = ({
             <StyledDropdownContentWrapper>
               {TICKET_ISSUES.map((data) => (
                 <IssueTypeBase
+                  key={data}
                   type={data}
                   onClick={() =>
                     onClickHandler({ value: data, field: "issueType" })

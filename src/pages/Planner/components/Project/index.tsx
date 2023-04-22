@@ -7,12 +7,19 @@ import { useScreenWidth } from "../../../../hooks";
 import { breakpoints } from "../../../../theme/breakpoint";
 import MobileContentDrawer from "../MobileContentDrawer";
 import { StyledDrawerTitle } from "../../style";
+import CreateProjectContainer from "./CreateProject";
 
 const People = () => {
   const [openDrawer, setDrawerOpen] = useState(false);
   const [hideContent, setHideContent] = useState(false);
   const [screenWidth] = useScreenWidth();
+  const [isCreatingProject, setCreatingProject] = useState(false);
   const isMobile = screenWidth <= breakpoints.LARGE_MOBILE;
+
+  const handleCreateProject = () => {
+    setCreatingProject(!isCreatingProject);
+    setHideContent(true);
+  };
 
   const handleDropDownClick = () => {
     if (isMobile) {
@@ -27,13 +34,24 @@ const People = () => {
       <DropdownShell
         btnLabel="Project"
         btnIcon={<Strategy />}
-        content={<ProjectContent onHideContent={() => setHideContent(true)} />}
+        content={
+          <ProjectContent
+            onHideContent={() => setHideContent(true)}
+            handleCreateProject={handleCreateProject}
+          />
+        }
         transparentButton
         hideContent={isMobile}
         isContentVisible={openDrawer}
         onDropdownBtnClick={handleDropDownClick}
         closeDropdownContent={hideContent}
       />
+      {isCreatingProject && (
+        <CreateProjectContainer
+          isCreatingProject={isCreatingProject}
+          handleCreateProject={handleCreateProject}
+        />
+      )}
 
       {isMobile && (
         <MobileContentDrawer
@@ -46,7 +64,17 @@ const People = () => {
             </StyledDrawerTitle>
           }
         >
-          <ProjectContent onHideContent={handleDropDownClick} />
+          {!isCreatingProject ? (
+            <ProjectContent
+              onHideContent={handleDropDownClick}
+              handleCreateProject={handleCreateProject}
+            />
+          ) : (
+            <CreateProjectContainer
+              isCreatingProject={isCreatingProject}
+              handleCreateProject={handleCreateProject}
+            />
+          )}
         </MobileContentDrawer>
       )}
     </>

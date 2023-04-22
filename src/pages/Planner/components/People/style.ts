@@ -15,6 +15,6 @@ export const StyledPeopleContent = styled.div`
 `;
 
 export const StyledAddToTeam = styled.div`
-  padding: 0 24px;
+  padding: 24px 24px 0 24px;
   flex: 1;
 `;

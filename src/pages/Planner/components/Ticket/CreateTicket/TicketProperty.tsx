@@ -4,7 +4,7 @@ import { noop } from "../../../../../utils";
 import { UserFiled } from "../../../type";
 import MemberLabel from "../../MemberLabel";
 import PriorityLabel from "../../PriorityLabel";
-import { PRIORITIES_DATA, PRIORITIES_LIST } from "../../PriorityLabel/constant";
+import { PRIORITIES_LIST } from "../../PriorityLabel/constant";
 import BaseStatusTag from "../../StatusTag";
 import { STATUS_TYPE_DATA } from "../../StatusTag/constant";
 import { StyledDropdownContentWrapper } from "../style";
@@ -14,7 +14,7 @@ const TicketProperty = ({
   ticketStatus,
   ticketPriority,
   onChangeHandler,
-  ticketAssignee,
+  ticketAssigneeId,
   teamMemberData,
   teamMemberDataLoading,
   ticketReporter,
@@ -22,7 +22,7 @@ const TicketProperty = ({
   ticketStatus: string;
   ticketPriority: string;
   onChangeHandler: Function;
-  ticketAssignee: UserFiled | "UNASSIGNED";
+  ticketAssigneeId: string | null;
   teamMemberData: UserFiled[] | null;
   teamMemberDataLoading: boolean;
   ticketReporter: UserFiled | null;
@@ -87,11 +87,12 @@ const TicketProperty = ({
         name="ticketAssignee"
         dropdownName="Assignee"
         selectedContent={
-          ticketAssignee !== "UNASSIGNED" ? (
-            <MemberLabel
-              name={ticketAssignee.name || ""}
-              avatar={ticketAssignee.avatar}
-            />
+          ticketAssigneeId ? (
+            teamMemberData
+              ?.filter((d) => d._id === ticketAssigneeId)
+              .map((user) => (
+                <MemberLabel name={user.name || ""} avatar={user.avatar} />
+              ))
           ) : (
             <span className="unassigned-label">UNASSIGNED</span>
           )
@@ -107,7 +108,11 @@ const TicketProperty = ({
                   name={user.name || ""}
                   avatar={user.avatar}
                   onClick={() => {
-                    onChangeHandler({ value: user, field: "ticketAssignee" });
+                    console.log({ user });
+                    onChangeHandler({
+                      value: user._id,
+                      field: "ticketAssigneeId",
+                    });
                   }}
                 />
               ))
@@ -117,10 +122,10 @@ const TicketProperty = ({
       />
 
       <DropdownShell
-        btnLabel="Select assignee"
+        btnLabel="Select reporter"
         btnIcon={null}
-        name="ticketAssignee"
-        dropdownName="Assignee"
+        name="ticketReporter"
+        dropdownName="Reporter"
         showCaret={false}
         disabled
         selectedContent={

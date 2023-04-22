@@ -14,7 +14,7 @@ const MemberLabel = ({
     <StyledMemberLabel onClick={() => onClick()}>
       <div className="member-dp">
         {avatar ? (
-          <img src={avatar} />
+          <img src={avatar} className="member-image" />
         ) : (
           <span className="initial">{getInitials(name)}</span>
         )}

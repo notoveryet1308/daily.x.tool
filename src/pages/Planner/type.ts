@@ -12,6 +12,7 @@ export type UserFiled = {
   profession?: string;
   avatar?: string;
   teamMember?: string[] | [];
+  __typename?: string;
 };
 
 export type TicketCommentFiled = {
@@ -22,26 +23,28 @@ export type TicketCommentFiled = {
   reaction: string[] | [];
 };
 
-export type TicketFiled = {
+export type CreateTicketInputType = {
   id: string;
   summary: string;
   description: string;
-  reporter: UserFiled;
   projectId: string;
   isDraft: boolean;
-  assignee: UserFiled;
-  sprintDate?: number[] | [];
+  assigneeId: string;
+  sprintDate?: number[];
   issueType: string;
   created: number;
   updated: number;
-  tags?: TagField[] | [];
   priority: string;
   status: string;
+};
+
+export interface TicketFiled extends CreateTicketInputType {
+  tags?: TagField[] | [];
   ticketKey: string;
   lastUpdatedBy: UserFiled;
   project: ProjectFiled;
-  comments: TicketCommentFiled[] | [];
-};
+  comments?: TicketCommentFiled[] | [];
+}
 
 export type ProjectCreateInput = {
   id: string;

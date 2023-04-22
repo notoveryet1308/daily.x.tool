@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { List } from "phosphor-react";
+import { Redirect } from "react-router-dom";
 
 import { useCreateTicketData } from "../hooks";
 import { StyledCreateTicket } from "./style";
@@ -29,13 +30,17 @@ const CreateTicket = () => {
       ticketDetail,
       ticketStatus,
       ticketPriority,
-      ticketAssignee,
+      ticketAssigneeId,
       ticketReporter,
     },
     setCreateTicketData,
-    allowAction,
+    allowActionStepOne,
     teamDataLoading,
     teamMemberData,
+    allowActionPublish,
+    publishTicketHandler,
+    isTicketPublishing,
+    isTicketPublished,
   } = useCreateTicketData();
 
   const [createStepOne, setCreateStepOne] = useState(true);
@@ -51,7 +56,7 @@ const CreateTicket = () => {
     field,
   }: {
     value: string;
-    field: "project" | "issueType";
+    field: string;
   }) => {
     setCreateTicketData((draft) => {
       draft[field] = value;
@@ -61,6 +66,10 @@ const CreateTicket = () => {
   const toggleEditPropTicket = () => {
     setEditTicketPropertyOnMobile(!editTicketPropertyOnMobile);
   };
+
+  if (isTicketPublished) {
+    return <Redirect to="/planner" />;
+  }
 
   return (
     <PlannerShell>
@@ -73,7 +82,27 @@ const CreateTicket = () => {
               label="Save as draft"
               onClick={() => {}}
             />
-            <PrimaryButton size="small" label="Publish" onClick={() => {}} />
+            <PrimaryButton
+              size="small"
+              label={isTicketPublishing ? "Publishing" : "Publish"}
+              disabled={!allowActionPublish}
+              onClick={() => {
+                console.log({
+                  project,
+                  issueType,
+                  ticketSummary,
+                  ticketDetail,
+                  ticketStatus,
+                  ticketPriority,
+                  ticketAssigneeId,
+                  ticketReporter,
+                  allowActionPublish,
+                  allowActionStepOne,
+                });
+
+                publishTicketHandler();
+              }}
+            />
           </div>
         </div>
 
@@ -93,7 +122,7 @@ const CreateTicket = () => {
 
             <TicketDetail
               onChangeHandler={onChangeHandler}
-              value={ticketDetail}
+              value={ticketDetail || ""}
               isCreating
             />
           </div>
@@ -103,7 +132,7 @@ const CreateTicket = () => {
               ticketStatus={ticketStatus || ""}
               onChangeHandler={onChangeHandler}
               ticketPriority={ticketPriority}
-              ticketAssignee={ticketAssignee}
+              ticketAssigneeId={ticketAssigneeId}
               teamMemberData={teamMemberData}
               teamMemberDataLoading={teamDataLoading}
               ticketReporter={ticketReporter}
@@ -130,7 +159,7 @@ const CreateTicket = () => {
                 ticketStatus={ticketStatus || ""}
                 onChangeHandler={onChangeHandler}
                 ticketPriority={ticketPriority}
-                ticketAssignee={ticketAssignee}
+                ticketAssigneeId={ticketAssigneeId}
                 teamMemberData={teamMemberData}
                 teamMemberDataLoading={teamDataLoading}
                 ticketReporter={ticketReporter}
@@ -144,7 +173,7 @@ const CreateTicket = () => {
             isCreating={createStepOne}
             projectName={project?.name || ""}
             issueType={issueType || ""}
-            allowAction={allowAction}
+            allowAction={allowActionStepOne}
             onClickHandler={onChangeHandler}
             onConfirm={handleCreateStepOne}
           />

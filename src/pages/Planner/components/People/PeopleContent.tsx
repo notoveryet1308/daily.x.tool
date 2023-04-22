@@ -15,34 +15,34 @@ import AddToTeam from "./AddToTeam";
 import ActionFooter from "../ActionFooter";
 import MemberLabel from "../MemberLabel";
 
-const PeopleContent = ({ onHideContent }: { onHideContent: Function }) => {
+const PeopleContent = ({
+  onHideContent,
+  handleAddingMember,
+}: {
+  onHideContent: Function;
+  handleAddingMember: Function;
+}) => {
   const { loading, data, error } = useGetMyTeamMemberDetail();
-  const [screenWidth] = useScreenWidth();
-  const [isAddingMember, setAddingMember] = useState(false);
 
-  const handleAddingMember = () => {
-    setAddingMember(!isAddingMember);
-  };
-
-  if (isAddingMember) {
-    return (
-      <>
-        {screenWidth > breakpoints.LARGE_MOBILE ? (
-          <StyledModal
-            open={isAddingMember}
-            onClose={handleAddingMember}
-            title="People"
-            align="center"
-            showFooter={false}
-          >
-            <AddToTeam onCancel={handleAddingMember} />
-          </StyledModal>
-        ) : (
-          <AddToTeam onCancel={handleAddingMember} />
-        )}
-      </>
-    );
-  }
+  // if (isAddingMember) {
+  //   return (
+  //     <>
+  //       {screenWidth > breakpoints.LARGE_MOBILE ? (
+  //         <StyledModal
+  //           open={isAddingMember}
+  //           onClose={handleAddingMember}
+  //           title="People"
+  //           align="center"
+  //           showFooter={false}
+  //         >
+  //           <AddToTeam onCancel={handleAddingMember} />
+  //         </StyledModal>
+  //       ) : (
+  //         <AddToTeam onCancel={handleAddingMember} />
+  //       )}
+  //     </>
+  //   );
+  // }
 
   return (
     <StyledPeopleContent>

@@ -65,3 +65,23 @@ export const GET_PROJECT_NAMES = gql`
     getProjectNames
   }
 `;
+
+export const CREATE_TICKET = gql`
+  mutation createTicket($input: CreateTicketInput!) {
+    createTicket(input: $input) {
+      id
+      summary
+      description
+      projectId
+      isDraft
+      sprintDate
+      issueType
+      created
+      updated
+      priority
+      ticketNumber
+      status
+      ticketKey
+    }
+  }
+`;
