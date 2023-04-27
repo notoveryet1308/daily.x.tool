@@ -19,3 +19,5 @@ export const StyledDropdownContentWrapper = styled.div`
   align-items: flex-start;
   gap: 16px;
 `;
+
+export const StyledTicket = styled.div``;
