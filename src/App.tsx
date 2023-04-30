@@ -22,6 +22,7 @@ import { isUserAuthenticated } from "./utils";
 import Planner from "./pages/Planner";
 import CrateTicket from "./pages/Planner/components/Ticket/CreateTicket";
 import ProtectedRoute from "./ProtectedRoute";
+import Table from "./component/UI/Table/BasicTable";
 
 function App() {
   const { themeMode, dispatch } = useAppDataContext();
@@ -61,6 +62,10 @@ function App() {
           <Route path="/sign-up" component={Signup} exact />
           <Route path="/bookmark" component={Bookmark} exact />
           <Route path="/bookmark/create" component={BookmarkCreate} exact />
+
+          {/* component testing */}
+
+          <Route path="/component-testing" component={Table} exact />
         </Switch>
       </StyledMainWrapper>
     </ThemeProvider>

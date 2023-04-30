@@ -30,8 +30,8 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const httpLink = new HttpLink({
-  uri: 'https://dailyxtoolapi.onrender.com/graphql',
-  // uri: "http://localhost:4000/graphql",
+  // uri: 'https://dailyxtoolapi.onrender.com/graphql',
+  uri: "http://localhost:4000/graphql",
 });
 const client = new ApolloClient({
   cache: new InMemoryCache(),

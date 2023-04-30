@@ -7,6 +7,7 @@ import {
   GET_ALL_PROJECTS,
   GET_MY_TEAM_MEMBER_DETAIL,
   GET_PROJECT_NAMES,
+  GET_ALL_TICKETS,
 } from "./gql";
 import { CreateTicketInputType, ProjectCreateInput } from "../type";
 
@@ -92,4 +93,9 @@ export const useCreateTicket = () => {
   };
 
   return { handleCreateTicket, createTicketState };
+};
+
+export const useGetAllTickets = () => {
+  const getAllTickets = useQuery(GET_ALL_TICKETS);
+  return getAllTickets;
 };

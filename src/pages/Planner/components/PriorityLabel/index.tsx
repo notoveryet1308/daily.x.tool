@@ -16,7 +16,7 @@ const PriorityLabel = ({
       }}
       hexCode={hexCode}
     >
-      <Icon className="priority-icon" />
+      <Icon className="priority-icon" weight="fill" />
       <span className="priority-name">{label}</span>
     </StyledPriorityLabel>
   );

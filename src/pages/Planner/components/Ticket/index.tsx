@@ -1,9 +1,24 @@
+import Loader from "../../../../component/UI/Loader";
+
+import { useGetAllTickets } from "../../graphql";
 import { StyledTicket } from "./style";
 
+import TicketList from "./TicketList";
+
 const Ticket = () => {
+  const { loading, data } = useGetAllTickets();
+
+  console.log({ data });
+
   return (
     <StyledTicket>
-      <p style={{ color: "#fff" }}>ticket</p>
+      {loading ? (
+        <Loader />
+      ) : (
+        data?.getAllTickets.length > 0 && (
+          <TicketList ticketData={data?.getAllTickets} />
+        )
+      )}
     </StyledTicket>
   );
 };

@@ -56,8 +56,6 @@ const DropdownShell = ({
   };
 
   useOutsideClickHook(() => {
-    console.log({ dropdownRef });
-
     setContentVisible(false);
   }, dropdownRef);
 

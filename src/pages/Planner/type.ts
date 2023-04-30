@@ -8,7 +8,7 @@ export type TagField = {
 export type UserFiled = {
   _id: string;
   email: string;
-  name?: string;
+  name: string;
   profession?: string;
   avatar?: string;
   teamMember?: string[] | [];
@@ -23,7 +23,7 @@ export type TicketCommentFiled = {
   reaction: string[] | [];
 };
 
-export type CreateTicketInputType = {
+export interface CreateTicketInputType {
   id: string;
   summary: string;
   description: string;
@@ -36,13 +36,16 @@ export type CreateTicketInputType = {
   updated: number;
   priority: string;
   status: string;
-};
+}
 
 export interface TicketFiled extends CreateTicketInputType {
   tags?: TagField[] | [];
   ticketKey: string;
   lastUpdatedBy: UserFiled;
   project: ProjectFiled;
+  reporter: UserFiled;
+  assignee: UserFiled;
+  ticketNumber: number;
   comments?: TicketCommentFiled[] | [];
 }
 

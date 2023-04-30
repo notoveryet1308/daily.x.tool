@@ -85,3 +85,35 @@ export const CREATE_TICKET = gql`
     }
   }
 `;
+
+export const GET_ALL_TICKETS = gql`
+  query getAllTickets {
+    getAllTickets {
+      id
+      summary
+      description
+      projectId
+      isDraft
+      issueType
+      created
+      updated
+      priority
+      ticketNumber
+      status
+      ticketKey
+      assignee {
+        _id
+        name
+        email
+        avatar
+      }
+
+      reporter {
+        _id
+        name
+        email
+        avatar
+      }
+    }
+  }
+`;
