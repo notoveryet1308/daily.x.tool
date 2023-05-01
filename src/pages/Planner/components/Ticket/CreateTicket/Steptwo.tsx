@@ -1,4 +1,4 @@
-import StepOneView from "./StepOneView";
+
 import TicketSummary from "./TicketSummary";
 import { StyledCreateStepTwo } from "./style";
 

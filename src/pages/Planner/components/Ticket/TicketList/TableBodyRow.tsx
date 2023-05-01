@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import Tooltip from "antd/lib/tooltip";
 
 import { noop } from "../../../../../utils";
 import { TicketFiled } from "../../../type";
@@ -17,7 +18,11 @@ const TableBodyRow = ({ bodyRowData }: { bodyRowData: TicketFiled }) => {
         </StyledTableCell>
       </td>
       <td>
-        <StyledTableCell>{bodyRowData.summary}</StyledTableCell>
+        <StyledTableCell>
+          <Tooltip className="ticket-summary" title={bodyRowData.summary}>
+            {bodyRowData.summary}
+          </Tooltip>
+        </StyledTableCell>
       </td>
       <td>
         <StyledTableCell>
@@ -52,7 +57,7 @@ const TableBodyRow = ({ bodyRowData }: { bodyRowData: TicketFiled }) => {
               onClick={noop}
             />
           ) : (
-            "UNASSIGNED"
+            <div className="unassigned-ticket">UNASSIGNED</div>
           )}
         </StyledTableCell>
       </td>

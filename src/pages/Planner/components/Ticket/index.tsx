@@ -8,8 +8,6 @@ import TicketList from "./TicketList";
 const Ticket = () => {
   const { loading, data } = useGetAllTickets();
 
-  console.log({ data });
-
   return (
     <StyledTicket>
       {loading ? (

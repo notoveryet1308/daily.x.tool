@@ -2,16 +2,14 @@ import styled from "styled-components";
 
 export const StyledTicketList = styled.div`
   width: 100%;
-  min-width: 800px;
   overflow: auto;
-  /* padding: 0 16px; */
   background-color: ${({ theme }) => theme.colors.secondaryBgColor};
   border-radius: 4px;
 
   .table-body-row {
     cursor: pointer;
     &:hover {
-      background-color: ${({ theme }) => theme.colors.primaryBgColor};
+      background-color: ${({ theme }) => theme.colors.primaryGreyColor};
     }
   }
 `;
@@ -21,8 +19,7 @@ export const StyledHeaderCell = styled.div`
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  padding: 8px 0;
-  padding-left: 8px;
+  padding: 8px 16px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.secondaryColor};
 `;
 
@@ -32,6 +29,22 @@ export const StyledTableCell = styled.div`
   align-items: center;
   width: 100%;
   height: 50px;
-  padding-left: 8px;
+  padding: 0 16px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.primaryGreyColor};
+  white-space: nowrap;
+
+  .ticket-summary {
+    max-width: 300px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .unassigned-ticket {
+    color: ${({ theme }) => theme.colors.primaryTextColorReversed};
+    background-color: ${({ theme }) => theme.colors.secondaryGreyColor};
+    padding: 2px 4px;
+    font-size: 10px;
+    border-radius: 2px;
+  }
 `;

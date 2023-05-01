@@ -87,19 +87,6 @@ const CreateTicket = () => {
               label={isTicketPublishing ? "Publishing" : "Publish"}
               disabled={!allowActionPublish}
               onClick={() => {
-                console.log({
-                  project,
-                  issueType,
-                  ticketSummary,
-                  ticketDetail,
-                  ticketStatus,
-                  ticketPriority,
-                  ticketAssigneeId,
-                  ticketReporter,
-                  allowActionPublish,
-                  allowActionStepOne,
-                });
-
                 publishTicketHandler();
               }}
             />
@@ -110,7 +97,7 @@ const CreateTicket = () => {
           <div className="input-section-left">
             <StepOneView
               issueType={issueType}
-              projectData={project}
+              projectName={project?.name || null}
               onEdit={handleCreateStepOne}
             />
 

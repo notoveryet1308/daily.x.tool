@@ -21,3 +21,7 @@ export const StyledDropdownContentWrapper = styled.div`
 `;
 
 export const StyledTicket = styled.div``;
+
+export const StyledSingleTicket = styled.div`
+  display: flex;
+`;

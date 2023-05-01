@@ -23,6 +23,7 @@ import Planner from "./pages/Planner";
 import CrateTicket from "./pages/Planner/components/Ticket/CreateTicket";
 import ProtectedRoute from "./ProtectedRoute";
 import Table from "./component/UI/Table/BasicTable";
+import SingleTicket from "./pages/Planner/components/Ticket/SingleTicket";
 
 function App() {
   const { themeMode, dispatch } = useAppDataContext();
@@ -56,6 +57,11 @@ function App() {
             </ProtectedRoute>
           </Route>
           <Route path="/planner/create" component={CrateTicket} exact />
+          <Route
+            path="/planner/ticket/:ticketKey"
+            component={SingleTicket}
+            exact
+          />
           <Route path="/notes" component={Notes} exact />
           <Route path="/notes/create" component={CreateNote} exact />
           <Route path="/login" component={Login} exact />

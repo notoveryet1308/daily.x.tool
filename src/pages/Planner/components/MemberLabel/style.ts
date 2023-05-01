@@ -5,6 +5,7 @@ export const StyledMemberLabel = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 8px;
+  cursor: pointer;
 
   .member-dp {
     display: flex;
@@ -23,7 +24,7 @@ export const StyledMemberLabel = styled.div`
     }
 
     .initial {
-      color: ${({ theme }) => theme.colors.primaryTextColor};
+      color: ${({ theme }) => theme.colors.primaryTextColorReversed};
       text-transform: uppercase;
       font-size: 8px;
     }

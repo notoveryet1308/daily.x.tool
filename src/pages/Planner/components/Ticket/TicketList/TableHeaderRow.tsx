@@ -10,7 +10,7 @@ const TableHeaderRow = ({
     <>
       {headerData.map((d) => {
         return (
-          <th key={d.header}>
+          <th key={d.header} style={d?.style}>
             <StyledHeaderCell>{d.header}</StyledHeaderCell>
           </th>
         );

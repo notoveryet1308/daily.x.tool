@@ -4,7 +4,12 @@ import { ProjectFiled, UserFiled } from "../../type";
 import { useCheckRequiredValue } from "../../../../hooks";
 import { STATUS_TYPE } from "../StatusTag/constant";
 import { PRIORITIES } from "../PriorityLabel/constant";
-import { useCreateTicket, useGetMyTeamMemberDetail } from "../../graphql";
+import {
+  useCreateTicket,
+  useGetAllProjects,
+  useGetMyTeamMemberDetail,
+  useGetTicketById,
+} from "../../graphql";
 import { useGetLoggedUserDetail } from "../../../../CommonGQL";
 import { nanoid } from "nanoid";
 
@@ -82,4 +87,19 @@ export const useCreateTicketData = () => {
       createTicketState.called && createTicketState.data?.createTicket,
     allowActionPublish,
   };
+};
+
+export const useViewSingleTicket = ({
+  ticketId,
+  projectId,
+}: {
+  ticketId: string;
+  projectId: string;
+}) => {
+  const getTicketById = useGetTicketById({ ticketId, projectId });
+  const getAllProjects = useGetAllProjects();
+
+  console.log({ getAllProjects, getTicketById });
+
+  return { getTicketById, getAllProjects };
 };

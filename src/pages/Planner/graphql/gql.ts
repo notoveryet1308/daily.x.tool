@@ -117,3 +117,35 @@ export const GET_ALL_TICKETS = gql`
     }
   }
 `;
+
+export const GET_TICKET_BY_ID = gql`
+  query getTicketById($input: GetTicketByIdInput!) {
+    getTicketById(input: $input) {
+      id
+      summary
+      description
+      projectId
+      isDraft
+      issueType
+      created
+      updated
+      priority
+      ticketNumber
+      status
+      ticketKey
+      assignee {
+        _id
+        name
+        email
+        avatar
+      }
+
+      reporter {
+        _id
+        name
+        email
+        avatar
+      }
+    }
+  }
+`;
