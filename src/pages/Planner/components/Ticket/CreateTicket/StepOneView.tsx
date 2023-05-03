@@ -2,24 +2,24 @@ import { Pencil } from "phosphor-react";
 
 import Divider from "../../../../../component/UI/Divider";
 import { noop } from "../../../../../utils";
-import { ProjectFiled } from "../../../type";
+
 import IssueTypeBase from "../../IssueType";
 import { StyledCreateTicketStepOneView } from "./style";
 
 const StepOneView = ({
-  projectData,
+  projectName,
   issueType,
   onEdit,
 }: {
-  projectData: ProjectFiled | null;
+  projectName: string | null;
   issueType: string | null;
-  onEdit: Function;
+  onEdit?: Function;
 }) => {
   return (
     <StyledCreateTicketStepOneView>
       <span className="project-data-wrapper">
         Project name:
-        <span className="project-data-value">{projectData?.name || "---"}</span>
+        <span className="project-data-value">{projectName || "---"}</span>
       </span>
       <Divider type="vertical" className="step-one-view-divider" />
       <span className="project-data-wrapper">
@@ -31,9 +31,11 @@ const StepOneView = ({
         )}
       </span>
 
-      <span className="edit-step-one">
-        <Pencil className="pencil-icon" onClick={() => onEdit()} />
-      </span>
+      {onEdit && (
+        <span className="edit-step-one">
+          <Pencil className="pencil-icon" onClick={() => onEdit()} />
+        </span>
+      )}
     </StyledCreateTicketStepOneView>
   );
 };

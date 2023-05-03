@@ -54,6 +54,7 @@ const DropdownShell = ({
       onDropdownBtnClick && onDropdownBtnClick({ name: name || "" });
     }
   };
+
   useOutsideClickHook(() => {
     setContentVisible(false);
   }, dropdownRef);

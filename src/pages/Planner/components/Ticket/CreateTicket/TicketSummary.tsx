@@ -27,7 +27,7 @@ const TicketSummary = ({
             ticketSummary: string;
             field: string;
           }) => {
-            onChangeHandler({ ticketSummary, field });
+            onChangeHandler({ value: ticketSummary, field });
           }}
         />
       ) : (

@@ -21,6 +21,9 @@ import { useGetLoggedUserDetail } from "./CommonGQL";
 import { isUserAuthenticated } from "./utils";
 import Planner from "./pages/Planner";
 import CrateTicket from "./pages/Planner/components/Ticket/CreateTicket";
+import ProtectedRoute from "./ProtectedRoute";
+import Table from "./component/UI/Table/BasicTable";
+import SingleTicket from "./pages/Planner/components/Ticket/SingleTicket";
 
 function App() {
   const { themeMode, dispatch } = useAppDataContext();
@@ -48,14 +51,27 @@ function App() {
         <Switch>
           <Route path="/" component={Home} exact />
           {/* <Route path="/all-today" component={Today} exact /> */}
-          <Route path="/planner" component={Planner} exact />
+          <Route path="/planner" exact>
+            <ProtectedRoute>
+              <Planner />
+            </ProtectedRoute>
+          </Route>
           <Route path="/planner/create" component={CrateTicket} exact />
+          <Route
+            path="/planner/ticket/:ticketKey"
+            component={SingleTicket}
+            exact
+          />
           <Route path="/notes" component={Notes} exact />
           <Route path="/notes/create" component={CreateNote} exact />
           <Route path="/login" component={Login} exact />
           <Route path="/sign-up" component={Signup} exact />
           <Route path="/bookmark" component={Bookmark} exact />
           <Route path="/bookmark/create" component={BookmarkCreate} exact />
+
+          {/* component testing */}
+
+          <Route path="/component-testing" component={Table} exact />
         </Switch>
       </StyledMainWrapper>
     </ThemeProvider>

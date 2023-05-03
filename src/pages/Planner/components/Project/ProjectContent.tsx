@@ -15,35 +15,14 @@ import { InlineNoDataFound } from "../../../../component/UI/NoDataState";
 import { Strategy } from "phosphor-react";
 import { StyledModal } from "../../style";
 
-const ProjectContent = ({ onHideContent }: { onHideContent: Function }) => {
-  const [screenWidth] = useScreenWidth();
-
-  const [isCreatingProject, setCreatingProject] = useState(false);
+const ProjectContent = ({
+  onHideContent,
+  handleCreateProject,
+}: {
+  onHideContent: Function;
+  handleCreateProject: Function;
+}) => {
   const { data, loading, error } = useGetAllProjects();
-
-  const handleCreateProject = () => {
-    setCreatingProject(!isCreatingProject);
-  };
-
-  if (isCreatingProject) {
-    return (
-      <>
-        {screenWidth > breakpoints.LARGE_MOBILE ? (
-          <StyledModal
-            open={isCreatingProject}
-            onClose={handleCreateProject}
-            title="Project"
-            align="center"
-            showFooter={false}
-          >
-            <CreateProject onCancel={handleCreateProject} />
-          </StyledModal>
-        ) : (
-          <CreateProject onCancel={handleCreateProject} />
-        )}
-      </>
-    );
-  }
 
   return (
     <StyledProjectContent>

@@ -5,6 +5,7 @@ export const StyledMemberLabel = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 8px;
+  cursor: pointer;
 
   .member-dp {
     display: flex;
@@ -15,9 +16,15 @@ export const StyledMemberLabel = styled.div`
     background-color: ${({ theme }) => theme.colors.secondaryGreyColor};
     border: 1px solid ${({ theme }) => theme.colors.tertiaryGreyColor};
     border-radius: 50%;
+    overflow: hidden;
+
+    .member-image {
+      height: 100%;
+      width: 100%;
+    }
 
     .initial {
-      color: ${({ theme }) => theme.colors.primaryTextColor};
+      color: ${({ theme }) => theme.colors.primaryTextColorReversed};
       text-transform: uppercase;
       font-size: 8px;
     }

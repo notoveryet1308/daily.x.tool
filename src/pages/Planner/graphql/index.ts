@@ -3,11 +3,14 @@ import { useMutation, useQuery } from "@apollo/client";
 import {
   ADD_TEAM_MEMBER,
   CREATE_PROJECT,
+  CREATE_TICKET,
   GET_ALL_PROJECTS,
   GET_MY_TEAM_MEMBER_DETAIL,
   GET_PROJECT_NAMES,
+  GET_ALL_TICKETS,
+  GET_TICKET_BY_ID,
 } from "./gql";
-import { ProjectCreateInput } from "../type";
+import { CreateTicketInputType, ProjectCreateInput } from "../type";
 
 export const useCreateProject = () => {
   const [mutate, creationState] = useMutation(CREATE_PROJECT, {
@@ -75,4 +78,44 @@ export const useAddTeamMember = () => {
 export const useGetProjectNames = () => {
   const getProjectNames = useQuery(GET_PROJECT_NAMES);
   return getProjectNames;
+};
+
+export const useCreateTicket = () => {
+  const [mutate, createTicketState] = useMutation(CREATE_TICKET);
+
+  const handleCreateTicket = (data: CreateTicketInputType) => {
+    mutate({
+      variables: {
+        input: {
+          ...data,
+        },
+      },
+    });
+  };
+
+  return { handleCreateTicket, createTicketState };
+};
+
+export const useGetAllTickets = () => {
+  const getAllTickets = useQuery(GET_ALL_TICKETS);
+  return getAllTickets;
+};
+
+export const useGetTicketById = ({
+  ticketId,
+  projectId,
+}: {
+  ticketId: string;
+  projectId: string;
+}) => {
+  const getTicketById = useQuery(GET_TICKET_BY_ID, {
+    variables: {
+      input: {
+        id: ticketId,
+        projectId,
+      },
+    },
+  });
+
+  return getTicketById;
 };

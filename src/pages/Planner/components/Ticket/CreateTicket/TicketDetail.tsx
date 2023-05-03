@@ -27,7 +27,7 @@ const TicketDetail = ({
             ticketDetail: string;
             field: string;
           }) => {
-            onChangeHandler({ ticketDetail, field });
+            onChangeHandler({ value: ticketDetail, field });
           }}
         />
       ) : (

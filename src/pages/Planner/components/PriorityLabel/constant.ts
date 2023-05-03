@@ -12,6 +12,8 @@ export const PRIORITIES = {
   HIGH: "HIGH",
 };
 
+
+
 export const PRIORITIES_DATA = {
   [PRIORITIES.HIGH]: {
     hexCode: "#A33029",
