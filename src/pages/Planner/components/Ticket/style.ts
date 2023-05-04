@@ -42,4 +42,14 @@ export const StyledSingleTicket = styled.div`
     flex-direction: column;
     border-left: 1px solid ${({ theme }) => theme.colors.primaryGreyColor};
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
+    .single-ticket-right {
+      display: none;
+    }
+
+    .single-ticket-left {
+      height: 90%;
+    }
+  }
 `;

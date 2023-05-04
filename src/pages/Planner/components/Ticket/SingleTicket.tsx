@@ -6,7 +6,9 @@ import StepOneView from "./CreateTicket/StepOneView";
 import { StyledSingleTicket } from "./style";
 import { useGetMyTeam, useViewSingleTicket } from "./hooks";
 import Loader from "../../../../component/UI/Loader";
-import TicketProperty from "./CreateTicket/TicketProperty";
+import TicketProperty, {
+  TicketPropertyInMobile,
+} from "./components/TicketPropertyGroup";
 import ViewFields from "./components/TicketTextFieldGroup/ViewField";
 import { useState } from "react";
 import CreateEditFields from "./components/TicketTextFieldGroup/CreateEditField";
@@ -63,6 +65,16 @@ const SingleTicket = () => {
                 onChangeHandler={() => {}}
               />
             </div>
+            <TicketPropertyInMobile
+              ticketAssigneeId={ticketData?.assignee?._id || null}
+              ticketStatus={ticketData.status}
+              ticketPriority={ticketData.priority}
+              ticketReporter={ticketData.reporter}
+              teamMemberData={teamMemberData}
+              teamMemberDataLoading={teamDataLoading}
+              onChangeHandler={() => {}}
+              footerLabel="Properties"
+            />
           </StyledSingleTicket>
         )
       )}
