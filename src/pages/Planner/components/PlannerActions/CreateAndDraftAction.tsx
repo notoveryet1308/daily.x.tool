@@ -13,9 +13,9 @@ const CreateAndDraftAction = () => {
         onClick={() => history.push("/planner/create")}
         size="small"
       />
-      <NavLink className="draft-nav-btn" to="planner/draft/ticket">
+      {/* <NavLink className="draft-nav-btn" to="planner/draft/ticket">
         Drafts
-      </NavLink>
+      </NavLink> */}
     </StyledCreateAndDraftAction>
   );
 };

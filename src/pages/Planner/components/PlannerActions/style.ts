@@ -9,6 +9,7 @@ export const StyledPlannerActions = styled.div`
   justify-content: flex-start;
   align-items: center;
   border-bottom: 1px solid ${({ theme }) => theme.colors.primaryGreyColor};
+  cursor: pointer;
 
   .all-work-active-state {
     display: flex;

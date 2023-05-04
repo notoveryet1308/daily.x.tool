@@ -13,11 +13,10 @@ import {
   TertiaryButton,
 } from "../../../../../component/UI/Button";
 import { useInMobile } from "../../../../../hooks";
-import TicketSummary from "./TicketSummary";
-import TicketDetail from "./TicketDetail";
 import TicketProperty from "./TicketProperty";
 import Divider from "../../../../../component/UI/Divider";
 import MobileContentDrawer from "../../MobileContentDrawer";
+import CreateEditFields from "../components/TicketTextFieldGroup/CreateEditField";
 
 const CreateTicket = () => {
   const inMobile = useInMobile();
@@ -100,17 +99,10 @@ const CreateTicket = () => {
               projectName={project?.name || null}
               onEdit={handleCreateStepOne}
             />
-
-            <TicketSummary
-              isEditing
-              value={ticketSummary || ""}
+            <CreateEditFields
+              summaryValue={ticketSummary || ""}
+              descriptionValue={ticketDetail || ""}
               onChangeHandler={onChangeHandler}
-            />
-
-            <TicketDetail
-              onChangeHandler={onChangeHandler}
-              value={ticketDetail || ""}
-              isCreating
             />
           </div>
           <Divider type="vertical" />

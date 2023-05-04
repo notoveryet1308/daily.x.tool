@@ -4,7 +4,7 @@ export const StyledTicketList = styled.div`
   width: 100%;
   overflow: auto;
   background-color: ${({ theme }) => theme.colors.secondaryBgColor};
-  border-radius: 4px;
+  border-radius: 8px;
 
   .table-body-row {
     cursor: pointer;

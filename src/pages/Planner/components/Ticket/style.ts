@@ -24,4 +24,22 @@ export const StyledTicket = styled.div``;
 
 export const StyledSingleTicket = styled.div`
   display: flex;
+  height: 100%;
+  column-gap: 20px;
+
+  .single-ticket-left {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    row-gap: 20px;
+  }
+
+  .single-ticket-right {
+    min-width: 300px;
+    height: 100%;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid ${({ theme }) => theme.colors.primaryGreyColor};
+  }
 `;

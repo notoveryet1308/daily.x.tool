@@ -30,6 +30,45 @@ const TicketProperty = ({
   return (
     <StyledTicketProperty>
       <DropdownShell
+        btnLabel="Select assignee"
+        btnIcon={null}
+        name="ticketAssignee"
+        dropdownName="Assignee"
+        selectedContent={
+          ticketAssigneeId ? (
+            teamMemberData
+              ?.filter((d) => d._id === ticketAssigneeId)
+              .map((user) => (
+                <MemberLabel name={user.name || ""} avatar={user.avatar} />
+              ))
+          ) : (
+            <span className="unassigned-label">UNASSIGNED</span>
+          )
+        }
+        content={
+          <StyledDropdownContentWrapper>
+            {teamMemberDataLoading ? (
+              <Loader />
+            ) : (
+              teamMemberData?.map((user) => (
+                <MemberLabel
+                  key={user._id}
+                  name={user.name || ""}
+                  avatar={user.avatar}
+                  onClick={() => {
+                    console.log({ user });
+                    onChangeHandler({
+                      value: user._id,
+                      field: "ticketAssigneeId",
+                    });
+                  }}
+                />
+              ))
+            )}
+          </StyledDropdownContentWrapper>
+        }
+      />
+      <DropdownShell
         btnLabel="Select status"
         btnIcon={null}
         name="ticketStatus"
@@ -77,46 +116,6 @@ const TicketProperty = ({
                 }}
               />
             ))}
-          </StyledDropdownContentWrapper>
-        }
-      />
-
-      <DropdownShell
-        btnLabel="Select assignee"
-        btnIcon={null}
-        name="ticketAssignee"
-        dropdownName="Assignee"
-        selectedContent={
-          ticketAssigneeId ? (
-            teamMemberData
-              ?.filter((d) => d._id === ticketAssigneeId)
-              .map((user) => (
-                <MemberLabel name={user.name || ""} avatar={user.avatar} />
-              ))
-          ) : (
-            <span className="unassigned-label">UNASSIGNED</span>
-          )
-        }
-        content={
-          <StyledDropdownContentWrapper>
-            {teamMemberDataLoading ? (
-              <Loader />
-            ) : (
-              teamMemberData?.map((user) => (
-                <MemberLabel
-                  key={user._id}
-                  name={user.name || ""}
-                  avatar={user.avatar}
-                  onClick={() => {
-                    console.log({ user });
-                    onChangeHandler({
-                      value: user._id,
-                      field: "ticketAssigneeId",
-                    });
-                  }}
-                />
-              ))
-            )}
           </StyledDropdownContentWrapper>
         }
       />
