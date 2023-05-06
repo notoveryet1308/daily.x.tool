@@ -10,6 +10,7 @@ export const StyledSortContent = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+  padding: 16px;
 
   .sort-by-date {
     display: flex;
@@ -46,6 +47,7 @@ export const StyledMobileDrawerNoteFilter = styled(Drawer)`
   .ant-drawer-body {
     display: flex;
     flex-direction: column;
+    padding: 0;
   }
 `;
 
@@ -116,6 +118,7 @@ export const StyledFilterContent = styled.div`
   gap: 16px;
   justify-content: flex-start;
   flex: 1;
+  padding: 16px;
 `;
 
 export const StyledNoteTagFilter = styled.div`

@@ -1,25 +1,83 @@
-import { useHistory, useParams, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import PlannerShell from "../../PlannerShell";
-import { useGetAllProjects } from "../../graphql";
-import { TicketFiled } from "../../type";
+
 import PlannerActions from "../PlannerActions";
 import StepOneView from "./CreateTicket/StepOneView";
 import { StyledSingleTicket } from "./style";
-import { useViewSingleTicket } from "./hooks";
+import { useGetMyTeam, useViewSingleTicket } from "./hooks";
+import Loader from "../../../../component/UI/Loader";
+import TicketProperty, {
+  TicketPropertyInMobile,
+} from "./components/TicketPropertyGroup";
+import ViewFields from "./components/TicketTextFieldGroup/ViewField";
+import { useState } from "react";
+import CreateEditFields from "./components/TicketTextFieldGroup/CreateEditField";
 
 const SingleTicket = () => {
+  const [editTicket, setEditTicket] = useState(false);
   const { state } = useLocation();
-  const {} = useViewSingleTicket({
-    ticketId: state.ticketId,
-    projectId: state.projectId,
-  });
+  const { isProjectDataLoading, project, isTicketDataLoading, ticketData } =
+    useViewSingleTicket({
+      ticketId: state.ticketId,
+      projectId: state.projectId,
+    });
+  const { teamDataLoading, teamMemberData } = useGetMyTeam();
 
   return (
     <PlannerShell>
       <PlannerActions />
-      <StyledSingleTicket>
-        {/* <StepOneView projectName={ticketData.} /> */}
-      </StyledSingleTicket>
+
+      {isProjectDataLoading && isTicketDataLoading ? (
+        <Loader />
+      ) : (
+        project &&
+        ticketData && (
+          <StyledSingleTicket>
+            <div className="single-ticket-left">
+              <StepOneView
+                projectName={project?.name as string}
+                issueType={ticketData.issueType}
+              />
+              {!editTicket ? (
+                <ViewFields
+                  summaryValue={ticketData.summary}
+                  descriptionValue={ticketData.description}
+                  onDoubleClick={() => setEditTicket(true)}
+                />
+              ) : (
+                <CreateEditFields
+                  isEditing={editTicket}
+                  summaryValue={ticketData.summary}
+                  descriptionValue={ticketData.description}
+                  onChangeHandler={() => {}}
+                  onCancelEditing={() => setEditTicket(false)}
+                />
+              )}
+            </div>
+            <div className="single-ticket-right">
+              <TicketProperty
+                ticketAssigneeId={ticketData?.assignee?._id || null}
+                ticketStatus={ticketData.status}
+                ticketPriority={ticketData.priority}
+                ticketReporter={ticketData.reporter}
+                teamMemberData={teamMemberData}
+                teamMemberDataLoading={teamDataLoading}
+                onChangeHandler={() => {}}
+              />
+            </div>
+            <TicketPropertyInMobile
+              ticketAssigneeId={ticketData?.assignee?._id || null}
+              ticketStatus={ticketData.status}
+              ticketPriority={ticketData.priority}
+              ticketReporter={ticketData.reporter}
+              teamMemberData={teamMemberData}
+              teamMemberDataLoading={teamDataLoading}
+              onChangeHandler={() => {}}
+              footerLabel="Properties"
+            />
+          </StyledSingleTicket>
+        )
+      )}
     </PlannerShell>
   );
 };

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { List } from "phosphor-react";
 import { Redirect } from "react-router-dom";
 
 import { useCreateTicketData } from "../hooks";
@@ -13,11 +12,12 @@ import {
   TertiaryButton,
 } from "../../../../../component/UI/Button";
 import { useInMobile } from "../../../../../hooks";
-import TicketSummary from "./TicketSummary";
-import TicketDetail from "./TicketDetail";
-import TicketProperty from "./TicketProperty";
+import TicketProperty, {
+  TicketPropertyInMobile,
+} from "../components/TicketPropertyGroup";
 import Divider from "../../../../../component/UI/Divider";
-import MobileContentDrawer from "../../MobileContentDrawer";
+
+import CreateEditFields from "../components/TicketTextFieldGroup/CreateEditField";
 
 const CreateTicket = () => {
   const inMobile = useInMobile();
@@ -44,8 +44,6 @@ const CreateTicket = () => {
   } = useCreateTicketData();
 
   const [createStepOne, setCreateStepOne] = useState(true);
-  const [editTicketPropertyOnMobile, setEditTicketPropertyOnMobile] =
-    useState(false);
 
   const handleCreateStepOne = () => {
     setCreateStepOne(!createStepOne);
@@ -61,10 +59,6 @@ const CreateTicket = () => {
     setCreateTicketData((draft) => {
       draft[field] = value;
     });
-  };
-
-  const toggleEditPropTicket = () => {
-    setEditTicketPropertyOnMobile(!editTicketPropertyOnMobile);
   };
 
   if (isTicketPublished) {
@@ -100,17 +94,10 @@ const CreateTicket = () => {
               projectName={project?.name || null}
               onEdit={handleCreateStepOne}
             />
-
-            <TicketSummary
-              isEditing
-              value={ticketSummary || ""}
+            <CreateEditFields
+              summaryValue={ticketSummary || ""}
+              descriptionValue={ticketDetail || ""}
               onChangeHandler={onChangeHandler}
-            />
-
-            <TicketDetail
-              onChangeHandler={onChangeHandler}
-              value={ticketDetail || ""}
-              isCreating
             />
           </div>
           <Divider type="vertical" />
@@ -127,33 +114,16 @@ const CreateTicket = () => {
           </div>
         </div>
 
-        {inMobile && (
-          <>
-            <div
-              className="set-property-footer"
-              onClick={() => toggleEditPropTicket()}
-            >
-              <List className="list-icon" />
-              Set properties
-            </div>
-            <MobileContentDrawer
-              title="Set properties"
-              isOpen={editTicketPropertyOnMobile}
-              toggleDrawer={toggleEditPropTicket}
-              height="calc(100vh - 120px)"
-            >
-              <TicketProperty
-                ticketStatus={ticketStatus || ""}
-                onChangeHandler={onChangeHandler}
-                ticketPriority={ticketPriority}
-                ticketAssigneeId={ticketAssigneeId}
-                teamMemberData={teamMemberData}
-                teamMemberDataLoading={teamDataLoading}
-                ticketReporter={ticketReporter}
-              />
-            </MobileContentDrawer>
-          </>
-        )}
+        <TicketPropertyInMobile
+          ticketStatus={ticketStatus || ""}
+          onChangeHandler={onChangeHandler}
+          ticketPriority={ticketPriority}
+          ticketAssigneeId={ticketAssigneeId || null}
+          teamMemberData={teamMemberData}
+          teamMemberDataLoading={teamDataLoading}
+          ticketReporter={ticketReporter || null}
+          footerLabel="Set properties"
+        />
 
         {createStepOne && (
           <CreateTicketStepOneShell

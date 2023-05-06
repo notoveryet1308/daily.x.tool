@@ -9,6 +9,7 @@ export const StyledPlannerActions = styled.div`
   justify-content: flex-start;
   align-items: center;
   border-bottom: 1px solid ${({ theme }) => theme.colors.primaryGreyColor};
+  cursor: pointer;
 
   .all-work-active-state {
     display: flex;
@@ -49,6 +50,14 @@ export const StyledPlannerActions = styled.div`
       }
     }
   }
+
+  .create-ticket-btn-mobile {
+    position: absolute;
+    bottom: 16px;
+    right: -8px;
+    border-radius: 50%;
+    z-index: 2;
+  }
 `;
 
 export const StyledCreateAndDraftAction = styled.div`
@@ -69,13 +78,14 @@ export const StyledCreateAndDraftAction = styled.div`
     }
 
     @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
-      bottom: 0;
+      display: none;
+      /* bottom: 0;
       left: 0;
       padding: 8px 20px;
       position: fixed;
       flex-direction: row-reverse;
       width: 100%;
-      border-top: 1px solid ${({ theme }) => theme.colors.primaryGreyColor};
+      border-top: 1px solid ${({ theme }) => theme.colors.primaryGreyColor}; */
     }
   }
 `;

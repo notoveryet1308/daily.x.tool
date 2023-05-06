@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { Target } from "phosphor-react";
 import Divider from "../../../../component/UI/Divider";
 import { StyledPlannerActions } from "./style";
@@ -8,10 +9,10 @@ import CreateAndDraftAction from "./CreateAndDraftAction";
 const PlannerActions = () => {
   return (
     <StyledPlannerActions>
-      <div className="all-work-active-state">
+      <NavLink to="/planner" className="all-work-active-state">
         <Target className="target-icon" />
         <span className="my-work-label">My work</span>
-      </div>
+      </NavLink>
       <Divider type="vertical" style={{ height: "28px", margin: 0 }} />
       <div className="planner-dropdown-wrapper">
         <People />

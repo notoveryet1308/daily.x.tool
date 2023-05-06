@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useImmer } from "use-immer";
-import { ProjectFiled, UserFiled } from "../../type";
+import { ProjectFiled, TicketFiled, UserFiled } from "../../type";
 import { useCheckRequiredValue } from "../../../../hooks";
 import { STATUS_TYPE } from "../StatusTag/constant";
 import { PRIORITIES } from "../PriorityLabel/constant";
@@ -12,6 +12,15 @@ import {
 } from "../../graphql";
 import { useGetLoggedUserDetail } from "../../../../CommonGQL";
 import { nanoid } from "nanoid";
+
+export const useGetMyTeam = () => {
+  const teamMemberDetail = useGetMyTeamMemberDetail();
+  return {
+    teamDataLoading: teamMemberDetail.loading,
+    teamDataError: teamMemberDetail.error?.message,
+    teamMemberData: teamMemberDetail.data?.getMyTeamMemberDetail,
+  };
+};
 
 export const useCreateTicketData = () => {
   const loggedInUser = useGetLoggedUserDetail();
@@ -99,7 +108,19 @@ export const useViewSingleTicket = ({
   const getTicketById = useGetTicketById({ ticketId, projectId });
   const getAllProjects = useGetAllProjects();
 
-  console.log({ getAllProjects, getTicketById });
+  let project: ProjectFiled | null = null;
 
-  return { getTicketById, getAllProjects };
+  if (getAllProjects.data?.getAllProjects) {
+    project = getAllProjects.data?.getAllProjects.filter(
+      (project: ProjectFiled) => project.id === projectId
+    )[0];
+  }
+  return {
+    isTicketDataLoading: getTicketById.loading,
+    isProjectDataLoading: getAllProjects.loading,
+    isTicketDataError: getTicketById.error?.message,
+    isProjectDataError: getAllProjects.error?.message,
+    ticketData: getTicketById.data?.getTicketById as TicketFiled | null,
+    project,
+  };
 };

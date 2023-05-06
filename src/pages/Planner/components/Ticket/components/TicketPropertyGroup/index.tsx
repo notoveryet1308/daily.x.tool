@@ -1,22 +1,23 @@
 import { useState } from "react";
 import { List } from "phosphor-react";
 
-import { DropdownShell } from "../../../../../component/UI/Dropdown";
-import Loader from "../../../../../component/UI/Loader";
-import { useInMobile } from "../../../../../hooks";
-import { noop } from "../../../../../utils";
-import { UserFiled } from "../../../type";
-import MemberLabel from "../../MemberLabel";
-import PriorityLabel from "../../PriorityLabel";
-import { PRIORITIES_LIST } from "../../PriorityLabel/constant";
-import BaseStatusTag from "../../StatusTag";
-import { STATUS_TYPE_DATA } from "../../StatusTag/constant";
-import { StyledDropdownContentWrapper } from "../style";
+import { DropdownShell } from "../../../../../../component/UI/Dropdown";
+import Loader from "../../../../../../component/UI/Loader";
+import { useInMobile } from "../../../../../../hooks";
+import { noop } from "../../../../../../utils";
+import { UserFiled } from "../../../../type";
+import MemberLabel from "../../../MemberLabel";
+import PriorityLabel from "../../../PriorityLabel";
+import { PRIORITIES_LIST } from "../../../PriorityLabel/constant";
+import BaseStatusTag from "../../../StatusTag";
+import { STATUS_TYPE_DATA } from "../../../StatusTag/constant";
+import MobileContentDrawer from "../../../MobileContentDrawer";
+
+import { StyledDropdownContentWrapper } from "../../style";
 import {
   StyledTicketProperty,
   StyledTicketPropertyMobileFooter,
 } from "./style";
-import MobileContentDrawer from "../../MobileContentDrawer";
 
 const TicketProperty = ({
   ticketStatus,
@@ -188,7 +189,7 @@ export const TicketPropertyInMobile = ({
         {footerLabel}
       </StyledTicketPropertyMobileFooter>
       <MobileContentDrawer
-        title="Set properties"
+        title={footerLabel}
         isOpen={editTicketPropertyOnMobile}
         toggleDrawer={toggleEditPropTicket}
         height="calc(100vh - 120px)"
