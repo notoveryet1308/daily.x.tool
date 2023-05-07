@@ -25,13 +25,15 @@ const InlineNoDataFound = ({
   icon,
   mainText,
   subText,
+  className,
 }: {
   icon?: React.ReactNode;
   mainText: string;
   subText: string;
+  className?: string;
 }) => {
   return (
-    <StyledInlineNoDataFound>
+    <StyledInlineNoDataFound className={className}>
       <div className="inline-top">
         {icon && <span className="inline-top-icon">{icon}</span>}
         <h4 className="inline-top-main-text">{mainText}</h4>

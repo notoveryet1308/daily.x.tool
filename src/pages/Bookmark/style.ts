@@ -50,7 +50,7 @@ export const StyledBookmarkPageWrapper = styled.main`
       bottom: 40px;
       left: 50%;
       transform: translateX(-50%);
-      width: 300px;
+      width: 200px;
       display: flex;
       justify-content: center;
       align-items: center;

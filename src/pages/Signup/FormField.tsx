@@ -4,6 +4,8 @@ import { PrimaryButton } from "../../component/UI/Button";
 import { Input } from "../../component/UI/Input";
 import { noop } from "../../utils";
 
+import { useKeyPressEvent } from "../../hooks";
+
 import PasswordRules from "./PasswordRules";
 import { StyledFormFieldWrapper } from "./style";
 import { FormFiledType } from "./type";
@@ -21,6 +23,11 @@ const FormField = ({
   const passwordRules = useCallback(() => {
     return <PasswordRules password={formValues.password} />;
   }, [formValues.password]);
+
+  useKeyPressEvent({
+    keyCode: "Enter",
+    onPressEvent: () => onChangeHandler({ type: "check-field", payload: "" }),
+  });
 
   useEffect(() => {
     formValues.fieldsCheck["name"].isValid &&
