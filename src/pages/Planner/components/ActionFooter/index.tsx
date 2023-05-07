@@ -1,4 +1,5 @@
 import { PrimaryButton, TertiaryButton } from "../../../../component/UI/Button";
+import { noop } from "../../../../utils";
 
 import { StyledActionFooter } from "./style";
 
@@ -24,7 +25,7 @@ const ActionFooter = ({
       <TertiaryButton size="small" label={cancelBtnLabel} onClick={onCancel} />
       <PrimaryButton
         size="small"
-        onClick={onConfirm}
+        onClick={allowAction ? onConfirm : noop}
         disabled={!allowAction || loading}
         label={loading ? inProcessActionLabel : primaryActionLabel}
       />

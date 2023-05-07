@@ -28,11 +28,8 @@ export const StyledViewFiled = styled.div`
   display: flex;
   position: relative;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.colors.secondaryBgColor};
   flex: 1;
   row-gap: 16px;
-  padding: 16px;
-
   border-radius: 8px;
   cursor: pointer;
 `;

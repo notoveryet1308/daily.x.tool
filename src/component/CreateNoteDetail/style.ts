@@ -4,6 +4,7 @@ export const StyledCreateNoteDetail = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 24px;
+  flex: 1;
 
   .main-input-tag-select {
     margin: 16px 0;
@@ -22,9 +23,11 @@ export const StyledNoteInputField = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 12px;
+  flex: 1;
 
   .main-note-inputs {
     display: flex;
+    flex: 1;
     flex-direction: column;
 
     .main-input-form-title {
@@ -32,6 +35,10 @@ export const StyledNoteInputField = styled.div`
       background-color: ${({ theme }) => theme.colors.secondaryBgColor};
       border-bottom: 1px solid ${({ theme }) => theme.colors.primaryGreyColor};
       border-radius: 4px 4px 0 0;
+    }
+
+    .create-note-description {
+      flex: 1;
     }
   }
 `;

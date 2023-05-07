@@ -63,7 +63,7 @@ export const StyledNotesPageWrapper = styled.main`
       border-radius: 4px;
       overflow: hidden;
       cursor: move;
-      
+
       .plus-icon {
         font-size: 20px;
         font-weight: bold;
@@ -137,6 +137,10 @@ export const StyledCreateNotePageWrapper = styled.main`
       max-width: 500px;
       align-self: center;
       flex: 1;
+
+      .create-note-inputs {
+        flex: 1;
+      }
     }
 
     .create-note-preview {

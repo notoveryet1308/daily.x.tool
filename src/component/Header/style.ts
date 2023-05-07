@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 export const StyledHeaderWrapper = styled.header`
   padding: 16px 60px;
@@ -8,6 +8,7 @@ export const StyledHeaderWrapper = styled.header`
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid ${({ theme }) => theme.colors.primaryGreyColor};
 
   .header-content {
     display: grid;
@@ -22,12 +23,10 @@ export const StyledHeaderWrapper = styled.header`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.TABLET}px) {
-    .header-content{
+    .header-content {
       grid-template-columns: 1fr;
     }
-    
   }
-
 
   @media (max-width: ${({ theme }) => theme.breakpoints.MOBILE}px) {
     padding: 16px 16px;
@@ -39,18 +38,18 @@ export const StyledMainNavigation = styled.nav`
   column-gap: 16px;
   align-items: center;
 
-  &.center{
+  &.center {
     justify-content: center;
   }
-  &.end{
+  &.end {
     justify-content: flex-end;
   }
-  .user-logout{
+  .user-logout {
     color: ${({ theme }) => theme.colors.primaryTextColor};
-    font-size: color: ${({ theme }) => theme.fontSize.medium};
+    font-size: 14px;
+    color: ${({ theme }) => theme.fontSize.medium};
     cursor: pointer;
   }
-
 `;
 
 export const StyledChangeTheme = styled.span`
@@ -99,7 +98,7 @@ export const StyledHeaderNavLink = styled(NavLink)`
   transition: all 300ms ease;
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 0;
     height: 3px;
@@ -117,9 +116,7 @@ export const StyledHeaderNavLink = styled(NavLink)`
     }
   }
 
-  &.user-profile{
+  &.user-profile {
     text-transform: none;
   }
-
-  
 `;

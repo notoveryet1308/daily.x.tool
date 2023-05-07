@@ -37,6 +37,7 @@ const RichTextInput = ({
   errorBorder,
   errorMessage,
   className,
+  autoHeight,
 }: {
   name: string;
   minHeight?: number;
@@ -49,6 +50,7 @@ const RichTextInput = ({
   errorMessage?: string;
   errorBorder?: boolean;
   className?: string;
+  autoHeight?: boolean;
 }) => {
   const renderElement = useCallback((elProps) => <Elements {...elProps} />, []);
   const renderLeaf = useCallback((elProps) => <Leaf {...elProps} />, []);
@@ -74,6 +76,7 @@ const RichTextInput = ({
       title={name}
       minHeight={minHeight}
       className={className}
+      autoHeight={autoHeight}
     >
       <Slate
         editor={editor}
@@ -105,7 +108,7 @@ const RichTextInput = ({
           spellCheck
           autoFocus={autoFocus}
           style={{
-            maxHeight: `${maxHeight}px`,
+            maxHeight: !autoHeight ? `${maxHeight}px` : "auto",
             overflowY: "auto",
           }}
           onKeyDown={(event) => {

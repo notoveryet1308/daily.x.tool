@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import PlannerShell from "../../PlannerShell";
 
 import PlannerActions from "../PlannerActions";
@@ -15,11 +15,10 @@ import CreateEditFields from "./components/TicketTextFieldGroup/CreateEditField"
 
 const SingleTicket = () => {
   const [editTicket, setEditTicket] = useState(false);
-  const { state } = useLocation();
+  const params = useParams();
   const { isProjectDataLoading, project, isTicketDataLoading, ticketData } =
     useViewSingleTicket({
-      ticketId: state.ticketId,
-      projectId: state.projectId,
+      ticketId: params.ticketKey,
     });
   const { teamDataLoading, teamMemberData } = useGetMyTeam();
 

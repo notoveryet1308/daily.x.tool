@@ -14,7 +14,14 @@ const TableBodyRow = ({ bodyRowData }: { bodyRowData: TicketFiled }) => {
     <>
       <td>
         <StyledTableCell>
-          {bodyRowData.ticketKey}-{bodyRowData.ticketNumber}
+          <a
+            className="ticket-nav-link"
+            href={`/planner/ticket/${bodyRowData.ticketKey}-${bodyRowData.ticketNumber}`}
+            target="_blank"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {bodyRowData.ticketKey}-{bodyRowData.ticketNumber}
+          </a>
         </StyledTableCell>
       </td>
       <td>

@@ -9,8 +9,13 @@ import {
   GET_PROJECT_NAMES,
   GET_ALL_TICKETS,
   GET_TICKET_BY_ID,
+  UPDATE_TICKET,
 } from "./gql";
-import { CreateTicketInputType, ProjectCreateInput } from "../type";
+import {
+  CreateTicketInputType,
+  ProjectCreateInput,
+  UpdateTicketType,
+} from "../type";
 
 export const useCreateProject = () => {
   const [mutate, creationState] = useMutation(CREATE_PROJECT, {
@@ -101,21 +106,28 @@ export const useGetAllTickets = () => {
   return getAllTickets;
 };
 
-export const useGetTicketById = ({
-  ticketId,
-  projectId,
-}: {
-  ticketId: string;
-  projectId: string;
-}) => {
+export const useGetTicketById = ({ ticketId }: { ticketId: string }) => {
   const getTicketById = useQuery(GET_TICKET_BY_ID, {
     variables: {
       input: {
         id: ticketId,
-        projectId,
       },
     },
   });
 
   return getTicketById;
+};
+
+export const useUpdateTicket = () => {
+  const [mutate, updateTicketState] = useMutation(UPDATE_TICKET);
+
+  const handleUpdateTicket = (dataToBeUpdated: UpdateTicketType) => {
+    mutate({
+      variables: {
+        input: { ...dataToBeUpdated },
+      },
+    });
+  };
+
+  return { handleUpdateTicket, updateTicketState };
 };

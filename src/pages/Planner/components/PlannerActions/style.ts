@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const StyledPlannerActions = styled.div`
   width: 100%;
-  height: 60px;
   width: 100%;
   display: flex;
   gap: 8px;
+  padding: 8px 0;
   justify-content: flex-start;
   align-items: center;
   border-bottom: 1px solid ${({ theme }) => theme.colors.primaryGreyColor};
@@ -52,9 +52,9 @@ export const StyledPlannerActions = styled.div`
   }
 
   .create-ticket-btn-mobile {
-    position: absolute;
-    bottom: 16px;
-    right: -8px;
+    position: fixed;
+    bottom: 32px;
+    right: 8px;
     border-radius: 50%;
     z-index: 2;
   }

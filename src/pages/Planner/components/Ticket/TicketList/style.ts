@@ -32,6 +32,21 @@ export const StyledTableCell = styled.div`
   padding: 0 16px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.primaryGreyColor};
   white-space: nowrap;
+  color: ${({ theme }) => theme.colors.secondaryTextColor};
+
+  .ticket-nav-link {
+    text-decoration: none;
+    padding-bottom: 4px;
+    border: 2px solid transparent;
+
+    &:hover {
+      border-bottom: 2px solid ${({ theme }) => theme.colors.primaryColor};
+    }
+
+    &:visited {
+      border-bottom: 2px solid ${({ theme }) => theme.colors.primaryColor};
+    }
+  }
 
   .ticket-summary {
     max-width: 300px;

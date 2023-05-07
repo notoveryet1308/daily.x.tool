@@ -1,6 +1,9 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const StyledRichTextWrapper = styled.div<{ minHeight?: number }>`
+export const StyledRichTextWrapper = styled.div<{
+  minHeight?: number;
+  autoHeight?: boolean;
+}>`
   border-radius: 4px;
   background-color: ${({ theme }) => theme.colors.secondaryBgColor};
   padding: 16px;
@@ -9,7 +12,7 @@ export const StyledRichTextWrapper = styled.div<{ minHeight?: number }>`
   color: ${({ theme }) => theme.colors.secondaryTextColor};
 
   .rich-text-editor {
-    min-height: ${({ minHeight }) => `${minHeight}px` || '100px'} !important;
+    min-height: 90%;
   }
 
   &.rich-text-view-mode {
@@ -43,7 +46,7 @@ export const StyledRichTextWrapper = styled.div<{ minHeight?: number }>`
     color: #dc9544;
   }
 
-  .rich-text-error{
+  .rich-text-error {
     color: ${({ theme }) => theme.colors.errorDark};
     font-size: ${({ theme }) => theme.fontSize.small};
   }

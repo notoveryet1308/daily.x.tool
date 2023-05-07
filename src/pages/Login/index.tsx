@@ -1,4 +1,4 @@
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink, Redirect, useHistory, useLocation } from "react-router-dom";
 
 import { PrimaryButton } from "../../component/UI/Button";
 import { Input } from "../../component/UI/Input";
@@ -7,10 +7,12 @@ import { useLoginUser } from "./hooks";
 import { noop } from "../../utils";
 import { useAppDataContext } from "../../Context/AppDataContext";
 import { ErrorToast } from "../../component/Toast";
-// import { Blob } from "../../component/UI/Shape";
 
 const Login = () => {
+  const history = useHistory();
+  const { state } = useLocation();
   const { isUserAuthenticated, loggedInUserDetail } = useAppDataContext();
+
   const {
     loginHandler,
     dispatchLoginCred,
@@ -21,23 +23,11 @@ const Login = () => {
   } = useLoginUser();
 
   if (isUserAuthenticated && loggedInUserDetail) {
-    return <Redirect to="/" />;
+    history.push({ pathname: state?.from || "/" });
   }
 
   return (
     <StyledLoginPageWrapper>
-      {/* <Blob
-        isOutline
-        styles={{ position: "absolute", top: "30px", left: "-100px" }}
-      />
-      <Blob
-        isOutline
-        styles={{ position: "absolute", top: "100px", right: "-100px" }}
-      />
-      <Blob
-        isOutline
-        styles={{ position: "absolute", left: "50%", bottom: "-50px" }}
-      /> */}
       <div className="main-content">
         <h2 className="login-title">Welcome back</h2>
 

@@ -9,6 +9,7 @@ import {
   useGetAllProjects,
   useGetMyTeamMemberDetail,
   useGetTicketById,
+  useUpdateTicket,
 } from "../../graphql";
 import { useGetLoggedUserDetail } from "../../../../CommonGQL";
 import { nanoid } from "nanoid";
@@ -52,6 +53,7 @@ export const useCreateTicketData = () => {
     values: [!!createTicketData.project, !!createTicketData.issueType],
     type: "and",
   });
+
   const [allowActionPublish] = useCheckRequiredValue({
     values: [!!createTicketData.ticketSummary, !!createTicketData.ticketDetail],
     type: "and",
@@ -60,8 +62,16 @@ export const useCreateTicketData = () => {
   const { handleCreateTicket, createTicketState } = useCreateTicket();
 
   const publishTicketHandler = () => {
+    const ticketCountInProject = createTicketData.project?.tickets?.length;
+    const currentTicketCount = ticketCountInProject
+      ? ticketCountInProject + 1
+      : 1;
+    const ticketId = createTicketData.project
+      ? `${createTicketData.project.projectKey}-${currentTicketCount}`
+      : nanoid();
+
     handleCreateTicket({
-      id: nanoid(),
+      id: ticketId,
       projectId: createTicketData.project?.id as string,
       issueType: createTicketData.issueType as string,
       description: createTicketData.ticketDetail as string,
@@ -98,21 +108,19 @@ export const useCreateTicketData = () => {
   };
 };
 
-export const useViewSingleTicket = ({
-  ticketId,
-  projectId,
-}: {
-  ticketId: string;
-  projectId: string;
-}) => {
-  const getTicketById = useGetTicketById({ ticketId, projectId });
+export const useViewSingleTicket = ({ ticketId }: { ticketId: string }) => {
+  const getTicketById = useGetTicketById({ ticketId });
   const getAllProjects = useGetAllProjects();
 
   let project: ProjectFiled | null = null;
 
-  if (getAllProjects.data?.getAllProjects) {
+  if (
+    getTicketById.data?.getTicketById &&
+    getAllProjects.data?.getAllProjects
+  ) {
     project = getAllProjects.data?.getAllProjects.filter(
-      (project: ProjectFiled) => project.id === projectId
+      (project: ProjectFiled) =>
+        project.id === getTicketById.data.getTicketById.projectId
     )[0];
   }
   return {
@@ -123,4 +131,8 @@ export const useViewSingleTicket = ({
     ticketData: getTicketById.data?.getTicketById as TicketFiled | null,
     project,
   };
+};
+
+export const useUpdateSingleTicket = () => {
+  const { handleUpdateTicket, updateTicketState } = useUpdateTicket();
 };
