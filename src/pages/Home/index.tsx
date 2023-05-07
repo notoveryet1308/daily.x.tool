@@ -28,25 +28,29 @@ const Home = () => {
                 <TodoDisplayList
                   data={
                     userLogged
-                      ? allTodoQuery.data?.getTodo.filter((data)=> shouldShowInToday({...data})) || []
-                      : todoCollectionData.filter((data)=> shouldShowInToday({...data}))
+                      ? allTodoQuery.data?.getTodo.filter((data) =>
+                          shouldShowInToday({ ...data })
+                        ) || []
+                      : todoCollectionData.filter((data) =>
+                          shouldShowInToday({ ...data })
+                        )
                   }
                   isLoading={userLogged ? allTodoQuery.loading : false}
                 />
               </div>
               <div className="today-todo-create">
                 <CreateTodo
-                 className='todo-create-fields'
-                 viewContainerID='todo-list-scroll'
+                  className="todo-create-fields"
+                  viewContainerID="todo-list-scroll"
                 />
               </div>
             </div>
           </div>
           <div className="recent-activities">
             <Title className="recent-activity-title">Recent Activities</Title>
-            <Scrollbars autoHide style={{ height: "calc(100% - 60px)" }}>
+            <div className="recent-activities-content">
               <NoDataState message="No activity yet 🎧" img={no_activity_img} />
-            </Scrollbars>
+            </div>
           </div>
         </div>
       </div>

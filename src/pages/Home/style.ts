@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StyledHomePageWrapper = styled.main`
   width: 100%;
@@ -67,6 +67,7 @@ export const StyledHomePageWrapper = styled.main`
         flex: 1;
         display: flex;
         align-items: flex-start;
+
         .todo-create-fields {
           position: sticky;
           top: 0;
@@ -88,7 +89,13 @@ export const StyledHomePageWrapper = styled.main`
 
     .recent-activities {
       min-width: 320px;
-      background: ${({ theme }) => theme.colors.secondaryBgColor};
+      display: flex;
+      flex-direction: column;
+
+      .recent-activities-content {
+        flex: 1;
+      }
+      /* background: ${({ theme }) => theme.colors.secondaryBgColor}; */
 
       @media (max-width: ${({ theme }) => theme.breakpoints.TABLET}px) {
         display: none;
