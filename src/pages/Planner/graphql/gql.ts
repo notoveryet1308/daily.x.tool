@@ -30,6 +30,9 @@ export const GET_ALL_PROJECTS = gql`
         teamMember
       }
       projectKey
+      tickets{
+        id
+      }
     }
   }
 `;
@@ -149,3 +152,51 @@ export const GET_TICKET_BY_ID = gql`
     }
   }
 `;
+
+export const UPDATE_TICKET = gql`
+  mutation updateTicket($input: UpdateTicketInput!) {
+    updateTicket(input: $input) {
+      id
+      summary
+      description
+      projectId
+      isDraft
+      issueType
+      created
+      updated
+      priority
+      ticketNumber
+      status
+      ticketKey
+      assignee {
+        _id
+        name
+        email
+        avatar
+      }
+
+      reporter {
+        _id
+        name
+        email
+        avatar
+      }
+    }
+  }
+`;
+
+/**
+ * 
+ * updateTicket
+ * input UpdateTicketInput {
+  id: ID!
+  summary: String!
+  description: String!
+  assigneeId: String
+  sprintDate: [Float!]
+  updated: Float!
+  tags: [CreateTagInput!]
+  priority: String!
+  status: String!
+}
+ */

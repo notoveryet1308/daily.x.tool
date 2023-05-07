@@ -11,11 +11,10 @@ export const StyledTicketSummaryInput = styled(Textarea)`
 `;
 
 export const StyledSummaryView = styled.div`
-  background-color: ${({ theme }) => theme.colors.secondaryBgColor};
   color: ${({ theme }) => theme.colors.primaryTextColor};
   width: 100%;
   font-size: 16px;
+  font-weight: 500;
   padding-bottom: 16px;
-
   border-bottom: 1px solid ${({ theme }) => theme.colors.primaryGreyColor};
 `;

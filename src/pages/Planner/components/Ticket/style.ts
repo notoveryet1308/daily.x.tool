@@ -23,33 +23,41 @@ export const StyledDropdownContentWrapper = styled.div`
 export const StyledTicket = styled.div``;
 
 export const StyledSingleTicket = styled.div`
+  position: relative;
   display: flex;
-  height: 100%;
   column-gap: 20px;
+  flex: 1;
+  align-items: flex-start;
+  padding-bottom: 40px;
 
   .single-ticket-left {
     display: flex;
     flex-direction: column;
     flex: 1;
-    row-gap: 20px;
+    row-gap: 30px;
+    height: 100%;
   }
 
   .single-ticket-right {
+    position: sticky;
+    top: 20px;
+    right: 0;
     min-width: 300px;
-    height: 100%;
     padding-left: 20px;
     display: flex;
     flex-direction: column;
-    border-left: 1px solid ${({ theme }) => theme.colors.primaryGreyColor};
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
+
+    padding-bottom: 100px;
     .single-ticket-right {
       display: none;
     }
 
     .single-ticket-left {
       height: 90%;
+      
     }
   }
 `;

@@ -57,11 +57,11 @@ function App() {
             </ProtectedRoute>
           </Route>
           <Route path="/planner/create" component={CrateTicket} exact />
-          <Route
-            path="/planner/ticket/:ticketKey"
-            component={SingleTicket}
-            exact
-          />
+          <Route path="/planner/ticket/:ticketKey" exact>
+            <ProtectedRoute>
+              <SingleTicket />
+            </ProtectedRoute>
+          </Route>
           <Route path="/notes" component={Notes} exact />
           <Route path="/notes/create" component={CreateNote} exact />
           <Route path="/login" component={Login} exact />

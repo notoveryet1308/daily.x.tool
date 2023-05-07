@@ -1,17 +1,17 @@
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
-import { useNoteContext } from '../../Context/NoteDataProvider';
-import { PrimaryButton } from '../UI/Button';
-import { useNoteDataHandler } from './hooks';
+import { useNoteContext } from "../../Context/NoteDataProvider";
+import { PrimaryButton } from "../UI/Button";
+import { useNoteDataHandler } from "./hooks";
 
-import { StyledCreateNoteDetail } from './style';
-import InputFields from './InputFields';
+import { StyledCreateNoteDetail } from "./style";
+import InputFields from "./InputFields";
 
 const dummyOptions = [
-  { label: 'Javascript', value: 'javascript', id: 'Javascript-xx21' },
-  { label: 'Css', value: 'css', id: 'css-dce3' },
-  { label: 'HTML', value: 'html', id: 'html-908bg' },
-  { label: 'React', value: 'react', id: 'react-vco0p' },
+  { label: "Javascript", value: "javascript", id: "Javascript-xx21" },
+  { label: "Css", value: "css", id: "css-dce3" },
+  { label: "HTML", value: "html", id: "html-908bg" },
+  { label: "React", value: "react", id: "react-vco0p" },
 ];
 
 const CreateNoteDetails = ({
@@ -41,7 +41,7 @@ const CreateNoteDetails = ({
           }
         }}
         className="create-note-submit"
-        label='Add'
+        label="Add"
         disabled={!currentNote.isAllRequiredDataAvailable}
       />
     </StyledCreateNoteDetail>

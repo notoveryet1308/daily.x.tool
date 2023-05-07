@@ -4,7 +4,7 @@ export const StyledMainWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100vh;
-  max-height: calc(100vh - 64px);
+  max-height: calc(100vh - 66px);
   background-color: ${({ theme }) => theme.colors.primaryBgColor};
   display: flex;
   justify-content: center;
@@ -12,7 +12,7 @@ export const StyledMainWrapper = styled.div`
   overflow-y: auto;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.TABLET}px) {
-    max-height: calc(100vh - 90px);
+    max-height: calc(100vh - 92px);
   }
 
   &::selection {

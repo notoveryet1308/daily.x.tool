@@ -29,7 +29,7 @@ export interface CreateTicketInputType {
   description: string;
   projectId: string;
   isDraft: boolean;
-  assigneeId: string;
+  assigneeId: string | null;
   sprintDate?: number[];
   issueType: string;
   created: number;
@@ -59,4 +59,14 @@ export type ProjectCreateInput = {
 export interface ProjectFiled extends ProjectCreateInput {
   owner: UserFiled;
   tickets?: [];
+}
+
+export interface UpdateTicketType {
+  id: string;
+  summary: string;
+  description: string;
+  assigneeId: String | null;
+  updated: number;
+  priority: string;
+  status: string;
 }

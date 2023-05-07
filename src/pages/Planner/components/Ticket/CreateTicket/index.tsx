@@ -100,7 +100,7 @@ const CreateTicket = () => {
               onChangeHandler={onChangeHandler}
             />
           </div>
-          <Divider type="vertical" />
+          {/* <Divider type="vertical" /> */}
           <div className="input-section-right">
             <TicketProperty
               ticketStatus={ticketStatus || ""}

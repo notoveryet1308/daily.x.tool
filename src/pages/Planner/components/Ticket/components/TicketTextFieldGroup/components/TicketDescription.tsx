@@ -20,6 +20,7 @@ const TicketDescription = ({
           className="ticket-detail-input"
           placeholder="Add description"
           autoFocus={false}
+          autoHeight
           onChange={({
             ticketDetail,
             field,
