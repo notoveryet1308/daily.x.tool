@@ -48,7 +48,6 @@ const TodoActionCommon = ({
         placeholder="Enter description"
         value={description.value}
         clearEditor={allowAction && !description.value}
-        minHeight={150}
         className="todo-description"
         errorMessage={
           description["isPresent"] !== null && !description["isPresent"]

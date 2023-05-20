@@ -7,6 +7,7 @@ import { useLoginUser } from "./hooks";
 import { noop } from "../../utils";
 import { useAppDataContext } from "../../Context/AppDataContext";
 import { ErrorToast } from "../../component/Toast";
+import { useKeyPressEvent } from "../../hooks";
 
 const Login = () => {
   const history = useHistory();
@@ -21,6 +22,8 @@ const Login = () => {
     loading,
     error: queryError,
   } = useLoginUser();
+
+  useKeyPressEvent({ keyCode: "Enter", onPressEvent: loginHandler });
 
   if (isUserAuthenticated && loggedInUserDetail) {
     history.push({ pathname: state?.from || "/" });
@@ -39,7 +42,7 @@ const Login = () => {
             name="email"
             type="email"
             label="Email"
-            value={loginCred.email}
+            value={loginCred.email || "newuser@dev.com"}
             onChangeHandler={({ email }: { email: string }) => {
               dispatchLoginCred({ type: "login-email", payload: email });
             }}
@@ -50,7 +53,7 @@ const Login = () => {
             name="password"
             type="password"
             label="Password"
-            value={loginCred.password}
+            value={loginCred.password || "Test@123"}
             onChangeHandler={({ password }: { password: string }) => {
               dispatchLoginCred({ type: "login-password", payload: password });
             }}

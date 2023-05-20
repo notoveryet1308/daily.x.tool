@@ -70,7 +70,7 @@ export const StyledCreateProjectFiled = styled.div`
   flex-direction: column;
   gap: 16px;
   flex: 1;
-  padding: 0 16px;
+  padding: 24px;
 `;
 
 export const StyledProjectName = styled.div`

@@ -96,6 +96,7 @@ const CreateTicketStepOne = ({
                 ))
               ) : (
                 <InlineNoDataFound
+                  className="no-project-found-dropdown"
                   mainText="No project found"
                   subText="Create project first"
                 />

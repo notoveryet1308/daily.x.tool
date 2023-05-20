@@ -18,9 +18,25 @@ export const StyledDropdownContentWrapper = styled.div`
   overflow-y: auto;
   align-items: flex-start;
   gap: 16px;
+
+  .no-project-found-dropdown {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
 `;
 
-export const StyledTicket = styled.div``;
+export const StyledTicket = styled.div`
+  flex: 1;
+  .no-tickets-found {
+    background-color: inherit;
+    &-icon {
+      color: ${({ theme }) => theme.colors.primaryGreyColor};
+      font-size: 60px;
+    }
+  }
+`;
 
 export const StyledSingleTicket = styled.div`
   position: relative;
@@ -49,7 +65,6 @@ export const StyledSingleTicket = styled.div`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
-
     padding-bottom: 100px;
     .single-ticket-right {
       display: none;
@@ -57,7 +72,6 @@ export const StyledSingleTicket = styled.div`
 
     .single-ticket-left {
       height: 90%;
-      
     }
   }
 `;

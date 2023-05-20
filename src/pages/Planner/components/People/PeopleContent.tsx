@@ -61,8 +61,8 @@ const PeopleContent = ({
           ) : (
             <InlineNoDataFound
               icon={<User />}
-              mainText="You have not added anyone yet !!"
-              subText="Hurry and add your team member by their email"
+              mainText="Your team list is empty"
+              subText="Add people by their email"
             />
           ))}
       </div>
