@@ -32,7 +32,7 @@ export const useSearchSelect = ({
 
   const onCreate = (data: optionType) => {
     setSelectedValue([data, ...selectedValue]);
-    onChange({ [name]: [data, ...selectedValue] });
+    onChange({ field: name, [name]: [data, ...selectedValue] });
     setSearchInput("");
     onCreation && onCreation(data);
   };
@@ -89,16 +89,15 @@ export const useSelectData = ({
   const onSelect = (data: optionType) => {
     setSelectedValue([data, ...selectedValue]);
     setAllOptions([...allOptions.filter((d) => d.id !== data.id)]);
-    onChange({ [name]: [data, ...selectedValue] });
+    onChange({ field: name, [name]: [data, ...selectedValue] });
   };
 
   const onClear = (data: optionType) => {
     const filteredValue = selectedValue.filter((d) => d.id !== data.id);
     setSelectedValue(filteredValue);
     setAllOptions([...allOptions, data]);
-    onChange({ [name]: filteredValue });
+    onChange({ field: name, [name]: filteredValue });
   };
-
 
   return {
     onClear,

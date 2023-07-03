@@ -27,7 +27,7 @@ const BookmarkInput = ({
   ogUrl,
 }: BookmarkInputPropType) => {
   const { handleBookmarkData } = useBookmarkInputData();
-  const { handleCreatetag } = useCreateTag();
+  const { handleCreateTag } = useCreateTag();
   const tagQuery = useGetTags();
 
   return (
@@ -86,7 +86,7 @@ const BookmarkInput = ({
         options={tagQuery?.data?.getTag || []}
         values={tags}
         onChange={handleBookmarkData}
-        onCreation={handleCreatetag}
+        onCreation={handleCreateTag}
         creationQueryState={{
           loading: tagQuery.loading,
           error: `${tagQuery.error}`,

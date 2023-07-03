@@ -77,7 +77,7 @@ export const StyledModal = styled.div<{
       overflow-y: auto;
       height: ${({ height }) => !!height && `${height}px`};
       min-height: 400px;
-      max-height: calc(100vh - 300px);
+      max-height: calc(100vh - 200px);
     }
     .modal-footer {
     }

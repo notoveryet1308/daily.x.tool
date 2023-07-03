@@ -22,13 +22,8 @@ export const useCheckRequiredValue = ({
 
   useEffect(() => {
     if (type === "and") {
-      values.forEach((val) => {
-        if (!val) {
-          setAllowAction(false);
-        } else {
-          setAllowAction(true);
-        }
-      });
+      const isFalse = values.includes(false);
+      setAllowAction(!isFalse);
     }
 
     if (type === "or") {
