@@ -56,7 +56,7 @@ export const StyledBaseButton = styled.button<{ variation?: string }>`
 `;
 
 export const StyledCreateBtn = styled.button`
-  padding: 16px 30px;
+  padding: 8px 16px;
   display: flex;
   justify-content: center;
   align-items: center;

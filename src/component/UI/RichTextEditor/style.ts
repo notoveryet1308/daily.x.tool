@@ -12,7 +12,7 @@ export const StyledRichTextWrapper = styled.div<{
   color: ${({ theme }) => theme.colors.secondaryTextColor};
 
   .rich-text-editor {
-    min-height: 90%;
+    min-height: 90% !important;
   }
 
   &.rich-text-view-mode {

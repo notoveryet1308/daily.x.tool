@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StyledTodoItem = styled.div<{
   completed: boolean;
@@ -40,7 +40,7 @@ export const StyledTodoItem = styled.div<{
     flex: 1;
     gap: 16px;
     padding: 16px;
-    padding-top: ${({ duration }) => duration && '20px'};
+    padding-top: ${({ duration }) => duration && "20px"};
     display: flex;
     position: relative;
     word-wrap: break-word;
@@ -59,7 +59,7 @@ export const StyledTodoItem = styled.div<{
     &::after {
       top: 0;
       left: 0;
-      content: '';
+      content: "";
       height: 100%;
       display: block;
       position: absolute;
@@ -67,7 +67,7 @@ export const StyledTodoItem = styled.div<{
       transition: transform 300ms ease;
       background-color: ${({ theme }) => theme.colors.todoItemOverlay};
       border-top: 2px solid ${({ theme }) => theme.colors.primaryColor};
-      transform: translateX(${({ completed }) => (!completed ? '100%' : '0')});
+      transform: translateX(${({ completed }) => (!completed ? "100%" : "0")});
     }
   }
 
@@ -87,6 +87,7 @@ export const StyledTodoItem = styled.div<{
 
 export const StyledCreateTodo = styled.div`
   width: 100%;
+  /* height: 100%; */
   display: flex;
   padding: 16px;
   border-radius: 8px;
@@ -94,6 +95,10 @@ export const StyledCreateTodo = styled.div`
   align-items: flex-start;
   row-gap: ${({ theme }) => theme.space.small2};
   background-color: ${({ theme }) => theme.colors.tertiaryBgColor};
+
+  .todo-description{
+    flex: 1;
+  }
 
   .create-todo-title {
     font-size: ${({ theme }) => theme.fontSize.large};

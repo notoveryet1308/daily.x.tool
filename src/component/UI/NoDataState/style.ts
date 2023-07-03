@@ -21,7 +21,6 @@ export const StyledNoDataWrapper = styled.div`
     color: ${({ theme }) => theme.colors.primaryTextColor};
     font-size: ${({ theme }) => theme.fontSize.medium};
     text-align: center;
-    padding-left: 20px;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.TABLET}px) {
@@ -53,7 +52,7 @@ export const StyledInlineNoDataFound = styled.div`
     }
 
     .inline-top-main-text {
-      font-size: 16px;
+      font-size: 14px;
       color: inherit;
     }
   }
@@ -61,5 +60,6 @@ export const StyledInlineNoDataFound = styled.div`
   .inline-sub-text {
     font-size: 12px;
     color: ${({ theme }) => theme.colors.secondaryGreyColor};
+    text-align: center;
   }
 `;
