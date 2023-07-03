@@ -53,62 +53,62 @@ const CREATE_BOOKMARK = gql`
   }
 `;
 
-export const useCreateBookmark = () => {
-  const history = useHistory();
-  const { bookmarkDispatch, bookmarkCollection, currentBookmark } =
-    useBookmarkContext();
-  const [mutate, bookmarkCreateQueryState] = useMutation(CREATE_BOOKMARK, {
-    update(cache, { data: { createBookmark } }) {
-      const existingNote = cache.readQuery({
-        query: GET_BOOKMARK,
-      });
-      cache.writeQuery({
-        query: GET_BOOKMARK,
-        data: {
-          getBookmark: [...existingNote?.getBookmark, createBookmark],
-        },
-      });
-    },
-  });
-  const userLogged = isUserAuthenticated();
+// export const useCreateBookmark = () => {
+//   const history = useHistory();
+//   const { bookmarkDispatch, bookmarkCollection, currentBookmark } =
+//     useBookmarkContext();
+//   const [mutate, bookmarkCreateQueryState] = useMutation(CREATE_BOOKMARK, {
+//     update(cache, { data: { createBookmark } }) {
+//       const existingNote = cache.readQuery({
+//         query: GET_BOOKMARK,
+//       });
+//       cache.writeQuery({
+//         query: GET_BOOKMARK,
+//         data: {
+//           getBookmark: [...existingNote?.getBookmark, createBookmark],
+//         },
+//       });
+//     },
+//   });
+//   const userLogged = isUserAuthenticated();
 
-  if (bookmarkCreateQueryState.called && !bookmarkCreateQueryState.loading) {
-    history.push("/bookmark");
-  }
+//   if (bookmarkCreateQueryState.called && !bookmarkCreateQueryState.loading) {
+//     history.push("/bookmark");
+//   }
 
-  const handleBookmarkCreation = () => {
-    const id = nanoid();
-    userLogged
-      ? mutate({
-          variables: {
-            input: {
-              ...currentBookmark.data,
-              id,
-            },
-          },
-          optimisticResponse: {
-            __typename: "Mutation",
-            createBookmark: {
-              ...currentBookmark.data,
-              id,
-              __tynamename: "Bookmark",
-            },
-          },
-        })
-      : (function () {
-          bookmarkDispatch({
-            type: "add-to-bookmark-collection",
-            payload: [
-              { ...currentBookmark.data, id: nanoid() },
-              ...bookmarkCollection,
-            ],
-          });
-          history.push("/bookmark");
-        })();
-  };
+//   const handleBookmarkCreation = () => {
+//     const id = nanoid();
+//     userLogged
+//       ? mutate({
+//           variables: {
+//             input: {
+//               ...currentBookmark.data,
+//               id,
+//             },
+//           },
+//           optimisticResponse: {
+//             __typename: "Mutation",
+//             createBookmark: {
+//               ...currentBookmark.data,
+//               id,
+//               __tynamename: "Bookmark",
+//             },
+//           },
+//         })
+//       : (function () {
+//           bookmarkDispatch({
+//             type: "add-to-bookmark-collection",
+//             payload: [
+//               { ...currentBookmark.data, id: nanoid() },
+//               ...bookmarkCollection,
+//             ],
+//           });
+//           history.push("/bookmark");
+//         })();
+//   };
 
-  return { handleBookmarkCreation, bookmarkCreateQueryState };
-};
+//   return { handleBookmarkCreation, bookmarkCreateQueryState };
+// };
 
 const GET_BOOKMARK = gql`
   query GetBookmark {

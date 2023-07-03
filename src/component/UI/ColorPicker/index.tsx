@@ -23,7 +23,7 @@ const ColorPicker = ({
   );
 
   const onChangeHandler = (d: string) => {
-    onChange({ [name]: d });
+    onChange({ field: name, [name]: d });
     setSelectedColor(d);
   };
 

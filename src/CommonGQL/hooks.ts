@@ -38,7 +38,7 @@ export const useCreateTag = () => {
     },
   });
 
-  const handleCreatetag = ({ id, label, value }: tagType) => {
+  const handleCreateTag = ({ id, label, value }: tagType) => {
     const logged = isUserAuthenticated();
     logged &&
       mutate({
@@ -61,7 +61,7 @@ export const useCreateTag = () => {
       });
   };
 
-  return { handleCreatetag, creationState };
+  return { handleCreateTag, creationState };
 };
 
 export const useGetTags = () => {
