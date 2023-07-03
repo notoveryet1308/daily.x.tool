@@ -173,16 +173,18 @@ export { BookmarkInput };
 
 const BookmarkInputShell = ({
   open,
-  toggleShell,
   dataProps,
 }: {
   open: boolean;
-  toggleShell: Function;
   dataProps: BookmarkInputPropType;
 }) => {
   return (
-    <Shell open={open} title="Update bookmark" toggleShell={toggleShell}>
-      <BookmarkInput {...dataProps} toggleShell={toggleShell} />
+    <Shell
+      open={open}
+      title="Update bookmark"
+      toggleShell={dataProps.toggleShell}
+    >
+      <BookmarkInput {...dataProps} toggleShell={dataProps.toggleShell} />
     </Shell>
   );
 };

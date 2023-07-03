@@ -15,6 +15,7 @@ import { breakpoints } from "../../../../theme/breakpoint";
 
 import { useLinkCopy } from "./hook";
 import BookmarkInputShell from "../BookmarkAction/BookmarkInput";
+import { useDeleteBookmark } from "../../Graphql";
 
 type BookmarkPropType = {
   id: string;
@@ -41,7 +42,7 @@ const BookmarkViewCard = ({
   ogDescription,
   isPreviewAvailable,
 }: BookmarkPropType) => {
-  // const { handleBookmarkDeletion, bookmarkDeleteQuery } = useDeleteBookmark();
+  const { bookmarkDeleteQuery, handleBookmarkDeletion } = useDeleteBookmark();
   const { isLinkCopied, copyLinkText } = useLinkCopy();
   const [screenWidth] = useScreenWidth();
   const [isActionsVisible, setActionsVisible] = useState(false);
@@ -92,7 +93,10 @@ const BookmarkViewCard = ({
                 className="bkm-icon edit"
                 onClick={handleUpdateAction}
               />
-              <Trash className="bkm-icon delete" onClick={() => {}} />
+              <Trash
+                className="bkm-icon delete"
+                onClick={() => handleBookmarkDeletion(id)}
+              />
             </>
           )}
         </div>
@@ -121,7 +125,7 @@ const BookmarkViewCard = ({
         {tags && (
           <div className="bkm-tags" role="tag-list">
             {tags.map((d) => (
-              <Tags {...d} key={d.id} hexCode={hexCode} />
+              <Tags {...d} key={d.id} hexCode={hexCode || "#772C92"} />
             ))}
           </div>
         )}
@@ -130,7 +134,6 @@ const BookmarkViewCard = ({
       {openUpdateActionSell ? (
         <BookmarkInputShell
           open={openUpdateActionSell}
-          toggleShell={handleUpdateAction}
           dataProps={{
             id,
             ogImg,
@@ -140,6 +143,7 @@ const BookmarkViewCard = ({
             hexCode,
             ogSiteName,
             ogDescription,
+            toggleShell: handleUpdateAction,
           }}
         />
       ) : null}

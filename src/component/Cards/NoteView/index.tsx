@@ -17,7 +17,7 @@ const NoteView = (props: NotePropsType) => {
   const [isEditing, setEditing] = useState(false);
 
   const isAddedJustNow = dayjs(updatedOn).fromNow() === updatedNowLimit;
- 
+
   const { noteDispatch, isEditing: inEditMode } = useNoteContext();
 
   const toggleIsEditing = () => {

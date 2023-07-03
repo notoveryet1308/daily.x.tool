@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useMutation } from "@apollo/client";
 
-
 export const useLinkCopy = () => {
   const [isLinkCopied, setLinkCopy] = useState(false);
 
@@ -24,32 +23,6 @@ export const useLinkCopy = () => {
   }, [isLinkCopied]);
 
   return { isLinkCopied, copyLinkText };
-};
-
-
-
-export const useDeleteBookmark = () => {
-  const [mutate, bookmarkDeleteQuery] = useMutation(DELETE_BOOKMARK, {
-    update(cache, _) {
-      cache.modify({
-        fields: {
-          getBookmark() {},
-        },
-      });
-    },
-  });
-
-  const handleBookmarkDeletion = (id: string) => {
-    mutate({
-      variables: {
-        input: {
-          id,
-        },
-      },
-    });
-  };
-
-  return { bookmarkDeleteQuery, handleBookmarkDeletion };
 };
 
 // export const useBookmarkInputData = () => {
