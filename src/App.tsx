@@ -56,20 +56,39 @@ function App() {
               <Planner />
             </ProtectedRoute>
           </Route>
-          <Route path="/planner/create" component={CrateTicket} exact />
+          <Route path="/planner/create" exact>
+            <ProtectedRoute>
+              <CrateTicket />
+            </ProtectedRoute>
+          </Route>
           <Route path="/planner/ticket/:ticketKey" exact>
             <ProtectedRoute>
               <SingleTicket />
             </ProtectedRoute>
           </Route>
-          <Route path="/notes" component={Notes} exact />
-          <Route path="/notes/create" component={CreateNote} exact />
+          <Route path="/notes" exact>
+            <ProtectedRoute>
+              <Notes />
+            </ProtectedRoute>
+          </Route>
+          <Route path="/notes/create" exact>
+            <ProtectedRoute>
+              <CreateNote />
+            </ProtectedRoute>
+          </Route>
+          <Route path="/bookmark" exact>
+            <ProtectedRoute>
+              <Bookmark />
+            </ProtectedRoute>
+          </Route>
+          <Route path="/bookmark/create" component={BookmarkCreate} exact>
+            <ProtectedRoute>
+              <BookmarkCreate />
+            </ProtectedRoute>
+          </Route>
+
           <Route path="/login" component={Login} exact />
           <Route path="/sign-up" component={Signup} exact />
-          <Route path="/bookmark" component={Bookmark} exact />
-          <Route path="/bookmark/create" component={BookmarkCreate} exact />
-
-          {/* component testing */}
 
           <Route path="/component-testing" component={Table} exact />
         </Switch>
