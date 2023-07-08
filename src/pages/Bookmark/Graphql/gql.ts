@@ -56,6 +56,11 @@ export const UPDATE_BOOKMARK = gql`
       hexCode
       createdAt
       updatedAt
+      tags{
+        id
+        value
+        label
+      }
     }
   }
 `;

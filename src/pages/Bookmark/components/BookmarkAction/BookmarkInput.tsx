@@ -4,7 +4,6 @@ import Select from "../../../../component/UI/Select";
 import { StyledBookmarkInput } from "./style";
 import { tagType } from "../../../../Context/types";
 import ColorPicker from "../../../../component/UI/ColorPicker";
-// import { useBookmarkInputData } from "../BookmarkView/hook";
 import { useGetTags, useCreateTag } from "../../../../CommonGQL/hooks";
 import { Input, TextArea } from "../../../../component/UI/Input";
 
@@ -44,7 +43,7 @@ const BookmarkInput = ({
       handleBookmarkUpdate(updateBookmark);
     }
   };
-
+ 
   useEffect(() => {
     if (updateBookmarkQuery.data) {
       toggleShell();
