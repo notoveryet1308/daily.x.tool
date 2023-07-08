@@ -20,12 +20,12 @@ export const StyledBookmarkViewCard = styled.a<{
   overflow: hidden;
   display: flex;
   transition: border-color 300ms ease;
+  width: 100%;
 
   .bkm-img-holder {
     width: 150px;
     height: 180px;
     position: relative;
-  
 
     .bkm-img {
       width: 100%;
@@ -33,17 +33,17 @@ export const StyledBookmarkViewCard = styled.a<{
       height: 100%;
       object-fit: cover;
     }
-    
-    .bkm-img-empty{
+
+    .bkm-img-empty {
       width: 150px;
       height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      
-      .bkm-icon-bookmark{
+
+      .bkm-icon-bookmark {
         font-size: 32px;
-        color:${({ theme }) => theme.colors.secondaryGreyColor};
+        color: ${({ theme }) => theme.colors.secondaryGreyColor};
       }
     }
 
@@ -64,8 +64,8 @@ export const StyledBookmarkViewCard = styled.a<{
         color: ${({ theme }) => theme.colors.primaryColor};
         z-index: 2;
         filter: blur(0);
-        
-        &.check{
+
+        &.check {
           color: ${({ theme }) => theme.colors.successColor};
         }
 
@@ -99,13 +99,10 @@ export const StyledBookmarkViewCard = styled.a<{
     .bkm-domain {
       color: ${({ theme }) => theme.colors.tertiaryTextColor};
       font-size: 12px;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
-      
+      ${truncate({ line: 1 })}
     }
 
-    .bkm-no-preview-url{
+    .bkm-no-preview-url {
       text-decoration: none;
       color: ${({ theme }) => theme.colors.secondaryTextColor};
       font-size: 12px;
@@ -123,9 +120,9 @@ export const StyledBookmarkViewCard = styled.a<{
       &::-webkit-scrollbar {
         display: none;
       }
-      
-      &::after{
-        content:'',
+
+      &::after {
+        content: "";
         position: absolute;
         display: block;
         top: 0;
@@ -141,7 +138,7 @@ export const StyledBookmarkViewCard = styled.a<{
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_MOBILE}px) {
-   &&& .bkm-actions {
+    &&& .bkm-actions {
       opacity: 0.9;
     }
   }

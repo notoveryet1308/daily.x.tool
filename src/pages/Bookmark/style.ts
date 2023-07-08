@@ -30,10 +30,18 @@ export const StyledBookmarkPageWrapper = styled.main`
     margin-bottom: 40px;
     max-width: ${({ theme }) => theme.breakpoints.DESKTOP}px;
 
+    .bookmark-filter-content {
+      margin-top: 24px;
+      display: flex;
+      width: 100%;
+      max-width: 280px;
+    }
+
     .bookmark-list-content {
       display: flex;
       justify-content: center;
       height: auto;
+
       .no-data-state {
         height: 80vh;
         background-color: ${({ theme }) => theme.colors.primaryBgColor};
@@ -73,6 +81,10 @@ export const StyledBookmarkPageWrapper = styled.main`
         left: calc(100% - 60px);
         transform: unset;
         cursor: default;
+      }
+
+      .bookmark-filter-content {
+        max-width: 100%;
       }
     }
   }
