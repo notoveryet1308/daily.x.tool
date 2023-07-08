@@ -104,6 +104,7 @@ export const StyledBookmarkCreate = styled.div`
   .bookmark-url-wrapper {
     width: 100%;
     flex: 1;
+    padding-bottom: 24px;
   }
 
   .bookmark-url {
