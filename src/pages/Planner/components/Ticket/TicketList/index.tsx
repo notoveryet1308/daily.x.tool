@@ -11,7 +11,7 @@ const TicketList = ({ ticketData }: { ticketData: TicketFiled[] }) => {
   const history = useHistory();
   const onBodyRowClickHandler = (rowData: TicketFiled) => {
     history.push({
-      pathname: `/planner/ticket/${rowData.ticketKey}-${rowData.ticketNumber}`,
+      pathname: `/planner/ticket/${rowData.ticketKey}`,
       state: { ticketId: rowData.id, projectId: rowData.projectId },
     });
   };

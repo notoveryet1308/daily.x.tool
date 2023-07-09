@@ -48,7 +48,11 @@ const TicketProperty = ({
             teamMemberData
               ?.filter((d) => d._id === ticketAssigneeId)
               .map((user) => (
-                <MemberLabel name={user.name || ""} avatar={user.avatar} />
+                <MemberLabel
+                  key={user._id}
+                  name={user.name || ""}
+                  avatar={user.avatar}
+                />
               ))
           ) : (
             <span className="unassigned-label">UNASSIGNED</span>
@@ -65,7 +69,7 @@ const TicketProperty = ({
                   name={user.name || ""}
                   avatar={user.avatar}
                   onClick={() => {
-                    console.log({ user });
+                    console.log({ user }, "onClick");
                     onChangeHandler({
                       value: user._id,
                       field: "ticketAssigneeId",

@@ -30,7 +30,7 @@ export const GET_ALL_PROJECTS = gql`
         teamMember
       }
       projectKey
-      tickets{
+      tickets {
         id
       }
     }
@@ -153,29 +153,23 @@ export const GET_TICKET_BY_ID = gql`
   }
 `;
 
-export const UPDATE_TICKET = gql`
-  mutation updateTicket($input: UpdateTicketInput!) {
-    updateTicket(input: $input) {
+export const UPDATE_TEXT_FILED_TICKET = gql`
+  mutation updateTextFiledTicket($input: UpdateTextFieldTicketInput!) {
+    updateTextFiledTicket(input: $input) {
       id
       summary
       description
-      projectId
-      isDraft
-      issueType
-      created
-      updated
-      priority
-      ticketNumber
-      status
-      ticketKey
-      assignee {
-        _id
-        name
-        email
-        avatar
-      }
+    }
+  }
+`;
 
-      reporter {
+export const UPDATE_DROPDOWN_FILED_TICKET = gql`
+  mutation updateDropdownFiledTicket($input: UpdateDropdownTicketInputs!) {
+    updateDropdownFiledTicket(input: $input) {
+      id
+      priority
+      status
+      assignee {
         _id
         name
         email
@@ -184,19 +178,3 @@ export const UPDATE_TICKET = gql`
     }
   }
 `;
-
-/**
- * 
- * updateTicket
- * input UpdateTicketInput {
-  id: ID!
-  summary: String!
-  description: String!
-  assigneeId: String
-  sprintDate: [Float!]
-  updated: Float!
-  tags: [CreateTagInput!]
-  priority: String!
-  status: String!
-}
- */

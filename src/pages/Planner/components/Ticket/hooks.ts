@@ -1,6 +1,10 @@
 import { useEffect } from "react";
 import { useImmer } from "use-immer";
-import { ProjectFiled, TicketFiled, UserFiled } from "../../type";
+import {
+  ProjectFiled,
+  TicketFiled,
+  UserFiled,
+} from "../../type";
 import { useCheckRequiredValue } from "../../../../hooks";
 import { STATUS_TYPE } from "../StatusTag/constant";
 import { PRIORITIES } from "../PriorityLabel/constant";
@@ -9,7 +13,8 @@ import {
   useGetAllProjects,
   useGetMyTeamMemberDetail,
   useGetTicketById,
-  useUpdateTicket,
+  useUpdateDropdownFiledTicket,
+  useUpdateTextFieldTicket,
 } from "../../graphql";
 import { useGetLoggedUserDetail } from "../../../../CommonGQL";
 import { nanoid } from "nanoid";
@@ -62,16 +67,8 @@ export const useCreateTicketData = () => {
   const { handleCreateTicket, createTicketState } = useCreateTicket();
 
   const publishTicketHandler = () => {
-    const ticketCountInProject = createTicketData.project?.tickets?.length;
-    const currentTicketCount = ticketCountInProject
-      ? ticketCountInProject + 1
-      : 1;
-    const ticketId = createTicketData.project
-      ? `${createTicketData.project.projectKey}-${currentTicketCount}`
-      : nanoid();
-
     handleCreateTicket({
-      id: ticketId,
+      id: nanoid(),
       projectId: createTicketData.project?.id as string,
       issueType: createTicketData.issueType as string,
       description: createTicketData.ticketDetail as string,
@@ -108,8 +105,8 @@ export const useCreateTicketData = () => {
   };
 };
 
-export const useViewSingleTicket = ({ ticketId }: { ticketId: string }) => {
-  const getTicketById = useGetTicketById({ ticketId });
+export const useViewSingleTicket = ({ ticketKey }: { ticketKey: string }) => {
+  const getTicketById = useGetTicketById({ ticketKey });
   const getAllProjects = useGetAllProjects();
 
   let project: ProjectFiled | null = null;
@@ -133,6 +130,112 @@ export const useViewSingleTicket = ({ ticketId }: { ticketId: string }) => {
   };
 };
 
-export const useUpdateSingleTicket = () => {
-  const { handleUpdateTicket, updateTicketState } = useUpdateTicket();
+export const useUpdateTextFieldSingleTicket = () => {
+  const [ticketTextFiled, setTicketTextField] = useImmer<{
+    ticketSummary: string;
+    ticketDetail: string;
+  }>({
+    ticketSummary: "",
+    ticketDetail: "",
+  });
+
+  const onTicketFieldChange = ({
+    field,
+    value,
+  }: {
+    field: string;
+    value: string;
+  }) => {
+    setTicketTextField((draft) => {
+      draft[field] = value;
+    });
+  };
+  const { handleUpdateTicket, updateTextFiledTicketState } =
+    useUpdateTextFieldTicket();
+  const [allowTextFieldUpdate] = useCheckRequiredValue({
+    values: [!!ticketTextFiled.ticketSummary, !!ticketTextFiled.ticketDetail],
+    type: "or",
+  });
+
+  const updateTextFiled = (id: string) => {
+    handleUpdateTicket({
+      id,
+      summary: ticketTextFiled.ticketSummary,
+      description: ticketTextFiled.ticketDetail,
+      updated: Date.now(),
+    });
+  };
+
+  return {
+    allowTextFieldUpdate,
+    onTicketFieldChange,
+    ticketTextFiled,
+    updateTextFiled,
+    updateTextFiledTicketState,
+  };
+};
+
+export const useUpdateDropdownFieldSingleTicket = () => {
+  const [dropdownFieldData, setDropdownFieldData] = useImmer<{
+    ticketId: string;
+    ticketAssigneeId: string;
+    ticketStatus: string;
+    ticketPriority: string;
+  }>({
+    ticketId: "",
+    ticketStatus: "",
+    ticketPriority: "",
+    ticketAssigneeId: "",
+  });
+
+  const { handleUpdateTicket, updateDropdownFiledTicketState } =
+    useUpdateDropdownFiledTicket();
+
+  const onDropdownValueChange = ({
+    field,
+    value,
+  }: {
+    field: string;
+    value: string;
+  }) => {
+    setDropdownFieldData((draft) => {
+      draft[field] = value;
+    });
+  };
+
+  const updateTicketId = (id: string) => {
+    setDropdownFieldData((draft) => {
+      draft["ticketId"] = id;
+    });
+  };
+
+  useEffect(() => {
+    if (dropdownFieldData.ticketId) {
+      if (dropdownFieldData.ticketStatus) {
+        handleUpdateTicket({
+          id: dropdownFieldData.ticketId,
+          status: dropdownFieldData.ticketStatus,
+        });
+      }
+      if (dropdownFieldData.ticketAssigneeId) {
+        handleUpdateTicket({
+          id: dropdownFieldData.ticketId,
+          assigneeId: dropdownFieldData.ticketAssigneeId,
+        });
+      }
+
+      if (dropdownFieldData.ticketPriority) {
+        handleUpdateTicket({
+          id: dropdownFieldData.ticketId,
+          priority: dropdownFieldData.ticketPriority,
+        });
+      }
+    }
+  }, [
+    dropdownFieldData.ticketAssigneeId,
+    dropdownFieldData.ticketPriority,
+    dropdownFieldData.ticketStatus,
+  ]);
+
+  return { onDropdownValueChange, dropdownFieldData, updateTicketId };
 };
