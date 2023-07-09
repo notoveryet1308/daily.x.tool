@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from "styled-components";
 
 const dropdownOpenAnimation = () => keyframes`
   from{
@@ -13,6 +13,7 @@ const dropdownOpenAnimation = () => keyframes`
 export const StyledSelect = styled.div<{ isSearchable: boolean }>`
   position: relative;
   width: 100%;
+
   .select-top {
     width: 100%;
     display: flex;
@@ -27,7 +28,7 @@ export const StyledSelect = styled.div<{ isSearchable: boolean }>`
     }
 
     .select-input-wrapper {
-      cursor: ${({ isSearchable }) => (isSearchable ? 'auto' : 'pointer')};
+      cursor: ${({ isSearchable }) => (isSearchable ? "auto" : "pointer")};
       padding: 8px 16px;
       width: 100%;
       display: flex;
@@ -47,6 +48,8 @@ export const StyledSelect = styled.div<{ isSearchable: boolean }>`
     border-radius: 4px;
     background-color: ${({ theme }) => theme.colors.secondaryBgColor};
     padding: 8px 0px;
+    position: absolute;
+    z-index: 99999;
 
     .select-search {
       padding: 8px 16px;

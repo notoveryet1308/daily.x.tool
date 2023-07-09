@@ -42,7 +42,7 @@ const Login = () => {
             name="email"
             type="email"
             label="Email"
-            value={loginCred.email || "newuser@dev.com"}
+            value={loginCred.email}
             onChangeHandler={({ email }: { email: string }) => {
               dispatchLoginCred({ type: "login-email", payload: email });
             }}
@@ -53,7 +53,7 @@ const Login = () => {
             name="password"
             type="password"
             label="Password"
-            value={loginCred.password || "Test@123"}
+            value={loginCred.password}
             onChangeHandler={({ password }: { password: string }) => {
               dispatchLoginCred({ type: "login-password", payload: password });
             }}

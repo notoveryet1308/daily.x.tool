@@ -1,7 +1,40 @@
-import { ApolloClient, InMemoryCache, HttpLink, from } from "@apollo/client";
+import {
+  ApolloClient,
+  InMemoryCache,
+  HttpLink,
+  from,
+  ApolloLink,
+  Operation,
+  NextLink,
+} from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+import omitDeep from "omit-deep-lodash";
 
 import { onError } from "@apollo/client/link/error";
+
+type OperationTypeNode = "query" | "mutation" | "subscription";
+
+const removeTypenameFromMutation = (
+  operation: Operation,
+  forward: NextLink
+) => {
+  const definition = operation?.query?.definitions.filter(
+    (def) => def.kind === "OperationDefinition"
+  )?.[0];
+  const mutation: OperationTypeNode = "mutation";
+  if (
+    definition?.kind == "OperationDefinition" &&
+    definition?.operation === mutation
+  ) {
+    operation.variables = omitDeep(operation.variables, "__typename");
+    return forward(operation);
+  }
+  return forward(operation);
+};
+
+const removeTypenameFromMutationLink = new ApolloLink(
+  removeTypenameFromMutation
+);
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
@@ -35,7 +68,11 @@ const httpLink = new HttpLink({
 });
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link: from([errorLink, authLink.concat(httpLink)]),
+  link: from([
+    removeTypenameFromMutationLink,
+    errorLink,
+    authLink.concat(httpLink),
+  ]),
 });
 
 export default client;

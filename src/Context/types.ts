@@ -110,11 +110,12 @@ export interface BookmarkDataType {
   id: string;
   ogImg?: string;
   ogTitle?: string;
-  ogUrl?: string;
+  ogUrl: string;
   tags: tagType[];
   ogSiteName?: string;
   ogDescription?: string;
-  hexCode: string;
+  hexCode?: string;
+  isPreviewAvailable: boolean;
 }
 
 export interface CurrentBookmarkDataType {

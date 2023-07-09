@@ -30,10 +30,18 @@ export const StyledBookmarkPageWrapper = styled.main`
     margin-bottom: 40px;
     max-width: ${({ theme }) => theme.breakpoints.DESKTOP}px;
 
+    .bookmark-filter-content {
+      margin-top: 24px;
+      display: flex;
+      width: 100%;
+      max-width: 280px;
+    }
+
     .bookmark-list-content {
       display: flex;
       justify-content: center;
       height: auto;
+
       .no-data-state {
         height: 80vh;
         background-color: ${({ theme }) => theme.colors.primaryBgColor};
@@ -74,72 +82,41 @@ export const StyledBookmarkPageWrapper = styled.main`
         transform: unset;
         cursor: default;
       }
+
+      .bookmark-filter-content {
+        max-width: 100%;
+      }
     }
   }
 `;
 
 export const StyledBookmarkCreate = styled.div`
   width: 100%;
+  flex: 1;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
 
-  .main-content-wrapper {
+  .bookmark-url-wrapper {
     width: 100%;
-    display: flex;
-    height: 100%;
-    padding: 0 60px 20px;
-    max-height: calc(100vh - 64px);
-    justify-content: center;
-
-    @media (max-width: ${({ theme }) => theme.breakpoints.LARGE_TABLET}px) {
-      padding: 0 32px 20px;
-      max-height: calc(100vh - 87px);
-    }
-
-    @media (max-width: ${({ theme }) => theme.breakpoints.MOBILE}px) {
-      padding: 0 16px 10px;
-    }
+    flex: 1;
+    padding-bottom: 24px;
   }
 
-  .main-content {
+  .bookmark-url {
     width: 100%;
-    height: 100%;
+    max-width: 600px;
+  }
+
+  .bookmark-create-action {
     display: flex;
-    justify-content: center;
-    gap: 20px;
-    position: relative;
-    margin-bottom: 40px;
-    max-width: ${({ theme }) => theme.breakpoints.DESKTOP}px;
-    padding: 60px 0 24px 0;
-    position: relative;
-
-    .create-bookmark-fields {
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-      max-width: 500px;
-      width: 100%;
-
-      .create-bookmark-url-wrapper {
-        background-color: ${({ theme }) => theme.colors.tertiaryBgColor};
-        padding: 4px 8px;
-        border-radius: 40px;
-        border: 1px solid transparent;
-
-        &:focus-within {
-          border: 1px solid ${({ theme }) => theme.colors.primaryColor};
-        }
-
-        .bookmark-url {
-          border: none;
-        }
-      }
-    }
-
-    @media (max-width: ${({ theme }) => theme.breakpoints.TABLET}px) {
-      flex-direction: column;
-      padding-top: 20px;
-      justify-content: flex-start;
-    }
+    width: 100%;
+    justify-content: flex-end;
+    column-gap: 16px;
   }
 `;
 

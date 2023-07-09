@@ -1,88 +1,70 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 import { Input } from "../../component/UI/Input";
-import BookmarkInput from "../../component/Cards/BookmarkView/BookmarkAction/BookmarkInput";
 import { StyledBookmarkCreate } from "./style";
 
-import Loader from "../../component/UI/Loader";
+import { PrimaryButton, TertiaryButton } from "../../component/UI/Button";
 
-import Back from "../../component/UI/Back";
-import { PrimaryButton } from "../../component/UI/Button";
-import { useCreateBookmark, useGenerateLinkPreviewData } from "./hook";
-import { useBookmarkContext } from "../../Context/BookmarkDataProvider";
 import { securedUrlRegex } from "../../utils";
+import { useCreateBookmark } from "./Graphql/index";
+import { nanoid } from "nanoid";
+import Shell from "./components/Shell";
 
-const BookmarkCreate = () => {
-  const { handleLinkData, previewQueryState } = useGenerateLinkPreviewData();
-  const { currentBookmark } = useBookmarkContext();
-  const { handleBookmarkCreation, bookmarkCreateQueryState } =
-    useCreateBookmark();
+const BookmarkCreate = ({ onClose }: { onClose: Function }) => {
   const [bookmarkUrl, setBookmarkUrl] = useState<string>("");
+  const { handleBookmarkCreation, createBookmarkQuery } = useCreateBookmark();
+
+  if (createBookmarkQuery.data) {
+    onClose();
+  }
 
   return (
     <StyledBookmarkCreate>
-      <div className="main-content-wrapper">
-        <Back />
-        <div className="main-content">
-          <Back isMobile />
-          <div className="create-bookmark-fields">
-            <div className="create-bookmark-url-wrapper">
-              <Input
-                className="bookmark-url"
-                type="url"
-                placeholder="Enter url here.."
-                name="bookmarkUrl"
-                value={bookmarkUrl}
-                onChangeHandler={({ bookmarkUrl }: { bookmarkUrl: string }) => {
-                  setBookmarkUrl(bookmarkUrl);
-                }}
-                showValidUrlMessage
-              />
-            </div>
-            {bookmarkUrl &&
-              previewQueryState.called &&
-              (!previewQueryState.loading &&
-              previewQueryState.data?.generatePreviewData ? (
-                <>
-                  <BookmarkInput
-                    {...previewQueryState.data?.generatePreviewData}
-                    ogUrl={bookmarkUrl}
-                    tags={[]}
-                  />
-                  <PrimaryButton
-                    label={
-                      bookmarkCreateQueryState.loading
-                        ? "Creating..."
-                        : "Create bookmark"
-                    }
-                    disabled={bookmarkCreateQueryState.loading}
-                    onClick={() => {
-                      if (currentBookmark.data) {
-                        handleBookmarkCreation();
-                      }
-                    }}
-                  />
-                </>
-              ) : (
-                <Loader />
-              ))}
+      <div className="bookmark-url-wrapper">
+        <Input
+          className="bookmark-url"
+          type="url"
+          placeholder="Paste url here"
+          name="bookmarkUrl"
+          value={bookmarkUrl}
+          onChangeHandler={({ bookmarkUrl }: { bookmarkUrl: string }) => {
+            setBookmarkUrl(bookmarkUrl);
+          }}
+          showValidUrlMessage
+        />
+      </div>
 
-            {!previewQueryState.called && (
-              <PrimaryButton
-                label="Get preview data"
-                disabled={!securedUrlRegex(bookmarkUrl)}
-                onClick={() => {
-                  if (bookmarkUrl) {
-                    handleLinkData(bookmarkUrl);
-                  }
-                }}
-              />
-            )}
-          </div>
-        </div>
+      <div className="bookmark-create-action">
+        <TertiaryButton label="Cancel" onClick={onClose} />
+        <PrimaryButton
+          label={createBookmarkQuery.loading ? "Bookmarking.." : "Bookmark"}
+          disabled={!securedUrlRegex(bookmarkUrl)}
+          onClick={() => {
+            handleBookmarkCreation({ id: nanoid(), bookmarkUrl });
+          }}
+        />
       </div>
     </StyledBookmarkCreate>
   );
 };
 
-export default BookmarkCreate;
+export { BookmarkCreate };
+
+const BookmarkCreateShell = () => {
+  const history = useHistory();
+
+  const toggleShell = () => {
+    history.push("/bookmark");
+  };
+
+  return (
+    <>
+      <Shell open toggleShell={toggleShell} title="Create bookmark">
+        <BookmarkCreate onClose={toggleShell} />
+      </Shell>
+    </>
+  );
+};
+
+export default BookmarkCreateShell;

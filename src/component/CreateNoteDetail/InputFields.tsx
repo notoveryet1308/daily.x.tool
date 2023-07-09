@@ -18,7 +18,7 @@ const InputFields = ({
   currentNote: currentNoteDataType;
   tagOptions: tagType[];
 }) => {
-  const { handleCreatetag } = useCreateTag();
+  const { handleCreateTag } = useCreateTag();
   const tagQuery = useGetTags();
 
   return (
@@ -53,7 +53,7 @@ const InputFields = ({
           onChange={noteDataHandler}
           values={currentNote.data.tags}
           searchPlaceholder="Search tags"
-          onCreation={handleCreatetag}
+          onCreation={handleCreateTag}
           creationQueryState={{
             loading: tagQuery.loading,
             error: `${tagQuery.error}`,

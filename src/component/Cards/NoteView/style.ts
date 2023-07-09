@@ -24,6 +24,8 @@ export const StyledNoteView = styled.div<{
   gap: 16px;
   justify-content: space-between;
   border: 2px solid transparent;
+  max-height: 400px;
+  overflow-y: auto;
 
   .top-wrapper {
     display: flex;
@@ -66,11 +68,14 @@ export const StyledNoteView = styled.div<{
   }
 
   .action-btn-wrapper {
-    position: absolute;
+    position: sticky;
     display: flex;
     gap: 8px;
-    bottom: 16px;
-    right: 16px;
+    align-self: flex-end;
+    padding: 4px 8px;
+    border-radius: 16px;
+    background-color: ${({ theme }) => theme.colors.tertiaryBgColor};
+
     .ph-icon {
       font-size: 20px;
       cursor: pointer;
@@ -106,7 +111,6 @@ export const StyledNoteView = styled.div<{
 
   animation-name: ${({ showAnimation }) => showAnimation && borderAnimation()};
   animation-duration: 5s;
-  overflow: hidden;
 `;
 
 export const StyledNoteEdit = styled.div`

@@ -23,7 +23,7 @@ const ColorPicker = ({
   );
 
   const onChangeHandler = (d: string) => {
-    onChange({ [name]: d });
+    onChange({ field: name, [name]: d });
     setSelectedColor(d);
   };
 
@@ -34,7 +34,7 @@ const ColorPicker = ({
     const hexValue = e.target.value;
     dispatch({ type: "set-more-static-colors", payload: hexValue });
     setSelectedColor(hexValue);
-    onChange({ [name]: hexValue });
+    onChange({ field: name, [name]: hexValue });
   };
 
   return (
