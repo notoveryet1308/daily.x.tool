@@ -9,11 +9,13 @@ import {
   GET_PROJECT_NAMES,
   GET_ALL_TICKETS,
   GET_TICKET_BY_ID,
-  UPDATE_TICKET,
+  UPDATE_TEXT_FILED_TICKET,
+  UPDATE_DROPDOWN_FILED_TICKET,
 } from "./gql";
 import {
   CreateTicketInputType,
   ProjectCreateInput,
+  UpdateDropdownFieldTicketType,
   UpdateTicketType,
 } from "../type";
 
@@ -106,11 +108,11 @@ export const useGetAllTickets = () => {
   return getAllTickets;
 };
 
-export const useGetTicketById = ({ ticketId }: { ticketId: string }) => {
+export const useGetTicketById = ({ ticketKey }: { ticketKey: string }) => {
   const getTicketById = useQuery(GET_TICKET_BY_ID, {
     variables: {
       input: {
-        id: ticketId,
+        ticketKey,
       },
     },
   });
@@ -118,8 +120,10 @@ export const useGetTicketById = ({ ticketId }: { ticketId: string }) => {
   return getTicketById;
 };
 
-export const useUpdateTicket = () => {
-  const [mutate, updateTicketState] = useMutation(UPDATE_TICKET);
+export const useUpdateTextFieldTicket = () => {
+  const [mutate, updateTextFiledTicketState] = useMutation(
+    UPDATE_TEXT_FILED_TICKET
+  );
 
   const handleUpdateTicket = (dataToBeUpdated: UpdateTicketType) => {
     mutate({
@@ -129,5 +133,22 @@ export const useUpdateTicket = () => {
     });
   };
 
-  return { handleUpdateTicket, updateTicketState };
+  return { handleUpdateTicket, updateTextFiledTicketState };
+};
+
+export const useUpdateDropdownFiledTicket = () => {
+  const [mutate, updateDropdownFiledTicketState] = useMutation(
+    UPDATE_DROPDOWN_FILED_TICKET
+  );
+  const handleUpdateTicket = (
+    dataToBeUpdated: UpdateDropdownFieldTicketType
+  ) => {
+    mutate({
+      variables: {
+        input: { ...dataToBeUpdated },
+      },
+    });
+  };
+
+  return { handleUpdateTicket, updateDropdownFiledTicketState };
 };

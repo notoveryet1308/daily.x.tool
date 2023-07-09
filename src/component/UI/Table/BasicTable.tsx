@@ -23,7 +23,7 @@ const Table = <T, U>({
       columns,
       data,
     });
-  console.log({ headerGroups, rows });
+
   return (
     <StyledTable {...getTableProps()}>
       <thead>

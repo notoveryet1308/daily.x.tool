@@ -13,7 +13,6 @@ export const useCreateBookmark = () => {
       const existingBookmark = cache.readQuery({
         query: GET_ALL_BOOKMARK,
       });
-      console.log(existingBookmark, generatePreviewData);
 
       cache.writeQuery({
         query: GET_ALL_BOOKMARK,

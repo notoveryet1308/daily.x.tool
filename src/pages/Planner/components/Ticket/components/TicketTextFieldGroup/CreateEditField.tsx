@@ -14,6 +14,8 @@ const CreateEditFields = ({
   summaryValue,
   descriptionValue,
   onChangeHandler,
+  allowTextFieldUpdate,
+  saveEditBtnLabel,
 }: {
   isEditing?: boolean;
   onSaveEdited?: Function;
@@ -21,6 +23,8 @@ const CreateEditFields = ({
   summaryValue: string;
   descriptionValue: string;
   onChangeHandler: Function;
+  allowTextFieldUpdate?: boolean;
+  saveEditBtnLabel?: string;
 }) => {
   return (
     <StyledCreateEditFields>
@@ -37,7 +41,11 @@ const CreateEditFields = ({
       {isEditing && (
         <div className="edit-filed-footer">
           <TertiaryButton label="Cancel" onClick={onCancelEditing} />
-          <PrimaryButton label="Save" onClick={onSaveEdited} />
+          <PrimaryButton
+            label={saveEditBtnLabel}
+            disabled={!allowTextFieldUpdate}
+            onClick={onSaveEdited}
+          />
         </div>
       )}
     </StyledCreateEditFields>

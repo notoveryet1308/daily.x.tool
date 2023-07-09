@@ -65,8 +65,12 @@ export interface UpdateTicketType {
   id: string;
   summary: string;
   description: string;
-  assigneeId: String | null;
   updated: number;
-  priority: string;
-  status: string;
+}
+
+export interface UpdateDropdownFieldTicketType {
+  id: string;
+  assigneeId?: string;
+  priority?: string;
+  status?: string;
 }
