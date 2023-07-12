@@ -4,7 +4,9 @@ import { StyledPriorityLabel } from "./style";
 const PriorityLabel = ({
   type,
   onClick,
+  showLabel = true,
 }: {
+  showLabel?: boolean;
   type: string;
   onClick: Function;
 }) => {
@@ -17,7 +19,7 @@ const PriorityLabel = ({
       hexCode={hexCode}
     >
       <Icon className="priority-icon" weight="fill" />
-      <span className="priority-name">{label}</span>
+      {showLabel && <span className="priority-name">{label}</span>}
     </StyledPriorityLabel>
   );
 };
