@@ -1,4 +1,4 @@
-import color from 'color';
+import color from "color";
 
 const mixins = {
   convertHexToHsl: ({
@@ -14,6 +14,13 @@ const mixins = {
 
     return `hsl(${hue} ${saturation}% ${lightness}%)`;
   },
+  truncate: ({ line }: { line: number }) => `
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: ${line};
+  white-space: pre-wrap;
+`,
 };
 
 export default mixins;

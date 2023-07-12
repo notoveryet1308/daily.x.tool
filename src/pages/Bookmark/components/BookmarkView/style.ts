@@ -1,14 +1,5 @@
 import styled from "styled-components";
 
-const truncate = ({ line }: { line: number }) => `
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: ${line};
-    white-space: pre-wrap;
-
-`;
-
 export const StyledBookmarkViewCard = styled.a<{
   isMouseHover: boolean;
   hexCode: string;
@@ -88,18 +79,18 @@ export const StyledBookmarkViewCard = styled.a<{
     .bkm-title {
       color: ${({ theme }) => theme.colors.primaryTextColor};
       font-size: 14px;
-      ${truncate({ line: 2 })}
+      ${({ theme }) => theme.mixins.truncate({ line: 2 })};
     }
     .bkm-description {
       color: ${({ theme }) => theme.colors.secondaryTextColor};
       font-size: 12px;
       overflow: hidden;
-      ${truncate({ line: 2 })};
+      ${({ theme }) => theme.mixins.truncate({ line: 2 })}
     }
     .bkm-domain {
       color: ${({ theme }) => theme.colors.tertiaryTextColor};
       font-size: 12px;
-      ${truncate({ line: 1 })}
+      ${({ theme }) => theme.mixins.truncate({ line: 1 })}
     }
 
     .bkm-no-preview-url {
