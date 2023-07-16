@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import { Link } from "react-router-dom";
 import Tooltip from "antd/lib/tooltip";
 
 import { noop } from "../../../../../utils";
@@ -14,14 +15,14 @@ const TableBodyRow = ({ bodyRowData }: { bodyRowData: TicketFiled }) => {
     <>
       <td>
         <StyledTableCell>
-          <a
+          <Link
             className="ticket-nav-link"
-            href={`/planner/ticket/${bodyRowData.ticketKey}`}
+            to={`/planner/ticket/${bodyRowData.ticketKey}`}
             target="_blank"
             onClick={(e) => e.stopPropagation()}
           >
             {bodyRowData.ticketKey}
-          </a>
+          </Link>
         </StyledTableCell>
       </td>
       <td>
