@@ -4,6 +4,7 @@ import { breakpoints } from "../../../../../theme/breakpoint";
 export const StyledTicketList = styled.div`
   width: 100%;
   overflow: auto;
+  border-radius: 4px;
 
   .table-body-row {
     cursor: pointer;

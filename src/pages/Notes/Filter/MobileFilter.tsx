@@ -30,14 +30,14 @@ const MobileFilter = () => {
 
   return (
     <StyledMobileFilter>
-      <DropdownShell
+      {/* <DropdownShell
         name="sort"
         btnLabel="Sort by"
         btnIcon={<ArrowsDownUp />}
         hideContent
         onDropdownBtnClick={handleFilterClick}
         isContentVisible={filterType === "sort"}
-      />
+      /> */}
       <DropdownShell
         name="filter"
         btnLabel="Filter by"

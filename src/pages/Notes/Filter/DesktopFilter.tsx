@@ -13,11 +13,11 @@ const DesktopFilter = () => {
   return (
     <StyledDesktopFilter>
       <div className="dropdown-wrapper">
-        <DropdownShell
+        {/* <DropdownShell
           btnLabel="Sort by"
           btnIcon={<ArrowsDownUp />}
           content={<SortContent />}
-        />
+        /> */}
         <DropdownShell
           btnLabel="Filter by"
           btnIcon={<Funnel />}
