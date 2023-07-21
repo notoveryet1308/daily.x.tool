@@ -50,6 +50,7 @@ export const StyledSelect = styled.div<{ isSearchable: boolean }>`
     padding: 8px 0px;
     position: absolute;
     z-index: 99999;
+    box-shadow: 1.1px 2.2px 2.2px ${({ theme }) => theme.colors.primaryGreyColor};
 
     .select-search {
       padding: 8px 16px;
