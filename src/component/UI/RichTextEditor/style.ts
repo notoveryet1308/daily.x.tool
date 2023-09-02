@@ -72,3 +72,10 @@ export const StyledQuotes = styled.blockquote`
   font-style: italic;
   background: ${({ theme }) => theme.colors.tertiaryBgColor};
 `;
+
+export const StyledRichImage = styled.image`
+  max-width: 300px;
+  height: auto;
+  border: 2px solid ${({ theme }) => theme.colors.primaryGreyColor};
+  border-radius: 8px;
+`;

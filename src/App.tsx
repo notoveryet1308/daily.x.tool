@@ -24,6 +24,7 @@ import CrateTicket from "./pages/Planner/components/Ticket/CreateTicket";
 import ProtectedRoute from "./ProtectedRoute";
 import Table from "./component/UI/Table/BasicTable";
 import SingleTicket from "./pages/Planner/components/Ticket/SingleTicket";
+import RichTextEditor_Exp from "./component/UI/RichTextEditor_Exp";
 
 function App() {
   const { themeMode, dispatch } = useAppDataContext();
@@ -43,7 +44,7 @@ function App() {
   };
 
   return (
-    <ThemeProvider theme={{ ...theme, colors: theme.colors[themeMode] }}>
+    <ThemeProvider theme={{ ...theme, colors: theme.colors["main"] }}>
       <GlobalStyle />
       <Header colorTheme={themeMode} handleColorTheme={handleColorTheme} />
 
@@ -90,7 +91,11 @@ function App() {
           <Route path="/login" component={Login} exact />
           <Route path="/sign-up" component={Signup} exact />
 
-          <Route path="/component-testing" component={Table} exact />
+          <Route
+            path="/component-testing"
+            component={RichTextEditor_Exp}
+            exact
+          />
         </Switch>
       </StyledMainWrapper>
     </ThemeProvider>

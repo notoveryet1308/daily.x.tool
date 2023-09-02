@@ -19,6 +19,7 @@ const Toolbar = () => {
       <BlockButton format='center' icon={BlockIcon['alignCenter']} />
       <BlockButton format='right' icon={BlockIcon['alignRight']} />
       <BlockButton format='justify' icon={BlockIcon['justify']} />
+      <BlockButton format='image' icon={BlockIcon['image']} />
     </StyledToolbar>
   );
 };

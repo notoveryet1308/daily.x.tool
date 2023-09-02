@@ -1,8 +1,19 @@
-import React from 'react';
+import React from "react";
 
-import { StyledOlTag, StyledQuotes, StyledUlTag } from './style';
+import {
+  StyledOlTag,
+  StyledQuotes,
+  StyledUlTag,
+  StyledRichImage,
+} from "./style";
 
-type AlignValues = 'start' | 'end' | 'left' | 'right' | 'center' | 'justify';
+type AlignValues = "start" | "end" | "left" | "right" | "center" | "justify";
+
+export type ImageElement = {
+  type: "image";
+  url: string;
+  children: EmptyText[];
+};
 
 const Elements = ({
   attributes,
@@ -18,42 +29,44 @@ const Elements = ({
 }) => {
   const style: React.CSSProperties = { textAlign: element.align };
   switch (element.type) {
-    case 'block-quote':
+    case "block-quote":
       return (
         <StyledQuotes style={style} {...attributes}>
           {children}
         </StyledQuotes>
       );
-    case 'bulleted-list':
+    case "bulleted-list":
       return (
         <StyledUlTag style={style} {...attributes}>
           {children}
         </StyledUlTag>
       );
-    case 'heading-one':
+    case "heading-one":
       return (
         <h1 style={style} {...attributes}>
           {children}
         </h1>
       );
-    case 'heading-two':
+    case "heading-two":
       return (
         <h2 style={style} {...attributes}>
           {children}
         </h2>
       );
-    case 'list-item':
+    case "list-item":
       return (
         <li style={style} {...attributes}>
           {children}
         </li>
       );
-    case 'numbered-list':
+    case "numbered-list":
       return (
         <StyledOlTag style={style} {...attributes}>
           {children}
         </StyledOlTag>
       );
+    case "image":
+      return <StyledRichImage style={style} {...attributes} />;
     default:
       return (
         <p style={style} {...attributes}>

@@ -28,6 +28,13 @@ const CreateTodo = ({
   const onSubmitHandler = () => {
     dispatch({ type: "filed-validation", payload: "" });
 
+    // let run = true;
+    // const lengthSize = Array(10000000000000).fill(10);
+    // while (run) {
+    //   for (let i = 0; i < lengthSize.length; i++) {}
+    //   run = false;
+    // }
+
     if (allowAction) {
       userLogged
         ? handleNewTodoCreation({

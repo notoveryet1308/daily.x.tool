@@ -2,7 +2,6 @@ import { Typography } from "antd";
 
 import WeatherReport from "../../component/WeatherReport";
 import { StyledHomePageWrapper } from "../Home/style";
-import Scrollbars from "react-custom-scrollbars-2";
 import { CreateTodo } from "../../component/TodoItem/TodoAction";
 import NoDataState from "../../component/UI/NoDataState";
 
